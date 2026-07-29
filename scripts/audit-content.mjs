@@ -1,7 +1,8 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
+const canonicalOrigin = "https://www.bebur-jp.com";
 const sourcePath = path.join(root, "content", "source", "source-manifest.json");
 const contentDirectory = path.join(root, "content", "ja");
 const contentFiles = [
@@ -105,6 +106,16 @@ const allowedAsciiWords = new Set(
 
 function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
+}
+
+function sourceFiles(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      return sourceFiles(absolutePath);
+    }
+    return /\.(?:json|ts|tsx)$/i.test(entry.name) ? [absolutePath] : [];
+  });
 }
 
 function recordLabel(file, record) {
@@ -211,6 +222,46 @@ const duplicateRoutes = [...routeMappings]
   .map(([route, labels]) => `${route} -> ${labels.join(", ")}`)
   .toSorted();
 
+const canonicalRoutes = [...routeMappings.keys()].toSorted();
+const sitemapUrls = canonicalRoutes.map((route) =>
+  new URL(route, `${canonicalOrigin}/`).toString(),
+);
+const duplicateSitemapUrls = sitemapUrls
+  .filter((url, index) => sitemapUrls.indexOf(url) !== index)
+  .toSorted();
+const invalidSitemapUrls = sitemapUrls
+  .filter((url) => !url.startsWith(`${canonicalOrigin}/`))
+  .toSorted();
+const sitemapSource = readFileSync(
+  path.join(root, "app", "sitemap.ts"),
+  "utf8",
+);
+const sitemapImplementationErrors = [
+  !sitemapSource.includes("getAllRoutes()")
+    ? "app/sitemap.ts does not consume getAllRoutes()"
+    : undefined,
+  !sitemapSource.includes("siteConfig.origin")
+    ? "app/sitemap.ts does not consume siteConfig.origin"
+    : undefined,
+].filter(Boolean);
+
+const robotsSource = readFileSync(
+  path.join(root, "app", "robots.ts"),
+  "utf8",
+);
+const robotsImplementationErrors = [
+  !/allow\s*:\s*["']\/["']/.test(robotsSource)
+    ? "app/robots.ts does not explicitly allow /"
+    : undefined,
+  /disallow\s*:/.test(robotsSource)
+    ? "app/robots.ts unexpectedly disallows public routes"
+    : undefined,
+  !robotsSource.includes("siteConfig.origin") ||
+  !robotsSource.includes("/sitemap.xml")
+    ? "app/robots.ts does not reference the canonical sitemap"
+    : undefined,
+].filter(Boolean);
+
 const aliasMappings = contentEntries
   .flatMap(({ file, record }) =>
     (record.sourceAliases ?? []).map(
@@ -256,6 +307,47 @@ for (const { file, record } of contentEntries) {
     );
   }
 }
+
+const publicSourceEntries = [
+  path.join(root, "app"),
+  path.join(root, "components"),
+  path.join(root, "lib"),
+].flatMap(sourceFiles).map((filePath) => ({
+  file: path.relative(root, filePath),
+  source: readFileSync(filePath, "utf8"),
+}));
+const forbiddenPublicSourceMatches = publicSourceEntries.flatMap(
+  ({ file, source }) => {
+    const match = source.match(forbiddenContactPattern);
+    return match ? [`${file} -> ${match[0]}`] : [];
+  },
+);
+
+const constantsSource = readFileSync(
+  path.join(root, "lib", "constants.ts"),
+  "utf8",
+);
+const requiredDistributorLiterals = [
+  canonicalOrigin,
+  "Bebur 日本総代理店｜新樹産業株式会社",
+  "新樹産業株式会社",
+  "〒340-0043",
+  "埼玉県草加市草加2－13－21－7",
+  "080-5189-8663",
+  "info@newtree-i.com",
+];
+const missingDistributorLiterals = requiredDistributorLiterals.filter(
+  (literal) => !constantsSource.includes(literal),
+);
+
+const languageSwitchPattern =
+  /language(?:switcher|[-_\s]+switch)|言語切替|语言切换|href\s*=\s*(?:\{\s*)?["'`]\/(?:en|zh|cn)(?:\/|\?|["'`])/i;
+const languageSwitchMatches = publicSourceEntries.flatMap(
+  ({ file, source }) => {
+    const match = source.match(languageSwitchPattern);
+    return match ? [`${file} -> ${match[0]}`] : [];
+  },
+);
 
 const rawEnglishPublicProse = [];
 const productModelWords = new Set(
@@ -348,6 +440,7 @@ const productCategoryCounts = Object.fromEntries(
 console.log(`source record count: ${sourceRecords.length}`);
 console.log(`represented source URL count: ${representedSourceUrls.size}`);
 console.log(`canonical route count: ${routeMappings.size}`);
+console.log(`sitemap canonical URL count: ${sitemapUrls.length}`);
 console.log(`record counts by kind: ${JSON.stringify(kindCounts)}`);
 console.log(
   `record counts by product category: ${JSON.stringify(productCategoryCounts)}`,
@@ -358,6 +451,19 @@ printList("multiply mapped source URLs", multiplyMappedSourceUrls);
 printList("unexpected source URLs", unexpectedSourceUrls);
 printList("missing local images", missingLocalImages);
 printList("forbidden contact matches", forbiddenContactMatches);
+printList(
+  "forbidden public-source contact matches",
+  forbiddenPublicSourceMatches,
+);
+printList("missing distributor literals", missingDistributorLiterals);
+printList("language-switch matches", languageSwitchMatches);
+printList("duplicate sitemap URLs", duplicateSitemapUrls);
+printList("invalid sitemap URLs", invalidSitemapUrls);
+printList(
+  "sitemap implementation errors",
+  sitemapImplementationErrors,
+);
+printList("robots implementation errors", robotsImplementationErrors);
 printList("raw English public prose", rawEnglishPublicProse);
 printList(
   "missing Japanese titles/descriptions",
@@ -377,8 +483,17 @@ const failed =
   multiplyMappedSourceUrls.length > 0 ||
   unexpectedSourceUrls.length > 0 ||
   duplicateRoutes.length > 0 ||
+  canonicalRoutes.length !== 110 ||
+  sitemapUrls.length !== 110 ||
+  duplicateSitemapUrls.length > 0 ||
+  invalidSitemapUrls.length > 0 ||
+  sitemapImplementationErrors.length > 0 ||
+  robotsImplementationErrors.length > 0 ||
   missingLocalImages.length > 0 ||
   forbiddenContactMatches.length > 0 ||
+  forbiddenPublicSourceMatches.length > 0 ||
+  missingDistributorLiterals.length > 0 ||
+  languageSwitchMatches.length > 0 ||
   rawEnglishPublicProse.length > 0 ||
   missingJapaneseTitlesDescriptions.length > 0 ||
   invalidDates.length > 0 ||

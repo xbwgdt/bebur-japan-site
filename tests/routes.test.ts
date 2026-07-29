@@ -1,6 +1,22 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  contentType as iconContentType,
+  size as iconSize,
+} from "../app/icon";
+import RootLayout, {
+  metadata as globalMetadata,
+  organizationJsonLd,
+} from "../app/layout";
+import {
+  alt as openGraphAlt,
+  contentType as openGraphContentType,
+  openGraphImageText,
+  size as openGraphSize,
+} from "../app/opengraph-image";
+import robots from "../app/robots";
+import sitemap from "../app/sitemap";
+import {
   generateMetadata as generateAboutMetadata,
   generateStaticParams as generateAboutStaticParams,
   resolveAboutPageForRoute,
@@ -36,6 +52,7 @@ import {
   getProducts,
   getStaticPages,
 } from "../lib/content";
+import { siteConfig } from "../lib/constants";
 import {
   canonicalUrl,
   productCategoryLabels,
@@ -113,6 +130,114 @@ describe("route helpers", () => {
       "gas-detection": "ガス検知器",
       "flow-level": "流量計・液位計",
     });
+  });
+});
+
+describe("production SEO metadata routes", () => {
+  it("publishes every canonical content route exactly once in the sitemap", () => {
+    const entries = sitemap();
+    const urls = entries.map(({ url }) => url);
+    const expectedUrls = getAllRoutes().map(canonicalUrl);
+
+    expect(entries).toHaveLength(110);
+    expect(new Set(urls).size).toBe(urls.length);
+    expect(urls.toSorted()).toEqual(expectedUrls.toSorted());
+    expect(
+      urls.every((url) => url.startsWith("https://www.bebur-jp.com/")),
+    ).toBe(true);
+  });
+
+  it("allows public crawling and references the exact canonical sitemap", () => {
+    const policy = robots();
+    const rules = Array.isArray(policy.rules)
+      ? policy.rules
+      : [policy.rules];
+
+    expect(rules).toEqual([{ userAgent: "*", allow: "/" }]);
+    expect(rules.every((rule) => !("disallow" in rule))).toBe(true);
+    expect(policy.sitemap).toBe(
+      "https://www.bebur-jp.com/sitemap.xml",
+    );
+  });
+
+  it("uses the approved origin and complete Japanese share metadata", () => {
+    expect(globalMetadata.metadataBase?.toString()).toBe(
+      "https://www.bebur-jp.com/",
+    );
+    expect(globalMetadata.title).toEqual({
+      default: "Bebur Japan｜水質分析・ガス検知の精密計測",
+      template: "%s｜Bebur Japan",
+    });
+    expect(globalMetadata.openGraph).toMatchObject({
+      title: "Bebur Japan｜水質分析・ガス検知の精密計測",
+      description:
+        "Bebur 日本総代理店の新樹産業株式会社が、水質分析計、ガス検知器、清浄度測定装置、薬注制御装置をご案内します。",
+      locale: "ja_JP",
+      siteName: "Bebur Japan",
+      type: "website",
+      url: "https://www.bebur-jp.com",
+    });
+    expect(globalMetadata.twitter).toMatchObject({
+      card: "summary_large_image",
+      title: "Bebur Japan｜水質分析・ガス検知の精密計測",
+      description:
+        "Bebur 日本総代理店の新樹産業株式会社が、水質分析計、ガス検知器、清浄度測定装置、薬注制御装置をご案内します。",
+    });
+  });
+
+  it("identifies New Tree Industries only as the Japanese exclusive distributor", () => {
+    expect(organizationJsonLd).toEqual({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "新樹産業株式会社",
+      alternateName: "Bebur 日本総代理店",
+      description: "Bebur 日本総代理店",
+      url: "https://www.bebur-jp.com",
+      email: "info@newtree-i.com",
+      telephone: "080-5189-8663",
+      address: {
+        "@type": "PostalAddress",
+        postalCode: "340-0043",
+        addressRegion: "埼玉県",
+        addressLocality: "草加市",
+        streetAddress: "草加2－13－21－7",
+        addressCountry: "JP",
+      },
+    });
+    expect(organizationJsonLd.name).toBe(siteConfig.company);
+    expect(JSON.stringify(organizationJsonLd)).not.toMatch(
+      /manufacturer|headquarters|global manufacturer|製造元|世界本社/i,
+    );
+
+    const layout = RootLayout({ children: "fixture" });
+    const body = layout.props.children;
+    const children = Array.isArray(body.props.children)
+      ? body.props.children
+      : [body.props.children];
+    const jsonLdScript = children.find(
+      (child) => child?.type === "script",
+    );
+
+    expect(jsonLdScript?.props.type).toBe("application/ld+json");
+    expect(jsonLdScript?.props.dangerouslySetInnerHTML).toEqual({
+      __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+    });
+  });
+
+  it("exports deterministic branded social and icon image metadata", () => {
+    expect(openGraphSize).toEqual({ width: 1200, height: 630 });
+    expect(openGraphContentType).toBe("image/png");
+    expect(openGraphAlt).toBe(
+      "Bebur Japan｜水質分析・ガス検知の精密ソリューション",
+    );
+    expect(openGraphImageText).toEqual({
+      brand: "Bebur Japan",
+      message: "水質分析・ガス検知の精密ソリューション",
+      distributor: "日本総代理店 新樹産業株式会社",
+    });
+
+    expect(iconSize).toEqual({ width: 64, height: 64 });
+    expect(iconContentType).toBe("image/png");
   });
 });
 
