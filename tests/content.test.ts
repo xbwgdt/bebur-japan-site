@@ -4,6 +4,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { isAllowedFinalImageUrl } from "../scripts/asset-policy.mjs";
+
 type SourcePage = {
   sourceUrl: string;
   sourcePath: string;
@@ -36,6 +38,25 @@ async function readAssetMap(): Promise<Record<string, string>> {
     await readFile(assetMapPath, "utf8"),
   ) as Record<string, string>;
 }
+
+describe("asset redirect policy", () => {
+  it("accepts approved HTTPS final image URLs", () => {
+    expect(isAllowedFinalImageUrl("https://bebur.net/image.jpg")).toBe(true);
+    expect(isAllowedFinalImageUrl("https://www.bebur.net/image.png")).toBe(
+      true,
+    );
+  });
+
+  it("rejects off-host or non-HTTPS final image URLs", () => {
+    expect(isAllowedFinalImageUrl("https://cdn.example.com/image.jpg")).toBe(
+      false,
+    );
+    expect(isAllowedFinalImageUrl("http://www.bebur.net/image.jpg")).toBe(
+      false,
+    );
+    expect(isAllowedFinalImageUrl("not a URL")).toBe(false);
+  });
+});
 
 describe("Bebur English source inventory", () => {
   it("contains the approved 112-page migration baseline", async () => {
@@ -117,5 +138,46 @@ describe("Bebur reusable source assets", () => {
     );
 
     expect(new Set(hashes).size).toBe(localUrls.length);
+  });
+
+  it("stores Exhibition Site images as application assets", async () => {
+    const pages = await readManifest();
+    const assetMap = await readAssetMap();
+    const exhibitionPage = pages.find(
+      ({ sourcePath }) => sourcePath === "/en/list_45",
+    );
+    const mappedAssets =
+      exhibitionPage?.images
+        .map(({ src }) => assetMap[src])
+        .filter((publicUrl): publicUrl is string => Boolean(publicUrl)) ?? [];
+
+    expect(mappedAssets.length).toBeGreaterThan(0);
+    expect(mappedAssets.every((publicUrl) =>
+      publicUrl.startsWith("/applications/")
+    )).toBe(true);
+  });
+
+  it("keeps every product-detail primary image under products", async () => {
+    const pages = await readManifest();
+    const assetMap = await readAssetMap();
+    const productDetails = pages.filter(({ sourcePath }) =>
+      /^\/en\/list_(?:4[6-9]|50)\/\d+\.html$/.test(sourcePath)
+    );
+
+    expect(productDetails.length).toBeGreaterThan(0);
+    for (const page of productDetails) {
+      const primaryImage = page.images.find(({ src, alt }) => {
+        const hostname = new URL(src).hostname;
+        return (
+          alt.trim().length > 0 &&
+          (hostname === "bebur.net" || hostname === "www.bebur.net")
+        );
+      });
+
+      expect(primaryImage, page.sourcePath).toBeDefined();
+      expect(assetMap[primaryImage!.src], page.sourcePath).toMatch(
+        /^\/products\//,
+      );
+    }
   });
 });

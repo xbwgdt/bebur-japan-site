@@ -5,6 +5,8 @@ import process from "node:process";
 
 import { imageSize } from "image-size";
 
+import { isAllowedFinalImageUrl } from "./asset-policy.mjs";
+
 const MANIFEST_PATH = path.join(
   process.cwd(),
   "content",
@@ -20,11 +22,11 @@ const ASSET_MAP_PATH = path.join(
 const PUBLIC_PATH = path.join(process.cwd(), "public");
 const ALLOWED_HOSTS = new Set(["bebur.net", "www.bebur.net"]);
 const ALLOWED_EXTENSIONS = new Set(["jpg", "jpeg", "png", "webp", "gif"]);
-const PRODUCT_PATH_PATTERN = /^\/en\/list_(?:37(?:_2)?|4[5-9]|50)(?:\/|$)/;
+const PRODUCT_PATH_PATTERN = /^\/en\/list_(?:37(?:_2)?|4[6-9]|50)(?:\/|$)/;
 const PRODUCT_DETAIL_PATH_PATTERN =
   /^\/en\/list_(?:4[6-9]|50)\/\d+\.html$/;
 const APPLICATION_PATH_PATTERN =
-  /^\/en\/list_(?:38|5[2-9]|60|61)(?:\/|$)/;
+  /^\/en\/list_(?:38|45|5[2-9]|60|61)(?:\/|$)/;
 const EXCLUDED_IMAGE_PATTERN =
   /(?:wechat|weixin|weibo|douyin|tiktok|qr(?:code)?|qrcode|whatsapp|skype|contact|footer|sprite|tracker|tracking|pixel|lan\.gif|index_13\.jpg|index_14\.jpg)/i;
 const USER_AGENT =
@@ -206,6 +208,9 @@ function sanitizedBasename(sourceUrl) {
 async function downloadCandidate(record, index, total) {
   try {
     const response = await fetchWithRetry(record.sourceUrl);
+    if (!isAllowedFinalImageUrl(response.url)) {
+      throw new Error(`disallowed final image URL: ${response.url}`);
+    }
     const buffer = Buffer.from(await response.arrayBuffer());
     const dimensions = imageSize(buffer);
 
