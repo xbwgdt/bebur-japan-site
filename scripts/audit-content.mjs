@@ -15,19 +15,92 @@ const forbiddenContactPattern =
   /18001379750|010-87653191|0838-2236056|sales@bebur\.net|wechat|douyin|陕ICP备|正規販売店|お問い合わせ窓口/i;
 const japanesePattern = /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u;
 const isoDatePattern = /^\d{4}-\d{2}-\d{2}$/;
-const rawEnglishPhrasePattern = /\b[a-z]{3,}(?:\s+[a-z]{2,})+\b/gi;
-const allowedTechnicalPhrases = new Set(
+const structuralContentKeys = new Set([
+  "category",
+  "kind",
+  "relatedProductSlugs",
+  "relatedSlugs",
+  "recommendedProductSlugs",
+  "route",
+  "slug",
+  "sourceAliases",
+  "sourceUrl",
+  "src",
+]);
+// Keep this list limited to identifiers, acronyms, units, trade names, and
+// proper names. Ordinary English words in public Japanese copy must be translated.
+const allowedAsciiWords = new Set(
   [
-    "MODBUS RTU",
-    "Modbus RTU",
-    "ARM Cortex",
-    "bit ADC",
-    "Thermo Fisher",
-    "Mettler Toledo",
-    "Beckman Coulter",
-    "Bebur UVSense",
-    "feric chloide",
-  ].map((phrase) => phrase.toLowerCase()),
+    "bar",
+    "beckman",
+    "bebur",
+    "beer",
+    "biotector",
+    "bit",
+    "chp",
+    "cm",
+    "cortex",
+    "coulter",
+    "create",
+    "createc",
+    "db",
+    "dh",
+    "endress",
+    "ex",
+    "exd",
+    "fi",
+    "fisher",
+    "ft",
+    "g",
+    "ag",
+    "agcl",
+    "gb",
+    "hach",
+    "hardness",
+    "hastelloy",
+    "hauser",
+    "hz",
+    "kg",
+    "lambert",
+    "lb",
+    "luheng",
+    "ma",
+    "mg",
+    "min",
+    "mettler",
+    "ml",
+    "mm",
+    "mmol",
+    "modbus",
+    "multisizer",
+    "ms",
+    "mv",
+    "nm",
+    "noryl",
+    "ph",
+    "pphm",
+    "ppb",
+    "ppm",
+    "psig",
+    "pt",
+    "qyresearch",
+    "rion",
+    "ryton",
+    "schreimer",
+    "ta",
+    "tb",
+    "thermo",
+    "ti",
+    "toledo",
+    "us",
+    "uvsense",
+    "vis",
+    "vocs",
+    "wi",
+    "wpcxview",
+    "wt",
+    "xylem",
+  ].map((word) => word.toLowerCase()),
 );
 
 function readJson(filePath) {
@@ -45,19 +118,52 @@ function printList(label, values) {
   }
 }
 
-function publicText(value, key = "") {
+function publicText(value, pathParts = [], key = "") {
+  if (structuralContentKeys.has(key)) {
+    return [];
+  }
   if (typeof value === "string") {
-    return key === "sourceUrl" || key === "src" ? [] : [value];
+    return [{ path: pathParts.join("."), value }];
   }
   if (Array.isArray(value)) {
-    return value.flatMap((item) => publicText(item));
+    return value.flatMap((item, index) =>
+      publicText(item, [...pathParts, index], key),
+    );
   }
   if (value && typeof value === "object") {
     return Object.entries(value).flatMap(([childKey, childValue]) =>
-      publicText(childValue, childKey),
+      publicText(childValue, [...pathParts, childKey], childKey),
     );
   }
   return [];
+}
+
+function disallowedAsciiWords(value, productModelWords) {
+  if (
+    /^https?:\/\//i.test(value) ||
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  ) {
+    return [];
+  }
+
+  // Preserve only explicitly marked source/OCR anomalies.
+  const scanValue = value
+    .replace(/feric chloide(?=[^。]*原文表記・要確認)/gi, "")
+    .replace(/Soil(?=[^。]*原文表記・要確認)/g, "")
+    .replace(/m³p(?=[^。]*原文表記・要確認)/gi, "")
+    .replace(/Norl(?=[^。]*原文表記・要確認)/gi, "")
+    .replace(/\/on(?=」、要確認)/gi, "");
+
+  return [...scanValue.matchAll(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g)]
+    .map(([word]) => word)
+    .filter((word) => {
+      const normalized = word.toLowerCase();
+      return (
+        word !== word.toUpperCase() &&
+        !allowedAsciiWords.has(normalized) &&
+        !productModelWords.has(normalized)
+      );
+    });
 }
 
 const sourceRecords = readJson(sourcePath);
@@ -152,15 +258,21 @@ for (const { file, record } of contentEntries) {
 }
 
 const rawEnglishPublicProse = [];
+const productModelWords = new Set(
+  contentRecords
+    .filter(({ kind }) => kind === "product")
+    .flatMap(({ model }) =>
+      typeof model === "string"
+        ? [...model.matchAll(/[A-Za-z]+/g)].map(([word]) => word.toLowerCase())
+        : [],
+    ),
+);
 for (const { file, record } of contentEntries) {
-  for (const value of publicText(record)) {
-    const phrases = value.match(rawEnglishPhrasePattern) ?? [];
-    for (const phrase of phrases) {
-      if (!allowedTechnicalPhrases.has(phrase.toLowerCase())) {
-        rawEnglishPublicProse.push(
-          `${recordLabel(file, record)} -> ${phrase}`,
-        );
-      }
+  for (const { path: publicPath, value } of publicText(record)) {
+    for (const word of disallowedAsciiWords(value, productModelWords)) {
+      rawEnglishPublicProse.push(
+        `${recordLabel(file, record)}:${publicPath} -> ${word} in ${JSON.stringify(value)}`,
+      );
     }
   }
 }
