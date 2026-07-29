@@ -66,6 +66,9 @@ describe("route helpers", () => {
     expect(canonicalUrl("contact")).toBe(
       "https://www.bebur-jp.com/contact",
     );
+    expect(canonicalUrl("//example.com")).toBe(
+      "https://www.bebur-jp.com/example.com",
+    );
   });
 
   it("uses the exact approved Japanese product category labels", () => {

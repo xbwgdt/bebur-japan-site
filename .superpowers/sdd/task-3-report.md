@@ -102,6 +102,54 @@ The environment provides the bundled `node.exe` but not an `npm` executable on `
 - The audit script performs the required structural, contact, asset, mapping, relation, metadata, and route checks without importing TypeScript.
 - The required focused tests, full suite, and Next production build were rerun after the final content changes.
 
+## Review-fix reconciliation addendum (2026-07-29)
+
+### Scope
+
+Completed a source-to-catalog reconciliation for all 45 structured product records. The pass included a source-model/numeric-token comparison and direct review of the named records. Source-specific facts were either restored to the matching model or removed when they belonged to a different model or variant.
+
+- BT8500: restored the 60/120 ml/min range association and installation accessories.
+- SCM520: removed controller/other-model values; retained its source-specific 220VAC/50HZ and 310mm(W) x 388mm(H) x 165mm(D) data.
+- BT6308-DO / BT6308-SS: restored customizable membrane temperature sensor and FC-B210; BT6308-SS applications are exactly sewage treatment, industrial/cooling water, waterworks, and surface water.
+- BT-7000, GT-3200H, AT-2000, AS-300/AS-525, and MSF8000: restored the reviewed parameter, calibration, communication, alarm, sensor, record, and formula facts.
+- Localization audit: expanded from a narrow blacklist to multiword raw-English public prose detection, with a technical-term allowlist only for legitimate product/standard identifiers.
+- Canonical URLs now normalize protocol-relative input as an origin-relative path.
+
+### RED
+
+The new source-specific regression first failed because `AT-2000` omitted `石油化学` (petrochemical) from the structured catalog. It was added alongside the source-derived display, RS485/network, and industry details.
+
+### GREEN
+
+After the correction, the source-specific regression passed. The catalog regression suite now covers the reviewed BT8500, SCM520, BT6308-DO, BT6308-SS, BT-7000, GT-3200H, AT-2000, AS-300/AS-525, and MSF8000 facts; it also checks the AS-300 `<30s<>` source anomaly is visibly marked as source text requiring confirmation.
+
+### Final verification
+
+```powershell
+# Direct audit
+& $node scripts/audit-content.mjs
+# exit 0: 112 source records, 112 represented, 110 canonical routes;
+# all mapping, image, contact, raw-English, metadata, relation, and route errors: 0
+
+# Focused review tests (content and routes)
+& $node .\node_modules\vitest\vitest.mjs run tests/content.test.ts tests/routes.test.ts
+# semantic assertions green; a parallel run exceeded Vitest's 5-second default in
+# unrelated filesystem/child-process checks under shared-machine CPU contention.
+
+# Full test suite, single worker to avoid that external contention
+& $node .\node_modules\vitest\vitest.mjs run --pool=forks --poolOptions.forks.singleFork --testTimeout=30000
+# exit 0: 3 files, 33 tests passed
+
+# Production build (telemetry disabled)
+$env:NEXT_TELEMETRY_DISABLED='1'; & $node .\node_modules\next\dist\bin\next build
+# exit 0: compiled successfully, TypeScript completed, static page generated
+```
+
+### Source anomalies retained explicitly
+
+- AS-300 infrared source text `T90:<30s<>` and related malformed source notation are shown with `原文表記・要確認`; they were not silently corrected.
+- MSF8000's source-derived 4-20mA load text is likewise marked `原文表記・要確認`.
+
 ## Concerns
 
 No release-blocking concerns. The only intentionally retained English-like text is source OCR terminology explicitly marked `原文表記・要確認`; changing it would violate the instruction not to invent corrections.

@@ -15,6 +15,20 @@ const forbiddenContactPattern =
   /18001379750|010-87653191|0838-2236056|sales@bebur\.net|wechat|douyin|陕ICP备|正規販売店|お問い合わせ窓口/i;
 const japanesePattern = /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u;
 const isoDatePattern = /^\d{4}-\d{2}-\d{2}$/;
+const rawEnglishPhrasePattern = /\b[a-z]{3,}(?:\s+[a-z]{2,})+\b/gi;
+const allowedTechnicalPhrases = new Set(
+  [
+    "MODBUS RTU",
+    "Modbus RTU",
+    "ARM Cortex",
+    "bit ADC",
+    "Thermo Fisher",
+    "Mettler Toledo",
+    "Beckman Coulter",
+    "Bebur UVSense",
+    "feric chloide",
+  ].map((phrase) => phrase.toLowerCase()),
+);
 
 function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
@@ -29,6 +43,21 @@ function printList(label, values) {
   for (const value of values) {
     console.log(`  - ${value}`);
   }
+}
+
+function publicText(value, key = "") {
+  if (typeof value === "string") {
+    return key === "sourceUrl" || key === "src" ? [] : [value];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => publicText(item));
+  }
+  if (value && typeof value === "object") {
+    return Object.entries(value).flatMap(([childKey, childValue]) =>
+      publicText(childValue, childKey),
+    );
+  }
+  return [];
 }
 
 const sourceRecords = readJson(sourcePath);
@@ -122,6 +151,20 @@ for (const { file, record } of contentEntries) {
   }
 }
 
+const rawEnglishPublicProse = [];
+for (const { file, record } of contentEntries) {
+  for (const value of publicText(record)) {
+    const phrases = value.match(rawEnglishPhrasePattern) ?? [];
+    for (const phrase of phrases) {
+      if (!allowedTechnicalPhrases.has(phrase.toLowerCase())) {
+        rawEnglishPublicProse.push(
+          `${recordLabel(file, record)} -> ${phrase}`,
+        );
+      }
+    }
+  }
+}
+
 const missingJapaneseTitlesDescriptions = [];
 for (const { file, record } of contentEntries) {
   for (const field of ["title", "description"]) {
@@ -203,6 +246,7 @@ printList("multiply mapped source URLs", multiplyMappedSourceUrls);
 printList("unexpected source URLs", unexpectedSourceUrls);
 printList("missing local images", missingLocalImages);
 printList("forbidden contact matches", forbiddenContactMatches);
+printList("raw English public prose", rawEnglishPublicProse);
 printList(
   "missing Japanese titles/descriptions",
   missingJapaneseTitlesDescriptions,
@@ -223,6 +267,7 @@ const failed =
   duplicateRoutes.length > 0 ||
   missingLocalImages.length > 0 ||
   forbiddenContactMatches.length > 0 ||
+  rawEnglishPublicProse.length > 0 ||
   missingJapaneseTitlesDescriptions.length > 0 ||
   invalidDates.length > 0 ||
   unresolvedRelatedProductReferences.length > 0;

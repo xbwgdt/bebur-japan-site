@@ -17,6 +17,6 @@ export function productRoute(
 }
 
 export function canonicalUrl(route: string): string {
-  const absolutePath = route.startsWith("/") ? route : `/${route}`;
+  const absolutePath = `/${route.replace(/^\/+/, "")}`;
   return new URL(absolutePath, `${CANONICAL_ORIGIN}/`).toString();
 }

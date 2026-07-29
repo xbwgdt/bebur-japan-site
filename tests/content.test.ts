@@ -464,8 +464,11 @@ describe("Japanese content catalog", () => {
 
       expect(product, fixture.slug).toBeDefined();
       for (const sourceValue of fixture.sourceValues) {
+        const localizedSourceValue = sourceValue
+          .replace(/^(\d+) hours$/, "$1時間")
+          .replace(/^(\d+) months$/, "$1か月");
         expect(localizedProduct, `${fixture.slug}: ${sourceValue}`).toContain(
-          sourceValue,
+          localizedSourceValue,
         );
       }
     }
@@ -613,6 +616,81 @@ describe("Japanese content catalog", () => {
     }
   });
 
+  it("retains reviewed source-specific product facts without mixing variants", () => {
+    const productText = (slug: string) =>
+      JSON.stringify(getProducts().find((product) => product.slug === slug));
+
+    for (const expected of [
+      "60ml/min（測定範囲2-400 microns向け）",
+      "120ml/min（測定範囲2-750 microns向け）",
+      "センサー保護フィルター",
+      "センサー注入・排出ホース",
+      "センサー洗浄キット",
+    ]) {
+      expect(productText("bt8500")).toContain(expected);
+    }
+
+    expect(productText("scm520")).toContain("220VAC、50HZ");
+    expect(productText("scm520")).toContain("310mm(W)、388mm(H)、165mm(D)");
+    expect(productText("scm520")).not.toContain("100-240VAC/0.75A");
+    expect(productText("bt6308-do")).toContain("膜式温度センサー");
+    expect(productText("bt6308-do")).toContain("顧客要件に応じてカスタマイズ");
+    expect(productText("bt6308-ss")).toContain("FC-B210");
+    expect(getProducts().find(({ slug }) => slug === "bt6308-ss")?.applications).toEqual([
+      "下水処理",
+      "工業用水・冷却水",
+      "水道事業",
+      "河川・湖沼などの表流水",
+    ]);
+
+    for (const expected of [
+      "DPDによる校正",
+      "加圧空気による自動パージ洗浄（オプション）",
+      "カスタマイズ可能な温度センサー",
+      "4芯、標準20ft（6m）ケーブル（原文表記・要確認）",
+    ]) {
+      expect(productText("bt-7000")).toContain(expected);
+    }
+
+    for (const expected of [
+      "応答時間：≤60S",
+      "故障信号：0.5mADC",
+      "警報遅延：2s（初期値、変更可能）",
+      "1.5〜2.0mm2 RVVPシールドケーブル",
+    ]) {
+      expect(productText("gt-3200h")).toContain(expected);
+    }
+
+    for (const expected of [
+      "2.8インチTFT",
+      "RS485およびネットワーク通信",
+      "石油化学",
+    ]) {
+      expect(productText("at-2000")).toContain(expected);
+    }
+
+    for (const slug of [
+      "as-300-toxic",
+      "as-525-voc",
+      "as-525-toxic",
+      "as-525-combustible",
+      "as-525-toxic-online",
+    ]) {
+      expect(productText(slug), slug).toContain("4〜8か月ごと");
+      expect(productText(slug), slug).toContain("3〜6か月ごと");
+    }
+
+    for (const expected of [
+      "RS232/RS485",
+      "16件の停電時記録",
+      "E=B·V·D·K",
+      "負荷：0-5002（原文表記・要確認）",
+      "基本誤差：0.1%±10uA",
+    ]) {
+      expect(productText("msf8000")).toContain(expected);
+    }
+  });
+
   it("does not expose raw English prose in localized product fields", () => {
     const localizedProducts = JSON.stringify(
       getProducts().map(({ sourceUrl: _sourceUrl, ...publicProduct }) =>
@@ -632,6 +710,16 @@ describe("Japanese content catalog", () => {
       /\b(?:approximately|customized|excluding|expandable|whichever is|highest|dimensionless)\b/i,
       /\bevery \d/i,
       /\bthree-wire\b/i,
+      /最速10 seconds/,
+      /254nm和550nm/,
+      /4 wavelengths/,
+      /cable:standard 10 meters/i,
+      /diameter:/i,
+      /length:/i,
+      /3\/4NPT thread/i,
+      /About 30 minutes/i,
+      /72 hoursごと/,
+      /12 months/,
       /原典値・要技術確認/,
       /原典表は列対応が崩れているため/,
     ];
