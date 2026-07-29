@@ -1,11 +1,21 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  generateStaticParams as generateCategoryStaticParams,
+  resolveProductCategory,
+} from "../app/products/[category]/page";
+import {
+  generateMetadata as generateProductMetadata,
+  generateStaticParams as generateProductStaticParams,
+  resolveProductForRoute,
+} from "../app/products/[category]/[slug]/page";
+import {
   getAboutPage,
   getAllRoutes,
   getApplication,
   getArticle,
   getProduct,
+  getProducts,
   getStaticPages,
 } from "../lib/content";
 import {
@@ -85,5 +95,58 @@ describe("route helpers", () => {
       "gas-detection": "ガス検知器",
       "flow-level": "流量計・液位計",
     });
+  });
+});
+
+describe("product discovery route generation", () => {
+  const expectedCategories = [
+    "cleanliness",
+    "dosing",
+    "water-quality",
+    "gas-detection",
+    "flow-level",
+  ];
+
+  it("generates exactly the five reviewed category routes", () => {
+    expect(generateCategoryStaticParams()).toEqual(
+      expectedCategories.map((category) => ({ category })),
+    );
+  });
+
+  it("generates exactly 45 unique reviewed product routes", () => {
+    const params = generateProductStaticParams();
+    const pairs = params.map(({ category, slug }) => `${category}/${slug}`);
+
+    expect(params).toHaveLength(45);
+    expect(new Set(pairs).size).toBe(45);
+  });
+
+  it("keeps every reviewed product route aligned with productRoute", () => {
+    for (const product of getProducts()) {
+      expect(product.route).toBe(productRoute(product));
+    }
+  });
+
+  it("generates canonical metadata on the approved product origin", async () => {
+    const metadata = await Promise.all(
+      generateProductStaticParams().map((params) =>
+        generateProductMetadata({ params: Promise.resolve(params) }),
+      ),
+    );
+
+    for (const entry of metadata) {
+      expect(String(entry.alternates?.canonical)).toMatch(
+        /^https:\/\/www\.bebur-jp\.com\/products\//,
+      );
+    }
+  });
+
+  it("rejects unknown category and category/slug pairs through route helpers", () => {
+    expect(resolveProductCategory("unknown")).toBeUndefined();
+    expect(resolveProductForRoute("unknown", "bt8500")).toBeUndefined();
+    expect(
+      resolveProductForRoute("water-quality", "bt8500"),
+    ).toBeUndefined();
+    expect(resolveProductForRoute("cleanliness", "unknown")).toBeUndefined();
   });
 });
