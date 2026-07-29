@@ -223,12 +223,10 @@ describe("product cards and detail content", () => {
 describe("home product discovery", () => {
   it("shows the five reviewed categories and required section headings", () => {
     const { container } = render(<HomePage />);
-    const categorySection = container.querySelector<HTMLElement>(
-      '[aria-labelledby="home-product-categories-title"]',
-    );
-
-    expect(categorySection).not.toBeNull();
-    const scopedCategories = within(categorySection!);
+    const categorySection = screen.getByRole("region", {
+      name: "計測課題から選べる製品ラインアップ",
+    });
+    const scopedCategories = within(categorySection);
     expect(
       scopedCategories.getByRole("heading", {
         name: "計測課題から選べる製品ラインアップ",
@@ -256,22 +254,48 @@ describe("home product discovery", () => {
     );
   });
 
-  it("defines mobile-first overflow protection for a 320px viewport", async () => {
+  it("does not globally clip document horizontal overflow", async () => {
     const css = await readFile("app/globals.css", "utf8");
+    const style = document.createElement("style");
+    style.textContent = css;
+    document.head.append(style);
 
-    expect(css).toMatch(/html\s*\{[^}]*overflow-x:\s*hidden;/s);
-    expect(css).toMatch(/body\s*\{[^}]*overflow-x:\s*hidden;/s);
-    expect(css).toMatch(
-      /\.site-container\s*\{[^}]*width:\s*min\(100% - 2rem,\s*75rem\);/s,
+    const rules = Array.from(style.sheet?.cssRules ?? []);
+    const htmlRule = rules.find(
+      (rule): rule is CSSStyleRule =>
+        rule instanceof CSSStyleRule && rule.selectorText === "html",
     );
-    expect(css).toMatch(
-      /\.product-grid\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/s,
+    const bodyRule = rules.find(
+      (rule): rule is CSSStyleRule =>
+        rule instanceof CSSStyleRule && rule.selectorText === "body",
     );
-    expect(css).toMatch(
-      /\.product-card\s*\{[^}]*min-width:\s*0;/s,
+
+    expect(htmlRule?.style.getPropertyValue("overflow-x")).not.toBe("hidden");
+    expect(bodyRule?.style.getPropertyValue("overflow-x")).not.toBe("hidden");
+  });
+
+  it("places a wide specification table in a focusable horizontal scroller", async () => {
+    const product = getProduct("water-quality", "bt-7000");
+    expect(product).toBeDefined();
+
+    render(
+      await ProductDetailPage({
+        params: Promise.resolve({
+          category: product!.category,
+          slug: product!.slug,
+        }),
+      }),
     );
-    expect(css).toMatch(
-      /\.specification-table__scroller\s*\{[^}]*max-width:\s*100%;[^}]*overflow-x:\s*auto;/s,
+
+    const table = screen.getByRole("table");
+    const scroller = table.parentElement;
+
+    expect(scroller?.classList.contains("specification-table__scroller")).toBe(
+      true,
+    );
+    expect(scroller?.tabIndex).toBe(0);
+    expect(scroller?.getAttribute("aria-label")).toBe(
+      `${product!.model} 仕様表を横にスクロール`,
     );
   });
 });

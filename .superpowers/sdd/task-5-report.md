@@ -127,7 +127,7 @@ Generated route coverage:
 - Live results use `aria-live="polite"` and `aria-atomic="true"`.
 - Inputs have explicit labels; no-results and reset remain keyboard operable.
 - Existing visible focus and reduced-motion rules remain active.
-- `tests/product-ui.test.tsx` directly verifies the 320px overflow CSS contracts.
+- `tests/product-ui.test.tsx` verifies the accessible section-name linkage and the semantic specification-table scroller contract; the production build was also measured in a real browser at a 320px viewport.
 
 ## Verification Outputs
 
@@ -135,7 +135,7 @@ Focused Task 5 tests:
 
 ```text
 Test Files  2 passed (2)
-Tests       24 passed (24)
+Tests       25 passed (25)
 ```
 
 Full regression suite:
@@ -143,7 +143,7 @@ Full regression suite:
 ```text
 npm run test:run
 Test Files  7 passed (7)
-Tests       71 passed (71)
+Tests       72 passed (72)
 Exit code   0
 ```
 
@@ -180,7 +180,7 @@ The build route table confirms:
 - `tests/product-ui.test.tsx` — explorer, card, inquiry, home, table, and 320px behavior coverage.
 - `.superpowers/sdd/task-5-report.md` — this report.
 
-No catalog, shared component API, distributor constant, or reviewed product fact was changed.
+No catalog, distributor constant, or reviewed product fact was changed. The only shared-component API change is the backward-compatible optional `SectionHeading.titleId` prop used to provide the home region's accessible name.
 
 ## Self-Review
 
@@ -188,6 +188,69 @@ No catalog, shared component API, distributor constant, or reviewed product fact
 - Confirmed 45 products and 45 unique category/slug pairs.
 - Confirmed exact category counts of 3/7/18/14/3.
 - Confirmed all reviewed product image paths used by the catalog are local `/products/` assets.
+
+## Review Fix Follow-up — 2026-07-29
+
+### RED
+
+After replacing the raw home-section selector and brittle CSS-source regex with behavior-level assertions, the focused command
+`npm run test:run -- tests/routes.test.ts tests/product-ui.test.tsx` produced:
+
+```text
+Test Files  1 failed | 1 passed (2)
+Tests       2 failed | 23 passed (25)
+```
+
+The failures reproduced both review findings:
+
+- the home product-category region could not be found by the accessible name `計測課題から選べる製品ラインアップ` because its heading had no matching `id`;
+- the CSSOM check found that the root page still used `overflow-x: hidden`, masking document overflow.
+
+### GREEN
+
+The minimal fix adds an optional `titleId` to `SectionHeading`, connects the home region to that heading, removes global horizontal clipping, and retains the dedicated focusable specification-table scroller. The same focused command now produces:
+
+```text
+Test Files  2 passed (2)
+Tests       25 passed (25)
+```
+
+### Real 320px production-browser evidence
+
+The optimized production build was served locally and evaluated with a real browser viewport of `320 × 900`.
+
+Home page (`/`):
+
+```text
+window.innerWidth                         320
+document.documentElement.clientWidth     305
+document.documentElement.scrollWidth     305
+document.body.scrollWidth                305
+document scrollWidth <= viewport width   true
+region aria-labelledby                   home-product-categories-title
+heading id                               home-product-categories-title
+heading text                             計測課題から選べる製品ラインアップ
+```
+
+Wide specification table (`/products/water-quality/bt-7000`):
+
+```text
+window.innerWidth                         320
+document.documentElement.clientWidth     305
+document.documentElement.scrollWidth     305
+document.body.scrollWidth                305
+document scrollWidth <= viewport width   true
+wrapper bounds                           16px .. 289px
+wrapper inside viewport                  true
+wrapper clientWidth                      271
+wrapper scrollWidth                      576
+wrapper overflow-x                       auto
+wrapper horizontally scrollable          true
+table rendered width                     576
+table wider than wrapper                 true
+```
+
+This confirms that the document itself does not scroll horizontally, the specification wrapper remains inside the viewport, and the wide table overflows only inside its own scrollable wrapper.
 - Confirmed Task 5 files contain no China contact channel, forbidden sales email, price, ecommerce, database, authentication, analytics, or server-side form behavior.
 - Confirmed ProductCard is not wrapped in a full-card link and therefore creates no nested links.
 - Confirmed `git diff --check` reports no whitespace errors.

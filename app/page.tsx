@@ -82,6 +82,7 @@ export default function HomePage(): React.ReactElement {
           <SectionHeading
             eyebrow="PRODUCTS"
             title="計測課題から選べる製品ラインアップ"
+            titleId="home-product-categories-title"
             description="5つの製品カテゴリーから、測定対象と現場の課題に合う製品をご覧いただけます。"
           />
           <div className="category-grid">
