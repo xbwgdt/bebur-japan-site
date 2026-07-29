@@ -1,0 +1,172 @@
+import Image from "next/image";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ContactCta } from "@/components/contact-cta";
+import { ContentSections } from "@/components/content-sections";
+import { ProductCard } from "@/components/product-card";
+import { getArticle, getArticles, getProducts } from "@/lib/content";
+import { canonicalUrl } from "@/lib/routes";
+import type { Article, Product } from "@/lib/types";
+
+type InsightRouteParams = {
+  slug: string;
+};
+
+const japaneseDateFormatter = new Intl.DateTimeFormat("ja-JP", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+
+function formatJapaneseDate(date: string): string {
+  return japaneseDateFormatter.format(new Date(`${date}T00:00:00Z`));
+}
+
+export function resolveArticleForRoute(slug: string): Article | undefined {
+  return getArticle(slug);
+}
+
+export function resolveRelatedProducts(slugs: string[]): Product[] {
+  const products = getProducts();
+
+  return slugs.flatMap((slug) => {
+    const product = products.find((candidate) => candidate.slug === slug);
+    return product ? [product] : [];
+  });
+}
+
+export function generateStaticParams(): Array<{ slug: string }> {
+  return getArticles()
+    .map(({ slug }) => ({ slug }))
+    .toSorted((left, right) => left.slug.localeCompare(right.slug));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<InsightRouteParams>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = resolveArticleForRoute(slug);
+
+  if (!article) {
+    notFound();
+  }
+
+  const canonical = canonicalUrl(article.route);
+  const image = article.images[0];
+
+  return {
+    title: article.title,
+    description: article.description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      type: "article",
+      url: canonical,
+      publishedTime: article.publishedAt,
+      images: image
+        ? [{ url: image.src, alt: image.alt }]
+        : undefined,
+    },
+  };
+}
+
+export default async function InsightDetailPage({
+  params,
+}: {
+  params: Promise<InsightRouteParams>;
+}): Promise<React.ReactElement> {
+  const { slug } = await params;
+  const article = resolveArticleForRoute(slug);
+
+  if (!article) {
+    notFound();
+  }
+
+  const relatedProducts = resolveRelatedProducts(
+    article.relatedProductSlugs,
+  );
+
+  return (
+    <>
+      <article className="content-detail insight-detail">
+        <header className="content-detail__hero">
+          <div className="site-container">
+            <Breadcrumbs
+              items={[
+                {
+                  label: "ニュース・技術情報",
+                  href: "/insights",
+                },
+                { label: article.title },
+              ]}
+            />
+            <p className="page-hero__eyebrow">INSIGHT</p>
+            <h1>{article.title}</h1>
+            <p className="content-detail__description">
+              {article.description}
+            </p>
+            {article.publishedAt && (
+              <time dateTime={article.publishedAt}>
+                {formatJapaneseDate(article.publishedAt)}
+              </time>
+            )}
+          </div>
+        </header>
+
+        <div className="section site-container content-detail__body">
+          {article.images.length > 0 && (
+            <div
+              className="content-detail__media-grid"
+              aria-label={`${article.title} 掲載画像`}
+            >
+              {article.images.map((image, index) => (
+                <figure key={`${image.src}-${index}`}>
+                  <Image
+                    alt={image.alt}
+                    height={720}
+                    priority={index === 0}
+                    sizes="(min-width: 64rem) 68rem, 100vw"
+                    src={image.src}
+                    width={1120}
+                  />
+                </figure>
+              ))}
+            </div>
+          )}
+
+          <ContentSections sections={article.sections} />
+        </div>
+      </article>
+
+      {relatedProducts.length > 0 && (
+        <section className="section related-products">
+          <div className="site-container">
+            <h2>関連製品</h2>
+            <div className="product-grid">
+              {relatedProducts.map((product) => (
+                <ProductCard
+                  key={`${product.category}-${product.slug}`}
+                  product={product}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="section page-contact">
+        <div className="site-container">
+          <ContactCta compact subject={article.title} />
+        </div>
+      </section>
+    </>
+  );
+}

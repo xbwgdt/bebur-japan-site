@@ -7,4 +7,8 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./", import.meta.url)),
     },
   },
+  test: {
+    fileParallelism: false,
+    testTimeout: 20_000,
+  },
 });

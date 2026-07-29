@@ -1,6 +1,21 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  generateMetadata as generateAboutMetadata,
+  generateStaticParams as generateAboutStaticParams,
+  resolveAboutPageForRoute,
+} from "../app/about/[slug]/page";
+import {
+  generateMetadata as generateApplicationMetadata,
+  generateStaticParams as generateApplicationStaticParams,
+  resolveApplicationForRoute,
+} from "../app/applications/[slug]/page";
+import {
+  generateMetadata as generateInsightMetadata,
+  generateStaticParams as generateInsightStaticParams,
+  resolveArticleForRoute,
+} from "../app/insights/[slug]/page";
+import {
   generateStaticParams as generateCategoryStaticParams,
   resolveProductCategory,
 } from "../app/products/[category]/page";
@@ -11,9 +26,12 @@ import {
 } from "../app/products/[category]/[slug]/page";
 import {
   getAboutPage,
+  getAboutPages,
   getAllRoutes,
   getApplication,
+  getApplications,
   getArticle,
+  getArticles,
   getProduct,
   getProducts,
   getStaticPages,
@@ -148,5 +166,103 @@ describe("product discovery route generation", () => {
       resolveProductForRoute("water-quality", "bt8500"),
     ).toBeUndefined();
     expect(resolveProductForRoute("cleanliness", "unknown")).toBeUndefined();
+  });
+});
+
+describe("remaining Japanese content route generation", () => {
+  it("generates exactly 31 unique application slugs", () => {
+    const params = generateApplicationStaticParams();
+    const slugs = params.map(({ slug }) => slug);
+
+    expect(params).toHaveLength(31);
+    expect(new Set(slugs).size).toBe(31);
+    expect(slugs).toEqual(
+      getApplications()
+        .map(({ slug }) => slug)
+        .toSorted(),
+    );
+  });
+
+  it("generates exactly 6 unique company slugs", () => {
+    const params = generateAboutStaticParams();
+    const slugs = params.map(({ slug }) => slug);
+
+    expect(params).toHaveLength(6);
+    expect(new Set(slugs).size).toBe(6);
+    expect(slugs).toEqual(
+      getAboutPages()
+        .map(({ slug }) => slug)
+        .toSorted(),
+    );
+  });
+
+  it("generates exactly 17 unique insight slugs", () => {
+    const params = generateInsightStaticParams();
+    const slugs = params.map(({ slug }) => slug);
+
+    expect(params).toHaveLength(17);
+    expect(new Set(slugs).size).toBe(17);
+    expect(slugs).toEqual(
+      getArticles()
+        .map(({ slug }) => slug)
+        .toSorted(),
+    );
+  });
+
+  it("maps every canonical route to one implemented App Router family", () => {
+    const implementedRoutes = new Set([
+      "/",
+      "/products",
+      "/applications",
+      "/applications/cases",
+      "/insights",
+      "/contact",
+      ...generateCategoryStaticParams().map(
+        ({ category }) => `/products/${category}`,
+      ),
+      ...generateProductStaticParams().map(
+        ({ category, slug }) => `/products/${category}/${slug}`,
+      ),
+      ...generateApplicationStaticParams().map(
+        ({ slug }) => `/applications/${slug}`,
+      ),
+      ...generateAboutStaticParams().map(({ slug }) => `/about/${slug}`),
+      ...generateInsightStaticParams().map(
+        ({ slug }) => `/insights/${slug}`,
+      ),
+    ]);
+
+    expect(implementedRoutes.size).toBe(110);
+    expect([...implementedRoutes].toSorted()).toEqual(getAllRoutes());
+  });
+
+  it("rejects unknown application, company, and insight slugs", () => {
+    expect(resolveApplicationForRoute("unknown")).toBeUndefined();
+    expect(resolveAboutPageForRoute("unknown")).toBeUndefined();
+    expect(resolveArticleForRoute("unknown")).toBeUndefined();
+  });
+
+  it("uses the approved canonical origin for representative metadata", async () => {
+    const [application, about, insight] = await Promise.all([
+      generateApplicationMetadata({
+        params: Promise.resolve({ slug: "liquid-cooling-industry" }),
+      }),
+      generateAboutMetadata({
+        params: Promise.resolve({ slug: "company-profile" }),
+      }),
+      generateInsightMetadata({
+        params: Promise.resolve({ slug: "ozone-monitoring-equipment" }),
+      }),
+    ]);
+
+    expect(String(application.alternates?.canonical)).toBe(
+      "https://www.bebur-jp.com/applications/liquid-cooling-industry",
+    );
+    expect(String(about.alternates?.canonical)).toBe(
+      "https://www.bebur-jp.com/about/company-profile",
+    );
+    expect(String(insight.alternates?.canonical)).toBe(
+      "https://www.bebur-jp.com/insights/ozone-monitoring-equipment",
+    );
   });
 });

@@ -4,6 +4,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import { createElement } from "react";
 import { afterEach, describe, expect, it } from "vitest";
 
+import ContactPage from "@/app/contact/page";
 import { ContactCta, MobileContactBar } from "@/components/contact-cta";
 import { Footer } from "@/components/footer";
 import { buildMailto, siteConfig } from "@/lib/constants";
@@ -87,5 +88,70 @@ describe("Bebur Japan contact details", () => {
         .getByRole("link", { name: /メールで問い合わせ/ })
         .getAttribute("href"),
     ).toBe(buildMailto("Bebur 製品"));
+  });
+});
+
+describe("contact page", () => {
+  it("shows the exact approved Japan distributor identity and contact details", () => {
+    render(createElement(ContactPage));
+
+    expect(screen.getByText("Bebur 日本総代理店")).toBeTruthy();
+    expect(screen.getByText(siteConfig.company)).toBeTruthy();
+    expect(screen.getByText(siteConfig.postalCode)).toBeTruthy();
+    expect(screen.getByText(siteConfig.address)).toBeTruthy();
+    expect(
+      screen.getByRole("link", { name: siteConfig.phone }).getAttribute("href"),
+    ).toBe("tel:080-5189-8663");
+    expect(
+      screen.getByRole("link", { name: siteConfig.email }).getAttribute("href"),
+    ).toBe(buildMailto("Bebur 製品"));
+  });
+
+  it("sends every online inquiry action to the approved email address", () => {
+    const { container } = render(createElement(ContactPage));
+    const inquiryLinks = Array.from(
+      container.querySelectorAll<HTMLAnchorElement>("a"),
+    ).filter((link) =>
+      /オンライン留言|オンライン相談|問い合わせ/.test(link.textContent ?? ""),
+    );
+
+    expect(inquiryLinks.length).toBeGreaterThanOrEqual(2);
+    for (const link of inquiryLinks) {
+      expect(link.getAttribute("href")).toMatch(
+        /^mailto:info@newtree-i\.com\?subject=/,
+      );
+    }
+  });
+
+  it("contains no form controls, submission behavior, or forbidden contacts", () => {
+    const { container } = render(createElement(ContactPage));
+
+    expect(container.querySelector("form")).toBeNull();
+    expect(container.querySelector("input")).toBeNull();
+    expect(container.querySelector("textarea")).toBeNull();
+    expect(container.querySelector("button")).toBeNull();
+    expect(container.textContent).not.toMatch(
+      /WeChat|微信|Douyin|抖音|ICP|中国営業|sales@bebur|400-\d/i,
+    );
+    expect(container.innerHTML).not.toMatch(
+      /maps|latitude|longitude|submit|localStorage|sessionStorage/i,
+    );
+  });
+
+  it("presents exactly the approved three-step inquiry guide", () => {
+    render(createElement(ContactPage));
+
+    const guide = screen
+      .getByRole("heading", { name: "お問い合わせの流れ" })
+      .closest("section");
+    expect(guide).toBeTruthy();
+    const steps = within(guide as HTMLElement).getAllByRole("listitem");
+
+    expect(steps).toHaveLength(3);
+    expect(steps.map(({ textContent }) => textContent)).toEqual([
+      "製品・用途を確認",
+      "電話またはメールで相談",
+      "仕様・見積もりをご案内",
+    ]);
   });
 });
