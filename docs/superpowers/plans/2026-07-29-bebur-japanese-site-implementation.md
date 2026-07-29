@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build, validate, and deploy a modern Japanese Bebur corporate and product website with approximately 113 migrated pages, New Tree Industries as the exclusive Japanese distributor, and `www.bebur-jp.com` as the production domain.
+**Goal:** Build, validate, and deploy a modern Japanese Bebur corporate and product website with 112 migrated content pages, New Tree Industries as the exclusive Japanese distributor, and `www.bebur-jp.com` as the production domain.
 
 **Architecture:** Use a Next.js 16 App Router application with data-driven static pages. Source pages are inventoried from the current Bebur English sitemap, normalized into typed Japanese content records, and rendered through shared category and detail templates. Railway runs the standalone Next.js server; content remains repository-owned and requires no database.
 
@@ -19,6 +19,7 @@
 - Product model numbers, numeric specifications, units, and measurement principles must match the source.
 - Missing specifications must be omitted, never inferred.
 - The migrated site must represent the current English-site structure, not the 874-URL legacy sitemap.
+- The migration baseline is exactly 112 real English content pages; exclude the non-content language-switch URL `/en/?p=/Do/area&lg=en`.
 - No database, account system, tracking system, or server-side inquiry form is in scope.
 - The site must support keyboard, touch, reduced-motion, and mobile layouts.
 - Railway must run the standalone Next.js server and bind to its assigned `PORT`.
@@ -309,7 +310,7 @@ node scripts/collect-source.mjs
 npm run test:run -- tests/content.test.ts
 ```
 
-Expected: collection completes without failed URLs; the test passes with 100–120 unique `/en/` records. Record the exact page count in the implementation notes and use it as the migration denominator.
+Expected: collection completes without failed URLs; the test passes with exactly 112 unique `/en/` content records after excluding `/en/?p=/Do/area&lg=en`. Use 112 as the migration denominator.
 
 - [ ] **Step 5: Implement first-party asset downloading**
 
