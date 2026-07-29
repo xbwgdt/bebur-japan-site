@@ -56,8 +56,9 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--cyan-400);
+  outline: 3px solid var(--blue-700);
   outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--paper);
 }
 
 img,

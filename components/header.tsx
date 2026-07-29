@@ -48,18 +48,18 @@ export function Header(): React.ReactElement {
             <span className="wordmark__region">JAPAN</span>
           </Link>
 
-          <nav aria-label="メインナビゲーション">
-            <div className="desktop-nav">
-              <NavigationLinks />
-            </div>
-
-            <details className="mobile-nav">
-              <summary>メニュー</summary>
-              <div className="mobile-nav__panel">
-                <NavigationLinks mobile />
-              </div>
-            </details>
+          <nav className="desktop-nav" aria-label="メインナビゲーション">
+            <NavigationLinks />
           </nav>
+
+          <details className="mobile-nav">
+            <summary>メニュー</summary>
+            <div className="mobile-nav__panel">
+              <nav aria-label="モバイルナビゲーション">
+                <NavigationLinks mobile />
+              </nav>
+            </div>
+          </details>
         </div>
       </div>
     </header>

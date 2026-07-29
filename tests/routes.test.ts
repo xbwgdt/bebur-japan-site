@@ -14,6 +14,12 @@ import {
   productRoute,
 } from "../lib/routes";
 
+describe("route test environment", () => {
+  it("runs without browser globals", () => {
+    expect(typeof document).toBe("undefined");
+  });
+});
+
 describe("Japanese content lookups", () => {
   it("finds expected fixtures and returns undefined for unknown slugs", () => {
     expect(getProduct("cleanliness", "bt8500")?.model).toBe("BT8500");

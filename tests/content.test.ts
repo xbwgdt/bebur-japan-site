@@ -26,6 +26,12 @@ import type {
   StaticPage,
 } from "../lib/types";
 
+describe("content test environment", () => {
+  it("runs without browser globals", () => {
+    expect(typeof document).toBe("undefined");
+  });
+});
+
 type SourcePage = {
   sourceUrl: string;
   sourcePath: string;

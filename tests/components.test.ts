@@ -1,3 +1,5 @@
+// @vitest-environment jsdom
+
 import { cleanup, render, screen, within } from "@testing-library/react";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -23,23 +25,32 @@ const navigationItems = [
   { href: "/contact", label: "お問い合わせ" },
 ] as const;
 
-describe("shared Bebur Japan components", () => {
-  it("renders the exact header navigation, identity, and wordmark", () => {
-    render(createElement(Header));
+function expectExactNavigationItems(navigation: HTMLElement): void {
+  const links = Array.from(navigation.querySelectorAll("a"));
 
-    const navigation = screen.getByRole("navigation", {
+  expect(links).toHaveLength(6);
+  expect(
+    links.map((link) => ({
+      href: link.getAttribute("href"),
+      label: link.textContent?.trim(),
+    })),
+  ).toEqual(navigationItems);
+}
+
+describe("shared Bebur Japan components", () => {
+  it("renders exactly six required items in each header navigation", () => {
+    const { container } = render(createElement(Header));
+
+    const desktopNavigation = screen.getByRole("navigation", {
       name: "メインナビゲーション",
     });
-    for (const item of navigationItems) {
-      expect(
-        within(navigation).getAllByRole("link", { name: item.label }),
-      ).not.toHaveLength(0);
-      expect(
-        within(navigation)
-          .getAllByRole("link", { name: item.label })[0]
-          .getAttribute("href"),
-      ).toBe(item.href);
-    }
+    const mobileNavigation = container.querySelector<HTMLElement>(
+      'nav[aria-label="モバイルナビゲーション"]',
+    );
+
+    expect(mobileNavigation).not.toBeNull();
+    expectExactNavigationItems(desktopNavigation);
+    expectExactNavigationItems(mobileNavigation!);
 
     expect(screen.getByText(siteConfig.distributorLabel)).toBeTruthy();
     const wordmark = screen.getByRole("link", { name: "BEBUR JAPAN" });
