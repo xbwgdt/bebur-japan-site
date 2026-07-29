@@ -1,0 +1,3207 @@
+[
+  {
+    "kind": "product",
+    "category": "cleanliness",
+    "model": "BT8500",
+    "slug": "bt8500",
+    "route": "/products/cleanliness/bt8500",
+    "title": "BT8500 オンライン液中粒子計",
+    "description": "BT8500は、液中粒子の粒径・個数・変化を24時間連続監視するオンライン液中粒子計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_46/254.html",
+    "images": [
+      {
+        "src": "/products/1763022286945333-44e697d79ca64464.jpg",
+        "alt": "BT8500 オンライン液中粒子計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT8500は、液中粒子の粒径・個数・変化を24時間連続監視するオンライン液中粒子計です。"
+        ]
+      }
+    ],
+    "features": [
+      "標準8チャネル、16/24/32チャネルはオプション",
+      "7インチ高解像度カラータッチスクリーン",
+      "MODBUS RTU/RS485、USB、4-20mA出力",
+      "個数値を1 mL当たり又は各測定期間の合計値で報告",
+      "リアルタイムのセンサー警報・故障表示、内蔵校正、積算・グループ計数モード",
+      "外部センサー、データ保存、越流せき又は流量計による設置"
+    ],
+    "applications": [
+      "工業プロセス水監視",
+      "部品洗浄、飲料水処理、電子産業、流体清浄度監視、膜ろ過監視、液冷部品、医療製品用水の監視"
+    ],
+    "specifications": [
+      {
+        "label": "測定範囲",
+        "value": "1-200 microns, 2-400 microns, 2-750 microns"
+      },
+      {
+        "label": "粒径報告範囲",
+        "value": "2-300 microns"
+      },
+      {
+        "label": "流量",
+        "value": "60ml/min または 120ml/min"
+      },
+      {
+        "label": "レーザー",
+        "value": "5mW 赤色レーザーダイオード"
+      },
+      {
+        "label": "S/N比",
+        "value": "≥3:1"
+      },
+      {
+        "label": "精度",
+        "value": "10 microns <8%, 2-10 microns <10%"
+      },
+      {
+        "label": "仕様",
+        "value": "NEMA 4X; 100-240V, 50-60Hz, 0.5A; 12VDC, 1.67A"
+      },
+      {
+        "label": "動作温度",
+        "value": "5-50°C; 相対湿度：18-80%（結露なし）；重量：5kg"
+      },
+      {
+        "label": "センサーモデル・外形寸法",
+        "value": "BSLP200、BSLP400、BSLP750；幅12 inches × 高さ10 inches × 奥行6 inches"
+      },
+      {
+        "label": "保管環境温度",
+        "value": "0-50°C (32-122°F)"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "光遮断法（レーザーセンサーで光量損失と遮光回数から粒径・個数を算出）"
+  },
+  {
+    "kind": "product",
+    "category": "cleanliness",
+    "model": "BT8200",
+    "slug": "bt8200",
+    "route": "/products/cleanliness/bt8200",
+    "title": "BT8200 オンライン粒子径分析計",
+    "description": "BT8200は、液中粒子の粒径・個数・変化を連続監視するオンライン粒子径分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_46/255.html",
+    "images": [
+      {
+        "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
+        "alt": "BT8200 オンライン粒子径分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT8200は、液中粒子の粒径・個数・変化を連続監視するオンライン粒子径分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "ユーザー設定可能な8粒径検出チャネル",
+      "リアルタイムのセンサー警報・故障表示",
+      "MODBUS RTU/RS485、USB、4-20mA出力",
+      "個数値を1 mL当たり又は各測定期間の合計値で報告、外部センサーで清掃が容易",
+      "ソフトウェア誘導の現場高精度校正、積算・グループ計数モード、データ保存"
+    ],
+    "applications": [
+      "工業プロセス水監視",
+      "部品洗浄、飲料水処理、電子産業、流体清浄度監視、膜ろ過監視、食品・飲料用水、医療製品用水の監視"
+    ],
+    "specifications": [
+      {
+        "label": "測定範囲",
+        "value": "2-400 microns または 2-750 microns"
+      },
+      {
+        "label": "粒径報告範囲",
+        "value": "2-300 microns"
+      },
+      {
+        "label": "流量",
+        "value": "60ml/min または 120ml/min"
+      },
+      {
+        "label": "レーザー",
+        "value": "5mW 赤色レーザーダイオード"
+      },
+      {
+        "label": "S/N比",
+        "value": "≥3:1"
+      },
+      {
+        "label": "精度",
+        "value": "10 microns<8%, 2-10 microns<10%"
+      },
+      {
+        "label": "仕様",
+        "value": "NEMA 4X; 100-240V,50-60Hz,0.5A; 12VDC,1.67A"
+      },
+      {
+        "label": "動作温度",
+        "value": "5-50°C; 保管温度:0-50°C (32-122°F); 湿度:18-80%; 重量:5kg"
+      },
+      {
+        "label": "センサーモデル・画面・操作ソフトウェア",
+        "value": "BWLPS008；カラー、4.0x2.5 inches；WPCXView"
+      },
+      {
+        "label": "外形寸法",
+        "value": "幅12 inches × 高さ10 inches × 奥行6 inches"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "光遮断法"
+  },
+  {
+    "kind": "product",
+    "category": "cleanliness",
+    "model": "BTP8300",
+    "slug": "btp8300",
+    "route": "/products/cleanliness/btp8300",
+    "title": "BTP8300 ポータブル清浄度モニター",
+    "description": "BTP8300は、液中の固形粒子の粒径と個数を測定するポータブル清浄度モニターです。",
+    "sourceUrl": "https://www.bebur.net/en/list_46/256.html",
+    "images": [
+      {
+        "src": "/products/1762148195719146-05fc5fdd5a1498d8.png",
+        "alt": "BTP8300 ポータブル清浄度モニター"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BTP8300は、液中の固形粒子の粒径と個数を測定するポータブル清浄度モニターです。"
+        ]
+      }
+    ],
+    "features": [
+      "高速測定、耐干渉性、再現性",
+      "測定チャネルは最大32、カスタムで最大1,000",
+      "油液・水・ろ過工程の粒子監視に対応",
+      "実時間アラーム、データ保存、印刷、校正、自己診断、データダウンロード及びコピー",
+      "電源又はバッテリーで実験室・現場に対応、USB及びI/Oポート接続"
+    ],
+    "applications": [
+      "油汚染度",
+      "凝集最適化",
+      "油井注水",
+      "上水・湖水",
+      "航空・油圧・潤滑油"
+    ],
+    "specifications": [
+      {
+        "label": "測定範囲",
+        "value": "標準：1μm to 400μm；カスタマイズ：2μm-750μm"
+      },
+      {
+        "label": "流量",
+        "value": "10mL/min〜50mL/min"
+      },
+      {
+        "label": "試験時間",
+        "value": "≤2 minutes"
+      },
+      {
+        "label": "同時計数誤差限界",
+        "value": "10,000/mL"
+      },
+      {
+        "label": "精度",
+        "value": "2 micronsで± 5%未満、5-10 micronsで± 10%未満"
+      },
+      {
+        "label": "電源",
+        "value": "110-240VAC"
+      },
+      {
+        "label": "寸法/重量",
+        "value": "30.5x25x15 cm、2.5kg（バッテリーパックを除く）"
+      },
+      {
+        "label": "測定チャネル",
+        "value": "8チャネル、32チャネルを選択可能、最大1,000チャネルまでカスタマイズ可能"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "測光遮断法（レーザーダイオードと検出器間の遮光量を用いる）"
+  },
+  {
+    "kind": "product",
+    "category": "dosing",
+    "model": "BT-9000L",
+    "slug": "bt-9000l",
+    "route": "/products/dosing/bt-9000l",
+    "title": "BT-9000L 凝集インテリジェント薬注制御システム",
+    "description": "BT-9000Lは、ストリーミング電流、UV254、有機物、濁度、pHの情報を用いるモジュール式の凝集薬注制御システムです。",
+    "sourceUrl": "https://www.bebur.net/en/list_47/247.html",
+    "images": [
+      {
+        "src": "/products/1762415950641929-447d86cda61a24c2.jpg",
+        "alt": "BT-9000L 凝集インテリジェント薬注制御システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT-9000Lは、ストリーミング電流、UV254、有機物、濁度、pHの情報を用いるモジュール式の凝集薬注制御システムです。"
+        ]
+      }
+    ],
+    "features": [
+      "既存センサーおよびPLC/SCADA信号を受信",
+      "手動・流量比・パラメーター制御を選択可能",
+      "PID制御モジュールを搭載",
+      "薬注・検出・制御ユニットを一つのプラットフォームに統合",
+      "自己洗浄機能、SCV応答値による凝集剤最適量の決定、既設分析計の集中表示・制御に対応"
+    ],
+    "applications": [
+      "浄水場の凝集薬注",
+      "原水処理"
+    ],
+    "specifications": [
+      {
+        "label": "対象パラメーター",
+        "value": "ストリーミング電流、UV254、濁度、pH"
+      },
+      {
+        "label": "仕様",
+        "value": "標準構成に流量計、計量ポンプ、制御弁、ダンパーを含む（原典記載）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "濁度・有機物のフィードフォワード制御とストリーミング電流SCDのフィードバック制御を組み合わせた閉ループ制御"
+  },
+  {
+    "kind": "product",
+    "category": "dosing",
+    "model": "SCM520 / SCM530",
+    "slug": "streaming-current-system",
+    "route": "/products/dosing/streaming-current-system",
+    "title": "オンラインストリーミング電流計システム",
+    "description": "凝集処理後の水試料の電荷状態をオンラインで監視し、薬注制御に用いるストリーミング電流計システムです。",
+    "sourceUrl": "https://www.bebur.net/en/list_47/248.html",
+    "images": [
+      {
+        "src": "/products/1762487086623794-63483ec6afc65677.jpg",
+        "alt": "オンラインストリーミング電流計システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "凝集処理後の水試料の電荷状態をオンラインで監視し、薬注制御に用いるストリーミング電流計システムです。"
+        ]
+      }
+    ],
+    "features": [
+      "pH、濁度、UV254有機物を同時検出可能",
+      "センサー信号の健全性診断とpH補償",
+      "自動洗浄はオプション",
+      "交換可能なピストン、自己診断、放熱モジュール、pH測定オプション"
+    ],
+    "applications": [
+      "上水・下水の凝集沈殿",
+      "汚泥沈降・脱水・ろ過",
+      "逆浸透前処理"
+    ],
+    "specifications": [
+      {
+        "label": "仕様",
+        "value": "SCM520試料流量：1-19L/min；SCM530：1-40L/min"
+      },
+      {
+        "label": "測定範囲",
+        "value": "-1000~1000 / -1000～1000"
+      },
+      {
+        "label": "電源",
+        "value": "220VAC,50HZ; 動作温度: 0-50℃"
+      },
+      {
+        "label": "仕様",
+        "value": "SCM520: 310mm(W),388mm(H),165mm(D), 5KG"
+      },
+      {
+        "label": "仕様",
+        "value": "SCM530: 445mm(W),377mm(H),165mm(D), 7.5KG"
+      },
+      {
+        "label": "水試料入口／出口・接液材・配線",
+        "value": "SCM520：3/4\"(19mm)OD；SCM530：1\"(25mm)OD；PVDF、POM又はPVDF、PVC又はPE、EPDM、ステンレス鋼；4芯シールド線"
+      },
+      {
+        "label": "筐体",
+        "value": "PC"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "往復ピストンで生じるストリーミング電流をSCV表示値へ変換"
+  },
+  {
+    "kind": "product",
+    "category": "dosing",
+    "model": "LabSense1 / LabSense2 / LabSense3",
+    "slug": "labsense",
+    "route": "/products/dosing/labsense",
+    "title": "LabSense 実験室用粒子電荷分析計",
+    "description": "LabSenseは、粒子・溶解物の表面電荷値を用いて凝集剤やpH調整剤の評価を支援する実験室用粒子電荷分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_47/249.html",
+    "images": [
+      {
+        "src": "/products/1762486988537486-3c8382252a181be9.jpg",
+        "alt": "LabSense 実験室用粒子電荷分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "LabSenseは、粒子・溶解物の表面電荷値を用いて凝集剤やpH調整剤の評価を支援する実験室用粒子電荷分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "pH調整の評価",
+      "LabSense2/3の自動滴定機能",
+      "TOC低減の検討に使用可能"
+    ],
+    "applications": [
+      "凝集剤の滴定",
+      "pH調整剤の評価"
+    ],
+    "specifications": [
+      {
+        "label": "試料量",
+        "value": "10ml（本文ではLabSense1: 10ml-30ml）"
+      },
+      {
+        "label": "仕様",
+        "value": "流動電位：-2500 ~ +2500mV；pH：0-14pH"
+      },
+      {
+        "label": "分解能",
+        "value": "流動電位：1mv；pH：0.01；電荷要求量：1μL"
+      },
+      {
+        "label": "精度",
+        "value": "<±1％; 電源: 220V/50Hz"
+      },
+      {
+        "label": "寸法",
+        "value": "200×300×360 mm (W×H×D); 重量: 3.30～4.25 kg"
+      },
+      {
+        "label": "仕様",
+        "value": "EN 50081, EN 50082, EN 61010"
+      },
+      {
+        "label": "導電率・要求量・測定槽",
+        "value": "最大11 ms/on。より高い導電率は特別処理で分析可能；電荷要求量：0-25ml；酸・塩基要求量：0-25ml；測定槽：60ml"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "往復ピストンと測定電極で対イオン濃度を測定しSCVとして表示"
+  },
+  {
+    "kind": "product",
+    "category": "dosing",
+    "model": "BT-9000S",
+    "slug": "bt-9000s",
+    "route": "/products/dosing/bt-9000s",
+    "title": "BT-9000S ストリーミング電流計制御薬注システム",
+    "description": "BT-9000Sは、ストリーミング電流計と薬注ユニットを一体化した凝集薬注の閉ループ制御システムです。",
+    "sourceUrl": "https://www.bebur.net/en/list_47/250.html",
+    "images": [
+      {
+        "src": "/products/1762492636729196-2dc0642b6939e136.jpg",
+        "alt": "BT-9000S ストリーミング電流計制御薬注システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT-9000Sは、ストリーミング電流計と薬注ユニットを一体化した凝集薬注の閉ループ制御システムです。"
+        ]
+      }
+    ],
+    "features": [
+      "PLC制御ユニットと凝集薬注スキッドを統合",
+      "水処理自動制御との連携または独立運転",
+      "薬注量・汚泥・現地サービスの低減を目的とした制御",
+      "2台のダイヤフラム計量ポンプを相互待機構成にし、自己洗浄機能を選択可能"
+    ],
+    "applications": [
+      "浄水場の凝集薬注"
+    ],
+    "specifications": [
+      {
+        "label": "出力",
+        "value": "4-20mA"
+      },
+      {
+        "label": "仕様",
+        "value": "標準構成にストリーミング電流計、計量ポンプ、電磁流量計、制御弁、ダンパーを含む（原典記載）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "SCVと設定基準値をPID演算し、4-20mAで計量ポンプまたは薬注弁を制御"
+  },
+  {
+    "kind": "product",
+    "category": "dosing",
+    "model": "BT-9000C",
+    "slug": "bt-9000c",
+    "route": "/products/dosing/bt-9000c",
+    "title": "BT-9000C 塩素消毒薬注制御システム",
+    "description": "BT-9000Cは、流量と残留塩素の監視に基づき消毒剤の薬注を制御するシステムです。",
+    "sourceUrl": "https://www.bebur.net/en/list_47/251.html",
+    "images": [
+      {
+        "src": "/products/1762493381860322-7fd7cf44471fd4f6.jpg",
+        "alt": "BT-9000C 塩素消毒薬注制御システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT-9000Cは、流量と残留塩素の監視に基づき消毒剤の薬注を制御するシステムです。"
+        ]
+      }
+    ],
+    "features": [
+      "制御ユニット、計量ポンプ、流量計、残留塩素水質分析計を一体化",
+      "PID制御",
+      "試料水温度を同時検出し出力を補償",
+      "複数の計量ポンプ構成、多段階保護、信号出力による状態通知"
+    ],
+    "applications": [
+      "消毒工程の薬注"
+    ],
+    "specifications": [
+      {
+        "label": "残留塩素電解液のpH",
+        "value": "約6"
+      },
+      {
+        "label": "PID出力",
+        "value": "計量ポンプへの比例制御信号"
+      },
+      {
+        "label": "標準構成",
+        "value": "遊離塩素分析計、計量ポンプ、電磁流量計等（原典記載）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "膜式アンペロメトリーの遊離塩素分析計と流量信号を用いる二重制御ループ"
+  },
+  {
+    "kind": "product",
+    "category": "dosing",
+    "model": "SCM530",
+    "slug": "scm530",
+    "route": "/products/dosing/scm530",
+    "title": "SCM530 ストリーミング電流計",
+    "description": "SCM530は、水中のイオン・コロイド電荷を連続測定し、凝集剤の精密な薬注制御に用いるストリーミング電流計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_47/252.html",
+    "images": [
+      {
+        "src": "/products/1762495209689475-0bcc707d9d48b826.jpg",
+        "alt": "SCM530 ストリーミング電流計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "SCM530は、水中のイオン・コロイド電荷を連続測定し、凝集剤の精密な薬注制御に用いるストリーミング電流計です。"
+        ]
+      }
+    ],
+    "features": [
+      "pH、濁度、UV254有機物を同時検出可能",
+      "PID制御と4-20mA出力",
+      "設定時刻による自動洗浄はオプション",
+      "交換可能なピストン、自己診断、放熱モジュール、pH測定オプション"
+    ],
+    "applications": [
+      "浄水場",
+      "下水処理",
+      "汚泥脱水",
+      "凝集剤薬注制御"
+    ],
+    "specifications": [
+      {
+        "label": "電源",
+        "value": "100-240VAC/0.75A"
+      },
+      {
+        "label": "入力",
+        "value": "標準4チャネル、16チャネルまで拡張可能"
+      },
+      {
+        "label": "出力",
+        "value": "RS485、8リレー出力、設定可能な4-20mA、32チャネルまで拡張可能"
+      },
+      {
+        "label": "保護等級",
+        "value": "IP65; 寸法: 230×309×103; 重量: 2 kilograms"
+      },
+      {
+        "label": "仕様",
+        "value": "SCM530試料流量：1-40L/min；範囲：-1000～1000；220VAC、50HZ；0-50℃；445mm(W)、377mm(H)、165mm(D)；7.5KG"
+      },
+      {
+        "label": "水試料入口／出口・接液材・配線",
+        "value": "1\"(25mm)OD；PVDF、POM又はPVDF、PVC又はPE、EPDM、ステンレス鋼；4芯シールド線"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "環状電極内の往復ピストンによるストリーミング電流を収集・増幅しDC信号として出力"
+  },
+  {
+    "kind": "product",
+    "category": "dosing",
+    "model": "SCM520",
+    "slug": "scm520",
+    "route": "/products/dosing/scm520",
+    "title": "SCM520 ストリーミング電流モニター",
+    "description": "SCM520は、水中のイオン・コロイド電荷をストリーミング電流原理で検出し、凝集剤の薬注制御に用いるモニターです。",
+    "sourceUrl": "https://www.bebur.net/en/list_47/253.html",
+    "images": [
+      {
+        "src": "/products/1762496705176844-4b24a1ec98058ce1.jpg",
+        "alt": "SCM520 ストリーミング電流モニター"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "SCM520は、水中のイオン・コロイド電荷をストリーミング電流原理で検出し、凝集剤の薬注制御に用いるモニターです。"
+        ]
+      }
+    ],
+    "features": [
+      "pH、濁度、UV254有機物を同時検出可能",
+      "センサー信号の健全性診断とpH補償",
+      "自動洗浄はオプション",
+      "交換可能なピストン、自己診断、放熱モジュール、pH測定オプション"
+    ],
+    "applications": [
+      "都市・工業用水処理",
+      "汚泥沈降・脱水・ろ過",
+      "製紙",
+      "逆浸透前処理"
+    ],
+    "specifications": [
+      {
+        "label": "電源",
+        "value": "100-240VAC/0.75A"
+      },
+      {
+        "label": "入力",
+        "value": "標準4系統、16系統まで拡張可能"
+      },
+      {
+        "label": "出力",
+        "value": "RS485、リレー、オプション4-20mA"
+      },
+      {
+        "label": "保護等級",
+        "value": "IP65；サイズ：230x09x103；重量：2kg"
+      },
+      {
+        "label": "仕様",
+        "value": "試料流量：1-19L/min；範囲：-1000~1000；220VAC、50HZ；0-50℃；310mm(W)、388mm(H)、165mm(D)；5KG"
+      },
+      {
+        "label": "水試料入口／出口・接液材・配線",
+        "value": "3/4\"(19mm)OD；PVDF、POM又はPVDF、PVC又はPE、EPDM、ステンレス鋼；4芯シールド線"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "往復ピストンで生じる電流を増幅しSCV表示値へ変換"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-F200",
+    "slug": "bt6308-f200",
+    "route": "/products/water-quality/bt6308-f200",
+    "title": "BT6308-F200 オンラインフッ化物分析計",
+    "description": "BT6308-F200は、イオン選択性電極を用いてフッ化物を測定するオンライン水質分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/244.html",
+    "images": [
+      {
+        "src": "/products/1763024078354429-02c3542ffc6d8e35.jpg",
+        "alt": "BT6308-F200 オンラインフッ化物分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-F200は、イオン選択性電極を用いてフッ化物を測定するオンライン水質分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "固体ポリマージャンクション",
+      "試験キットによる手動校正",
+      "循環槽への設置",
+      "試薬を使用しないISE。TISABを使用せず、イオン強度が比較的高く安定した水に適用",
+      "複合電極、耐食性エポキシ筐体、イオンゲル膜及び結晶膜"
+    ],
+    "applications": [
+      "飲料水中のフッ化物イオン濃度、食品・飲料プロセス中のフッ化物イオン濃度、フッ素含有水のオンライン分析"
+    ],
+    "specifications": [
+      {
+        "label": "濃度範囲",
+        "value": "0.19-19000ppm; pH:5-7pH; 温度:0-60°C"
+      },
+      {
+        "label": "再現性",
+        "value": "±2%; slope:56+/-4mV"
+      },
+      {
+        "label": "電極",
+        "value": "length 165mm, diameter 12mm, cable 1m"
+      },
+      {
+        "label": "干渉イオン",
+        "value": "OH-, H+"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "イオン選択電極法（ISE）"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "UVSense-D / UVSense-M / UVSense-F",
+    "slug": "uvsense",
+    "route": "/products/water-quality/uvsense",
+    "title": "UVSense オンラインUV254分析計",
+    "description": "UVSenseは、UV吸収・紫外可視分光を利用して水質指標をオンライン測定する分析計シリーズです。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/245.html",
+    "images": [
+      {
+        "src": "/products/1763024897959395-eaa6d2c48b93bc33.jpg",
+        "alt": "UVSense オンラインUV254分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "UVSenseは、UV吸収・紫外可視分光を利用して水質指標をオンライン測定する分析計シリーズです。"
+        ]
+      },
+      {
+        "heading": "原典に基づく測定・保守機能",
+        "paragraphs": [
+          "原典では、濁度補償機能を備え、試薬を使用しない光学式の現場測定、最速10 secondsの測定、内蔵洗浄機能を記載しています。",
+          "適用例は浄水場、下水処理場放流水、河川流域・地表水・地下水、都市生活排水処理場、産業の水処理です。"
+        ]
+      }
+    ],
+    "features": [
+      "UVSense-D、UVSense-M、UVSense-Fの選択",
+      "RS485（Modbus RTU）通信",
+      "ANSI 316Lセンサー材質"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "化学",
+      "医薬",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "電源",
+        "value": "DC12-24V; 保護等級:IP68; 温度:0-50℃; 流速:<3m/s; 圧力:6 Bar"
+      },
+      {
+        "label": "測定周期",
+        "value": "10-65535S"
+      },
+      {
+        "label": "消費電力",
+        "value": "UVスペクトル吸収法（254nm和550nm）：<6W；紫外可視分光法（4 wavelengths）：<2W；紫外可視分光法（200-800nm）：<8W"
+      },
+      {
+        "label": "仕様",
+        "value": "COD範囲はモデル別に0-150mg/Lから0-1000mg/L"
+      },
+      {
+        "label": "仕様",
+        "value": "BOD範囲はモデル別に0-100mg/Lから0-600mg/L"
+      },
+      {
+        "label": "仕様",
+        "value": "TOC範囲はモデル別に0-30mg/Lから0-400mg/L"
+      },
+      {
+        "label": "仕様",
+        "value": "NO3-N範囲はモデル別に0-8mg/Lから0-50mg/L"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "UVスペクトル吸収法（254nmおよび550nm）、紫外可視分光法（4波長／200-800nm）"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-BSNH3",
+    "slug": "bt6308-bsnh3",
+    "route": "/products/water-quality/bt6308-bsnh3",
+    "title": "BT6308-BSNH3 オンラインアンモニア態窒素分析計",
+    "description": "BT6308-BSNH3は、イオン選択性電極法でアンモニア態窒素を測定するオンライン水質分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/246.html",
+    "images": [
+      {
+        "src": "/products/1763025808712114-ea04e21a1baba808.jpg",
+        "alt": "BT6308-BSNH3 オンラインアンモニア態窒素分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-BSNH3は、イオン選択性電極法でアンモニア態窒素を測定するオンライン水質分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "浸漬またはフローセル設置",
+      "標準液校正",
+      "ケーブル長はカスタマイズ可能",
+      "試薬不要、実時間測定、保守負荷低減を原典で記載"
+    ],
+    "applications": [
+      "都市下水、生活下水、農業排水、工業廃水、工程制御、硝化処理"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0-100mg/L, 0-1000mg/L, 0-2000mg/L"
+      },
+      {
+        "label": "温度",
+        "value": "2-45°C; 圧力:<0.6Mpa"
+      },
+      {
+        "label": "分解能",
+        "value": "0.1mg/L; 精度:±5% または ±0.5mg/Lの大きい方"
+      },
+      {
+        "label": "検出下限",
+        "value": "0.2mg/L; sensor: diameter 24mm, length 261mm; weight 0.63KG; cable 6m"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "イオン選択電極法"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BC300",
+    "slug": "bc300",
+    "route": "/products/water-quality/bc300",
+    "title": "BC300 オンライン硬度分析計",
+    "description": "BC300は、滴定比色法で総硬度を測定するオンライン水質分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/260.html",
+    "images": [
+      {
+        "src": "/products/1763083866467940-1c40a9bfc7096a91.jpg",
+        "alt": "BC300 オンライン硬度分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BC300は、滴定比色法で総硬度を測定するオンライン水質分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "Modbus RS485に対応し、Wi-Fi/4Gはオプション",
+      "0/4-20 mAアナログ出力",
+      "32Gで100万件超のデータ保存",
+      "7インチLCDタッチスクリーン、自己診断、カスタム警報、最短5 minutesの測定間隔"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "化学",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "5.34-534.0mg/L(ppm)CaC03; 精度/再現性:±5%FS"
+      },
+      {
+        "label": "温度",
+        "value": "5-45 ℃; 保護等級:IP54; 圧力:0.2-2bar; 湿度:20%-95% (indoor)"
+      },
+      {
+        "label": "寸法",
+        "value": "300x300x180mm; 重量:4kg"
+      },
+      {
+        "label": "試薬別範囲",
+        "value": "5.34-53.4, 16.02-160.2, 26.7-267.0, 53.4-534.0 mg/L (ppm) CaCO3"
+      },
+      {
+        "label": "デジタル入力／出力",
+        "value": "デジタル入力：1 channel；デジタル出力：2 channel"
+      },
+      {
+        "label": "試薬別硬度単位",
+        "value": "WAR-Hardness-300T04: 0.3-3.0 °dH, 0.534-5.340 °f, 0.053-0.534 mmol/L; WAR-Hardness-300T05: 0.9-9.0 °dH, 1.602-16.02 °f, 0.160-1.602 mmol/L; WAR-Hardness-300T06: 1.5-15 °dH, 2.670-26.70 °f, 0.267-2.670 mmol/L; WAR-Hardness-300T07: 3.0-30 °dH, 5.340-53.40 °f, 0.534-5.340 mmol/L（原文表記・要確認）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "滴定比色法"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-DO",
+    "slug": "bt6308-do",
+    "route": "/products/water-quality/bt6308-do",
+    "title": "BT6308-DO オンライン溶存酸素分析計",
+    "description": "BT6308-DOは、光学式または膜式の溶存酸素センサーを選択できるオンライン分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/261.html",
+    "images": [
+      {
+        "src": "/products/1763084456922734-16f17a39a13a4a44.jpg",
+        "alt": "BT6308-DO オンライン溶存酸素分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-DOは、光学式または膜式の溶存酸素センサーを選択できるオンライン分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "光学式・膜式センサーの選択",
+      "光学式センサーは光学キャップを1-2年ごとに交換し、校正データをキャップに保存",
+      "膜式センサーは一点空気校正に対応し、大容量の電解液タンクを装備",
+      "Modbus/RS-485、4~20mA、mV出力に対応"
+    ],
+    "applications": [
+      "下水処理工程",
+      "養殖水の水質監視・制御",
+      "飲料水・表流水の酸素濃度測定",
+      "食品・飲料の製造工程",
+      "工業用水"
+    ],
+    "specifications": [
+      {
+        "label": "光学式の測定原理",
+        "value": "蛍光法"
+      },
+      {
+        "label": "光学式の検出範囲",
+        "value": "0-20mg/L; 0-200% saturation（飽和度）"
+      },
+      {
+        "label": "光学式の分解能",
+        "value": "±0.1mg/L:±1%（原文表記）"
+      },
+      {
+        "label": "光学式の応答時間",
+        "value": "T90:60 seconds（60秒）"
+      },
+      {
+        "label": "光学式の測定間隔",
+        "value": ">5 seconds（5秒超）"
+      },
+      {
+        "label": "光学式の温度センサー",
+        "value": "NTC10K"
+      },
+      {
+        "label": "光学式の温度精度",
+        "value": "0.5℃"
+      },
+      {
+        "label": "光学式の試料温度",
+        "value": "0-50℃"
+      },
+      {
+        "label": "光学式の最大圧力",
+        "value": "5 bar(72.5 PST)（原文表記）"
+      },
+      {
+        "label": "光学式の電圧・消費電力",
+        "value": "12V/1W"
+      },
+      {
+        "label": "光学式の重量",
+        "value": "450g（電極のみ）"
+      },
+      {
+        "label": "光学式の材質",
+        "value": "316SS、チタン合金"
+      },
+      {
+        "label": "光学式の保護等級",
+        "value": "IP68"
+      },
+      {
+        "label": "光学式の出力",
+        "value": "Modbus/RS-485"
+      },
+      {
+        "label": "膜式の測定原理",
+        "value": "電気化学法"
+      },
+      {
+        "label": "膜式の検出範囲",
+        "value": "0.00-20ppm:0-200%（原文表記）"
+      },
+      {
+        "label": "膜式の分解能",
+        "value": "0.01"
+      },
+      {
+        "label": "膜式の電極材質",
+        "value": "Noryl、陰極：銀、陽極：亜鉛または鉛"
+      },
+      {
+        "label": "膜式の温度範囲",
+        "value": "0-50°C"
+      },
+      {
+        "label": "膜式のケーブル長",
+        "value": "10 feet"
+      },
+      {
+        "label": "膜式の最小流速",
+        "value": "5cm/s"
+      },
+      {
+        "label": "膜式の重量",
+        "value": "1.68 pounds"
+      },
+      {
+        "label": "膜式の出力",
+        "value": "4~20mA、RS485（Modbus RTU）"
+      },
+      {
+        "label": "膜式の電源",
+        "value": "12-36V DC"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "光学式溶存酸素センサー／膜式溶存酸素センサー"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-ORP (BS-ORP290 / BW-ORPS272)",
+    "slug": "bt6308-orp",
+    "route": "/products/water-quality/bt6308-orp",
+    "title": "BT6308-ORP オンラインORP分析計",
+    "description": "BT6308-ORPは、ガラス電極法によるORPオンライン分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/262.html",
+    "images": [
+      {
+        "src": "/products/1763085564646201-1be97373e2bb11bb.jpg",
+        "alt": "BT6308-ORP オンラインORP分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-ORPは、ガラス電極法によるORPオンライン分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "流通設置または浸漬設置",
+      "電源・通信の内部絶縁",
+      "BS-ORP290とBW-ORPS272を選択",
+      "ポリマー充填、試薬不要、二重塩橋、平面誘導ガラス、オプションの自動洗浄"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "液冷",
+      "化学",
+      "医薬",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "測定範囲",
+        "value": "±2000mV; 分解能:1mV; 精度:±2mV; 応答:≤30秒"
+      },
+      {
+        "label": "温度",
+        "value": "0~50℃ / 0~100℃; 圧力:≤4bar / ≤6.9bar; IP68"
+      },
+      {
+        "label": "ケーブル",
+        "value": "標準3 meters；センサー寸法：34.5mm×215.5mm / 29mm×181.6mm"
+      },
+      {
+        "label": "接続",
+        "value": "1\" NPT / 3/4\"NPT"
+      },
+      {
+        "label": "参照電極・筐体材質",
+        "value": "Ag/AgCLゲル充填；BS-ORP290：ABS；BW-ORPS272：ポリフェニレンエーテル（Ryton、PPS）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "ガラス電極法"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-pH (BW-PH290 / BW-PHS272)",
+    "slug": "bt6308-ph",
+    "route": "/products/water-quality/bt6308-ph",
+    "title": "BT6308-pH オンラインpH分析計",
+    "description": "BT6308-pHは、ガラス電極法と自動温度補償を採用するオンラインpH分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/263.html",
+    "images": [
+      {
+        "src": "/products/1763086618544795-b7e20cedaf4123e8.jpg",
+        "alt": "BT6308-pH オンラインpH分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-pHは、ガラス電極法と自動温度補償を採用するオンラインpH分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "自動温度補償",
+      "流通設置または浸漬設置",
+      "BW-PH290とBW-PHS272を選択",
+      "ポリマー充填、試薬不要、オプションの自動洗浄"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "液冷",
+      "化学",
+      "医薬",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.00~14.00 pH, 0.0~50.0℃ / 0.0~100.0℃"
+      },
+      {
+        "label": "分解能",
+        "value": "0.01pH, 0.1℃; 精度:±0.02pH / ±0.01pH; 応答:≤30秒"
+      },
+      {
+        "label": "圧力",
+        "value": "≤4bar / ≤6.9bar; IP68"
+      },
+      {
+        "label": "ケーブル",
+        "value": "standard 3 meters; 1\" NPT / 3/4\"NPT"
+      },
+      {
+        "label": "センサー寸法・参照電極・筐体材質",
+        "value": "BW-PH290：直径34.5mm、長さ215.5mm、ABS；BW-PHS272：直径29mm、長さ181.6mm、ポリフェニレンエーテル（Ryton、PPS）；Ag/AgCLゲル充填"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "ガラス電極法"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-Cond (BW-COND2150 / BW-COND3020 / BW-COND700/SSRE)",
+    "slug": "bt6308-cond",
+    "route": "/products/water-quality/bt6308-cond",
+    "title": "BT6308-Cond オンライン導電率分析計",
+    "description": "BT6308-Condは、黒鉛、環状誘導、ステンレス鋼の各センサーを選択できるオンライン導電率分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/264.html",
+    "images": [
+      {
+        "src": "/products/1763087905686558-9466ed888dd1b621.jpg",
+        "alt": "BT6308-Cond オンライン導電率分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-Condは、黒鉛、環状誘導、ステンレス鋼の各センサーを選択できるオンライン導電率分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "高温・超純水向けステンレス鋼センサーを選択可能",
+      "FC01またはFC-COND03の循環槽",
+      "電極定数、温度センサー、ケーブル長、コネクターを選択可能。環状誘導式は内蔵温度センサーで自動温度補償"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "液冷",
+      "化学",
+      "医薬",
+      "油圧",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "選定組合せ",
+        "value": "BT6308 + BW-COND2150 + FC01; BT6308 + BW-COND3020 + FC-COND03; BT6308 + BW-COND700/SSRE + FC-COND03"
+      },
+      {
+        "label": "環状誘導式センサーの測定範囲・耐熱",
+        "value": "0- 2,000,000 uS/cm; 105℃"
+      },
+      {
+        "label": "高温用センサー耐熱・電極定数",
+        "value": "200℃；K=0.1、1.0及び10種類超の電極定数"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "導電率測定（黒鉛・環状誘導・ステンレス鋼センサー）"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-SS (BS211 / BS212)",
+    "slug": "bt6308-ss",
+    "route": "/products/water-quality/bt6308-ss",
+    "title": "BT6308-SS 濁度・全浮遊物質分析計",
+    "description": "BT6308-SSは、濁度および全浮遊物質をオンライン測定する分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/265.html",
+    "images": [
+      {
+        "src": "/products/1763090528477188-444ec3e4ef317734.jpg",
+        "alt": "BT6308-SS 濁度・全浮遊物質分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-SSは、濁度および全浮遊物質をオンライン測定する分析計です。"
+        ]
+      },
+      {
+        "heading": "測定方式と用途",
+        "paragraphs": [
+          "原典では、散乱光法（赤外LED光源）を用い、光源と2つの検出器で測定すると説明しています。自動洗浄ブラシにより、気泡と汚れの影響を低減します。",
+          "下水処理場の活性汚泥・生物処理評価、工業工程水・循環冷却水、水道ろ過槽の逆洗水、沈殿槽の原水・流出水、河川・湖沼・表流水の浮遊物質濃度監視に適用例があります。"
+        ]
+      }
+    ],
+    "features": [
+      "BS211/BS212センサーを選択",
+      "浸漬設置",
+      "チタン合金センサー材質"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "液冷",
+      "化学",
+      "医薬",
+      "油圧",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.1~4000NTU / 0.5~15000mg/L"
+      },
+      {
+        "label": "再現性",
+        "value": "±5% または ±0.3NTUの大きい方；測定下限:0.5mg/L または 0.1NTU"
+      },
+      {
+        "label": "温度",
+        "value": "0-50℃; 圧力:3Bar; IP68; cable:standard 10 meters"
+      },
+      {
+        "label": "仕様",
+        "value": "diameter:36mm; length:198.2mm; weight:about 1kg"
+      },
+      {
+        "label": "設置インターフェース",
+        "value": "3/4NPT thread"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "散乱光法（赤外LED光源）"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-Turb (BW-TURB6525 / BW-TURB8325)",
+    "slug": "bt6308-turb",
+    "route": "/products/water-quality/bt6308-turb",
+    "title": "BT6308-Turb オンライン濁度分析計",
+    "description": "BT6308-Turbは、IR LED光源を用いて濁度をオンライン測定する分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/266.html",
+    "images": [
+      {
+        "src": "/products/1763091591889635-8f49f6c556fd053f.jpg",
+        "alt": "BT6308-Turb オンライン濁度分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-Turbは、IR LED光源を用いて濁度をオンライン測定する分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "加圧空気による自動パージ洗浄はオプション",
+      "RS 485デジタル出力",
+      "流通槽または浸漬設置",
+      "90°散乱光、3つの検出器、単一点校正、洗浄ノズルによる自動洗浄"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "液冷",
+      "化学",
+      "医薬",
+      "油圧",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.01-4/40/400NTU"
+      },
+      {
+        "label": "分解能",
+        "value": "0.001 NTU, 0.01NTU, 0.1 NTU（レンジ別）; 応答:<40 seconds"
+      },
+      {
+        "label": "再現性",
+        "value": "測定値の0.3%又は0.005 NTU"
+      },
+      {
+        "label": "温度",
+        "value": "0-50℃; 圧力:0-6Bar; IP 68; diameter:60mm; length:165mm"
+      },
+      {
+        "label": "洗浄空気",
+        "value": "MAX = 3Bar"
+      },
+      {
+        "label": "測定規格・負荷・材質・周囲温度",
+        "value": "ISO7027-EN27027; Maximum 600Ω, 24 VDC; PVC; 0-50℃"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "赤外LED光源"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-CL (BWCS4 / BWCN1.1 / BWCCF1.0N / BWCP4.0)",
+    "slug": "bt6308-cl",
+    "route": "/products/water-quality/bt6308-cl",
+    "title": "BT6308-CL 全残留塩素分析計",
+    "description": "BT6308-CLは、複数の膜式残留塩素センサーを選択できる全残留塩素分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/267.html",
+    "images": [
+      {
+        "src": "/products/1763099445589527-6df03026c6b4128f.jpg",
+        "alt": "BT6308-CL 全残留塩素分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-CLは、複数の膜式残留塩素センサーを選択できる全残留塩素分析計です。"
+        ]
+      },
+      {
+        "heading": "センサー方式と用途",
+        "paragraphs": [
+          "原典では、膜式又は膜なし三電極アンペロメトリーを採用し、試薬・緩衝液を使用せず、ゼロ点校正を要しないと説明しています。",
+          "用途例は、上水道の残留塩素消毒監視、管網の二次加圧給水における塩素補給制御、循環冷却水、食品・飲料工場の塩素消毒です。"
+        ]
+      }
+    ],
+    "features": [
+      "残留塩素、ゼロ残留塩素、膜なし残留塩素、全塩素センサーを選択",
+      "一体型サーミスタによる自動温度補償",
+      "DPDによる校正"
+    ],
+    "applications": [
+      "都市水処理",
+      "化学",
+      "医薬",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.005-2ppm から 0.5-200ppm（センサー別）"
+      },
+      {
+        "label": "流量",
+        "value": "約500ml/min; 温度:0-40°C / 0-45°C; pH:4-12（センサー別）"
+      },
+      {
+        "label": "仕様",
+        "value": "T90:約20 / 120 / 180秒；初期分極:約15分 / 2時間"
+      },
+      {
+        "label": "安定性",
+        "value": "-1%/月 / -3%/月; 分解能:0.001 / 0.01"
+      },
+      {
+        "label": "干渉",
+        "value": "CLO2、O3（センサーにより還元剤も記載）"
+      },
+      {
+        "label": "センサー別測定範囲",
+        "value": "BWCS4: 0.01-2,0.01-5,0.01-10,0.01-20,0.5-200; BWCN1.1: 0.005-2,0.05-20; BWCCF1.0N: 0.05-10; BWCP4.0: 0.05-0.5,0.01-2,0.01-5,0.01-10,0.01-20"
+      },
+      {
+        "label": "電極・膜",
+        "value": "作用電極：金；対極：ステンレス鋼；参照電極：銀／ハロゲン化銀；膜材質：微多孔質親水膜"
+      },
+      {
+        "label": "再分極時間・外形寸法",
+        "value": "About 30 minutes / About 15 minutes；Diameter: 25mm, length: 190mm / Diameter: 25mm, length: 195mm / Diameter: 25mm, length: 131mm"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "膜式又は膜なし三電極アンペロメトリー"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-BR1 (BWBR1)",
+    "slug": "bt6308-br1",
+    "route": "/products/water-quality/bt6308-br1",
+    "title": "BT6308-BR1 オンライン臭素分析計",
+    "description": "BT6308-BR1は、膜式アンペロメトリー・ポーラログラフ三電極センサーで臭素を測定するオンライン分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/268.html",
+    "images": [
+      {
+        "src": "/products/1763100277839649-3186819d405cd97a.jpg",
+        "alt": "BT6308-BR1 オンライン臭素分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-BR1は、膜式アンペロメトリー・ポーラログラフ三電極センサーで臭素を測定するオンライン分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "一体型自動温度補償",
+      "DPD1/DPD4による校正",
+      "飲料水・プール・工業用水・海水に対応",
+      "試薬・緩衝液不要、ゼロ点校正不要、高点校正のみ"
+    ],
+    "applications": [
+      "飲料水",
+      "プール",
+      "工業用水処理",
+      "海水"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.05-2ppm, 0.05-5ppm, 0.05-10ppm"
+      },
+      {
+        "label": "安定性",
+        "value": "1%/月; pH:6.5-9.5; 温度:0-45℃; 圧力:0-0.5bar"
+      },
+      {
+        "label": "仕様",
+        "value": "T90:about 2 minutes; 流速:500ml/min"
+      },
+      {
+        "label": "校正",
+        "value": "3か月ごとに1回の校正を推奨；干渉：CI2、CIO2、O3"
+      },
+      {
+        "label": "膜材質・電極材質",
+        "value": "微多孔質親水膜；PVC/PEEKステンレス鋼"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "膜式アンペロメトリ・ポーラログラフ三電極センサー"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-OZ (BWOZ10.1)",
+    "slug": "bt6308-oz",
+    "route": "/products/water-quality/bt6308-oz",
+    "title": "BT6308-OZ オンラインオゾン分析計",
+    "description": "BT6308-OZは、膜式アンペロメトリー・ポーラログラフ二電極センサーで水中オゾンを測定するオンライン分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/269.html",
+    "images": [
+      {
+        "src": "/products/1763101185971370-fc483f611074e3bf.jpg",
+        "alt": "BT6308-OZ オンラインオゾン分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-OZは、膜式アンペロメトリー・ポーラログラフ二電極センサーで水中オゾンを測定するオンライン分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "一体型自動温度補償",
+      "DPDによる校正",
+      "開放循環槽に設置",
+      "試薬・緩衝液不要、ゼロ点校正不要、膜を通る電気化学アンペロメトリー"
+    ],
+    "applications": [
+      "都市水処理",
+      "化学",
+      "医薬",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.005-0.5, 0.05-2,0.05-5,0.05-10,0.05-20mg/l(ppm)"
+      },
+      {
+        "label": "分解能",
+        "value": "0.001 mg/L / 0.01 mg/L; 再現性:<1%; 温度:0-45℃; 流量:0.5L/min; pH:pH4-9"
+      },
+      {
+        "label": "圧力",
+        "value": "0-0.5 bar; 初期分極:120分；再分極:30分；T90:約8分"
+      },
+      {
+        "label": "膜キャップ",
+        "value": "12 to 18 monthsを推奨; 電解液:3 to 6 monthsを推奨; 干渉:Cl2, ClO2"
+      },
+      {
+        "label": "電極・膜・安定性・導電率範囲・外形寸法",
+        "value": "陰極：金；参照電極：銀／ハロゲン化銀；微多孔質疎水膜；1%/月（校正なし）；＞0μs/cm；直径25mm、長さ190mm"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "膜式アンペロメトリ・ポーラログラフ二電極センサー"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-CD (BWCD10.1)",
+    "slug": "bt6308-cd",
+    "route": "/products/water-quality/bt6308-cd",
+    "title": "BT6308-CD オンライン二酸化塩素分析計",
+    "description": "BT6308-CDは、膜式アンペロメトリー・ポーラログラフ二電極センサーで二酸化塩素を測定するオンライン分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/270.html",
+    "images": [
+      {
+        "src": "/products/1763101921801083-a14e3888062f310c.jpg",
+        "alt": "BT6308-CD オンライン二酸化塩素分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-CDは、膜式アンペロメトリー・ポーラログラフ二電極センサーで二酸化塩素を測定するオンライン分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "一体型温度センサーによる自動補償",
+      "DPD法による校正",
+      "開放循環槽設置",
+      "試薬・緩衝液不要、ゼロ点校正不要、一点校正、残留塩素の影響を受けにくい設計"
+    ],
+    "applications": [
+      "水処理",
+      "都市水処理",
+      "化学",
+      "医薬",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.005-0.5mg/L; 0.005-2mg/L; 0.05-5mg/L; 0.05-10mg/L; 0.05-20mg/L; 0.5-200mg/L"
+      },
+      {
+        "label": "分解能",
+        "value": "0.001 mg/L, 0.01 mg/L, 0.1 mg/L; 再現性:<1%; 温度:0-50℃"
+      },
+      {
+        "label": "圧力",
+        "value": "0-0.5bar; 流量:0.5L/min; pH:pH1-pH12; 初期分極:約1時間；T90:約60秒"
+      },
+      {
+        "label": "DPD校正",
+        "value": "1週間から3か月ごとの校正；干渉：O3、CL2"
+      },
+      {
+        "label": "膜キャップ・電解液交換推奨",
+        "value": "12から18か月；3から6か月（水質に依存）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "膜式アンペロメトリ法"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT6308-Peroxi (BWWP10)",
+    "slug": "bt6308-peroxi",
+    "route": "/products/water-quality/bt6308-peroxi",
+    "title": "BT6308-Peroxi オンライン過酸化水素分析計",
+    "description": "BT6308-Peroxiは、膜式アンペロメトリー・ポーラログラフ二電極センサーで過酸化水素を測定するオンライン分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/271.html",
+    "images": [
+      {
+        "src": "/products/1763102402472141-cfb885c8bd77be6f.jpg",
+        "alt": "BT6308-Peroxi オンライン過酸化水素分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT6308-Peroxiは、膜式アンペロメトリー・ポーラログラフ二電極センサーで過酸化水素を測定するオンライン分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "一体型温度センサーによる自動補償",
+      "膜・電解液の定期交換を推奨",
+      "試薬・緩衝液不要、ゼロ点校正不要、高点校正のみ。流量、ポンプ速度又はバルブ位置によるH2O2自動薬注制御"
+    ],
+    "applications": [
+      "都市水処理",
+      "化学",
+      "医薬",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "範囲",
+        "value": "0.5-200mg/L, 5-2000mg/L, 50-20000mg/L, 500-50000mg/L, 500-100000mg/L"
+      },
+      {
+        "label": "分解能",
+        "value": "0.1mg/L, 1mg/L, 10mg/L, 100mg/L"
+      },
+      {
+        "label": "仕様",
+        "value": "pH:pH2-pH11; 温度:0 to 45℃; 圧力:0-0.5 bar"
+      },
+      {
+        "label": "初期分極",
+        "value": "5時間；T90：約8分；流量：約0.5L/min"
+      },
+      {
+        "label": "膜",
+        "value": "12から24か月、電解液：3から6か月を推奨；干渉：塩素、過酢酸、オゾン、硫化物、フェノール性物質 >3%"
+      },
+      {
+        "label": "材質・外形寸法",
+        "value": "PVC-U、ステンレス鋼、シリコーン；長さ190mm、直径25mm"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "隔膜式アンペロメトリ・ポーラログラフ二電極センサー"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BPES7 / BP9.2 / BP10",
+    "slug": "peracetic-acid",
+    "route": "/products/water-quality/peracetic-acid",
+    "title": "オンライン過酢酸分析計",
+    "description": "BPES7、BP9.2、BP10センサーを選択できるオンライン過酢酸分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/272.html",
+    "images": [
+      {
+        "src": "/products/1763103098813797-ae5a5e1ea0b3c885.jpg",
+        "alt": "オンライン過酢酸分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BPES7、BP9.2、BP10センサーを選択できるオンライン過酢酸分析計です。"
+        ]
+      },
+      {
+        "heading": "原典に基づく制御・保守機能",
+        "paragraphs": [
+          "原典では、試薬・緩衝液を使用せず、ゼロ点校正を要しない膜式センサーと説明しています。流量、ポンプ速度又はバルブ位置を自動調整してCH3CO3H（過酢酸）の濃度を設定値に保つ自動薬注制御を記載しています。",
+          "用途例は、ボトル洗浄機の薬注制御、CIP工程、食品洗浄水の漂白システム、製薬工場又は医薬中間体分野です。"
+        ]
+      }
+    ],
+    "features": [
+      "一体型自動温度補償",
+      "1-3か月ごとの校正を推奨",
+      "3種類のセンサーを選択"
+    ],
+    "applications": [
+      "都市水処理",
+      "化学",
+      "医薬",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "BPES7範囲",
+        "value": "0.5-200,5-500,5-1000,5-2000,50-5000,50-10000ppm"
+      },
+      {
+        "label": "BP9.2範囲",
+        "value": "0.5-200,5-2000,50-20000ppm; BP10範囲:0.5-20,0.5-200,5-2000,50-5000,50-20000,50-50000ppm"
+      },
+      {
+        "label": "仕様",
+        "value": "pH:BPES7 pH1-6; BP9.2/BP10 pH1-8; 温度:0-45℃ / 0-60℃"
+      },
+      {
+        "label": "圧力",
+        "value": "0.5bar; 流速:約0.5L/min; 分解能:0.1, 1, 10ppm"
+      },
+      {
+        "label": "干渉",
+        "value": "二酸化塩素、過酸化水素、オゾン"
+      },
+      {
+        "label": "初期分極・応答時間",
+        "value": "BPES7：約3 hours；T90：約3 minutes；BP9.2：30-180min；T90：10℃で約3.5 minutes、50℃で約45 seconds；BP10：30-180min；T90：約1.5から3.5 minutes（種類及び温度に依存）（原文表記・要確認）"
+      },
+      {
+        "label": "材質",
+        "value": "BPES7：PVC-U、ステンレス鋼1.4571；BP9.2：PEEK、ステンレス鋼1.4571；BP10：PVC-U、ステンレス鋼1.4571"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "膜式アンペロメトリ・ポーラログラフ二電極センサー"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT-7000",
+    "slug": "bt-7000",
+    "route": "/products/water-quality/bt-7000",
+    "title": "BT-7000 オンライン多項目水質分析計",
+    "description": "BT-7000は、複数センサーを1台に構成できるオンライン多項目水質分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/273.html",
+    "images": [
+      {
+        "src": "/products/1763103926703192-581babf88d00aaa4.jpg",
+        "alt": "BT-7000 オンライン多項目水質分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT-7000は、複数センサーを1台に構成できるオンライン多項目水質分析計です。"
+        ]
+      }
+    ],
+    "features": [
+      "複数センサーを1台に構成",
+      "保守・操作を簡素化することを目的とした設計",
+      "残留塩素、濁度、pH/温度、導電率、溶存酸素の構成例",
+      "2台以上、最大16種類のセンサーを接続。各測定チャンネルは100,000件超の記録を保存"
+    ],
+    "applications": [
+      "電力",
+      "都市水処理",
+      "化学",
+      "環境保護",
+      "食品"
+    ],
+    "specifications": [
+      {
+        "label": "残留塩素",
+        "value": "0.01-2ppmから0.05-200ppm（原典表記）"
+      },
+      {
+        "label": "濁度",
+        "value": "0.01-4/40/400NTU; pH:0-14pH; 導電率:150-2,000,000uS/cm"
+      },
+      {
+        "label": "溶存酸素",
+        "value": "0.00-20ppm; 0-200%; 温度上限:105℃; 圧力上限:150psig"
+      },
+      {
+        "label": "仕様",
+        "value": "IR LED；IP68；センサーケーブル：標準3m / 10ft（原典表記）"
+      },
+      {
+        "label": "電源・入出力・保護等級",
+        "value": "電源：100-240VAC/0.75 A；入力：標準4系統のセンサー信号入力、16系統まで拡張可能；出力：標準RS485信号出力及びリレー出力、4-20mA信号出力はオプション；保護等級：IP65"
+      },
+      {
+        "label": "リレー出力・サイズ・重量",
+        "value": "独立設定可能な8系統リレー出力、32系統リレー出力まで拡張可能；サイズ：230x09x103；重量：2kg（原文表記・要確認）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "電気化学ほか、選択センサーにより異なる"
+  },
+  {
+    "kind": "product",
+    "category": "water-quality",
+    "model": "BT-6308",
+    "slug": "bt-6308",
+    "route": "/products/water-quality/bt-6308",
+    "title": "BT-6308 オンライン水質コントローラー",
+    "description": "BT-6308は、各種水質センサーと組み合わせて構成するオンライン水質コントローラーです。",
+    "sourceUrl": "https://www.bebur.net/en/list_48/274.html",
+    "images": [
+      {
+        "src": "/products/1763104485347568-cb2f3438968b6726.jpg",
+        "alt": "BT-6308 オンライン水質コントローラー"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT-6308は、各種水質センサーと組み合わせて構成するオンライン水質コントローラーです。"
+        ]
+      },
+      {
+        "heading": "コントローラー仕様",
+        "paragraphs": [
+          "原典では、最大16種類のセンサーを同時接続でき、測定データを自動記録・保存・ダウンロードできると説明しています。標準RS485はModbus RTUに対応し、プラグアンドプレイの入出力と個別センサー設定に対応します。",
+          "多言語表示、ユーザー定義ホーム画面、切替可能な表示画面、交換可能な入出力カード、HD 7インチカラータッチスクリーン、多段階暗号化メニューを原典で記載しています。"
+        ]
+      }
+    ],
+    "features": [
+      "残留塩素、全塩素、二酸化塩素、過酸化水素、過酢酸、臭素、溶存酸素等に対応",
+      "濁度、浮遊物質、汚泥濃度、ストリーミング電流、pH、ORP、導電率、UV254の構成例"
+    ],
+    "applications": [
+      "オンライン水質監視"
+    ],
+    "specifications": [
+      {
+        "label": "仕様",
+        "value": "BT6308/6208/BT6108と各種センサーの組合せとして分析計を構成"
+      },
+      {
+        "label": "電源・入出力・保護等級",
+        "value": "電源：100-240VAC/0.75 A；入力：標準4系統のセンサー信号入力、16系統まで拡張可能；出力：標準RS485信号出力及びリレー出力、4-20mA信号出力はオプション；保護等級：IP65"
+      },
+      {
+        "label": "記録・リレー出力",
+        "value": "各測定チャンネルは100,000件超の測定記録を保存可能；独立設定可能な8系統リレー出力、32系統リレー出力まで拡張可能"
+      },
+      {
+        "label": "サイズ・重量",
+        "value": "Size:230x09x103; Weight:2kg（原文表記・要確認）"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "接続するセンサーの測定原理を使用"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "GT-3280-OU",
+    "slug": "gt-3280-ou",
+    "route": "/products/gas-detection/gt-3280-ou",
+    "title": "GT-3280-OU 臭気ガスオンライン監視システム",
+    "description": "GT-3280-OUは、臭気指標および複数の臭気関連ガスをオンライン監視するシステムです。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/216.html",
+    "images": [
+      {
+        "src": "/products/1762499153432339-a71307ce9562ad6a.jpg",
+        "alt": "GT-3280-OU 臭気ガスオンライン監視システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "GT-3280-OUは、臭気指標および複数の臭気関連ガスをオンライン監視するシステムです。"
+        ]
+      }
+    ],
+    "features": [
+      "臭気OU、硫化水素、アンモニア、TVOCほかを対象",
+      "測定範囲はカスタマイズ可能"
+    ],
+    "applications": [
+      "臭気ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "仕様",
+        "value": "H2S、アンモニア、TVOC、メチルメルカプタン、メチルスルフィド、二硫化炭素、スチレン、トリメチルアミン、ジメチルジスルフィド: 0-50mg/m3, ≤±3%FS, 0.001 mg/m3"
+      },
+      {
+        "label": "仕様",
+        "value": "臭気OU:0-2000 （無次元）, ≤±3%FS, 分解能 1"
+      }
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "GT-3200H",
+    "slug": "gt-3200h",
+    "route": "/products/gas-detection/gt-3200h",
+    "title": "GT-3200H 挿入式高温可燃性ガス検知器",
+    "description": "GT-3200Hは、高温環境への挿入式センサーを備える可燃性ガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/217.html",
+    "images": [
+      {
+        "src": "/products/1762499930101893-856480ffe76e38cf.jpg",
+        "alt": "GT-3200H 挿入式高温可燃性ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "GT-3200Hは、高温環境への挿入式センサーを備える可燃性ガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "N-Methylpyrrolidone (NMP) および有機溶剤ガス向け",
+      "遠隔操作",
+      "クイックチャック取付"
+    ],
+    "applications": [
+      "高温プロセスの可燃性ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "測定範囲",
+        "value": "0~100%LEL; 分解能:1% LEL; 精度:≤3% LEL"
+      },
+      {
+        "label": "本体温度",
+        "value": "-20°C~+60°C; 挿入センサー:-20°C~+160°C / -20°C〜+200°C"
+      },
+      {
+        "label": "出力",
+        "value": "4~20mA DC; 防爆:Exd IICT3; IP65; 電圧:24V DC（20~28V）; 消費電力:約3W(max.)"
+      },
+      {
+        "label": "寸法",
+        "value": "460×170×127 mm; 重量:約2.6kg; 伝送距離:最大：1km"
+      }
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "BT-525",
+    "slug": "bt-525",
+    "route": "/products/gas-detection/bt-525",
+    "title": "BT-525 固定式ガス検知システム",
+    "description": "BT-525は、複数の有毒・有害ガスに対応する固定式ガス検知システムです。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/218.html",
+    "images": [
+      {
+        "src": "/products/1762502686577773-166d9e4bdd1c6020.jpg",
+        "alt": "BT-525 固定式ガス検知システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT-525は、複数の有毒・有害ガスに対応する固定式ガス検知システムです。"
+        ]
+      }
+    ],
+    "features": [
+      "アンモニア、CO、SO2、O3、塩素、H2S等のガスレンジを提示",
+      "固定式監視"
+    ],
+    "applications": [
+      "産業用ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "仕様",
+        "value": "NH3:0-100PPM, 最高レンジ 0-5000PPM; CO:0-200PPM, 最高レンジ 0-1000PPM; SO2:0-100PPM, 最高レンジ 0-40000PPM"
+      },
+      {
+        "label": "仕様",
+        "value": "O3:0-5/50PPM, 最高レンジ 0-30000PPM; CL2:0-20PPM, 最高レンジ 0-5000PPM; H2S:0-100PPM, 最高レンジ 0-5000PPM"
+      },
+      {
+        "label": "仕様",
+        "value": "C2H4:0-100PPM, 最高レンジ 0-1500PPM; ETO:0-100PPM, 最高レンジ 0-5000PPM; HCL:0-100PPM, 最高レンジ 0-1000PPM"
+      }
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AT-2000",
+    "slug": "at-2000",
+    "route": "/products/gas-detection/at-2000",
+    "title": "AT-2000 ガス警報検知システム",
+    "description": "AT-2000は、複数ガスの濃度表示、警報、履歴記録を行うガス警報検知システムです。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/219.html",
+    "images": [
+      {
+        "src": "/products/1762503501197605-4fee661ef1580a1d.png",
+        "alt": "AT-2000 ガス警報検知システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AT-2000は、複数ガスの濃度表示、警報、履歴記録を行うガス警報検知システムです。"
+        ]
+      }
+    ],
+    "features": [
+      "直感的な表示と操作",
+      "安定したシステム",
+      "履歴記録"
+    ],
+    "applications": [
+      "ガス警報・監視"
+    ],
+    "specifications": [
+      {
+        "label": "塩素（CL2）",
+        "value": "標準レンジ：0-20ppm；オプションレンジ：10,100；分解能：0.1ppm"
+      },
+      {
+        "label": "一酸化炭素（CO）",
+        "value": "標準レンジ：0-200ppm；オプションレンジ：500,2000；分解能：1ppm"
+      },
+      {
+        "label": "硫化水素（H2S）",
+        "value": "標準レンジ：0-100ppm；オプションレンジ：500,2000；分解能：0.1ppm"
+      },
+      {
+        "label": "酸素（O2）",
+        "value": "標準レンジ：0-25%VOL；オプションレンジ：0-30%VOL；分解能：0.1%VOL"
+      },
+      {
+        "label": "アンモニア（NH3）",
+        "value": "標準レンジ：0-100ppm；オプションレンジ：100,1000；分解能：0.1ppm"
+      },
+      {
+        "label": "オゾン（O3）",
+        "value": "標準レンジ：0-5/50ppm；オプションレンジ：10,100；分解能：0.1ppm"
+      },
+      {
+        "label": "シアン化水素（HCN）",
+        "value": "標準レンジ：0-100ppm；オプションレンジ：50,200；分解能：0.1ppm"
+      },
+      {
+        "label": "塩化水素（HCI）（原文表記・要確認）",
+        "value": "標準レンジ：0-100ppm；オプションレンジ：100；分解能：0.1ppm"
+      },
+      {
+        "label": "二酸化硫黄（SO2）",
+        "value": "標準レンジ：0-100ppm；オプションレンジ：100,1000；分解能：0.1ppm"
+      },
+      {
+        "label": "フッ化水素（HF）",
+        "value": "標準レンジ：0-10ppm；オプションレンジ：5,50；分解能：0.1ppm"
+      },
+      {
+        "label": "可燃性ガス",
+        "value": "標準レンジ：0-100%LEL；オプションレンジ：0-100%LEL；分解能：0.1%LEL"
+      }
+    ],
+    "relatedSlugs": []
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-300",
+    "slug": "as-300-infrared",
+    "route": "/products/gas-detection/as-300-infrared",
+    "title": "AS-300 固定式赤外線ガス検知器",
+    "description": "AS-300は、炭化水素およびCO2ガスに対応するNDIR方式の固定式ガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/220.html",
+    "images": [
+      {
+        "src": "/products/1762504729978722-25235eead6ea2e9a.jpg",
+        "alt": "AS-300 固定式赤外線ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-300は、炭化水素およびCO2ガスに対応するNDIR方式の固定式ガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "現場LCD表示",
+      "音響・視覚警報灯を標準構成に記載",
+      "標準構成：検知器本体、音響・視覚警報灯、リモートコントロール、取扱説明書",
+      "付属品：取付ブラケット、レインカバー"
+    ],
+    "applications": [
+      "炭化水素・CO2ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±3%; T90:<30s; 電源:24VDC; 消費電力:<2.5w; 分極:24h"
+      },
+      {
+        "label": "校正",
+        "value": "4〜8か月ごと; ゼロ点調整：3〜6か月ごと"
+      },
+      {
+        "label": "温度",
+        "value": "40°C-70°C （上限）; -20°C-50°C （標準）; 湿度:0-95%RH; 圧力:標準大気圧 ±10%"
+      },
+      {
+        "label": "出力",
+        "value": "3線式 4-20mA, RS485; 防爆:Ex db IIC T6 Gb/Ex tb IIIC T80℃ Db; IP66"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "非分散型赤外線方式（NDIR）"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-300",
+    "slug": "as-300-multi-gas",
+    "route": "/products/gas-detection/as-300-multi-gas",
+    "title": "AS-300 固定式マルチガス検知器",
+    "description": "AS-300は、可燃性ガス、酸素、CO、H2Sなどに対応する固定式マルチガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/221.html",
+    "images": [
+      {
+        "src": "/products/1762505442156694-53bd5889ae75741f.jpg",
+        "alt": "AS-300 固定式マルチガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-300は、可燃性ガス、酸素、CO、H2Sなどに対応する固定式マルチガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "ガス種に応じてレンジをカスタマイズ",
+      "赤外線リモート操作",
+      "現場LCD表示",
+      "標準構成：検知器本体、音響・視覚警報灯、リモートコントロール、取扱説明書",
+      "付属品：取付ブラケット、レインカバー"
+    ],
+    "applications": [
+      "産業用マルチガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±3%; T90:<60 秒; 分極:24 時間; 電源:24VDC; 消費電力:<5W"
+      },
+      {
+        "label": "校正",
+        "value": "4〜8か月ごと; ゼロ点：3〜6か月ごと"
+      },
+      {
+        "label": "温度",
+        "value": "-40℃-70℃ （上限）, -20℃-50℃（標準）; 湿度:0-95%RH（結露なし）; 圧力:標準大気圧 ±10%"
+      },
+      {
+        "label": "出力",
+        "value": "RS485; 防爆:Ex db IIC T6 Gb/Ex tb IIIC T80℃ Db; IP66"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "触媒燃焼式／電気化学式／PID式／赤外線NDIR式から選択"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-300",
+    "slug": "as-300-voc",
+    "route": "/products/gas-detection/as-300-voc",
+    "title": "AS-300 固定式VOCガス検知器",
+    "description": "AS-300は、PID方式でVOCを検知する固定式ガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/222.html",
+    "images": [
+      {
+        "src": "/products/1762506977884756-f41313997310d6e9.jpg",
+        "alt": "AS-300 固定式VOCガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-300は、PID方式でVOCを検知する固定式ガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "現場LCD表示",
+      "4-20mAおよびRS485出力",
+      "標準構成：検知器本体、音響・視覚警報灯、リモートコントロール、取扱説明書",
+      "付属品：取付ブラケット、レインカバー"
+    ],
+    "applications": [
+      "VOCガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±3%; T90:<30s; 電源:24VDC; 消費電力:<2.5w; 分極:24h"
+      },
+      {
+        "label": "校正",
+        "value": "4〜8か月ごと; ゼロ点調整：3〜6か月ごと"
+      },
+      {
+        "label": "温度",
+        "value": "-40°C-70°C （上限）; -20°C-50°C （標準）; 湿度:0-95%RH; 圧力:標準大気圧 ±10%"
+      },
+      {
+        "label": "防爆",
+        "value": "Ex db IIC T6 Gb/Ex tb IIIC T80℃ Db; IP66"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "光イオン化方式（PID）"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-300",
+    "slug": "as-300-combustible",
+    "route": "/products/gas-detection/as-300-combustible",
+    "title": "AS-300 固定式可燃性ガス検知器",
+    "description": "AS-300は、触媒燃焼式で可燃性ガスを検知する固定式ガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/223.html",
+    "images": [
+      {
+        "src": "/products/1763014735879464-1373c4dd3be19469.jpg",
+        "alt": "AS-300 固定式可燃性ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-300は、触媒燃焼式で可燃性ガスを検知する固定式ガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "現場LCD表示",
+      "各種可燃性ガスに対応",
+      "標準構成：検知器本体、音響・視覚警報灯、リモートコントロール、取扱説明書",
+      "付属品：取付ブラケット、レインカバー"
+    ],
+    "applications": [
+      "可燃性ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±3%; T90:<30s; 電源:24VDC; 消費電力:<2.5w; 分極:24h"
+      },
+      {
+        "label": "温度",
+        "value": "-40 ° C-70 ° C （上限）; -20 ° C-50 ° C （標準）; 湿度:0-95%RH（結露なし）; 圧力:標準大気圧 ±10%"
+      },
+      {
+        "label": "出力",
+        "value": "3線式 4-20mA, RS485; 防爆:Ex db IIC T6 Gb/Ex tb IIIC T80℃ Db; IP66"
+      },
+      {
+        "label": "Ex, CH4, C2H6, C3H8, C4H10, H2, C2H2, メタノール, エタノール等",
+        "value": "0-100%LEL; 分解能 0.1"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "触媒燃焼方式"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-300",
+    "slug": "as-300-toxic",
+    "route": "/products/gas-detection/as-300-toxic",
+    "title": "AS-300 固定式有毒・有害ガス検知器",
+    "description": "AS-300は、電気化学方式で有毒・有害ガスを検知する固定式ガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/224.html",
+    "images": [
+      {
+        "src": "/products/1763015264154237-20653adb842b44d8.jpg",
+        "alt": "AS-300 固定式有毒・有害ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-300は、電気化学方式で有毒・有害ガスを検知する固定式ガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "現場LCD表示",
+      "ガスリストに基づく対象ガス選択",
+      "標準構成：検知器本体、音響・視覚警報灯、リモートコントロール、取扱説明書",
+      "付属品：取付ブラケット、レインカバー"
+    ],
+    "applications": [
+      "有毒・有害ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±3%; T90:<60s（NH3<150s）; 分極:24h; 電源:24VDC; 消費電力:<2.5W"
+      },
+      {
+        "label": "温度",
+        "value": "-40°C-70°C （上限）; -20°C-50°C （標準）; 湿度:0-95%RH（結露なし）; 圧力:標準大気圧 ±10%"
+      },
+      {
+        "label": "出力",
+        "value": "3線式 4-20mA, RS485; 防爆:Ex db IIC T6 Gb/Ex tb IIIC T80℃ Db; IP66"
+      },
+      {
+        "label": "アンモニア（NH3）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-500PPM"
+      },
+      {
+        "label": "一酸化炭素（CO）",
+        "value": "標準レンジ：0-1000PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "二酸化硫黄（SO2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-150PPM"
+      },
+      {
+        "label": "ホルムアルデヒド（CH2O）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-500PPM"
+      },
+      {
+        "label": "酸化エチレン（ETO）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-500PPM"
+      },
+      {
+        "label": "塩化ビニル（C2H3CL）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-500PPM"
+      },
+      {
+        "label": "塩素（CL2）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-50PPM"
+      },
+      {
+        "label": "硫化水素（H2S）",
+        "value": "標準レンジ：0-50PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "塩化水素（HCL）（原文表記・要確認）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-200PPM"
+      },
+      {
+        "label": "シアン化水素（HCN）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "一酸化窒素（NO）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "二酸化窒素（NO2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-150PPM"
+      },
+      {
+        "label": "酸素（O2）",
+        "value": "標準レンジ：0-25%VOL；最高レンジ：0-30%VOL"
+      },
+      {
+        "label": "オゾン（O3）",
+        "value": "標準レンジ：0-5PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "アクリロニトリル（C3H3N）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "エチレン（C2H4）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-1500PPM"
+      },
+      {
+        "label": "二酸化塩素（CLO2）",
+        "value": "標準レンジ：0-2PPM；最高レンジ：0-5PPM"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "電気化学方式"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-525",
+    "slug": "as-525-voc",
+    "route": "/products/gas-detection/as-525-voc",
+    "title": "AS-525 オンラインVOCガス検知器",
+    "description": "AS-525は、PID方式でVOCを検知するオンラインガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/225.html",
+    "images": [
+      {
+        "src": "/products/1763016243127286-8a726661a18591a4.jpg",
+        "alt": "AS-525 オンラインVOCガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-525は、PID方式でVOCを検知するオンラインガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "音響・視覚警報灯はオプション",
+      "4-20mAおよびRS485出力"
+    ],
+    "applications": [
+      "VOCガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±2%; T90:<30s; 分極:6 時間; 電源:24VDC; 自己診断:2 回/秒"
+      },
+      {
+        "label": "校正",
+        "value": "4〜8か月ごと; ゼロ点調整：3〜6か月ごと"
+      },
+      {
+        "label": "湿度",
+        "value": "0-95%RH; 圧力:標準大気圧±10%; 防爆:Ex d IIC T6 Gb; IP66"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "光イオン化方式（PID）"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-525",
+    "slug": "as-525-toxic",
+    "route": "/products/gas-detection/as-525-toxic",
+    "title": "AS-525 分離型有毒・有害ガス検知器",
+    "description": "AS-525は、電気化学方式で有毒・有害ガスを検知する分離型ガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/226.html",
+    "images": [
+      {
+        "src": "/products/1763016805199985-3baf9ed43b29d149.jpg",
+        "alt": "AS-525 分離型有毒・有害ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-525は、電気化学方式で有毒・有害ガスを検知する分離型ガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "LCDバックライトによる濃度・警報表示",
+      "音響・視覚警報灯はオプション"
+    ],
+    "applications": [
+      "有毒・有害ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±2%; T90:<60s（NH3<150s）; 分極:6h"
+      },
+      {
+        "label": "温度",
+        "value": "-40℃-70℃（上限）; -20℃-50℃（標準）; 湿度:0-95%RH; 圧力:標準大気圧±10%"
+      },
+      {
+        "label": "出力",
+        "value": "4-20mA, RS485; 防爆:Ex db IIC T6 Gb; IP66"
+      },
+      {
+        "label": "アンモニア（NH3）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "一酸化炭素（CO）",
+        "value": "標準レンジ：0-200PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "二酸化硫黄（SO2）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-40000PPM"
+      },
+      {
+        "label": "オゾン（O3）",
+        "value": "標準レンジ：0-5/50PPM；最高レンジ：0-30000PPM"
+      },
+      {
+        "label": "エチレン（C2H4）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-1500PPM"
+      },
+      {
+        "label": "ホルムアルデヒド（CH2O）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "酸化エチレン（ETO）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "塩化ビニル（C2H3CI）（原文表記・要確認）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "塩素（CL2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "過酸化水素（H2O2）",
+        "value": "標準レンジ：0-500PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "硫化水素（H2S）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "塩化水素（HCL）（原文表記・要確認）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "シアン化水素（HCN）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "一酸化窒素（NO）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "二酸化窒素（NO2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "ホスフィン（PH3）",
+        "value": "標準レンジ：0-200PPM；最高レンジ：0-4000PPM"
+      },
+      {
+        "label": "モノシラン（SiH4）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-200PPM"
+      },
+      {
+        "label": "水素（H2）",
+        "value": "標準レンジ：0-1000PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "酸素（O2）",
+        "value": "標準レンジ：0-25%VOL；最高レンジ：0-30%VOL"
+      },
+      {
+        "label": "二酸化塩素（CLO2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-200PPM"
+      },
+      {
+        "label": "二硫化炭素（CS2）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "フッ化水素（HF）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-10PPM"
+      },
+      {
+        "label": "アルコール類（ALC）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "酸性ガス（Acid）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "フッ素（F2）",
+        "value": "標準レンジ：0-1PPM；最高レンジ：0-1PPM"
+      },
+      {
+        "label": "メチルメルカプタン（CH4S）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-14PPM"
+      },
+      {
+        "label": "ヒドラジン（N2H4）",
+        "value": "標準レンジ：0-1PPM；最高レンジ：0-1PPM"
+      },
+      {
+        "label": "アクリロニトリル（C3H3N）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-100PPM"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "電気化学方式"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-525",
+    "slug": "as-525-combustible",
+    "route": "/products/gas-detection/as-525-combustible",
+    "title": "AS-525 オンライン可燃性ガス検知器",
+    "description": "AS-525は、触媒燃焼式で可燃性ガスを検知するオンラインガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/227.html",
+    "images": [
+      {
+        "src": "/products/1763017283446344-418d9209de13fab7.jpg",
+        "alt": "AS-525 オンライン可燃性ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-525は、触媒燃焼式で可燃性ガスを検知するオンラインガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "LCDバックライトによる濃度・警報表示",
+      "音響・視覚警報灯はオプション"
+    ],
+    "applications": [
+      "可燃性ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±2%; T90:<60s（NH3<150s）; 分極:6h"
+      },
+      {
+        "label": "温度",
+        "value": "-40℃-70℃（上限）; -20℃-50℃（標準）; 湿度:0-95%RH; 圧力:標準大気圧±10%"
+      },
+      {
+        "label": "出力",
+        "value": "4-20mA, RS485; 防爆:Ex db IIC T6 Gb; IP66"
+      },
+      {
+        "label": "仕様",
+        "value": "LEL, CH4, CH3CH3, プロパン, C4H10, H2, C2H2, CO, CH3OH, C2H6O, C3H8O, エーテル, アセトン, C3H3N, C6H6, C7H8:0-100%LEL; 分解能 0.1"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "触媒燃焼方式"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "AS-525",
+    "slug": "as-525-toxic-online",
+    "route": "/products/gas-detection/as-525-toxic-online",
+    "title": "AS-525 オンライン有毒・有害ガス検知器",
+    "description": "AS-525は、電気化学方式で有毒・有害ガスを検知するオンラインガス検知器です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/228.html",
+    "images": [
+      {
+        "src": "/products/1763017685159617-714a180149308948.jpg",
+        "alt": "AS-525 オンライン有毒・有害ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "AS-525は、電気化学方式で有毒・有害ガスを検知するオンラインガス検知器です。"
+        ]
+      }
+    ],
+    "features": [
+      "赤外線リモート操作",
+      "LCDバックライトによる濃度・警報表示",
+      "音響・視覚警報灯はオプション"
+    ],
+    "applications": [
+      "有毒・有害ガス監視"
+    ],
+    "specifications": [
+      {
+        "label": "再現性",
+        "value": "≤±2%; T90:<60s（NH3<150s）; 分極:6h"
+      },
+      {
+        "label": "温度",
+        "value": "-40℃-70℃（上限）; -20℃-50℃（標準）; 湿度:0-95%RH; 圧力:標準大気圧±10%"
+      },
+      {
+        "label": "出力",
+        "value": "4-20mA, RS485; 防爆:Ex db IIC T6 Gb; IP66"
+      },
+      {
+        "label": "アンモニア（NH3）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "一酸化炭素（CO）",
+        "value": "標準レンジ：0-200PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "二酸化硫黄（SO2）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-40000PPM"
+      },
+      {
+        "label": "オゾン（O3）",
+        "value": "標準レンジ：0-5/50PPM；最高レンジ：0-30000PPM"
+      },
+      {
+        "label": "エチレン（C2H4）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-1500PPM"
+      },
+      {
+        "label": "ホルムアルデヒド（CH2O）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "酸化エチレン（ETO）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "塩化ビニル（C2H3CI）（原文表記・要確認）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "塩素（CL2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "過酸化水素（H2O2）",
+        "value": "標準レンジ：0-500PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "硫化水素（H2S）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-5000PPM"
+      },
+      {
+        "label": "塩化水素（HCL）（原文表記・要確認）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "シアン化水素（HCN）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "一酸化窒素（NO）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "二酸化窒素（NO2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-1000PPM"
+      },
+      {
+        "label": "ホスフィン（PH3）",
+        "value": "標準レンジ：0-200PPM；最高レンジ：0-4000PPM"
+      },
+      {
+        "label": "モノシラン（SiH4）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-200PPM"
+      },
+      {
+        "label": "水素（H2）",
+        "value": "標準レンジ：0-1000PPM；最高レンジ：0-2000PPM"
+      },
+      {
+        "label": "酸素（O2）",
+        "value": "標準レンジ：0-25%VOL；最高レンジ：0-30%VOL"
+      },
+      {
+        "label": "二酸化塩素（CLO2）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-200PPM"
+      },
+      {
+        "label": "二硫化炭素（CS2）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "フッ化水素（HF）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-10PPM"
+      },
+      {
+        "label": "アルコール類（ALC）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "酸性ガス（Acid）",
+        "value": "標準レンジ：0-100PPM；最高レンジ：0-100PPM"
+      },
+      {
+        "label": "フッ素（F2）",
+        "value": "標準レンジ：0-1PPM；最高レンジ：0-1PPM"
+      },
+      {
+        "label": "メチルメルカプタン（CH4S）",
+        "value": "標準レンジ：0-10PPM；最高レンジ：0-14PPM"
+      },
+      {
+        "label": "ヒドラジン（N2H4）",
+        "value": "標準レンジ：0-1PPM；最高レンジ：0-1PPM"
+      },
+      {
+        "label": "アクリロニトリル（C3H3N）",
+        "value": "標準レンジ：0-20PPM；最高レンジ：0-100PPM"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "電気化学方式"
+  },
+  {
+    "kind": "product",
+    "category": "gas-detection",
+    "model": "BT3500-OZ",
+    "slug": "bt3500-oz",
+    "route": "/products/gas-detection/bt3500-oz",
+    "title": "BT3500-OZ UVオゾン分析計",
+    "description": "BT3500-OZは、254nmの紫外線吸収とBeer-Lambertの法則を利用し、オゾン濃度を連続測定するオンライン分析計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_49/276.html",
+    "images": [
+      {
+        "src": "/products/1770520252812796-64aacb088c936152.jpg",
+        "alt": "BT3500-OZ UVオゾン分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BT3500-OZは、254nmの紫外線を用いる二光路吸収方式と温度・圧力補償により、オゾン濃度を連続測定します。",
+          "分流セル一体構造は漏れや高圧、試料ガスの大流量による影響を抑え、清掃と保守を行いやすい設計です。"
+        ]
+      }
+    ],
+    "features": [
+      "波長254nmの長寿命UV LEDを採用し、光源寿命は30,000時間超",
+      "二光路紫外線吸収方式と温度・圧力補償",
+      "内蔵光源補償と72 hoursごとの自動ゼロ校正",
+      "4-20mA電流信号を標準出力し、RS485通信はオプション",
+      "5.0インチタッチスクリーン表示"
+    ],
+    "applications": [
+      "オゾン発生装置",
+      "上水および工業排水",
+      "ファインケミカル",
+      "食品・飲料水",
+      "空間消毒およびプール消毒",
+      "香料合成"
+    ],
+    "specifications": [
+      {
+        "label": "測定原理",
+        "value": "ランベルト・ベール光度吸収法、二光路紫外線吸収方式"
+      },
+      {
+        "label": "UV波長",
+        "value": "254nm"
+      },
+      {
+        "label": "測定レンジ",
+        "value": "0-200mg/NL"
+      },
+      {
+        "label": "濃度単位",
+        "value": "mg/NL,g/Nm³,%(wt)（オプション）"
+      },
+      {
+        "label": "表示分解能",
+        "value": "0.1mg/NL,0.1g/Nm³,0.01%(wt)"
+      },
+      {
+        "label": "精度",
+        "value": "±3%"
+      },
+      {
+        "label": "直線性誤差",
+        "value": "≤1%"
+      },
+      {
+        "label": "ゼロドリフト",
+        "value": "≤1%(FS/month)"
+      },
+      {
+        "label": "応答時間",
+        "value": "2S"
+      },
+      {
+        "label": "測定方式",
+        "value": "連続オンライン"
+      },
+      {
+        "label": "信号出力",
+        "value": "差動4-20mA（リニア）、RS485通信（オプション）"
+      },
+      {
+        "label": "ガス流量",
+        "value": "0.5±0.2L/min"
+      },
+      {
+        "label": "入力ガス圧力",
+        "value": "≤1bar(0.1MPa)"
+      },
+      {
+        "label": "電源",
+        "value": "AC 220V±10%50Hz"
+      },
+      {
+        "label": "質量",
+        "value": "6.5kg"
+      },
+      {
+        "label": "外形寸法",
+        "value": "340mm（長さ）×270mm（幅）×130mm（奥行）"
+      },
+      {
+        "label": "取付開口寸法",
+        "value": "300mm（長さ）×175mm（幅）"
+      },
+      {
+        "label": "ガス入出力ポート",
+        "value": "内径4mm、外径6mm"
+      },
+      {
+        "label": "推奨校正周期",
+        "value": "12 months"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "紫外線吸収法（Beer-Lambertの法則）"
+  },
+  {
+    "kind": "product",
+    "category": "flow-level",
+    "model": "BUL-200",
+    "slug": "bul-200",
+    "route": "/products/flow-level/bul-200",
+    "title": "BUL-200 分離型超音波レベル計",
+    "description": "BUL-200は、レベルと高低限界を監視する分離型超音波レベル計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_50/153.html",
+    "images": [
+      {
+        "src": "/products/1763105583975218-a9adf943870404a3.jpg",
+        "alt": "BUL-200 分離型超音波レベル計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "BUL-200は、レベルと高低限界を監視する分離型超音波レベル計です。"
+        ]
+      }
+    ],
+    "features": [
+      "自動温度補償",
+      "LCD、中国語/英語メニュー",
+      "PLCおよびDCS接続可能"
+    ],
+    "applications": [
+      "液位監視"
+    ],
+    "specifications": [
+      {
+        "label": "測定範囲",
+        "value": "0~5m; 分解能:3mm; 精度:1.0% FS"
+      },
+      {
+        "label": "センサーケーブル",
+        "value": "10m; 負荷：≤750Ω"
+      },
+      {
+        "label": "センサー信号",
+        "value": "4-20mA 3線式; 電源:220VAC or 24VDC"
+      },
+      {
+        "label": "動作温度",
+        "value": "-25℃~+55℃; リレー：2, 250VAC/8A; コントローラー出力:4~20mA"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "超音波式"
+  },
+  {
+    "kind": "product",
+    "category": "flow-level",
+    "model": "MSF8100",
+    "slug": "msf8100",
+    "route": "/products/flow-level/msf8100",
+    "title": "MSF8100 一体型電磁流量計",
+    "description": "MSF8100は、導電率2.5μS/cm超の導電性液体を対象とする一体型電磁流量計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_50/154.html",
+    "images": [
+      {
+        "src": "/products/1763106120371809-65a6ac5cb667db46.jpg",
+        "alt": "MSF8100 一体型電磁流量計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "MSF8100は、導電率2.5μS/cm超の導電性液体を対象とする一体型電磁流量計です。",
+          "流体の密度、粘度、温度、圧力および導電率の変化による測定への影響を受けにくく、短い直管長でも使用できる構成です。"
+        ]
+      }
+    ],
+    "features": [
+      "ARM Cortex-M4 32-bitプロセッサと24-bit ADCによる全デジタル処理",
+      "低周波矩形波励磁とプログラム可能な励磁周波数",
+      "超低EMI電源およびSMD/SMT実装",
+      "オンラインでのレンジ変更",
+      "OLED中国語・英語メニュー",
+      "自己点検・自己診断",
+      "正方向、逆方向、総積算流量の3カウンタ",
+      "PEEKライニングにより負圧条件に対応",
+      "赤外線リモート操作"
+    ],
+    "applications": [
+      "導電率2.5μS/cm超の導電性液体の流量測定"
+    ],
+    "specifications": [
+      {
+        "label": "測定媒体",
+        "value": "導電性液体（導電率>2.5u S/cm）"
+      },
+      {
+        "label": "ライニング",
+        "value": "ポリエーテルエーテルケトン（PEEK）"
+      },
+      {
+        "label": "口径",
+        "value": "DN6 - DN50"
+      },
+      {
+        "label": "圧力",
+        "value": "-0.1MPa to 6.3MPa"
+      },
+      {
+        "label": "電極材質",
+        "value": "316L"
+      },
+      {
+        "label": "本体材質",
+        "value": "304, 316L"
+      },
+      {
+        "label": "電気接続",
+        "value": "M12-4芯コネクター"
+      },
+      {
+        "label": "配管接続",
+        "value": "標準はインチ外ねじ、その他の接続はカスタマイズ"
+      },
+      {
+        "label": "精度等級",
+        "value": "Soil 0.3%FS（原文表記・要確認）"
+      },
+      {
+        "label": "繰返し性",
+        "value": "≤0.1%"
+      },
+      {
+        "label": "表示",
+        "value": "流量と温度を同時表示"
+      },
+      {
+        "label": "出力信号",
+        "value": "2チャンネルの 4-20mAまたはRS485（流量と温度を同時伝送）"
+      },
+      {
+        "label": "レンジ比",
+        "value": "1:150"
+      },
+      {
+        "label": "電源",
+        "value": "18-36VDC"
+      },
+      {
+        "label": "消費電力",
+        "value": "<5w<>（原文表記・要確認）"
+      },
+      {
+        "label": "周囲温度",
+        "value": "-10℃〜+70℃"
+      },
+      {
+        "label": "保管温度",
+        "value": "-25℃〜+85℃"
+      },
+      {
+        "label": "相対湿度",
+        "value": "5%〜95%"
+      },
+      {
+        "label": "保護等級",
+        "value": "IP65/IP67"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "電磁流量測定"
+  },
+  {
+    "kind": "product",
+    "category": "flow-level",
+    "model": "MSF8000",
+    "slug": "msf8000",
+    "route": "/products/flow-level/msf8000",
+    "title": "MSF8000 分離型電磁流量計",
+    "description": "MSF8000は、分離型構成の電磁流量計です。",
+    "sourceUrl": "https://www.bebur.net/en/list_50/155.html",
+    "images": [
+      {
+        "src": "/products/1763107336398931-5a6a67792885b1b3.jpg",
+        "alt": "MSF8000 分離型電磁流量計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品概要",
+        "paragraphs": [
+          "MSF8000は、分離型構成の電磁流量計です。"
+        ]
+      }
+    ],
+    "features": [
+      "MODBUSおよびHART通信出力",
+      "ライニング材と電極材を用途に応じて選択",
+      "4-20mA、パルス、周波数出力"
+    ],
+    "applications": [
+      "上水・工業用水・原水・井水・都市排水",
+      "弱腐食性の酸・アルカリ・塩溶液",
+      "海水ほか（電極材別の原典適用範囲）"
+    ],
+    "specifications": [
+      {
+        "label": "電源",
+        "value": "AC220V (AC187V-250V,50Hz) / DC24V (DC16V-DC36V); 精度：±1%FS; 消費電力：<20W"
+      },
+      {
+        "label": "口径",
+        "value": "DN2~DN600; 流速:0.1~10m/s; 導電率:≥2.5uS/cm"
+      },
+      {
+        "label": "仕様",
+        "value": "測定媒体：-40℃-+150℃; 周囲温度：-25℃~+55℃; 相対湿度：5%~95%"
+      },
+      {
+        "label": "仕様",
+        "value": "4-20mA; デジタルパルス：0-100pulses/s, 0.001-1.000m³p; 周波数：1-5000Hz; 絶縁：>1000VDC"
+      },
+      {
+        "label": "仕様",
+        "value": "PTFE:<150℃ DN10~2000; ETFE:<120℃ DN20-3000; PEEK:<150℃ DN2-100"
+      },
+      {
+        "label": "電極材：316L",
+        "value": "上水、工業用水、原水、井水、都市排水、弱腐食性の酸・アルカリ・塩溶液"
+      },
+      {
+        "label": "電極材：Hastelloy B（HB）",
+        "value": "濃度<10%の塩酸、濃度<50%の水酸化ナトリウム、全濃度のアンモニア水、リン酸、有機酸；カルバミドは不適"
+      },
+      {
+        "label": "電極材：Hastelloy C（HC）",
+        "value": "硫酸を含む混酸、FE+++、CU++等の酸化性塩、海水、リン酸、有機酸；塩酸は不適"
+      },
+      {
+        "label": "電極材：チタン（Ti）",
+        "value": "塩化物、ナトリウム塩、カリウム塩、アンモニウム塩、海水、濃度50%未満の亜鉛・アンモニウム・バリウム水酸化物；還元性の塩酸・硫酸・リン酸・フッ化水素酸は不適"
+      },
+      {
+        "label": "電極材：Tantalum（Ta）",
+        "value": "濃度<40%の塩酸、発煙硫酸を除く硫酸、二酸化塩素、feric chloide（原文表記・要確認）、次亜塩素酸、水素化カリウム、酢酸、80°℃未満の硝酸・王水；アルカリ、フッ化水素酸は不適（原文表記・要確認）"
+      },
+      {
+        "label": "電極材：プラチナ（Pt）",
+        "value": "発煙硫酸・発煙硝酸を含むほぼ全ての酸・アルカリ・塩溶液；王水、アンモニウム塩は不適"
+      }
+    ],
+    "relatedSlugs": [],
+    "principle": "電磁流量測定"
+  }
+]

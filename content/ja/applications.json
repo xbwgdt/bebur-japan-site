@@ -1,0 +1,925 @@
+[
+  {
+    "kind": "application",
+    "slug": "industry-solutions",
+    "route": "/applications/industry-solutions",
+    "title": "業界別ソリューション",
+    "description": "電力、上水、液冷、化学、医薬、油圧、環境、食品分野に向けた水質・ガス・清浄度検査のソリューションです。",
+    "sourceUrl": "https://www.bebur.net/en/list_52",
+    "images": [
+      {
+        "src": "/products/1762417708784412-cd7f457acf02320f.jpg",
+        "alt": "業界別ソリューションのイメージ"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "対象業界",
+        "paragraphs": [
+          "原文では、電力、上水処理、液冷、化学、医薬・製薬、油圧、環境保全、食品・飲料を対象に、水質・ガス・清浄度検査のソリューションを示しています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "electric-power-industry",
+    "route": "/applications/electric-power-industry",
+    "title": "電力業界向け水質・ガス・清浄度検査ソリューション",
+    "description": "電力設備の水処理・安全監視に向け、粒子、凝集、水質、ガスを連続監視する機器構成をご紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/171.html",
+    "images": [
+      {
+        "src": "/products/1762417708784412-cd7f457acf02320f.jpg",
+        "alt": "電力業界向け計測ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "連続監視の対象",
+        "paragraphs": [
+          "BT8500およびBT8200は光遮断方式で液体中粒子の粒径・個数・変化を24時間連続監視します。BTP8300はレーザーダイオードと検出器の間を通過する粒子による光信号低下から、液体中の固体粒子の粒径・個数を測定します。",
+          "BT6308-Turbの測定範囲は0.01～400NTUです。BT-7000は残留塩素、全塩素、濁度、pH、ORP、導電率、過酸化水素、過酢酸、オゾン、臭素、二酸化塩素、溶存酸素、浮遊物質を連続オンライン監視できると原文にあります。"
+        ]
+      },
+      {
+        "heading": "凝集・ガス監視",
+        "paragraphs": [
+          "SCM520は水中のイオン・コロイドの電荷を流動電流原理で検出し、凝集剤の自動調整・制御に用いる機器です。SCM530はイオン・コロイドの電荷を連続オンライン測定し、水処理の凝集剤精密注入制御に用います。",
+          "AS-525は電気化学原理により有毒・有害ガスを検知し、4-20mAまたはRS485を出力します。AS-300は触媒燃焼原理で可燃性ガスを連続検知し、4-20mAまたはRS485を出力します。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8500",
+      "bt8200",
+      "btp8300",
+      "bt6308-turb",
+      "bt6308-ss",
+      "bt6308-cond",
+      "bt6308-ph",
+      "bt6308-do",
+      "bt-7000",
+      "bc300",
+      "at-2000",
+      "bt-525",
+      "scm520",
+      "scm530"
+    ],
+    "publishedAt": "2025-12-19"
+  },
+  {
+    "kind": "application",
+    "slug": "food-industry",
+    "route": "/applications/food-industry",
+    "title": "食品業界向け水質・ガス検知ソリューション",
+    "description": "食品・飲料工程でのオゾン、過酸化水素、残留塩素、濁度、導電率、pHのオンライン監視に対応します。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/172.html",
+    "images": [
+      {
+        "src": "/products/1762483226236748-32f5150bba5e4c68.jpg",
+        "alt": "食品業界向け水質分析ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "関連する水質計測",
+        "paragraphs": [
+          "BT6308-OZは膜式センサーを採用し、pH変動の影響を受けず、試薬を使用しません。BT6308-Peroxiは膜式センサーで、試薬・緩衝液を使用しません。",
+          "BT6308-CLは膜式または無膜式三電極システムを採用し、pH変動の影響を受けず、試薬を使用しません。BT6308-Turbは0.01～400NTUの測定範囲を備えます。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt6308-oz",
+      "bt6308-peroxi",
+      "bt6308-cl",
+      "bt6308-turb",
+      "bt6308-ss",
+      "bt6308-cond",
+      "bt6308-ph"
+    ],
+    "publishedAt": "2025-11-03"
+  },
+  {
+    "kind": "application",
+    "slug": "environmental-protection",
+    "route": "/applications/environmental-protection",
+    "title": "環境保全業界向け水質・ガス検知ソリューション",
+    "description": "水質、多成分水質、UV254、レベル、可燃性・有毒ガス、悪臭ガスのオンライン監視に対応する構成です。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/173.html",
+    "images": [
+      {
+        "src": "/products/1763110422301491-8faa6d80c8281e94.jpg",
+        "alt": "環境保全業界向け監視ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "水質・ガスの監視項目",
+        "paragraphs": [
+          "UVSenseは紫外可視分光法によりTOC、BOD、COD、NO3-N、DOCなどの有機物成分を測定し、濁度補正機能を備えると原文に記載されています。",
+          "GT-3280-OUは、アンモニア、硫化水素、トリメチルアミン、メチルメルカプタン、メチルスルフィド、ジメチルジスルフィド、二硫化炭素、スチレンなどの悪臭ガス成分を監視できます。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt6308-turb",
+      "bt6308-ss",
+      "bt6308-cond",
+      "bt6308-ph",
+      "bt6308-orp",
+      "bt-7000",
+      "uvsense",
+      "bul-200",
+      "at-2000",
+      "gt-3280-ou"
+    ],
+    "publishedAt": "2025-11-03"
+  },
+  {
+    "kind": "application",
+    "slug": "hydraulic-industry",
+    "route": "/applications/hydraulic-industry",
+    "title": "油圧業界向け清浄度検査ソリューション",
+    "description": "液体粒子の連続監視、携帯型清浄度検査、濁度、導電率、pHの測定を組み合わせる油圧分野向け構成です。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/174.html",
+    "images": [
+      {
+        "src": "/products/1763110183129881-f3b360a3e2ced0f4.jpg",
+        "alt": "油圧業界向け清浄度検査ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "粒子清浄度の確認",
+        "paragraphs": [
+          "BT8500およびBT8200は光遮断原理で液体中の粒径・個数・変化を24時間連続監視します。",
+          "BTP8300は光学遮断原理により、レーザーダイオードからの光を粒子が遮る際の信号変化を用いて、液体中の固体粒子の粒径・個数を検出します。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8500",
+      "bt8200",
+      "btp8300",
+      "bt6308-turb",
+      "bt6308-cond",
+      "bt6308-ph"
+    ],
+    "publishedAt": "2025-11-03"
+  },
+  {
+    "kind": "application",
+    "slug": "medical-pharmaceutical",
+    "route": "/applications/medical-pharmaceutical",
+    "title": "医療・製薬業界向け水質・清浄度検査ソリューション",
+    "description": "液体粒子、オゾン、過酸化水素、残留塩素、濁度、導電率、pHの測定に対応する構成です。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/175.html",
+    "images": [
+      {
+        "src": "/products/1763109461646071-b10602246ea209df.jpg",
+        "alt": "医療・製薬業界向け水質・清浄度検査ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "関連する計測方式",
+        "paragraphs": [
+          "BT8500・BT8200は光遮断原理、BTP8300は光学遮断原理に基づく粒子測定機器です。",
+          "BT6308-OZ、BT6308-Peroxi、BT6308-CLはそれぞれ膜式、または膜式・無膜式三電極の構成を採用し、原文では試薬を使用しないことが示されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8500",
+      "bt8200",
+      "btp8300",
+      "bt6308-oz",
+      "bt6308-peroxi",
+      "bt6308-cl",
+      "bt6308-turb",
+      "bt6308-cond",
+      "bt6308-ph"
+    ],
+    "publishedAt": "2025-11-03"
+  },
+  {
+    "kind": "application",
+    "slug": "chemical-industry",
+    "route": "/applications/chemical-industry",
+    "title": "化学業界向けガス・水質検知ソリューション",
+    "description": "化学プロセスの漏えい・作業安全・排水管理に向け、ガス種別と水質工程別の監視ポイントを整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/176.html",
+    "images": [
+      {
+        "src": "/products/1763109294688001-407df8191386caa2.jpg",
+        "alt": "化学業界向けガス・水質検知ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "ガス検知",
+        "paragraphs": [
+          "原文では、可燃性ガス、有毒ガス、酸素濃度を主要リスクに分類し、ベンゼン類、塩素、アンモニア、硫化水素、VOCsなどを対象例として示しています。",
+          "可燃性ガスには触媒燃焼（LEL）、有毒ガスには電気化学（EC）、VOCs・炭化水素には赤外（IR）、低濃度VOCsの漏えいには光イオン化（PID）を挙げています。"
+        ]
+      },
+      {
+        "heading": "水質検知",
+        "paragraphs": [
+          "取水、プロセス、排水処理、放流までを対象とし、pH、濁度、残留塩素、導電率、DO、ORP、COD、TOC、NH3-N、TN、TP、SS、流量などを原文の監視項目として掲載しています。",
+          "pH・ORP・導電率・溶存酸素は基礎的なオンライン分析計、CODはUV法による迅速警報と二クロム酸カリウム法による精密測定、TOCは有機汚濁度の迅速把握に用いるとしています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [],
+    "publishedAt": "2025-11-03"
+  },
+  {
+    "kind": "application",
+    "slug": "municipal-water-treatment",
+    "route": "/applications/municipal-water-treatment",
+    "title": "上水処理向け水質検査ソリューション",
+    "description": "水源から給水末端までの全工程を対象に、水質の継続的な監視とデータ活用を支援します。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/177.html",
+    "images": [
+      {
+        "src": "/products/1763108910519122-551811acf1e6398e.jpg",
+        "alt": "上水処理向け水質検査ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "全工程の水質監視",
+        "paragraphs": [
+          "原文は、水源、水道施設内の工程水、浄水場出口、管網、管網末端を対象にした全工程監視を示し、飲料水衛生基準 GB 5749-2022への準拠と新規汚染物質への検知余力を挙げています。",
+          "MSF8000およびMSF8100は導電率が2.5μS/cm以上の導電性液体の体積流量を測定します。BC300は滴定比色原理で水の硬度をオンライン自動測定し、10年以上の試験データを保存できると原文にあります。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8500",
+      "bt8200",
+      "bt6308-oz",
+      "bt6308-cl",
+      "bt6308-turb",
+      "bt6308-ss",
+      "bt6308-cond",
+      "bt6308-ph",
+      "bt6308-orp",
+      "bt6308-do",
+      "bt-7000",
+      "bt-6308",
+      "bc300",
+      "bt6308-bsnh3",
+      "bt6308-f200",
+      "uvsense",
+      "msf8000",
+      "msf8100",
+      "bul-200",
+      "bt6308-cd"
+    ],
+    "publishedAt": "2025-12-19"
+  },
+  {
+    "kind": "application",
+    "slug": "liquid-cooling-industry",
+    "route": "/applications/liquid-cooling-industry",
+    "title": "液冷業界向け水質・清浄度検査ソリューション",
+    "description": "コールドプレート、浸漬、スプレー方式の液冷における水質・粒子清浄度の監視項目を整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_52/178.html",
+    "images": [
+      {
+        "src": "/products/1762482758800188-530b005b81738fb8.jpg",
+        "alt": "液冷業界向け水質・清浄度検査ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "液冷方式と性能値",
+        "paragraphs": [
+          "原文では、コールドプレート、浸漬、スプレーの3方式を示しています。コールドプレート方式はデータセンターサーバーおよび新エネルギー車の電池熱管理、浸漬方式はAI学習クラスタ・高性能計算センター、スプレー方式は局所的な高発熱密度部位を用途例としています。",
+          "原文の性能記載は、空冷比1,000倍超の放熱効率、単一ラック100kW+、PUE 1.03～1.1、騒音45dB未満、機器寿命30%以上延長です。これらは原文由来の値として扱います。"
+        ]
+      },
+      {
+        "heading": "監視項目",
+        "paragraphs": [
+          "水質指標は導電率、pH、溶存酸素、濁度。清浄度指標はISO 16232に基づく粒子汚染です。水質分析計・清浄度検査機器による24時間のオンライン早期警報を原文は掲げています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8500",
+      "bt8200",
+      "btp8300",
+      "bt6308-turb",
+      "bt6308-cond",
+      "bt6308-ph"
+    ],
+    "publishedAt": "2025-12-19"
+  },
+  {
+    "kind": "application",
+    "slug": "liquid-cooling-cases",
+    "route": "/applications/liquid-cooling-cases",
+    "title": "液冷分野の導入事例",
+    "description": "プレート熱交換器、マニホールド、コールドプレート、BT8200による液冷系の清浄度管理事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_54",
+    "images": [
+      {
+        "src": "/applications/1763618373156410-3270ca326e841012.jpg",
+        "alt": "液冷分野の導入事例"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載事例",
+        "paragraphs": [
+          "原文には、液冷プレートの清浄度管理、BT8200液体粒子カウンターの液冷系・コールドプレート液冷系への適用、マニホールドの清浄度管理、プレート熱交換器の適用が掲載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "plate-heat-exchanger-cleanliness",
+    "route": "/applications/plate-heat-exchanger-cleanliness",
+    "title": "液冷システムにおけるプレート熱交換器と清浄度管理",
+    "description": "プレート熱交換器の熱移動・系統分離の役割と、導入前・運転中の清浄度管理ポイントを解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_54/166.html",
+    "images": [
+      {
+        "src": "/applications/1762411401368195-0c86b5f9357cc59e.png",
+        "alt": "プレート熱交換器の清浄度管理"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "熱交換器の役割",
+        "paragraphs": [
+          "プレート熱交換器は、隣接する板間の流路で高温・低温の液体を対向流させ、薄板を介して熱を移動させます。原文では、一次側を内部循環の清浄な冷却液、二次側を外部冷却水としています。",
+          "汚れは熱交換効率低下、流路閉塞、腐食・漏えいにつながるため、導入前の独立循環による脱イオン水洗浄、出口での液体粒子カウンター監視、膜ろ過サンプリングを挙げています。"
+        ]
+      },
+      {
+        "heading": "運転中の確認",
+        "paragraphs": [
+          "固定流量時の入口・出口温度差の縮小、圧力損失の増加を間接的な劣化指標とし、二次側冷却水の硬度、pH、導電率を定期測定すると原文にあります。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [],
+    "publishedAt": "2025-11-03"
+  },
+  {
+    "kind": "application",
+    "slug": "manifold-cleanliness",
+    "route": "/applications/manifold-cleanliness",
+    "title": "液冷システムのマニホールドと清浄度管理",
+    "description": "冷却液を分配・集約するマニホールドの役割と、微小汚染物を抑える設計・洗浄・組立管理を解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_54/167.html",
+    "images": [
+      {
+        "src": "/applications/1762409053994071-693a8a41f468d9b7.png",
+        "alt": "液冷マニホールドの清浄度管理"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "マニホールドの役割",
+        "paragraphs": [
+          "マニホールドはポンプからの総冷却液流量を各発熱部のコールドプレートへ均等に配分し、複雑な配管・継手を一体設計で置き換える部品として原文で説明されています。"
+        ]
+      },
+      {
+        "heading": "清浄度管理",
+        "paragraphs": [
+          "粒子はチップの微細流路閉塞、油脂・生物増殖は流路閉塞・腐食、イオン汚染は電気化学的腐食の要因として挙げられています。設計時の洗浄性確保、高純度脱イオン水洗浄、清浄な熱風または窒素による乾燥・封止、クリーンルーム組立、ISO 16232などに基づく粒子・イオン汚染の確認を原文は提示しています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [],
+    "publishedAt": "2025-11-03"
+  },
+  {
+    "kind": "application",
+    "slug": "bt8200-cold-plate-liquid-cooling",
+    "route": "/applications/bt8200-cold-plate-liquid-cooling",
+    "title": "BT8200によるコールドプレート液冷システムの粒子清浄度管理",
+    "description": "コールドプレート液冷システムを構成する部品の粒子清浄度と、BT8200の光遮断方式による定量管理を解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_54/168.html",
+    "images": [
+      {
+        "src": "/applications/1763604848550066-a7496b6fbd2ef020.jpg",
+        "alt": "BT8200によるコールドプレート液冷系の粒子測定"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "検査対象",
+        "paragraphs": [
+          "原文では、コールドプレート、熱交換器、クイックコネクター・フランジ・ねじ継手、配管、最終組立後の循環ループを粒子清浄度の確認対象としています。コールドプレートのCPU/GPU用微細流路は通常数十分の一mmで、数十µmの粒子でも閉塞し得ると説明しています。"
+        ]
+      },
+      {
+        "heading": "BT8200による定量",
+        "paragraphs": [
+          "光遮断方式では、透明な検出流路を通る粒子が光を遮り、光電センサーが電気パルスとして検出します。パルス振幅を等価粒径へ換算し、各パルスを1粒子として計数します。BT8200は8チャネルで粒径・個数を同時監視し、測定粒径範囲は2～750μmです。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8200"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "bt8200-liquid-cooling",
+    "route": "/applications/bt8200-liquid-cooling",
+    "title": "BT8200液体粒子カウンターの液冷システムへの適用",
+    "description": "データセンターおよびパワーエレクトロニクスの液冷で、粒子濃度・粒径分布を連続監視する用途を解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_54/169.html",
+    "images": [
+      {
+        "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
+        "alt": "BT8200液体粒子カウンター"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "液冷での粒子リスク",
+        "paragraphs": [
+          "データセンターでは、微小粒子によるコールドプレート・ポンプ弁の閉塞、導電性粒子による短絡、生物由来汚染物による閉塞・配管腐食を原文がリスクとして挙げています。",
+          "BT8200は光遮断原理で、8チャネルの粒径・個数を同時監視し、2～750μmの粒子を測定します。原文には≥2µm、≥5µm、≥15µmの粒径別濃度を例として挙げています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8200"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "liquid-cooled-plate-cleanliness",
+    "route": "/applications/liquid-cooled-plate-cleanliness",
+    "title": "液冷プレートの清浄度を維持する液体粒子カウンター",
+    "description": "微細流路を持つ液冷プレートの粒子汚染リスクと、BT8200による測定・早期確認を解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_54/170.html",
+    "images": [
+      {
+        "src": "/applications/1763618373156410-3270ca326e841012.jpg",
+        "alt": "液冷プレートの粒子清浄度管理"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "粒子汚染の影響",
+        "paragraphs": [
+          "原文では、液冷プレートの微細流路幅を約0.1～1mmとし、粒子による流路閉塞、循環ポンプの摩耗、金属片と冷却液の電気化学反応による腐食・漏えいを挙げています。"
+        ]
+      },
+      {
+        "heading": "BT8200の測定",
+        "paragraphs": [
+          "BT8200はレーザー光を利用する光遮断方式で、2～750µmの粒子を識別し、8つの粒径チャネルを表示します。例として2～5µm、5～15µm、15～30µm、30～50µm、50µm超が原文に示されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8200"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "municipal-water-cases",
+    "route": "/applications/municipal-water-cases",
+    "title": "上水処理分野の導入事例",
+    "description": "消毒剤分析、BT8200水中粒子計数器、SCM520流動電流モニターの上水処理における導入事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_55",
+    "images": [
+      {
+        "src": "/applications/1763603675223348-9c8ba7f75983b6f5.png",
+        "alt": "上水処理分野の導入事例"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載事例",
+        "paragraphs": [
+          "原文には、浄水場におけるSCM520、BT8200水中粒子計数器、オンライン消毒剤分析計の導入事例が掲載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "online-disinfectant-analyzer-waterworks",
+    "route": "/applications/online-disinfectant-analyzer-waterworks",
+    "title": "浄水場におけるオンライン消毒剤分析計の適用",
+    "description": "飲料水の遊離残留塩素、全塩素、オゾン、二酸化塩素について、GB5749-2022に原文が示す管理値と測定を整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_55/163.html",
+    "images": [
+      {
+        "src": "/applications/1763602326238764-dadbc06d7bd64368.png",
+        "alt": "浄水場向けオンライン消毒剤分析"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "原文掲載の管理値",
+        "paragraphs": [
+          "GB5749-2022について、遊離残留塩素は接触時間≥30分、浄水場出口・末端の上限≤2mg/L、出口残留≥0.3mg/L、末端残留≥0.05mg/L。全塩素は接触時間≥120分、上限≤3mg/L、出口残留≥0.5mg/L、末端残留≥0.05mg/Lと原文にあります。",
+          "オゾンは接触時間≥12分、浄水場出口・末端の上限≤0.3mg/L、末端残留≥0.02mg/L。二酸化塩素は接触時間≥30分、上限≤0.8mg/L、出口残留≥0.1mg/L、末端残留≥0.02mg/Lです。"
+        ]
+      },
+      {
+        "heading": "測定",
+        "paragraphs": [
+          "原文では、オンライン消毒剤分析計が電気化学測定原理により遊離残留塩素、全塩素、オゾン、二酸化塩素を検出し、データを自動記録・保存・ダウンロードできるとしています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "bt8200-jiangnan-water-plant",
+    "route": "/applications/bt8200-jiangnan-water-plant",
+    "title": "重慶・万州江南水廠におけるBT8200水中粒子計数器の適用",
+    "description": "江南水廠の浄水・原水送水・配水事業と、BT8200による水中粒子の連続監視を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_55/164.html",
+    "images": [
+      {
+        "src": "/applications/1763603215388835-667401242e52b35d.png",
+        "alt": "BT8200水中粒子計数器の浄水場適用"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "適用内容",
+        "paragraphs": [
+          "原文では、重慶市万州区の江南水廠について、浄水場、原水送水、配水から構成され、折板絮凝・水平流沈殿池、砂ろ過池、浄水池などを含むと説明しています。",
+          "BT8200はレーザー原理で水中粒子の粒径・個数・変化を24時間連続監視し、検出粒径範囲は2～750µmです。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8200"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "scm520-waterworks",
+    "route": "/applications/scm520-waterworks",
+    "title": "浄水場におけるSCM520流動電流モニターの適用",
+    "description": "原文に掲載された浄水場でのSCM520流動電流モニター導入事例です。本文には技術詳細がありません。",
+    "sourceUrl": "https://www.bebur.net/en/list_55/165.html",
+    "images": [
+      {
+        "src": "/applications/1763603675223348-9c8ba7f75983b6f5.png",
+        "alt": "SCM520流動電流モニターの浄水場適用"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載範囲",
+        "paragraphs": [
+          "原文は事例名と掲載日（2025-11-20）のみで、導入条件、性能値、効果の詳細は記載していません。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "scm520"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "chemical-cases",
+    "route": "/applications/chemical-cases",
+    "title": "化学・金属分野の導入事例",
+    "description": "MSF8100一体型電磁流量計の冶金業界における導入事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_56",
+    "images": [
+      {
+        "src": "/applications/1763602792208852-2ab8a708f4eb9fe8.png",
+        "alt": "化学・金属分野の導入事例"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載事例",
+        "paragraphs": [
+          "原文にはMSF8100一体型電磁流量計の冶金業界での適用事例が掲載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "msf8100-metallurgical-industry",
+    "route": "/applications/msf8100-metallurgical-industry",
+    "title": "冶金業界におけるMSF8100一体型電磁流量計の適用",
+    "description": "連続鋳造・圧延・製鋼炉の冷却水など、冶金工程における導電性液体の流量測定事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_56/162.html",
+    "images": [
+      {
+        "src": "/applications/1763602792208852-2ab8a708f4eb9fe8.png",
+        "alt": "MSF8100一体型電磁流量計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "用途と計測条件",
+        "paragraphs": [
+          "原文では、連続鋳造・連続圧延・製鋼電気炉の冷却水流量制御、高炉送風口保護用冷却水の漏えい監視、非鉄金属の銅製錬・湿式亜鉛製錬プロセスでの液体測定を用途として挙げています。",
+          "MSF8100はセンサーとコンバーターを一体化し、導電率が2.5µS/cm超の導電性液体の体積流量を測定します。原文の事例掲載先は金川集団です。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "msf8100"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "medical-pharmaceutical-cases",
+    "route": "/applications/medical-pharmaceutical-cases",
+    "title": "医療・製薬分野の導入事例",
+    "description": "製薬業界での液体粒子カウンターの適用事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_57",
+    "images": [
+      {
+        "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
+        "alt": "医療・製薬分野の液体粒子測定"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載事例",
+        "paragraphs": [
+          "原文には、製薬業界における液体粒子カウンターの適用が掲載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "liquid-particle-counter-pharmaceutical",
+    "route": "/applications/liquid-particle-counter-pharmaceutical",
+    "title": "製薬業界における液体粒子カウンターの適用",
+    "description": "注射剤・注射用水の不溶性微粒子を対象に、BT8200の測定範囲と原文に掲載された粒子限度を整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_57/161.html",
+    "images": [
+      {
+        "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
+        "alt": "BT8200による製薬用液体の粒子測定"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "不溶性微粒子",
+        "paragraphs": [
+          "原文では、不溶性微粒子を注射剤中に存在する水不溶性の流動性微小粒子とし、一般に2～50µmと説明しています。",
+          "原文掲載の中華人民共和国薬局方の限度は、表示量100mL以上の静脈注射液では1mL当たり10µm超25個以下、25µm超3個以下。100mL未満の静脈注射液、静脈注射用無菌粉末、注射用濃厚液では、容器当たり10µm超6,000個以下、25µm超600個以下です。"
+        ]
+      },
+      {
+        "heading": "BT8200",
+        "paragraphs": [
+          "BT8200は光遮断法で8チャネルの粒径・個数を同時監視し、2～750µmの粒子を測定します。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt8200"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "hydraulic-cases",
+    "route": "/applications/hydraulic-cases",
+    "title": "油圧分野の導入事例",
+    "description": "原文に掲載された油圧業界の導入事例一覧です。個別事例の本文は掲載されていません。",
+    "sourceUrl": "https://www.bebur.net/en/list_58",
+    "images": [],
+    "sections": [
+      {
+        "heading": "掲載範囲",
+        "paragraphs": [
+          "原文には油圧業界の導入事例区分が掲載されていますが、個別事例、技術仕様、導入効果の本文はありません。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "environmental-protection-cases",
+    "route": "/applications/environmental-protection-cases",
+    "title": "環境保全分野の導入事例",
+    "description": "埋立地におけるGT-3280-OU悪臭ガスオンライン監視システムの導入事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_59",
+    "images": [
+      {
+        "src": "/applications/1763112797120676-44142bac6ae7828c.png",
+        "alt": "環境保全分野の悪臭ガス監視事例"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載事例",
+        "paragraphs": [
+          "原文には、埋立地でのGT-3280-OU悪臭ガスオンライン監視システムの適用が掲載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "gt-3280-ou-landfill",
+    "route": "/applications/gt-3280-ou-landfill",
+    "title": "埋立地におけるGT-3280-OU悪臭ガスオンライン監視システムの適用",
+    "description": "海南省・颜春岭生活ごみ埋立地の生態修復プロジェクトにおける悪臭ガス等のオンライン監視事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_59/159.html",
+    "images": [
+      {
+        "src": "/applications/1763112706269409-5a66a450f0031367.png",
+        "alt": "GT-3280-OU悪臭ガスオンライン監視システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "導入先と監視",
+        "paragraphs": [
+          "原文の導入先は海口市顔春嶺生活ごみ埋立処分場で、設計埋立容量は303.74万m³、2020年12月の閉鎖時の埋立量は450.43万m³、道路面より約55m高いとされています。生態修復プロジェクトの契約期間は2022年2月から2025年6月です。",
+          "原文では、デジタル総合制御、安全生産指揮、生態・環境保護監視の3モジュールを備え、有害ガス、粉じん、敷地境界環境をオンライン監視し、月次で専門試験機関による周辺感受性地点、境界の組織・非組織ガス排出、地下水の試験報告を行うと記載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "gt-3280-ou"
+    ],
+    "publishedAt": "2025-11-14"
+  },
+  {
+    "kind": "application",
+    "slug": "food-beverage-cases",
+    "route": "/applications/food-beverage-cases",
+    "title": "食品・飲料分野の導入事例",
+    "description": "飲料業界での水中オゾン分析計の適用事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_60",
+    "images": [
+      {
+        "src": "/applications/1763112098103305-bf0db766b42dc3f1.png",
+        "alt": "食品・飲料分野のオゾン分析事例"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載事例",
+        "paragraphs": [
+          "原文には、飲料業界における水中オゾン分析計の適用が掲載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "water-ozone-analyzer-beverage",
+    "route": "/applications/water-ozone-analyzer-beverage",
+    "title": "飲料業界における水中オゾン分析計の適用",
+    "description": "オゾンの水処理・飲料工程での役割と、電気化学式水中オゾン分析計による測定・制御の事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_60/158.html",
+    "images": [
+      {
+        "src": "/applications/1763112098103305-bf0db766b42dc3f1.png",
+        "alt": "飲料工程における水中オゾン分析"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "オゾンの作用",
+        "paragraphs": [
+          "原文では、オゾンが水中で一原子酸素（O）とヒドロキシル基（OH）を生じ、有機物、細菌、微生物に作用すると説明しています。オゾンは鉄・マンガンや有機物の除去、脱臭、水中酸素量の増加に役立つとされています。"
+        ]
+      },
+      {
+        "heading": "水中オゾンの測定",
+        "paragraphs": [
+          "原文の水中オゾン分析計は電気化学原理を用い、膜式センサーでpH変動の影響を受けず、試薬を使用しません。飲料業界では、生産用水のオゾン殺菌・消毒の測定および制御に用いると記載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "bt6308-oz"
+    ],
+    "publishedAt": "2025-11-14"
+  },
+  {
+    "kind": "application",
+    "slug": "power-industry-cases",
+    "route": "/applications/power-industry-cases",
+    "title": "電力分野の導入事例",
+    "description": "発電所水処理におけるSCM530流動電流検出器の凝集剤注入制御事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_61",
+    "images": [
+      {
+        "src": "/applications/1763621820121504-6cda4e7befbf4f91.jpg",
+        "alt": "電力分野のSCM530導入事例"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "掲載事例",
+        "paragraphs": [
+          "原文には、江蘇省の発電所におけるSCM530流動電流検出器と、発電所水処理の薬品注入工程への適用が掲載されています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": []
+  },
+  {
+    "kind": "application",
+    "slug": "scm530-power-plant-dosing",
+    "route": "/applications/scm530-power-plant-dosing",
+    "title": "発電所水処理の薬品注入工程におけるSCM530流動電流検出器の適用",
+    "description": "コロイド電荷の連続測定を用い、凝集剤注入を閉ループ制御する発電所水処理の考え方を解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_61/156.html",
+    "images": [
+      {
+        "src": "/products/1762487086623794-63483ec6afc65677.jpg",
+        "alt": "SCM530流動電流検出器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "流動電流の測定原理",
+        "paragraphs": [
+          "検出セル内のピストンが試料水中を往復して帯電粒子を動かし、微弱な電流信号を発生させます。機器はこれを増幅してSC値へ変換し、凝集における電荷中和の効果を反映します。"
+        ]
+      },
+      {
+        "heading": "閉ループ制御",
+        "paragraphs": [
+          "ビーカーテストを基に基準値を設定し、処理後水の電荷を連続監視します。原文では、流動電流が設定値から外れた場合にSCM530が注入ポンプの周波数を調整し、毎秒の動的な閉ループ制御を形成するとしています。",
+          "原文の効果記載は、前処理水濁度を低水準（例：<1NTU）に維持、RO膜・イオン交換樹脂の寿命を30%以上延長、凝集剤を15～30%削減、7×24時間の無人自動運転です。これらは原文由来の値として扱います。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "scm530"
+    ],
+    "publishedAt": "2025-11-20"
+  },
+  {
+    "kind": "application",
+    "slug": "scm530-jiangsu-power-plant",
+    "route": "/applications/scm530-jiangsu-power-plant",
+    "title": "江蘇省の発電所におけるSCM530流動電流検出器の適用",
+    "description": "原水変動下での凝集・沈殿工程におけるSCM530、PLC/DCS、PID制御による凝集剤注入の事例です。",
+    "sourceUrl": "https://www.bebur.net/en/list_61/157.html",
+    "images": [
+      {
+        "src": "/applications/1763621820121504-6cda4e7befbf4f91.jpg",
+        "alt": "江蘇省発電所におけるSCM530の適用"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "課題と原理",
+        "paragraphs": [
+          "原文では、原水は長江または周辺河川から取水し、季節・潮汐・降雨・上流活動で水質が変動すると説明しています。従来の目視フロック・濁度計に頼る注入調整では、過剰注入による薬品浪費、残留アルミニウム・鉄塩によるRO膜やイオン交換樹脂への影響、不足注入による濁度上昇が課題とされています。",
+          "SCM530は試料水中でピストンを往復させて交流電流を作り、コロイドのSC値を検出します。4-20mAなどの標準信号としてPLC/DCSへ送り、凝集剤注入の閉ループ自動制御に用います。"
+        ]
+      },
+      {
+        "heading": "設置・制御・運用",
+        "paragraphs": [
+          "原文では、機械加速式クラリファイヤまたは凝集沈殿槽の入口・反応区末端に設置し、SCM530が検出、PLC/DCSが制御判断、PIDで定量ポンプのストロークまたは周波数を調整するとしています。",
+          "原文の効果記載は凝集剤消費量10～25%削減、数十秒以内の水質変動検知、汚泥量低減です。代表性のある採水、流量・圧力の安定化、センサープローブの定期清掃、季節・長期データ・ビーカーテストに基づくSC設定値の調整を挙げています。"
+        ]
+      }
+    ],
+    "recommendedProductSlugs": [
+      "scm530"
+    ],
+    "publishedAt": "2025-11-20"
+  }
+]

@@ -1,0 +1,239 @@
+[
+  {
+    "kind": "page",
+    "slug": "home",
+    "route": "/",
+    "title": "水質分析・ガス検知・清浄度測定のBebur",
+    "description": "Beburの水質分析計、ガス検知器、清浄度測定装置、薬注制御装置と産業別ソリューションをご案内します。",
+    "sourceUrl": "https://www.bebur.net/en/",
+    "images": [
+      {
+        "src": "/applications/index-16-016907b8f93a0b2b.jpg",
+        "alt": "Beburの産業向け計測ソリューション"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "製品分野",
+        "paragraphs": [
+          "液中の粒子を評価する清浄度測定装置、水処理工程の薬注制御装置、水質分析計、産業現場のガス検知器を展開しています。"
+        ],
+        "bullets": [
+          "清浄度測定装置は、液冷、車載部品、航空宇宙、半導体、医療機器などの品質管理に用いられます。",
+          "薬注制御装置は、上水・産業用水処理、汚泥処理、製紙、逆浸透膜の前処理など、凝集剤を加える工程に用いられます。",
+          "ガス検知器は、石油化学、石炭、冶金、化学、都市ガス、環境監視などの現場でガス濃度を監視します。"
+        ]
+      },
+      {
+        "heading": "産業別ソリューション",
+        "paragraphs": [
+          "電力、上水処理、液冷、化学、医療・製薬、油圧、環境、食品の各分野について、原文に記載された用途と導入事例を日本語で紹介します。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "product-index",
+    "route": "/products",
+    "title": "製品一覧",
+    "description": "Beburの清浄度測定装置、薬注制御装置、水質分析計、ガス検知器、流量計・液位計を製品分野別に紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_37",
+    "sourceAliases": [
+      "https://www.bebur.net/en/list_37_2"
+    ],
+    "images": [],
+    "sections": [
+      {
+        "heading": "計測・制御製品",
+        "paragraphs": [
+          "液中粒子の連続監視、凝集・消毒工程の薬注制御、水質項目のオンライン測定、産業ガスの連続監視、導電性液体の流量測定と液位測定に対応する製品を掲載しています。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "application-index",
+    "route": "/applications",
+    "title": "産業別用途・導入事例",
+    "description": "Bebur製品の産業別ソリューションと、原文に掲載された導入事例を分野別に紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_38",
+    "images": [],
+    "sections": [
+      {
+        "heading": "産業別用途",
+        "paragraphs": [
+          "水質分析、ガス検知、清浄度測定、薬注制御、流量・液位測定の用途と導入事例を確認できます。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "application-case-index",
+    "route": "/applications/cases",
+    "title": "導入事例",
+    "description": "液冷、上水、化学、医薬、油圧、環境、食品・飲料、電力分野におけるBebur製品の導入事例を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_53",
+    "images": [],
+    "sections": [
+      {
+        "heading": "業界別の導入事例",
+        "paragraphs": [
+          "原文の導入事例一覧では、液冷、上水処理、化学、医薬・製薬、油圧、環境保全、食品・飲料、電力を対象分野として掲載しています。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "insight-index",
+    "route": "/insights",
+    "title": "技術記事・ニュース",
+    "description": "水質分析、ガス検知、液中粒子測定、薬注制御に関するBeburの技術記事と展示会情報を掲載します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39",
+    "sourceAliases": [
+      "https://www.bebur.net/en/list_39_2"
+    ],
+    "images": [],
+    "sections": [
+      {
+        "heading": "最新情報",
+        "paragraphs": [
+          "製品の測定原理や選定の考え方、産業分野での活用方法、展示会・技術交流会の記録を日本語で紹介します。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "contact",
+    "route": "/contact",
+    "title": "お問い合わせ",
+    "description": "Bebur製品に関する日本国内のお問い合わせ先をご案内します。",
+    "sourceUrl": "https://www.bebur.net/en/list_40",
+    "images": [],
+    "sections": [
+      {
+        "heading": "日本国内のお問い合わせ先",
+        "paragraphs": [
+          "Bebur 日本総代理店｜新樹産業株式会社",
+          "〒340-0043 埼玉県草加市草加2－13－21－7",
+          "電話：080-5189-8663",
+          "メール：info@newtree-i.com"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "cleanliness",
+    "route": "/products/cleanliness",
+    "title": "清浄度測定装置",
+    "description": "液中粒子の粒径、個数、変化を測定するBeburのオンラインおよび可搬型清浄度測定装置を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_46",
+    "images": [
+      {
+        "src": "/products/1763022286945333-44e697d79ca64464.jpg",
+        "alt": "Beburの液中粒子測定装置"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "液中粒子の測定",
+        "paragraphs": [
+          "光遮蔽原理によるオンライン連続監視と、現場へ持ち運べる測定に対応する製品を掲載しています。用途に応じて複数の粒径チャンネルを選択できます。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "dosing",
+    "route": "/products/dosing",
+    "title": "薬注制御装置",
+    "description": "凝集・消毒工程の状態を測定し、薬品注入量の自動制御を支援するBeburの薬注制御装置を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_47",
+    "images": [
+      {
+        "src": "/products/1762487086623794-63483ec6afc65677.jpg",
+        "alt": "オンライン流動電流測定システム"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "水処理工程の自動制御",
+        "paragraphs": [
+          "流動電流や残留塩素などの測定値を用い、凝集剤や消毒剤の注入量を制御するシステム、流動電流計、ラボ用粒子電荷分析計を掲載しています。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "water-quality",
+    "route": "/products/water-quality",
+    "title": "水質分析計",
+    "description": "消毒剤、濁度、導電率、pH、ORP、溶存酸素などをオンライン測定するBeburの水質分析計を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_48",
+    "images": [
+      {
+        "src": "/products/1771912582808694-de0ad8e3b3d4deeb.jpg",
+        "alt": "Beburのオンライン水質分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "オンライン水質測定",
+        "paragraphs": [
+          "紫外可視吸収、電極、膜式センサー、比色法など、測定項目に応じた原理を採用するオンライン分析計とコントローラーを掲載しています。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "gas-detection",
+    "route": "/products/gas-detection",
+    "title": "ガス検知器",
+    "description": "可燃性ガス、有毒・有害ガス、VOC、オゾンなどを連続監視するBeburの産業用ガス検知器を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_49",
+    "images": [
+      {
+        "src": "/products/1770520252812796-64aacb088c936152.jpg",
+        "alt": "Beburの産業用ガス検知器"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "産業現場のガス監視",
+        "paragraphs": [
+          "電気化学式、触媒燃焼式、PID、赤外線式、紫外線吸収式など、対象ガスと測定条件に応じた検知器と警報システムを掲載しています。"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "page",
+    "slug": "flow-level",
+    "route": "/products/flow-level",
+    "title": "流量計・液位計",
+    "description": "導電性液体の体積流量を測定する電磁流量計と、超音波式液位計を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_50",
+    "images": [
+      {
+        "src": "/products/1763107336398931-5a6a67792885b1b3.jpg",
+        "alt": "MSF8000分離型電磁流量計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "流量・液位測定",
+        "paragraphs": [
+          "MSF8000およびMSF8100は導電率2.5μS/cm以上の導電性液体の体積流量を測定します。BUL-200は超音波エコーを用いる分離型液位計です。"
+        ]
+      }
+    ]
+  }
+]

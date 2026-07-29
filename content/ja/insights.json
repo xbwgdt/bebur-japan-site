@@ -1,0 +1,546 @@
+[
+  {
+    "kind": "article",
+    "slug": "yunnan-water-quality-exchange",
+    "route": "/insights/yunnan-water-quality-exchange",
+    "title": "雲南省水道業界の水質技術交流会に凝集薬注制御システムを出展",
+    "description": "2025年4月に昆明で開催された水質技術交流会と、Beburの凝集薬注制御システムの展示内容を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/189.html",
+    "publishedAt": "2025-11-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "水質技術交流会",
+        "paragraphs": [
+          "2025年4月28日から29日まで、昆明で雲南省水道業界の水質技術交流会が開催されました。会議のテーマは、水質の向上と安全な給水の確保でした。",
+          "Beburは水質測定機器と凝集薬注ソリューションを展示し、参加者と水質管理に関する技術交流を行いました。"
+        ]
+      },
+      {
+        "heading": "凝集薬注制御",
+        "paragraphs": [
+          "出展したシステムは凝集機構に沿った制御原理を採用し、PID制御モジュールを備えています。浄水場の自動制御システムへ組み込む構成と、単独運転の双方に対応します。",
+          "原文では、薬品使用量、ろ過工程、停止回数、汚泥および消毒副生成物の低減を目指すシステムとして説明されています。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "particle-charge-analyzer-papermaking",
+    "route": "/insights/particle-charge-analyzer-papermaking",
+    "title": "製紙ウェットエンド工程におけるラボ用粒子電荷分析計",
+    "description": "製紙工程の電荷バランスを測定し、填料の歩留まりや薬品添加量の管理に活用する考え方を解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/190.html",
+    "publishedAt": "2025-11-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "ウェットエンドの電荷バランス",
+        "paragraphs": [
+          "製紙のウェットエンドでは、繊維、炭酸カルシウムなどの填料、各種薬品が水相で相互作用します。繊維と多くの填料は負に帯電し、カチオン澱粉やカチオン性ポリアクリルアミドなどは正に帯電します。",
+          "正負電荷が適切でない場合、填料の歩留まり低下、ろ水性の悪化、地合いの変化などにつながります。白水中にリグニンや樹脂残渣などのアニオン性夾雑物が蓄積する点にも注意が必要です。"
+        ]
+      },
+      {
+        "heading": "測定項目と活用",
+        "paragraphs": [
+          "ラボ用粒子電荷分析計は、パルプ系に含まれる粒子のゼータ電位、電荷密度、アニオン・カチオン要求量を測定し、吸着、凝集、分散の状態を定量的に評価します。"
+        ],
+        "bullets": [
+          "繊維と填料の負電荷密度を基に、カチオン性薬品の添加量を検討します。",
+          "白水の負電荷密度を監視し、アニオン性夾雑物捕捉剤の添加判断に用います。",
+          "経験に依存した調整から、測定データに基づくウェットエンド管理への移行を支援します。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "liquid-cooling-supply-chain-summit-2025",
+    "route": "/insights/liquid-cooling-supply-chain-summit-2025",
+    "title": "2025年液冷サプライチェーンサミットで液中粒子計を展示",
+    "description": "液冷システムの清浄度管理に用いる液中粒子計と、展示会で紹介された測定条件をまとめます。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/191.html",
+    "publishedAt": "2025-11-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "液冷システムの粒子管理",
+        "paragraphs": [
+          "2025年7月30日から31日まで開催された第4回中国液冷フルチェーンサプライチェーンサミットで、Beburは液冷システム向け液中粒子計を展示しました。",
+          "冷却液中の粒子は、閉塞、腐食、熱交換効率の低下、システム停止につながる可能性があるため、粒径分布と粒子数の継続的な把握が重要です。"
+        ]
+      },
+      {
+        "heading": "展示された測定仕様",
+        "paragraphs": [
+          "原文の粒子計は光遮蔽原理を採用し、8チャンネルで粒径と粒子数を同時監視します。測定粒径範囲は2–750μmで、例として2μm以上、5μm以上、15μm以上の粒子濃度をリアルタイムで確認します。",
+          "設定値を超えた場合に警報を出し、ろ過システムと連動させる予防保全の運用が紹介されています。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "global-data-center-liquid-cooling-conference-2025",
+    "route": "/insights/global-data-center-liquid-cooling-conference-2025",
+    "title": "2025年グローバルデータセンター液冷技術会議の出展案内",
+    "description": "杭州で開催されたデータセンター液冷技術会議の日時、会場、展示テーマを記録しています。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/192.html",
+    "publishedAt": "2025-11-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "開催概要",
+        "paragraphs": [
+          "第4回グローバルデータセンター液冷イノベーション開発・応用技術会議は、2025年10月28日から30日まで中国・杭州で開催されました。",
+          "会場は杭州浜江開元名都ホテル、原文掲載のブース番号は11です。会議では、液冷によるPUE低減、エネルギー利用効率、データセンターの持続可能性が議題とされました。"
+        ]
+      },
+      {
+        "heading": "展示テーマ",
+        "paragraphs": [
+          "Beburは、液冷業界向けの清浄度測定と水質測定のソリューションを展示する案内を掲載しました。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "guangdong-guizhou-water-supply-conference-2025",
+    "route": "/insights/guangdong-guizhou-water-supply-conference-2025",
+    "title": "2025年広東・貴州水道事業者交流会の出展案内",
+    "description": "給水事業の運営と全工程の水質管理を扱う交流会について、開催日時と展示情報を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/193.html",
+    "publishedAt": "2025-11-05",
+    "images": [],
+    "sections": [
+      {
+        "heading": "開催概要",
+        "paragraphs": [
+          "広東省と貴州省の水道事業者による高品質発展特別交流会は、2025年11月6日から8日まで貴陽市で開催されました。",
+          "会場は貴陽市観山湖区の上善ホテル、原文掲載のブース番号はA3です。料金監督、緊急対応計画、全工程の水質管理技術などが議題として案内されました。"
+        ]
+      },
+      {
+        "heading": "展示内容",
+        "paragraphs": [
+          "Beburは水質分析とガス検知に関する製品および技術ソリューションを展示する案内を掲載しました。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "liquid-cooling-technology-conference-2025",
+    "route": "/insights/liquid-cooling-technology-conference-2025",
+    "title": "2025年グローバルデータセンター液冷会議で水質・清浄度技術を展示",
+    "description": "データセンター液冷会議で紹介された水質測定機器と粒子清浄度測定ソリューションをまとめます。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/194.html",
+    "publishedAt": "2025-11-05",
+    "images": [],
+    "sections": [
+      {
+        "heading": "液冷技術会議",
+        "paragraphs": [
+          "第4回グローバルデータセンター液冷イノベーション開発・応用技術会議は、2025年10月28日から30日まで杭州で開催されました。",
+          "会議では、液冷技術によるPUE低減、エネルギー利用効率の向上、炭素排出量の低減が議論されました。"
+        ]
+      },
+      {
+        "heading": "Beburの展示",
+        "paragraphs": [
+          "Beburは液冷向け水質測定機器と、粒子による清浄度を測定するソリューションを展示しました。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "sichuan-water-technology-exhibition-2025",
+    "route": "/insights/sichuan-water-technology-exhibition-2025",
+    "title": "四川省都市給排水技術・設備展示会に薬注制御システムを出展",
+    "description": "2025年11月の給排水技術展示会と、凝集薬注制御システムの展示内容を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/195.html",
+    "publishedAt": "2025-11-20",
+    "images": [],
+    "sections": [
+      {
+        "heading": "展示会概要",
+        "paragraphs": [
+          "四川省都市給排水協会の会議と給排水技術・設備展示会は、2025年11月12日から14日まで成都で開催され、水質管理と新技術が取り上げられました。"
+        ]
+      },
+      {
+        "heading": "凝集薬注制御システム",
+        "paragraphs": [
+          "Beburは水質測定機器と凝集薬注ソリューションを展示しました。薬注制御システムはPID制御モジュールを備え、浄水場の自動制御システムへの組み込みと単独運転に対応します。",
+          "原文では、薬品使用量、汚泥、消毒副生成物、現場停止回数の低減を目指す制御として説明されています。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "ozone-monitoring-equipment",
+    "route": "/insights/ozone-monitoring-equipment",
+    "title": "環境安全からプロセス最適化までを支えるオゾン監視機器",
+    "description": "気相の漏えい監視、高濃度オゾンガス分析、水中溶存オゾン測定に用いる各方式と仕様を解説します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/275.html",
+    "publishedAt": "2026-02-27",
+    "images": [
+      {
+        "src": "/products/1770520252812796-64aacb088c936152.jpg",
+        "alt": "BT3500-OZ オゾンガス分析計"
+      },
+      {
+        "src": "/products/1763101185971370-fc483f611074e3bf.jpg",
+        "alt": "BT6308-OZ 水中オゾン分析計"
+      },
+      {
+        "src": "/products/1771912582808694-de0ad8e3b3d4deeb.jpg",
+        "alt": "全波長オゾン分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "固定式オゾン漏えい検知",
+        "paragraphs": [
+          "AS525-O3とAS300-O3は電気化学原理で空気中のオゾン濃度を連続監視します。温度補償範囲は-40°C～70°C、繰返し性は≤±2%、T90応答時間は60秒未満です。",
+          "保護等級はIP66、防爆表記はEx db IIC T6 Gbです。赤外線リモート校正、プラグイン式センサー、4-20mAおよびRS485出力に対応します。"
+        ]
+      },
+      {
+        "heading": "高濃度オゾンガス分析",
+        "paragraphs": [
+          "BT3500-OZはLambert–Beerの法則に基づくUV二光路吸収法を採用し、オゾン発生器出口や配管内の高濃度オゾンを連続測定します。",
+          "光源波長は254nmで、分離型光学セル、72時間ごとの自動ゼロパージ、5.0インチタッチパネルを備えます。"
+        ]
+      },
+      {
+        "heading": "水中オゾン測定",
+        "paragraphs": [
+          "BT6308-OZは膜式アンペロメトリ法で、飲料水、プール水、製薬用精製水などの溶存オゾンを測定します。原文ではpH変動や洗浄剤の影響を受けにくく、最長12か月のメンテナンス間隔が示されています。",
+          "全波長オゾン分析計は200–800nmのスペクトルを取得し、光路長を1–150mmで設定できます。測定範囲は0–200mg/L、保護等級はIP68で、自動洗浄ブラシを備えます。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "uv-ozone-analyzer-ozone-generators",
+    "route": "/insights/uv-ozone-analyzer-ozone-generators",
+    "title": "オゾン発生器におけるUVオゾン分析計の活用",
+    "description": "BT3500-OZによる発生濃度・出力監視と、BT6308-OZによる水中溶存オゾン監視を比較します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/277.html",
+    "publishedAt": "2026-02-27",
+    "images": [
+      {
+        "src": "/products/1770520252812796-64aacb088c936152.jpg",
+        "alt": "オゾン発生器向けBT3500-OZ"
+      },
+      {
+        "src": "/products/1763101185971370-fc483f611074e3bf.jpg",
+        "alt": "水処理向けBT6308-OZ"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "オゾン発生器出口の監視",
+        "paragraphs": [
+          "BT3500-OZは発生器出口配管に設置し、254nmのUV二光路吸収法でオゾンガス濃度を連続測定します。濃度とガス流量の積から実出力を算出し、設定した上下限を外れた場合は警報を出します。",
+          "発生濃度の変動は、放電室、原料ガス、配管漏えいなどの状態確認に用いられます。"
+        ]
+      },
+      {
+        "heading": "水処理末端の監視",
+        "paragraphs": [
+          "BT6308-OZは膜式電気化学アンペロメトリ法で水中の溶存オゾンを連続測定します。試薬を使用せず、原文ではpHの影響を受けずに最長12か月のメンテナンス周期を確保すると説明されています。"
+        ]
+      },
+      {
+        "heading": "原文掲載の測定範囲",
+        "paragraphs": [
+          "BT3500-OZの測定範囲：0-50/200/300/400mg/L",
+          "BT6308-OZの測定範囲：0.005-0.5、0.05-2、0.05-5、0.05-10、0.05-20mg/L(ppm)"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "residual-chlorine-detector-brands-2026-march",
+    "route": "/insights/residual-chlorine-detector-brands-2026-march",
+    "title": "2026年版 残留塩素計の方式とブランド選定",
+    "description": "残留塩素計の測定方式、用途、原文掲載の中国水質基準を整理し、選定時の確認項目を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/280.html",
+    "publishedAt": "2026-03-16",
+    "images": [],
+    "sections": [
+      {
+        "heading": "測定方式",
+        "paragraphs": [
+          "原文では、BeburのBT6308-CLを膜式または無膜式アンペロメトリセンサー、BC350をDPD比色法の製品として紹介しています。",
+          "比較対象としてHach、E+H、Thermo Fisher、Schreimerが掲載され、飲料水処理、二次給水、医療機関、食品分野などの用途が整理されています。"
+        ]
+      },
+      {
+        "heading": "原文掲載の基準値",
+        "paragraphs": [
+          "中国のGB 5749-2022について、浄水場出口の残留塩素0.3mg/L以上、配水管末端0.05mg/L以上という値が掲載されています。",
+          "測定方法としてGB/T 5750.11-2023のDPD比色法が参照されています。日本国内での適用可否は、対象設備に適用される法令・基準を別途確認してください。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "toc-analyzer-brands-2026-march",
+    "route": "/insights/toc-analyzer-brands-2026-march",
+    "title": "2026年版 TOC分析計の測定原理とブランド比較",
+    "description": "全有機炭素分析計の測定方式と用途を整理し、原文に掲載された各社モデルと選定観点を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/281.html",
+    "publishedAt": "2026-03-31",
+    "images": [],
+    "sections": [
+      {
+        "heading": "原文掲載の市場データ",
+        "paragraphs": [
+          "原文が引用する調査値では、世界のTOC分析計市場は2026年の18.27億元から2033年の26.53億元へ拡大し、2026～2033年の年平均成長率は5.47%とされています。"
+        ]
+      },
+      {
+        "heading": "測定方式とモデル",
+        "paragraphs": [
+          "BeburのUVSenseはUV-Vis吸収原理を採用し、UVSense-Dは254nmと550nmの二波長、UVSense-Mは4波長、UVSense-Fは200–800nmの全波長測定として掲載されています。",
+          "比較対象には、燃焼触媒酸化法の島津製作所、TSAO・UV過硫酸・ヒドロキシルラジカル酸化を扱うHach、製薬用途を扱うMettler Toledo、UV酸化＋差動導電率および高温触媒燃焼＋NDIRを扱うEndress+Hauserが掲載されています。"
+        ]
+      },
+      {
+        "heading": "選定の観点",
+        "paragraphs": [
+          "試料水、オンライン・ラボ測定の別、測定範囲、精度、試薬と保守、校正、適用規格を確認します。製薬用途の比較ではUSP <643>、EP 2.2.44、ChP、JP 16が挙げられています。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "online-residual-chlorine-analyzer-brands",
+    "route": "/insights/online-residual-chlorine-analyzer-brands",
+    "title": "オンライン残留塩素分析計の方式と選び方",
+    "description": "電極法とDPD比色法の違い、システム統合、保守性など、オンライン残留塩素分析計の比較観点を整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/282.html",
+    "publishedAt": "2026-03-31",
+    "images": [],
+    "sections": [
+      {
+        "heading": "Beburの二つの測定方式",
+        "paragraphs": [
+          "原文では、BT6308-CLを電極法、BC350をDPD比色法の残留塩素分析計として紹介しています。BT6308-CLの膜式アンペロメトリ方式について、6か月のメンテナンス間隔が記載されています。"
+        ]
+      },
+      {
+        "heading": "掲載ブランドの特徴",
+        "paragraphs": [
+          "HachはCL17scおよびCL17Dscの比色方式、Endress+Hauserはデジタルセンサーと水処理計装への統合、Luhengは可搬・オンラインの低価格帯、Createは工業用途の電極方式として原文で比較されています。"
+        ]
+      },
+      {
+        "heading": "選定項目",
+        "paragraphs": [
+          "測定精度、応答時間、保守費用、設置環境への適合、データ通信、自動制御システムとの接続性を、実際の水質と運用体制に合わせて確認します。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "ozone-detector-brands-2026",
+    "route": "/insights/ozone-detector-brands-2026",
+    "title": "2026年版 オゾン検知器の測定原理と選定",
+    "description": "気相・液相のオゾン測定に用いるUV吸収法と電気化学法を比較し、原文掲載モデルの入出力を整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/283.html",
+    "publishedAt": "2026-04-03",
+    "images": [
+      {
+        "src": "/products/1771912582808694-de0ad8e3b3d4deeb.jpg",
+        "alt": "UV吸収方式のオゾン分析計"
+      },
+      {
+        "src": "/products/1770520252812796-64aacb088c936152.jpg",
+        "alt": "BT3500-OZ オゾンガス分析計"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "気相オゾンの測定",
+        "paragraphs": [
+          "UV吸収法は、オゾンが254nmの紫外線を吸収する特性を用い、試料通過後の光量減衰から濃度を求めます。BT3500-OZはこの原理を採用します。",
+          "AS525-O3、AS300-O3、BT525-O3は電極上の酸化還元反応を用いる電気化学方式で、主に漏えい監視と警報に用いられます。"
+        ]
+      },
+      {
+        "heading": "水中オゾンの測定",
+        "paragraphs": [
+          "BT6308-OZは膜、電極、電解液から成るアンペロメトリセンサーを用い、4-20mAアナログ出力とRS485通信に対応します。",
+          "BT6308-UV-OZは254nmのUV吸収方式で、原文ではppbレベルのオゾン監視に対応すると説明されています。"
+        ]
+      },
+      {
+        "heading": "原文掲載の市場データ",
+        "paragraphs": [
+          "原文が引用する調査値では、中国市場は2024年の11.2億元から2025年の12.8億元へ14.3%増加し、2026年は14.6億元と予測されています。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "liquid-particle-counter-brands",
+    "route": "/insights/liquid-particle-counter-brands",
+    "title": "液中パーティクルカウンターの測定方式とブランド比較",
+    "description": "光遮蔽法、光散乱法、電気抵抗法の違いと、原文に掲載された測定範囲、用途、選定項目を整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/284.html",
+    "publishedAt": "2026-04-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "原文掲載の市場データ",
+        "paragraphs": [
+          "原文が引用するQYResearchの値では、世界市場は2025年の9.78億米ドルから2032年の12.4億米ドルへ拡大し、2026～2032年の年平均成長率は3.5%とされています。",
+          "同じ原文では、中国市場が2030年までに205.3億元を超えるとの予測も掲載されています。"
+        ]
+      },
+      {
+        "heading": "測定方式",
+        "paragraphs": [
+          "光遮蔽法は粒子が光を遮る量、光散乱法は粒子からの散乱光、電気抵抗法は粒子が開口部を通過する際の電気抵抗変化を用いて粒径と個数を求めます。",
+          "油圧・潤滑系の清浄度管理ではISO 4406が参照されています。半導体、製薬、油圧・潤滑、液冷など、試料と要求粒径に応じた方式選択が必要です。"
+        ]
+      },
+      {
+        "heading": "原文掲載の測定範囲",
+        "paragraphs": [
+          "PMSの測定範囲：20nm–125μm",
+          "Bebur BT8200/BT8500の測定範囲：1–200μm、2–400μm、2–750μm",
+          "Bebur BTP8300の測定範囲：標準1–400μm、カスタム2–750μm、最大32チャンネル",
+          "Rionの測定範囲：0.02–125μm",
+          "Beckman Coulterの測定範囲：0.2–600μm、Multisizerシリーズは最大1600μm"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "residual-chlorine-detector-brands-2026-april",
+    "route": "/insights/residual-chlorine-detector-brands-2026-april",
+    "title": "残留塩素計メーカー比較と用途別選定",
+    "description": "上水、二次給水、医療、食品分野における残留塩素計の方式と、原文掲載の基準値を整理します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/285.html",
+    "publishedAt": "2026-04-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "方式と掲載ブランド",
+        "paragraphs": [
+          "BeburのBT6308-CLは膜式または無膜式アンペロメトリ、BC350はDPD比色法を採用します。原文ではHach、E+H、Thermo Fisher、Xylemと比較しています。",
+          "用途として、浄水場、配水管末端、二次給水、医療機関、食品サービス分野が挙げられています。"
+        ]
+      },
+      {
+        "heading": "原文掲載の基準値",
+        "paragraphs": [
+          "中国のGB 5749-2022について、浄水場出口0.3mg/L以上、配水管末端0.05mg/L以上の残留塩素値が掲載されています。",
+          "DPD比色法の参照規格としてGB/T 5750.11-2023が示されています。日本国内では対象設備に適用される法令・基準を別途確認してください。"
+        ]
+      },
+      {
+        "heading": "運用上の確認",
+        "paragraphs": [
+          "管網末端までの残留塩素減衰、試薬またはセンサーの保守、連続監視と再注入設備の連動、測定値の長期安定性を確認します。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "toc-analyzer-brands-2026",
+    "route": "/insights/toc-analyzer-brands-2026",
+    "title": "用途別に見るTOC分析計の選定ガイド",
+    "description": "上水、純水、製薬、環境監視で用いるTOC分析計について、測定原理、モデル、運用費用の観点を紹介します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/286.html",
+    "publishedAt": "2026-04-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "全有機炭素の測定",
+        "paragraphs": [
+          "TOC分析計は試料中の全有機炭素を測定し、製薬、半導体、飲料水、排水処理の水質監視とプロセス管理に用いられます。"
+        ]
+      },
+      {
+        "heading": "原文掲載モデル",
+        "paragraphs": [
+          "Bebur UVSense-Dは254nmと550nm、UVSense-Mは4波長、UVSense-Fは200–800nmの全波長測定を採用します。",
+          "比較対象として島津TOC-L、Hach QbD1200+・BioTector・QL、Mettler Toledo 450TOC・6000TOCi、Endress+Hauser CA78・CA72TOCが掲載されています。"
+        ]
+      },
+      {
+        "heading": "選定手順",
+        "paragraphs": [
+          "ラボ測定かオンライン測定か、試料が超純水・排水・海水のいずれか、必要精度と測定範囲を整理します。購入価格だけでなく、試薬、校正、保守、部品供給を含む総費用を確認します。",
+          "製薬用途では薬局方への適合、環境監視では共存物質や濁度補償、工業プロセスでは連続運転と通信仕様の確認が必要です。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  },
+  {
+    "kind": "article",
+    "slug": "online-residual-chlorine-analyzer-recommendations",
+    "route": "/insights/online-residual-chlorine-analyzer-recommendations",
+    "title": "オンライン残留塩素分析計のブランド比較",
+    "description": "オンライン残留塩素分析計について、電極法、DPD比色法、保守、システム統合の観点から原文の比較内容を要約します。",
+    "sourceUrl": "https://www.bebur.net/en/list_39/287.html",
+    "publishedAt": "2026-04-03",
+    "images": [],
+    "sections": [
+      {
+        "heading": "Beburの掲載機種",
+        "paragraphs": [
+          "原文では、BT6308-CLを電極法、BC350をDPD比色法として紹介しています。BT6308-CLの膜式アンペロメトリについては、6か月のメンテナンス間隔が掲載されています。"
+        ]
+      },
+      {
+        "heading": "比較対象",
+        "paragraphs": [
+          "HachはCL17sc・CL17Dscの比色方式、E+Hはデジタルセンサーと複数計測項目のシステム統合、Luhengは可搬型とオンライン型の基本用途、Createcは工業用途の電極方式として原文で整理されています。"
+        ]
+      },
+      {
+        "heading": "選定項目",
+        "paragraphs": [
+          "測定精度、応答時間、保守費用、試薬の要否、耐汚染性、設置環境、4-20mAやRS485などの通信、既設制御システムとの統合性を確認します。"
+        ]
+      }
+    ],
+    "relatedProductSlugs": []
+  }
+]
