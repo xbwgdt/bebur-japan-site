@@ -27,15 +27,15 @@ const PAGE_FAMILY_MANIFEST_PATH = path.join(
 );
 const PUBLIC_PATH = path.join(process.cwd(), "public");
 const ALLOWED_HOSTS = new Set(["bebur.net", "www.bebur.net"]);
-const ALLOWED_EXTENSIONS = new Set([
+const IMAGE_EXTENSIONS = new Set([
   "avif", "gif", "ico", "jpeg", "jpg", "png", "svg", "webp",
 ]);
-const EXCLUDED_IMAGE_PATTERN =
-  /(?:wechat|weixin|weibo|douyin|tiktok|qr(?:code)?|qrcode|whatsapp|skype|contact|footer|sprite|tracker|tracking|pixel|lan\.gif|index_13\.jpg|index_14\.jpg)/i;
+const ALLOWED_EXTENSIONS = new Set([...IMAGE_EXTENSIONS, "mp4"]);
 const USER_AGENT =
   "BeburJapanMigration/1.0 (+https://www.bebur-jp.com)";
 const CONCURRENCY = 4;
 const REQUEST_TIMEOUT_MS = 30_000;
+const VIDEO_REQUEST_TIMEOUT_MS = 120_000;
 const PAGE_FAMILY_DEFINITIONS = [
   { route: "/", family: "home", sourcePath: "/en/" },
   { route: "/products", family: "product-index", sourcePath: "/en/list_37" },
@@ -45,10 +45,9 @@ const PAGE_FAMILY_DEFINITIONS = [
     sourcePath: "/en/list_46/254.html",
   },
   {
-    route: "/applications",
+    route: "/applications/industry-solutions",
     family: "application",
-    sourcePath: "/en/list_38",
-    assetSourcePaths: ["/en/list_52"],
+    sourcePath: "/en/list_52",
   },
   { route: "/insights", family: "insight", sourcePath: "/en/list_39" },
   { route: "/about/company-profile", family: "about", sourcePath: "/en/about_41" },
@@ -56,7 +55,6 @@ const PAGE_FAMILY_DEFINITIONS = [
     route: "/contact",
     family: "contact",
     sourcePath: "/en/list_40",
-    assetSourcePaths: ["/en/about_41"],
   },
 ];
 
@@ -80,7 +78,7 @@ function isTransientError(error) {
   );
 }
 
-async function fetchWithRetry(url) {
+async function fetchWithRetry(url, timeoutMs = REQUEST_TIMEOUT_MS) {
   let lastError;
 
   for (let attempt = 1; attempt <= 2; attempt += 1) {
@@ -88,7 +86,7 @@ async function fetchWithRetry(url) {
       const response = await fetch(url, {
         headers: { "user-agent": USER_AGENT },
         redirect: "follow",
-        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+        signal: AbortSignal.timeout(timeoutMs),
       });
 
       if (!response.ok) {
@@ -173,6 +171,7 @@ function extensionFor(sourceUrl, contentType) {
     ["image/avif", "avif"],
     ["image/svg+xml", "svg"],
     ["image/x-icon", "ico"],
+    ["video/mp4", "mp4"],
   ]);
   extension = extensionsByContentType.get(normalizedContentType);
   return extension && ALLOWED_EXTENSIONS.has(extension) ? extension : null;
@@ -208,17 +207,13 @@ function createPageFamilyManifest(sourceManifest, assetMap) {
     route,
     family,
     sourcePath,
-    assetSourcePaths = [],
   }) => {
     const page = pageBySourcePath.get(sourcePath);
     if (!page) throw new Error(`Missing source page for ${family}: ${sourcePath}`);
     const localAssets = [...new Set(
-      [sourcePath, ...assetSourcePaths].flatMap((assetSourcePath) =>
-        (pageBySourcePath.get(assetSourcePath)?.visualReferences ??
-          pageBySourcePath.get(assetSourcePath)?.images ?? [])
-          .map(({ src }) => assetMap[src])
-          .filter(Boolean)
-      ),
+      (page.visualReferences ?? page.images ?? [])
+        .map(({ src }) => assetMap[src])
+        .filter(Boolean),
     )].sort();
     if (localAssets.length === 0) {
       throw new Error(`No downloaded visual assets for ${family}: ${page.sourceUrl}`);
@@ -229,41 +224,32 @@ function createPageFamilyManifest(sourceManifest, assetMap) {
 
 async function downloadCandidate(record, index, total) {
   try {
-    const response = await fetchWithRetry(record.sourceUrl);
+    const requestedExtension = extensionFor(record.sourceUrl);
+    const response = await fetchWithRetry(
+      record.sourceUrl,
+      requestedExtension === "mp4" ? VIDEO_REQUEST_TIMEOUT_MS : REQUEST_TIMEOUT_MS,
+    );
     if (!isAllowedFinalImageUrl(response.url)) {
       throw new Error(`disallowed final image URL: ${response.url}`);
     }
     const buffer = Buffer.from(await response.arrayBuffer());
-    const dimensions = imageSize(buffer);
-
-    if (
-      !dimensions.width ||
-      !dimensions.height ||
-      dimensions.width < 16 ||
-      dimensions.height < 16
-    ) {
-      console.log(
-        `[${index + 1}/${total}] rejected-small ${record.sourceUrl} ` +
-          `(${dimensions.width ?? "?"}x${dimensions.height ?? "?"})`,
-      );
-      return { ...record, status: "rejected-small" };
-    }
-
     const extension = extensionFor(
       record.sourceUrl,
       response.headers.get("content-type"),
     );
     if (!extension) {
       throw new Error(
-        `unsupported image extension/content type: ${
+        `unsupported visual extension/content type: ${
           response.headers.get("content-type") ?? "unknown"
         }`,
       );
     }
 
+    const dimensions = IMAGE_EXTENSIONS.has(extension) ? imageSize(buffer) : null;
+
     console.log(
       `[${index + 1}/${total}] downloaded ${record.sourceUrl} ` +
-        `(${dimensions.width}x${dimensions.height})`,
+        `(${dimensions ? `${dimensions.width}x${dimensions.height}` : "video"})`,
     );
     return {
       ...record,
@@ -285,9 +271,7 @@ async function main() {
     considered: records.length,
     downloaded: 0,
     deDuplicated: 0,
-    rejectedSmall: 0,
     rejectedNonFirstParty: 0,
-    rejectedExcluded: 0,
     failed: 0,
   };
   const candidates = [];
@@ -295,10 +279,6 @@ async function main() {
   for (const record of records) {
     if (!isFirstPartyHttpImage(record.sourceUrl)) {
       totals.rejectedNonFirstParty += 1;
-      continue;
-    }
-    if (EXCLUDED_IMAGE_PATTERN.test(record.sourceUrl)) {
-      totals.rejectedExcluded += 1;
       continue;
     }
     candidates.push(record);
@@ -315,10 +295,6 @@ async function main() {
   const assetMap = {};
   const localUrlByHash = new Map();
   for (const result of downloaded) {
-    if (result.status === "rejected-small") {
-      totals.rejectedSmall += 1;
-      continue;
-    }
     if (result.status === "failed") {
       totals.failed += 1;
       continue;
@@ -363,11 +339,9 @@ async function main() {
   console.log(`  considered: ${totals.considered}`);
   console.log(`  downloaded: ${totals.downloaded}`);
   console.log(`  de-duplicated: ${totals.deDuplicated}`);
-  console.log(`  rejected-small: ${totals.rejectedSmall}`);
   console.log(
     `  rejected-nonfirst-party: ${totals.rejectedNonFirstParty}`,
   );
-  console.log(`  rejected-excluded: ${totals.rejectedExcluded}`);
   console.log(`  failed: ${totals.failed}`);
   console.log(`  local files: ${localUrlByHash.size}`);
   console.log(`  mapped source URLs: ${Object.keys(sortedAssetMap).length}`);

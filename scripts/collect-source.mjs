@@ -210,7 +210,7 @@ function collectVisualReferences($, sourceUrl) {
     references.set(src, reference);
   };
 
-  $("img[src], picture source[src], video[src]")
+  $("img[src], source[src], video[src]")
     .each((_, element) => add($(element).attr("src"), element.tagName));
   $("[srcset]").each((_, element) => {
     for (const src of extractSrcsetUrls($(element).attr("srcset") ?? "")) {
