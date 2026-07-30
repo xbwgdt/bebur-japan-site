@@ -11,6 +11,7 @@ import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getProduct, getProducts } from "@/lib/content";
 import {
   canonicalUrl,
+  isProductCategory,
   productCategoryLabels,
   productRoute,
 } from "@/lib/routes";
@@ -29,13 +30,11 @@ export function resolveProductForRoute(
   category: string,
   slug: string,
 ): Product | undefined {
-  if (
-    !Object.prototype.hasOwnProperty.call(productCategoryLabels, category)
-  ) {
+  if (!isProductCategory(category)) {
     return undefined;
   }
 
-  return getProduct(category as ProductCategory, slug);
+  return getProduct(category, slug);
 }
 
 export function generateStaticParams(): Array<{

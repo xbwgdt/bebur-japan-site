@@ -11,7 +11,7 @@ import { SourceHero } from "@/components/source-faithful/source-hero";
 import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getArticle, getArticles, getProducts } from "@/lib/content";
-import { canonicalUrl } from "@/lib/routes";
+import { canonicalUrl, insightRoute } from "@/lib/routes";
 import type { Article, Product } from "@/lib/types";
 
 type InsightRouteParams = {
@@ -60,7 +60,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const canonical = canonicalUrl(article.route);
+  const canonical = canonicalUrl(insightRoute(article.slug));
   const image = article.images[0];
 
   return {

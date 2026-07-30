@@ -18,6 +18,7 @@
     "test": "vitest",
     "test:run": "vitest run",
     "audit:content": "node scripts/audit-content.mjs",
+    "audit:static": "node scripts/audit-static-assets.mjs",
     "deploy:cloudflare": "npm exec --yes --package=wrangler@4.115.0 -- wrangler pages deploy"
   },
   "dependencies": {

@@ -21,6 +21,7 @@ export type SanityProduct = {
   features: string[];
   applications: string[];
   specifications: Array<{ label: string; value: string }>;
+  relatedProductSlugs?: string[];
   coverImage?: SanityImage;
   gallery?: SanityImage[];
   seoTitle: string;
@@ -34,6 +35,7 @@ export type SanityNews = {
   publishedAt: string;
   summary: string;
   body: unknown[];
+  relatedProductSlugs?: string[];
   coverImage?: SanityImage;
   gallery?: SanityImage[];
   seoTitle: string;
@@ -65,6 +67,7 @@ const productProjection = `{
   features,
   applications,
   specifications,
+  "relatedProductSlugs": relatedProducts[]->slug.current,
   coverImage {
     ...,
     asset->{_ref, url}
@@ -84,6 +87,7 @@ const newsProjection = `{
   publishedAt,
   summary,
   body,
+  "relatedProductSlugs": relatedProducts[]->slug.current,
   coverImage {
     ...,
     asset->{_ref, url}

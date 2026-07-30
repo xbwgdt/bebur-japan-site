@@ -10,10 +10,23 @@ export const productCategoryLabels: Record<ProductCategory, string> = {
   "flow-level": "流量計・液位計",
 };
 
+export function isProductCategory(
+  category: string,
+): category is ProductCategory {
+  return Object.prototype.hasOwnProperty.call(
+    productCategoryLabels,
+    category,
+  );
+}
+
 export function productRoute(
   product: Pick<Product, "category" | "slug">,
 ): string {
   return `/products/${product.category}/${product.slug}`;
+}
+
+export function insightRoute(slug: string): string {
+  return `/insights/${slug}`;
 }
 
 export function canonicalUrl(route: string): string {

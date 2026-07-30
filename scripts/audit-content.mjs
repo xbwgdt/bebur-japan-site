@@ -240,6 +240,7 @@ let robotsPolicy;
 let liveSiteConfig;
 let organizationJsonLd;
 let auditSeoOutputs;
+let buildContentSource;
 try {
   const [
     sitemapModule,
@@ -247,18 +248,21 @@ try {
     constantsModule,
     layoutModule,
     seoAuditModule,
+    contentModule,
   ] = await Promise.all([
     moduleServer.ssrLoadModule("/app/sitemap.ts"),
     moduleServer.ssrLoadModule("/app/robots.ts"),
     moduleServer.ssrLoadModule("/lib/constants.ts"),
     moduleServer.ssrLoadModule("/app/layout.tsx"),
     moduleServer.ssrLoadModule("/lib/seo-output-audit.ts"),
+    moduleServer.ssrLoadModule("/lib/content.ts"),
   ]);
   sitemapEntries = sitemapModule.default();
   robotsPolicy = robotsModule.default();
   liveSiteConfig = constantsModule.siteConfig;
   organizationJsonLd = layoutModule.organizationJsonLd;
   auditSeoOutputs = seoAuditModule.auditSeoOutputs;
+  buildContentSource = contentModule.getContentSource();
 } finally {
   await moduleServer.close();
 }
@@ -440,6 +444,7 @@ const productCategoryCounts = Object.fromEntries(
 );
 
 console.log(`source record count: ${sourceRecords.length}`);
+console.log(`build content source: ${buildContentSource}`);
 console.log(`represented source URL count: ${representedSourceUrls.size}`);
 console.log(`canonical route count: ${routeMappings.size}`);
 console.log(`sitemap canonical URL count: ${sitemapUrls.length}`);

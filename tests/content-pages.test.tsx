@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { cleanup, render, screen, within } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import AboutDetailPage from "@/app/about/[slug]/page";
 import ApplicationDetailPage, {
@@ -18,6 +18,7 @@ import InsightsPage, {
   orderArticlesByDate,
 } from "@/app/insights/page";
 import { ContentSections } from "@/components/content-sections";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import {
   getAboutPage,
   getApplications,
@@ -66,6 +67,96 @@ const expectedCaseSlugs = [
   "scm530-power-plant-dosing",
   "scm530-jiangsu-power-plant",
 ] as const;
+
+describe("build content source", () => {
+  it("uses deterministic local content without a Sanity project ID", async () => {
+    vi.stubEnv("NEXT_PUBLIC_SANITY_PROJECT_ID", "");
+    vi.resetModules();
+
+    try {
+      const { getContentSource } = await import("@/lib/content");
+
+      expect(getContentSource()).toBe("local");
+      expect(getContentSource()).toBe("local");
+    } finally {
+      vi.unstubAllEnvs();
+      vi.resetModules();
+    }
+  });
+
+  it("normalizes available public Sanity content by family", async () => {
+    const { createContentSnapshot } = await import("@/lib/content");
+    const sanityImage =
+      "https://cdn.sanity.io/images/project/production/bt8500.jpg";
+
+    const snapshot = createContentSnapshot({
+      sanityConfigured: true,
+      sanityProducts: [
+        {
+          _id: "product-bt8500",
+          category: "cleanliness",
+          title: "Sanity 清浄度モニター",
+          slug: "bt8500",
+          model: "BT8500",
+          summary: "Sanity で公開された日本語の製品概要です。",
+          body: [
+            {
+              _type: "block",
+              style: "h2",
+              children: [{ _type: "span", text: "Sanity 製品説明" }],
+            },
+            {
+              _type: "block",
+              style: "normal",
+              children: [
+                {
+                  _type: "span",
+                  text: "公開データだけを ",
+                },
+                {
+                  _type: "span",
+                  text: "静的ページへ反映します。",
+                },
+              ],
+            },
+          ],
+          features: ["公開済みの特長"],
+          applications: ["公開済みの用途"],
+          specifications: [{ label: "測定方式", value: "Sanity" }],
+          coverImage: {
+            alt: "Sanity に登録した BT8500",
+            asset: { url: sanityImage },
+          },
+          gallery: [],
+          seoTitle: "Sanity 清浄度モニター 製品情報",
+          seoDescription:
+            "Sanity で公開された清浄度モニターの日本語製品情報です。",
+        },
+      ],
+      sanityNews: [],
+    });
+
+    expect(snapshot.source).toBe("sanity");
+    expect(snapshot.products).toHaveLength(1);
+    expect(snapshot.products[0]).toMatchObject({
+      category: "cleanliness",
+      description: "Sanity で公開された日本語の製品概要です。",
+      route: "/products/cleanliness/bt8500",
+      title: "Sanity 清浄度モニター",
+    });
+    expect(snapshot.products[0]?.images).toEqual([
+      { alt: "Sanity に登録した BT8500", src: sanityImage },
+    ]);
+    expect(snapshot.products[0]?.sections).toEqual([
+      {
+        heading: "Sanity 製品説明",
+        paragraphs: ["公開データだけを 静的ページへ反映します。"],
+      },
+    ]);
+    expect(snapshot.articles).toHaveLength(17);
+    expect(resolveSourceMediaPath(sanityImage)).toBe(sanityImage);
+  });
+});
 
 function expectLocalizedRenderedImages(container: HTMLElement): void {
   const images = Array.from(container.querySelectorAll("img"));
