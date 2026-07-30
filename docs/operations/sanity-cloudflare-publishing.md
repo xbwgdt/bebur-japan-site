@@ -35,7 +35,7 @@ After the Git-connected Pages build is working:
 
 1. In the Pages project, open **Settings > Builds** and choose **Add deploy hook**. Name it `sanity-production-publish` and choose the same production branch configured above. Copy the generated hook URL to a password manager or the Sanity webhook form only.
 2. In the Sanity project settings, open **API > Webhooks** and add a webhook named `cloudflare-pages-production`. Set its URL to the Pages deploy-hook URL, its dataset to `production`, and its method to `POST`.
-3. Trigger only published content changes: leave drafts and versions disabled. Use a narrow filter for the documents that affect the website, for example `_type in ["product", "application", "article", "siteSettings", "page"]`, and select create, update, and delete. Do not send the full document body unless a future receiver needs it; the Pages hook only needs the POST trigger.
+3. Trigger only published content changes: leave drafts and versions disabled. Use the filter `_type in ["product", "news", "siteSettings"]`, which matches every document type in the deployed Sanity schema, and select create, update, and delete. Do not send the full document body unless a future receiver needs it; the Pages hook only needs the POST trigger.
 4. Publish one non-sensitive test update. Confirm a new Pages build begins with the deploy-hook source, its build succeeds, and the changed page appears on the production URL. Revert the test update if it was not intended to remain public.
 
 The deploy-hook URL acts as a credential: anyone with it can request production builds. Restrict access, rotate it by deleting and recreating the hook if exposed, and never commit it. Sanity webhooks normally ignore drafts, preventing a rebuild for every edit.
@@ -46,7 +46,7 @@ Invite people only after the owner supplies their email addresses and approves t
 
 - GitHub: repository access appropriate to code review and branch protection.
 - Cloudflare: the least Pages/domain role that permits the person's deployment or rollback duties.
-- Sanity: an Editor role for normal content work; reserve Administrator for project, webhook, and membership changes.
+- Sanity: Administrator access only; do not assign Editor access.
 
 Record the owner, invited address, role, system, and approval in the team's access record. Remove access when the role ends. Do not transmit deploy-hook URLs in invitations.
 

@@ -52,6 +52,25 @@ describe("Cloudflare Pages static export", () => {
     );
   });
 
+  it("documents the actual webhook types and Administrator-only Sanity access", () => {
+    const runbook = readProjectFile(
+      "docs/operations/sanity-cloudflare-publishing.md",
+    );
+
+    expect(runbook).toContain(
+      '_type in ["product", "news", "siteSettings"]',
+    );
+    expect(runbook).not.toContain(
+      '_type in ["product", "application", "article", "siteSettings", "page"]',
+    );
+    expect(runbook).toMatch(
+      /Sanity:\s+Administrator access only; do not assign Editor access\./,
+    );
+    expect(runbook).not.toMatch(
+      /Sanity:.*Editor role for normal content work/,
+    );
+  });
+
   it("removes Railway-only deployment files", () => {
     expect(existsSync(resolve(process.cwd(), "Dockerfile"))).toBe(false);
     expect(existsSync(resolve(process.cwd(), ".dockerignore"))).toBe(false);
