@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   contentType as iconContentType,
+  dynamic as iconDynamic,
   size as iconSize,
 } from "../app/icon";
 import RootLayout, {
@@ -15,12 +16,13 @@ import {
   alt as openGraphAlt,
   contentType as openGraphContentType,
   default as OpenGraphImage,
+  dynamic as openGraphDynamic,
   openGraphBackgroundPath,
   openGraphImageText,
   size as openGraphSize,
 } from "../app/opengraph-image";
-import robots from "../app/robots";
-import sitemap from "../app/sitemap";
+import robots, { dynamic as robotsDynamic } from "../app/robots";
+import sitemap, { dynamic as sitemapDynamic } from "../app/sitemap";
 import {
   generateMetadata as generateAboutMetadata,
   generateStaticParams as generateAboutStaticParams,
@@ -164,6 +166,8 @@ describe("production SEO metadata routes", () => {
     expect(policy.sitemap).toBe(
       "https://www.bebur-jp.com/sitemap.xml",
     );
+    expect(robotsDynamic).toBe("force-static");
+    expect(sitemapDynamic).toBe("force-static");
   });
 
   it("rejects broken live sitemap and robots output in the release audit", () => {
@@ -307,6 +311,8 @@ describe("production SEO metadata routes", () => {
 
     expect(iconSize).toEqual({ width: 64, height: 64 });
     expect(iconContentType).toBe("image/png");
+    expect(iconDynamic).toBe("force-static");
+    expect(openGraphDynamic).toBe("force-static");
   });
 
   it(

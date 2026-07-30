@@ -8,10 +8,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -H 0.0.0.0",
+    "start": "npm exec --yes --package=wrangler@4.115.0 -- wrangler pages dev",
     "test": "vitest",
     "test:run": "vitest run",
-    "audit:content": "node scripts/audit-content.mjs"
+    "audit:content": "node scripts/audit-content.mjs",
+    "deploy:cloudflare": "npm exec --yes --package=wrangler@4.115.0 -- wrangler pages deploy"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.12",

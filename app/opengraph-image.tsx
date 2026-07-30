@@ -2,6 +2,8 @@ import { readFile } from "node:fs/promises";
 
 import { ImageResponse } from "next/og";
 
+export const dynamic = "force-static";
+
 export const alt =
   "Bebur Japan｜水質分析・ガス検知の精密ソリューション";
 export const size = {
