@@ -38,6 +38,20 @@ describe("Cloudflare Pages static export", () => {
     });
   });
 
+  it("documents the public Sanity build variables used by the static site", () => {
+    const environmentTemplate = readProjectFile(".env.example");
+
+    expect(environmentTemplate).toMatch(
+      /^NEXT_PUBLIC_SANITY_PROJECT_ID=$/m,
+    );
+    expect(environmentTemplate).toMatch(
+      /^NEXT_PUBLIC_SANITY_DATASET=production$/m,
+    );
+    expect(environmentTemplate).toMatch(
+      /^NEXT_PUBLIC_SANITY_API_VERSION=2025-02-19$/m,
+    );
+  });
+
   it("removes Railway-only deployment files", () => {
     expect(existsSync(resolve(process.cwd(), "Dockerfile"))).toBe(false);
     expect(existsSync(resolve(process.cwd(), ".dockerignore"))).toBe(false);
