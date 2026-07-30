@@ -70,6 +70,18 @@ describe("Japanese public-text validation", () => {
     );
   });
 
+  it("rejects Chinese-only Han text containing a Japanese middle dot", () => {
+    expect(validateJapaneseText("纯中文・产品标题")).toBe(
+      "请输入至少包含一个日文平假名或片假名的内容",
+    );
+  });
+
+  it("rejects kana-block punctuation and iteration marks without letters", () => {
+    expect(validateJapaneseText("・ーゝゞヽヾ")).toBe(
+      "请输入至少包含一个日文平假名或片假名的内容",
+    );
+  });
+
   it("accepts Japanese text containing kana, Han, and model punctuation", () => {
     expect(validateJapaneseText("BT-8200 日本向けコールドプレート液冷装置")).toBe(
       true,
