@@ -2,6 +2,9 @@
   "name": "bebur-japanese-site",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "sanity"
+  ],
   "engines": {
     "node": ">=22 <23"
   },
@@ -9,12 +12,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "npm exec --yes --package=wrangler@4.115.0 -- wrangler pages dev",
+    "sanity:dev": "npm --prefix sanity run dev",
+    "sanity:build": "npm --prefix sanity run build",
+    "sanity:typecheck": "npm --prefix sanity run typecheck",
     "test": "vitest",
     "test:run": "vitest run",
     "audit:content": "node scripts/audit-content.mjs",
     "deploy:cloudflare": "npm exec --yes --package=wrangler@4.115.0 -- wrangler pages deploy"
   },
   "dependencies": {
+    "@sanity/client": "^7.26.0",
     "@tailwindcss/postcss": "^4.1.12",
     "cheerio": "^1.1.2",
     "lucide-react": "^0.539.0",

@@ -4,3 +4,8 @@ node_modules/
 .next/
 out/
 .wrangler/
+sanity/dist/
+sanity/.sanity/
+.env
+.env.local
+.env.*.local
