@@ -11,6 +11,7 @@ import ProductDetailPage from "@/app/products/[category]/[slug]/page";
 import { ProductCard } from "@/components/product-card";
 import { ProductExplorer } from "@/components/product-explorer";
 import { getProduct, getProducts } from "@/lib/content";
+import { siteConfig } from "@/lib/constants";
 import { productCategoryLabels, productRoute } from "@/lib/routes";
 
 afterEach(cleanup);
@@ -19,6 +20,18 @@ const products = getProducts();
 
 function renderExplorer() {
   return render(<ProductExplorer products={products} />);
+}
+
+function expectLocalizedRenderedImages(container: HTMLElement): void {
+  const images = Array.from(container.querySelectorAll("img"));
+
+  expect(images.length).toBeGreaterThan(0);
+  for (const image of images) {
+    const source = decodeURIComponent(image.getAttribute("src") ?? "");
+
+    expect(source).toMatch(/\/(?:source-media|media)\//);
+    expect(source).not.toMatch(/\/(?:products|applications)\//);
+  }
 }
 
 describe("ProductExplorer", () => {
@@ -157,12 +170,13 @@ describe("product cards and detail content", () => {
     const product = getProduct("cleanliness", "bt8500");
     expect(product).toBeDefined();
 
-    render(<ProductCard product={product!} />);
+    const { container } = render(<ProductCard product={product!} />);
 
     const image = screen.getByRole("img", { name: product!.images[0].alt });
     expect(decodeURIComponent(image.getAttribute("src") ?? "")).toContain(
-      product!.images[0].src,
+      "/source-media/",
     );
+    expectLocalizedRenderedImages(container);
     expect(
       screen.getByRole("link", { name: "詳細を見る" }).getAttribute("href"),
     ).toBe(productRoute(product!));
@@ -225,9 +239,7 @@ describe("home product discovery", () => {
   it("uses the captured source hero image and Japanese source hierarchy", () => {
     const { container } = render(<HomePage />);
     const sourceHero = screen.getByTestId("source-hero");
-    const image = within(sourceHero).getByRole("img", {
-      name: "水質とガスを、より確かに。",
-    });
+    const image = sourceHero.querySelector("img");
 
     expect(
       screen.getByRole("heading", {
@@ -235,9 +247,16 @@ describe("home product discovery", () => {
         level: 1,
       }),
     ).toBeTruthy();
-    expect(decodeURIComponent(image.getAttribute("src") ?? "")).toContain(
+    expect(image?.getAttribute("alt")).toBe("");
+    expect(
+      within(sourceHero).queryByRole("img", {
+        name: "水質とガスを、より確かに。",
+      }),
+    ).toBeNull();
+    expect(decodeURIComponent(image?.getAttribute("src") ?? "")).toContain(
       "/source-media/1761791363673595-08e6a0255dfd817e.jpg",
     );
+    expectLocalizedRenderedImages(container);
     expect(
       container.querySelectorAll('[data-testid="source-card-grid"]'),
     ).toHaveLength(3);
@@ -255,19 +274,17 @@ describe("home product discovery", () => {
   it("renders the product family banner and source catalog landmark", () => {
     const { container } = render(<ProductsPage />);
     const sourceHero = screen.getByTestId("source-hero");
-    const image = within(sourceHero).getByRole("img", {
-      name: "製品情報",
-    });
+    const image = sourceHero.querySelector("img");
 
     expect(
       screen.getByRole("heading", { name: "製品情報", level: 1 }),
     ).toBeTruthy();
-    expect(decodeURIComponent(image.getAttribute("src") ?? "")).toContain(
+    expect(image?.getAttribute("alt")).toBe("");
+    expect(decodeURIComponent(image?.getAttribute("src") ?? "")).toContain(
       "/source-media/1762147356906250-b3ac3b47b4049a96.jpg",
     );
-    expect(
-      container.querySelector('[data-source-variant="products"]'),
-    ).not.toBeNull();
+    expect(screen.getByRole("region", { name: "製品一覧" })).toBeTruthy();
+    expectLocalizedRenderedImages(container);
   });
 
   it("shows the five reviewed categories and required section headings", () => {
@@ -301,6 +318,38 @@ describe("home product discovery", () => {
     expect(container.innerHTML).not.toMatch(
       /WeChat|微信|Douyin|抖音|ICP|中国営業|sales@bebur|400-\d/i,
     );
+  });
+
+  it("follows the captured homepage sequence and preserves Japanese actions", () => {
+    render(<HomePage />);
+
+    const sectionMarkers = [
+      screen.getByText("PRODUCT CENTER"),
+      screen.getByText("ABOUT US"),
+      screen.getByText("INDUSTRY APPLICATIONS"),
+      screen.getByText("NEWS CENTER"),
+    ];
+
+    for (let index = 1; index < sectionMarkers.length; index += 1) {
+      expect(
+        sectionMarkers[index - 1].compareDocumentPosition(
+          sectionMarkers[index],
+        ) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    }
+
+    const hero = screen.getByTestId("source-hero");
+    expect(
+      within(hero)
+        .getByRole("link", { name: "製品情報を見る" })
+        .getAttribute("href"),
+    ).toBe("/products");
+    expect(
+      within(hero)
+        .getByRole("link", { name: "お問い合わせ" })
+        .getAttribute("href"),
+    ).toBe("/contact");
+    expect(within(hero).getByText(siteConfig.distributorLabel)).toBeTruthy();
   });
 
   it("does not globally clip document horizontal overflow", async () => {

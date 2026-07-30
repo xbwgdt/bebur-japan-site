@@ -39,6 +39,7 @@ export default function ProductsPage(): React.ReactElement {
       <section className="section source-section product-index">
         <div className="site-container">
           <SourceCardGrid
+            ariaLabel="製品一覧"
             variant="products"
             cards={
               <div className="source-card-grid__catalog">

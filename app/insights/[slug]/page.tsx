@@ -8,6 +8,7 @@ import { ContentSections } from "@/components/content-sections";
 import { ProductCard } from "@/components/product-card";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getArticle, getArticles, getProducts } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
@@ -75,7 +76,7 @@ export async function generateMetadata({
       url: canonical,
       publishedTime: article.publishedAt,
       images: image
-        ? [{ url: image.src, alt: image.alt }]
+        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
         : undefined,
     },
   };
@@ -129,6 +130,7 @@ export default async function InsightDetailPage({
         <div className="section source-section site-container content-detail__body">
           {article.images.length > 0 && (
             <SourceCardGrid
+              ariaLabel={`${article.title} 掲載画像`}
               variant="media"
               cards={article.images.map((image, index) => (
                 <figure key={`${image.src}-${index}`}>
@@ -137,7 +139,7 @@ export default async function InsightDetailPage({
                     height={720}
                     priority={index === 0}
                     sizes="(min-width: 64rem) 68rem, 100vw"
-                    src={image.src}
+                    src={resolveSourceMediaPath(image.src)}
                     width={1120}
                   />
                 </figure>
@@ -154,6 +156,7 @@ export default async function InsightDetailPage({
           <div className="site-container">
             <h2>関連製品</h2>
             <SourceCardGrid
+              ariaLabel="関連製品"
               variant="products"
               cards={relatedProducts.map((product) => (
                 <ProductCard

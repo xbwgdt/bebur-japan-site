@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { productCategoryLabels, productRoute } from "@/lib/routes";
 import type { Product } from "@/lib/types";
 
@@ -22,7 +23,7 @@ export function ProductCard({
             height={420}
             priority={priority}
             sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
-            src={image.src}
+            src={resolveSourceMediaPath(image.src)}
             width={560}
           />
         ) : (

@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ProductCard } from "@/components/product-card";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getProduct, getProducts } from "@/lib/content";
 import {
@@ -74,7 +75,7 @@ export async function generateMetadata({
       images: image
         ? [
             {
-              url: image.src,
+              url: resolveSourceMediaPath(image.src),
               alt: image.alt,
             },
           ]
@@ -191,7 +192,7 @@ export default async function ProductDetailPage({
                   height={620}
                   priority
                   sizes="(min-width: 64rem) 42vw, 100vw"
-                  src={image.src}
+                  src={resolveSourceMediaPath(image.src)}
                   width={760}
                 />
               ) : (
@@ -296,6 +297,7 @@ export default async function ProductDetailPage({
           <div className="site-container">
             <h2>関連製品</h2>
             <SourceCardGrid
+              ariaLabel="関連製品"
               variant="products"
               cards={related.map((relatedProduct) => (
                 <ProductCard

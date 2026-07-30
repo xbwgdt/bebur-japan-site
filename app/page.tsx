@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -7,8 +8,15 @@ import { ProductCard } from "@/components/product-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
-import { getApplication, getProduct, getProducts } from "@/lib/content";
+import {
+  getApplication,
+  getArticles,
+  getProduct,
+  getProducts,
+} from "@/lib/content";
+import { siteConfig } from "@/lib/constants";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
 import type { Application, Product, ProductCategory } from "@/lib/types";
 
@@ -71,6 +79,26 @@ const representativeProducts = [
   getProduct("flow-level", "msf8100"),
 ].filter((product): product is Product => product !== undefined);
 
+const featuredArticles = getArticles()
+  .toSorted((left, right) => {
+    const dateOrder = (right.publishedAt ?? "").localeCompare(
+      left.publishedAt ?? "",
+    );
+    return dateOrder || left.route.localeCompare(right.route, "ja");
+  })
+  .slice(0, 3);
+
+const japaneseDateFormatter = new Intl.DateTimeFormat("ja-JP", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+
+function formatJapaneseDate(date: string): string {
+  return japaneseDateFormatter.format(new Date(`${date}T00:00:00Z`));
+}
+
 export default function HomePage(): React.ReactElement {
   return (
     <SourceShell>
@@ -80,6 +108,17 @@ export default function HomePage(): React.ReactElement {
           image="/source-media/1761791363673595-08e6a0255dfd817e.jpg"
           summary="Beburの精密計測技術で、水処理、製造、医薬、液冷設備の安全と品質管理を支えます。"
           title="水質とガスを、より確かに。"
+          actions={
+            <>
+              <Link className="button button--accent" href="/products">
+                製品情報を見る
+              </Link>
+              <Link className="button button--light" href="/contact">
+                お問い合わせ
+              </Link>
+            </>
+          }
+          identity={siteConfig.distributorLabel}
         />
       </div>
 
@@ -89,12 +128,13 @@ export default function HomePage(): React.ReactElement {
       >
         <div className="site-container">
           <SectionHeading
-            eyebrow="PRODUCTS"
+            eyebrow="PRODUCT CENTER"
             title="計測課題から選べる製品ラインアップ"
             titleId="home-product-categories-title"
             description="5つの製品カテゴリーから、測定対象と現場の課題に合う製品をご覧いただけます。"
           />
           <SourceCardGrid
+            ariaLabel="製品カテゴリー"
             variant="categories"
             cards={categoryOrder.map((category, index) => {
               const count = getProducts(category).length;
@@ -115,6 +155,53 @@ export default function HomePage(): React.ReactElement {
               );
             })}
           />
+          <div className="source-home-featured">
+            <h3>カテゴリーを代表する製品</h3>
+            <p>各カテゴリーから代表的な5製品をご覧いただけます。</p>
+            <SourceCardGrid
+              ariaLabel="代表製品"
+              variant="products"
+              cards={representativeProducts.map((product, index) => (
+                <ProductCard
+                  key={`${product.category}-${product.slug}`}
+                  priority={index < 3}
+                  product={product}
+                />
+              ))}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="section source-section source-home-about"
+        aria-labelledby="home-about-title"
+      >
+        <div className="site-container source-home-about__layout">
+          <div className="source-home-about__media">
+            <Image
+              alt="Beburの水質分析・ガス検知技術"
+              height={760}
+              sizes="(min-width: 64rem) 48vw, 100vw"
+              src="/source-media/index-16-016907b8f93a0b2b.jpg"
+              width={1120}
+            />
+          </div>
+          <div className="source-home-about__content">
+            <SectionHeading
+              eyebrow="ABOUT US"
+              title="Beburについて"
+              titleId="home-about-title"
+              description="水質分析、ガス検知、清浄度測定の技術を磨き、産業現場の品質管理と安全を支える計測機器メーカーです。"
+            />
+            <p>
+              製品開発から各国の販売ネットワークまで、現場で継続して使える計測ソリューションを届けています。
+            </p>
+            <Link className="source-home-about__link" href="/about/overview">
+              企業情報を見る
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -140,11 +227,12 @@ export default function HomePage(): React.ReactElement {
       <section className="section source-section">
         <div className="site-container">
           <SectionHeading
-            eyebrow="APPLICATIONS"
+            eyebrow="INDUSTRY APPLICATIONS"
             title="多様な産業で、品質と安全を支える"
             description="液冷、上水処理、医療・製薬、電力の各現場に向けた計測構成をご紹介します。"
           />
           <SourceCardGrid
+            ariaLabel="産業別用途"
             variant="applications"
             cards={featuredApplications.map((application) => (
               <ApplicationCard
@@ -156,23 +244,54 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      <section className="section source-section representative-products">
+      <section
+        className="section source-section source-home-news"
+        aria-labelledby="home-news-title"
+      >
         <div className="site-container">
           <SectionHeading
-            eyebrow="SELECTED PRODUCTS"
-            title="カテゴリーを代表する製品"
-            description="各カテゴリーから代表的な5製品をご覧いただけます。"
+            eyebrow="NEWS CENTER"
+            title="ニュース・技術情報"
+            titleId="home-news-title"
+            description="計測方式の解説、製品情報、現場での活用に役立つ最新記事をご紹介します。"
           />
-          <SourceCardGrid
-            variant="products"
-            cards={representativeProducts.map((product, index) => (
-              <ProductCard
-                key={`${product.category}-${product.slug}`}
-                priority={index < 3}
-                product={product}
-              />
-            ))}
-          />
+          <div className="source-home-news__grid">
+            {featuredArticles.map((article) => {
+              const image = article.images[0];
+
+              return (
+                <article className="insight-card card" key={article.slug}>
+                  {image && (
+                    <div className="insight-card__media">
+                      <Image
+                        alt={image.alt}
+                        height={420}
+                        sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
+                        src={resolveSourceMediaPath(image.src)}
+                        width={640}
+                      />
+                    </div>
+                  )}
+                  <div className="insight-card__body">
+                    {article.publishedAt && (
+                      <time dateTime={article.publishedAt}>
+                        {formatJapaneseDate(article.publishedAt)}
+                      </time>
+                    )}
+                    <h3>{article.title}</h3>
+                    <p>{article.description}</p>
+                    <Link
+                      className="insight-card__link"
+                      href={article.route}
+                    >
+                      記事を読む
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
 

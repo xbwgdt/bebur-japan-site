@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import type { Application } from "@/lib/types";
 
 export function ApplicationCard({
@@ -18,7 +19,7 @@ export function ApplicationCard({
             alt={image.alt}
             height={360}
             sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
-            src={image.src}
+            src={resolveSourceMediaPath(image.src)}
             width={560}
           />
         ) : (

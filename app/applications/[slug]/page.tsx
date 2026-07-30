@@ -8,6 +8,7 @@ import { ContentSections } from "@/components/content-sections";
 import { ProductCard } from "@/components/product-card";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getApplication, getApplications, getProducts } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
@@ -76,7 +77,7 @@ export async function generateMetadata({
       type: "website",
       url: canonical,
       images: image
-        ? [{ url: image.src, alt: image.alt }]
+        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
         : undefined,
     },
   };
@@ -130,6 +131,7 @@ export default async function ApplicationDetailPage({
         <div className="section source-section site-container content-detail__body">
           {application.images.length > 0 && (
             <SourceCardGrid
+              ariaLabel={`${application.title} 掲載画像`}
               variant="media"
               cards={application.images.map((image, index) => (
                 <figure key={`${image.src}-${index}`}>
@@ -138,7 +140,7 @@ export default async function ApplicationDetailPage({
                     height={720}
                     priority={index === 0}
                     sizes="(min-width: 64rem) 68rem, 100vw"
-                    src={image.src}
+                    src={resolveSourceMediaPath(image.src)}
                     width={1120}
                   />
                 </figure>
@@ -158,6 +160,7 @@ export default async function ApplicationDetailPage({
               原文で関連付けられた製品情報です。
             </p>
             <SourceCardGrid
+              ariaLabel="推奨製品"
               variant="products"
               cards={recommendedProducts.map((product) => (
                 <ProductCard

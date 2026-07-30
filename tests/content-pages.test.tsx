@@ -67,6 +67,18 @@ const expectedCaseSlugs = [
   "scm530-jiangsu-power-plant",
 ] as const;
 
+function expectLocalizedRenderedImages(container: HTMLElement): void {
+  const images = Array.from(container.querySelectorAll("img"));
+
+  expect(images.length).toBeGreaterThan(0);
+  for (const image of images) {
+    const source = decodeURIComponent(image.getAttribute("src") ?? "");
+
+    expect(source).toMatch(/\/(?:source-media|media)\//);
+    expect(source).not.toMatch(/\/(?:products|applications)\//);
+  }
+}
+
 describe("ContentSections", () => {
   it("renders every reviewed paragraph and bullet in source order", () => {
     const sections = [
@@ -178,11 +190,18 @@ describe("application indexes and details", () => {
     );
     expect(application).toBeDefined();
 
-    render(
+    const { container } = render(
       await ApplicationDetailPage({
         params: Promise.resolve({ slug: application!.slug }),
       }),
     );
+
+    expect(
+      screen.getByRole("region", {
+        name: `${application!.title} 掲載画像`,
+      }),
+    ).toBeTruthy();
+    expectLocalizedRenderedImages(container);
 
     for (const section of application!.sections) {
       expect(
@@ -209,11 +228,13 @@ describe("application indexes and details", () => {
 
 describe("company pages", () => {
   it("distinguishes source-reviewed Bebur facts from the Japan distributor", async () => {
-    render(
+    const { container } = render(
       await AboutDetailPage({
         params: Promise.resolve({ slug: "company-profile" }),
       }),
     );
+    const aboutPage = getAboutPage("company-profile");
+    expect(aboutPage).toBeDefined();
 
     const brandSection = screen
       .getByRole("heading", { name: "Beburブランド・企業情報" })
@@ -224,6 +245,12 @@ describe("company pages", () => {
 
     expect(brandSection).toBeTruthy();
     expect(distributorSection).toBeTruthy();
+    expect(
+      screen.getByRole("region", {
+        name: `${aboutPage!.title} 掲載画像`,
+      }),
+    ).toBeTruthy();
+    expectLocalizedRenderedImages(container);
     expect(
       within(distributorSection as HTMLElement).getByText(
         "Bebur 日本総代理店｜新樹産業株式会社",
@@ -286,6 +313,12 @@ describe("insight indexes and details", () => {
     const time = container.querySelector("time");
     expect(time?.getAttribute("datetime")).toBe("2026-02-27");
     expect(time?.textContent).toBe("2026年2月27日");
+    expect(
+      screen.getByRole("region", {
+        name: `${article!.title} 掲載画像`,
+      }),
+    ).toBeTruthy();
+    expectLocalizedRenderedImages(container);
     for (const section of article!.sections) {
       expect(
         screen.getByRole("heading", { name: section.heading }),

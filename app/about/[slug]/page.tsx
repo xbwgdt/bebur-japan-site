@@ -7,6 +7,7 @@ import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getAboutPage, getAboutPages } from "@/lib/content";
 import { siteConfig } from "@/lib/constants";
@@ -56,7 +57,7 @@ export async function generateMetadata({
       type: "website",
       url: canonical,
       images: image
-        ? [{ url: image.src, alt: image.alt }]
+        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
         : undefined,
     },
   };
@@ -107,6 +108,7 @@ export default async function AboutDetailPage({
 
             {aboutPage.images.length > 0 && (
               <SourceCardGrid
+                ariaLabel={`${aboutPage.title} 掲載画像`}
                 variant="media"
                 cards={aboutPage.images.map((image, index) => (
                   <figure key={`${image.src}-${index}`}>
@@ -115,7 +117,7 @@ export default async function AboutDetailPage({
                       height={720}
                       priority={index === 0}
                       sizes="(min-width: 64rem) 46rem, 100vw"
-                      src={image.src}
+                      src={resolveSourceMediaPath(image.src)}
                       width={1120}
                     />
                   </figure>
