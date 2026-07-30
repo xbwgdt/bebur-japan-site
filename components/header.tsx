@@ -4,9 +4,9 @@ import { siteConfig } from "@/lib/constants";
 
 const navigationItems = [
   { href: "/", label: "ホーム" },
+  { href: "/about/company-profile", label: "企業情報" },
   { href: "/products", label: "製品情報" },
   { href: "/applications", label: "導入分野・事例" },
-  { href: "/about/company-profile", label: "企業情報" },
   { href: "/insights", label: "ニュース・技術情報" },
   { href: "/contact", label: "お問い合わせ" },
 ] as const;
@@ -16,16 +16,7 @@ function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
     <ul className={mobile ? "mobile-nav__list" : "desktop-nav__list"}>
       {navigationItems.map((item) => (
         <li key={item.href}>
-          <Link
-            className={
-              item.href === "/contact"
-                ? mobile
-                  ? "mobile-nav__contact"
-                  : "button button--primary header__contact"
-                : undefined
-            }
-            href={item.href}
-          >
+          <Link href={item.href}>
             {item.label}
           </Link>
         </li>
@@ -36,17 +27,21 @@ function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
 
 export function Header(): React.ReactElement {
   return (
-    <header className="site-header">
-      <div className="distributor-strip">
-        <div className="site-container">{siteConfig.distributorLabel}</div>
-      </div>
-
+    <header
+      className="site-header source-header"
+      data-testid="source-header"
+    >
       <div className="site-header__main">
         <div className="site-container site-header__inner">
-          <Link className="wordmark" href="/" aria-label="BEBUR JAPAN">
-            <span className="wordmark__name">BEBUR</span>
-            <span className="wordmark__region">JAPAN</span>
-          </Link>
+          <div className="site-header__brand">
+            <Link className="wordmark" href="/" aria-label="BEBUR JAPAN">
+              <span className="wordmark__name">Bebur</span>
+              <span className="wordmark__region">JAPAN</span>
+            </Link>
+            <p className="site-header__distributor">
+              {siteConfig.distributorLabel}
+            </p>
+          </div>
 
           <nav className="desktop-nav" aria-label="メインナビゲーション">
             <NavigationLinks />

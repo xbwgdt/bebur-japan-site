@@ -6,6 +6,7 @@ import { cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
 import HomePage from "@/app/page";
+import ProductsPage from "@/app/products/page";
 import ProductDetailPage from "@/app/products/[category]/[slug]/page";
 import { ProductCard } from "@/components/product-card";
 import { ProductExplorer } from "@/components/product-explorer";
@@ -221,6 +222,54 @@ describe("product cards and detail content", () => {
 });
 
 describe("home product discovery", () => {
+  it("uses the captured source hero image and Japanese source hierarchy", () => {
+    const { container } = render(<HomePage />);
+    const sourceHero = screen.getByTestId("source-hero");
+    const image = within(sourceHero).getByRole("img", {
+      name: "水質とガスを、より確かに。",
+    });
+
+    expect(
+      screen.getByRole("heading", {
+        name: "水質とガスを、より確かに。",
+        level: 1,
+      }),
+    ).toBeTruthy();
+    expect(decodeURIComponent(image.getAttribute("src") ?? "")).toContain(
+      "/source-media/1761791363673595-08e6a0255dfd817e.jpg",
+    );
+    expect(
+      container.querySelectorAll('[data-testid="source-card-grid"]'),
+    ).toHaveLength(3);
+    expect(
+      container.querySelector('[data-source-variant="categories"]'),
+    ).not.toBeNull();
+    expect(
+      container.querySelector('[data-source-variant="applications"]'),
+    ).not.toBeNull();
+    expect(
+      container.querySelector('[data-source-variant="products"]'),
+    ).not.toBeNull();
+  });
+
+  it("renders the product family banner and source catalog landmark", () => {
+    const { container } = render(<ProductsPage />);
+    const sourceHero = screen.getByTestId("source-hero");
+    const image = within(sourceHero).getByRole("img", {
+      name: "製品情報",
+    });
+
+    expect(
+      screen.getByRole("heading", { name: "製品情報", level: 1 }),
+    ).toBeTruthy();
+    expect(decodeURIComponent(image.getAttribute("src") ?? "")).toContain(
+      "/source-media/1762147356906250-b3ac3b47b4049a96.jpg",
+    );
+    expect(
+      container.querySelector('[data-source-variant="products"]'),
+    ).not.toBeNull();
+  });
+
   it("shows the five reviewed categories and required section headings", () => {
     const { container } = render(<HomePage />);
     const categorySection = screen.getByRole("region", {

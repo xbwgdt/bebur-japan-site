@@ -6,6 +6,9 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
 import { ProductCard } from "@/components/product-card";
+import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getApplication, getApplications, getProducts } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
 import type { Application, Product } from "@/lib/types";
@@ -96,9 +99,16 @@ export default async function ApplicationDetailPage({
   );
 
   return (
-    <>
+    <SourceShell>
       <article className="content-detail">
-        <header className="content-detail__hero">
+        <SourceHero
+          eyebrow="APPLICATION"
+          image="/source-media/1762161234430121-ff7959b79637fe02.jpg"
+          summary={application.description}
+          title={application.title}
+        />
+
+        <div className="source-breadcrumb-band">
           <div className="site-container">
             <Breadcrumbs
               items={[
@@ -109,26 +119,19 @@ export default async function ApplicationDetailPage({
                 { label: application.title },
               ]}
             />
-            <p className="page-hero__eyebrow">APPLICATION</p>
-            <h1>{application.title}</h1>
-            <p className="content-detail__description">
-              {application.description}
-            </p>
             {application.publishedAt && (
               <time dateTime={application.publishedAt}>
                 {formatJapaneseDate(application.publishedAt)}
               </time>
             )}
           </div>
-        </header>
+        </div>
 
-        <div className="section site-container content-detail__body">
+        <div className="section source-section site-container content-detail__body">
           {application.images.length > 0 && (
-            <div
-              className="content-detail__media-grid"
-              aria-label={`${application.title} 掲載画像`}
-            >
-              {application.images.map((image, index) => (
+            <SourceCardGrid
+              variant="media"
+              cards={application.images.map((image, index) => (
                 <figure key={`${image.src}-${index}`}>
                   <Image
                     alt={image.alt}
@@ -140,7 +143,7 @@ export default async function ApplicationDetailPage({
                   />
                 </figure>
               ))}
-            </div>
+            />
           )}
 
           <ContentSections sections={application.sections} />
@@ -148,29 +151,30 @@ export default async function ApplicationDetailPage({
       </article>
 
       {recommendedProducts.length > 0 && (
-        <section className="section related-products">
+        <section className="section source-section related-products">
           <div className="site-container">
             <h2>推奨製品</h2>
             <p className="related-products__description">
               原文で関連付けられた製品情報です。
             </p>
-            <div className="product-grid">
-              {recommendedProducts.map((product) => (
+            <SourceCardGrid
+              variant="products"
+              cards={recommendedProducts.map((product) => (
                 <ProductCard
                   key={`${product.category}-${product.slug}`}
                   product={product}
                 />
               ))}
-            </div>
+            />
           </div>
         </section>
       )}
 
-      <section className="section page-contact">
+      <section className="section source-section page-contact">
         <div className="site-container">
           <ContactCta compact subject={application.title} />
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }

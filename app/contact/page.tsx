@@ -2,6 +2,8 @@ import { Mail, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { SourceShell } from "@/components/source-faithful/source-shell";
 import { buildMailto, siteConfig } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/routes";
 
@@ -17,19 +19,21 @@ const inquiryMailto = buildMailto("Bebur 製品");
 
 export default function ContactPage(): React.ReactElement {
   return (
-    <>
-      <header className="page-hero contact-hero">
+    <SourceShell>
+      <SourceHero
+        eyebrow="CONTACT"
+        image="/source-media/1761894549371214-8c42894cc39f462b.jpg"
+        summary="日本国内の製品選定、仕様確認、お見積もり、アフターサービスのご相談を承ります。"
+        title="お問い合わせ"
+      />
+
+      <div className="source-breadcrumb-band">
         <div className="site-container">
           <Breadcrumbs items={[{ label: "お問い合わせ" }]} />
-          <p className="page-hero__eyebrow">CONTACT</p>
-          <h1>お問い合わせ</h1>
-          <p>
-            日本国内の製品選定、仕様確認、お見積もり、アフターサービスのご相談を承ります。
-          </p>
         </div>
-      </header>
+      </div>
 
-      <section className="section contact-page">
+      <section className="section source-section contact-page">
         <div className="site-container contact-page__grid">
           <article
             className="contact-panel surface"
@@ -57,7 +61,7 @@ export default function ContactPage(): React.ReactElement {
                 オンライン相談（メール）
               </a>
               <a className="button button--secondary" href={inquiryMailto}>
-                オンライン留言（メール）
+                メールでお問い合わせ
               </a>
             </div>
           </article>
@@ -80,6 +84,6 @@ export default function ContactPage(): React.ReactElement {
           </section>
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }

@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
+import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getAboutPage, getAboutPages } from "@/lib/content";
 import { siteConfig } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/routes";
@@ -72,9 +75,16 @@ export default async function AboutDetailPage({
   }
 
   return (
-    <>
+    <SourceShell>
       <article className="content-detail about-detail">
-        <header className="content-detail__hero">
+        <SourceHero
+          eyebrow="ABOUT BEBUR"
+          image="/source-media/1761830441866756-8fc7d7dafdaf5c8d.jpg"
+          summary={aboutPage.description}
+          title={aboutPage.title}
+        />
+
+        <div className="source-breadcrumb-band">
           <div className="site-container">
             <Breadcrumbs
               items={[
@@ -82,15 +92,10 @@ export default async function AboutDetailPage({
                 { label: aboutPage.title },
               ]}
             />
-            <p className="page-hero__eyebrow">ABOUT BEBUR</p>
-            <h1>{aboutPage.title}</h1>
-            <p className="content-detail__description">
-              {aboutPage.description}
-            </p>
           </div>
-        </header>
+        </div>
 
-        <div className="section site-container about-detail__layout">
+        <div className="section source-section site-container about-detail__layout">
           <section
             className="about-detail__brand"
             aria-labelledby="about-brand-title"
@@ -101,11 +106,9 @@ export default async function AboutDetailPage({
             </p>
 
             {aboutPage.images.length > 0 && (
-              <div
-                className="content-detail__media-grid"
-                aria-label={`${aboutPage.title} 掲載画像`}
-              >
-                {aboutPage.images.map((image, index) => (
+              <SourceCardGrid
+                variant="media"
+                cards={aboutPage.images.map((image, index) => (
                   <figure key={`${image.src}-${index}`}>
                     <Image
                       alt={image.alt}
@@ -117,7 +120,7 @@ export default async function AboutDetailPage({
                     />
                   </figure>
                 ))}
-              </div>
+              />
             )}
 
             <ContentSections sections={aboutPage.sections} />
@@ -139,11 +142,11 @@ export default async function AboutDetailPage({
         </div>
       </article>
 
-      <section className="section page-contact">
+      <section className="section source-section page-contact">
         <div className="site-container">
           <ContactCta compact subject={aboutPage.title} />
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }

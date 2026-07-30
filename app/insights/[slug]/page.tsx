@@ -6,6 +6,9 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
 import { ProductCard } from "@/components/product-card";
+import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getArticle, getArticles, getProducts } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
 import type { Article, Product } from "@/lib/types";
@@ -95,9 +98,16 @@ export default async function InsightDetailPage({
   );
 
   return (
-    <>
+    <SourceShell>
       <article className="content-detail insight-detail">
-        <header className="content-detail__hero">
+        <SourceHero
+          eyebrow="INSIGHT"
+          image="/source-media/1762133644310526-d4cf5bd0feadf444.jpg"
+          summary={article.description}
+          title={article.title}
+        />
+
+        <div className="source-breadcrumb-band">
           <div className="site-container">
             <Breadcrumbs
               items={[
@@ -108,26 +118,19 @@ export default async function InsightDetailPage({
                 { label: article.title },
               ]}
             />
-            <p className="page-hero__eyebrow">INSIGHT</p>
-            <h1>{article.title}</h1>
-            <p className="content-detail__description">
-              {article.description}
-            </p>
             {article.publishedAt && (
               <time dateTime={article.publishedAt}>
                 {formatJapaneseDate(article.publishedAt)}
               </time>
             )}
           </div>
-        </header>
+        </div>
 
-        <div className="section site-container content-detail__body">
+        <div className="section source-section site-container content-detail__body">
           {article.images.length > 0 && (
-            <div
-              className="content-detail__media-grid"
-              aria-label={`${article.title} 掲載画像`}
-            >
-              {article.images.map((image, index) => (
+            <SourceCardGrid
+              variant="media"
+              cards={article.images.map((image, index) => (
                 <figure key={`${image.src}-${index}`}>
                   <Image
                     alt={image.alt}
@@ -139,7 +142,7 @@ export default async function InsightDetailPage({
                   />
                 </figure>
               ))}
-            </div>
+            />
           )}
 
           <ContentSections sections={article.sections} />
@@ -147,26 +150,27 @@ export default async function InsightDetailPage({
       </article>
 
       {relatedProducts.length > 0 && (
-        <section className="section related-products">
+        <section className="section source-section related-products">
           <div className="site-container">
             <h2>関連製品</h2>
-            <div className="product-grid">
-              {relatedProducts.map((product) => (
+            <SourceCardGrid
+              variant="products"
+              cards={relatedProducts.map((product) => (
                 <ProductCard
                   key={`${product.category}-${product.slug}`}
                   product={product}
                 />
               ))}
-            </div>
+            />
           </div>
         </section>
       )}
 
-      <section className="section page-contact">
+      <section className="section source-section page-contact">
         <div className="site-container">
           <ContactCta compact subject={article.title} />
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }

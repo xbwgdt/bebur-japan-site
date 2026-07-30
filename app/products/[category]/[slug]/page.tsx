@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ProductCard } from "@/components/product-card";
+import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
+import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getProduct, getProducts } from "@/lib/content";
 import {
   canonicalUrl,
@@ -152,19 +154,21 @@ export default async function ProductDetailPage({
   const related = relatedProducts(product);
 
   return (
-    <>
-      <article className="product-detail">
-        <div className="product-detail__breadcrumb site-container">
-          <Breadcrumbs
-            items={[
-              { label: "製品情報", href: "/products" },
-              {
-                label: productCategoryLabels[product.category],
-                href: `/products/${product.category}`,
-              },
-              { label: product.title },
-            ]}
-          />
+    <SourceShell>
+      <article className="product-detail source-product-detail">
+        <div className="source-breadcrumb-band">
+          <div className="product-detail__breadcrumb site-container">
+            <Breadcrumbs
+              items={[
+                { label: "製品情報", href: "/products" },
+                {
+                  label: productCategoryLabels[product.category],
+                  href: `/products/${product.category}`,
+                },
+                { label: product.title },
+              ]}
+            />
+          </div>
         </div>
 
         <header className="product-detail__hero">
@@ -204,7 +208,7 @@ export default async function ProductDetailPage({
           </div>
         </header>
 
-        <div className="section site-container product-detail__content">
+        <div className="section source-section site-container product-detail__content">
           {product.principle && (
             <section className="product-detail__principle">
               <p>MEASUREMENT PRINCIPLE</p>
@@ -288,22 +292,23 @@ export default async function ProductDetailPage({
       </article>
 
       {related.length > 0 && (
-        <section className="section related-products">
+        <section className="section source-section related-products">
           <div className="site-container">
             <h2>関連製品</h2>
-            <div className="product-grid">
-              {related.map((relatedProduct) => (
+            <SourceCardGrid
+              variant="products"
+              cards={related.map((relatedProduct) => (
                 <ProductCard
                   key={`${relatedProduct.category}-${relatedProduct.slug}`}
                   product={relatedProduct}
                 />
               ))}
-            </div>
+            />
           </div>
         </section>
       )}
 
-      <section className="section page-contact">
+      <section className="section source-section page-contact">
         <div className="site-container">
           <ContactCta
             compact
@@ -311,6 +316,6 @@ export default async function ProductDetailPage({
           />
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }

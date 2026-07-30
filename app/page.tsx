@@ -3,9 +3,11 @@ import Link from "next/link";
 
 import { ApplicationCard } from "@/components/application-card";
 import { ContactCta } from "@/components/contact-cta";
-import { Hero } from "@/components/hero";
 import { ProductCard } from "@/components/product-card";
 import { SectionHeading } from "@/components/section-heading";
+import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getApplication, getProduct, getProducts } from "@/lib/content";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
 import type { Application, Product, ProductCategory } from "@/lib/types";
@@ -71,11 +73,18 @@ const representativeProducts = [
 
 export default function HomePage(): React.ReactElement {
   return (
-    <>
-      <Hero />
+    <SourceShell>
+      <div className="source-home-hero">
+        <SourceHero
+          eyebrow="WATER QUALITY & GAS DETECTION"
+          image="/source-media/1761791363673595-08e6a0255dfd817e.jpg"
+          summary="Beburの精密計測技術で、水処理、製造、医薬、液冷設備の安全と品質管理を支えます。"
+          title="水質とガスを、より確かに。"
+        />
+      </div>
 
       <section
-        className="section home-categories"
+        className="section source-section home-categories"
         aria-labelledby="home-product-categories-title"
       >
         <div className="site-container">
@@ -85,8 +94,9 @@ export default function HomePage(): React.ReactElement {
             titleId="home-product-categories-title"
             description="5つの製品カテゴリーから、測定対象と現場の課題に合う製品をご覧いただけます。"
           />
-          <div className="category-grid">
-            {categoryOrder.map((category, index) => {
+          <SourceCardGrid
+            variant="categories"
+            cards={categoryOrder.map((category, index) => {
               const count = getProducts(category).length;
 
               return (
@@ -104,11 +114,11 @@ export default function HomePage(): React.ReactElement {
                 </Link>
               );
             })}
-          </div>
+          />
         </div>
       </section>
 
-      <section className="section technology-section">
+      <section className="section source-section technology-section">
         <div className="site-container">
           <SectionHeading
             eyebrow="TECHNOLOGY"
@@ -127,48 +137,50 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section source-section">
         <div className="site-container">
           <SectionHeading
             eyebrow="APPLICATIONS"
             title="多様な産業で、品質と安全を支える"
             description="液冷、上水処理、医療・製薬、電力の各現場に向けた計測構成をご紹介します。"
           />
-          <div className="application-grid">
-            {featuredApplications.map((application) => (
+          <SourceCardGrid
+            variant="applications"
+            cards={featuredApplications.map((application) => (
               <ApplicationCard
                 application={application}
                 key={application.slug}
               />
             ))}
-          </div>
+          />
         </div>
       </section>
 
-      <section className="section representative-products">
+      <section className="section source-section representative-products">
         <div className="site-container">
           <SectionHeading
             eyebrow="SELECTED PRODUCTS"
             title="カテゴリーを代表する製品"
             description="各カテゴリーから代表的な5製品をご覧いただけます。"
           />
-          <div className="product-grid">
-            {representativeProducts.map((product, index) => (
+          <SourceCardGrid
+            variant="products"
+            cards={representativeProducts.map((product, index) => (
               <ProductCard
                 key={`${product.category}-${product.slug}`}
                 priority={index < 3}
                 product={product}
               />
             ))}
-          </div>
+          />
         </div>
       </section>
 
-      <section className="section home-contact">
+      <section className="section source-section home-contact">
         <div className="site-container">
           <ContactCta />
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }

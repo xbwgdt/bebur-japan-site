@@ -7,26 +7,23 @@ const defaultInquiryHref =
 
 const footerGroups = [
   {
-    title: "製品情報",
+    title: "クイックリンク",
     links: [
-      { href: "/products", label: "製品一覧" },
-      { href: "/products/water-quality", label: "水質分析計" },
-      { href: "/products/gas-detection", label: "ガス検知器" },
-      { href: "/products/cleanliness", label: "清浄度測定装置" },
-    ],
-  },
-  {
-    title: "導入分野・企業情報",
-    links: [
-      { href: "/applications", label: "導入分野・事例" },
       { href: "/about/company-profile", label: "企業情報" },
-    ],
-  },
-  {
-    title: "情報・お問い合わせ",
-    links: [
+      { href: "/products", label: "製品一覧" },
+      { href: "/applications", label: "導入分野・事例" },
       { href: "/insights", label: "ニュース・技術情報" },
       { href: "/contact", label: "お問い合わせ" },
+    ],
+  },
+  {
+    title: "製品情報",
+    links: [
+      { href: "/products/cleanliness", label: "清浄度測定装置" },
+      { href: "/products/dosing", label: "薬注制御装置" },
+      { href: "/products/water-quality", label: "水質分析計" },
+      { href: "/products/gas-detection", label: "ガス検知器" },
+      { href: "/products/flow-level", label: "流量計・液位計" },
     ],
   },
 ] as const;
@@ -35,24 +32,11 @@ export function Footer(): React.ReactElement {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="site-footer">
+    <footer
+      className="site-footer source-footer"
+      data-testid="source-footer"
+    >
       <div className="site-container site-footer__grid">
-        <div className="site-footer__identity">
-          <Link className="wordmark wordmark--footer" href="/" aria-label="BEBUR JAPAN">
-            <span className="wordmark__name">BEBUR</span>
-            <span className="wordmark__region">JAPAN</span>
-          </Link>
-          <p className="site-footer__distributor">
-            {siteConfig.distributorLabel}
-          </p>
-          <address className="site-footer__address">
-            <span>{siteConfig.postalCode}</span>
-            <span>{siteConfig.address}</span>
-            <a href={`tel:${siteConfig.phone}`}>{siteConfig.phone}</a>
-            <a href={defaultInquiryHref}>{siteConfig.email}</a>
-          </address>
-        </div>
-
         <nav className="site-footer__navigation" aria-label="フッターナビゲーション">
           {footerGroups.map((group) => (
             <div className="site-footer__group" key={group.title}>
@@ -67,6 +51,26 @@ export function Footer(): React.ReactElement {
             </div>
           ))}
         </nav>
+
+        <div className="site-footer__identity">
+          <Link
+            className="wordmark wordmark--footer"
+            href="/"
+            aria-label="BEBUR JAPAN"
+          >
+            <span className="wordmark__name">Bebur</span>
+            <span className="wordmark__region">JAPAN</span>
+          </Link>
+          <p className="site-footer__distributor">
+            {siteConfig.distributorLabel}
+          </p>
+          <address className="site-footer__address">
+            <span>{siteConfig.postalCode}</span>
+            <span>{siteConfig.address}</span>
+            <a href={`tel:${siteConfig.phone}`}>{siteConfig.phone}</a>
+            <a href={defaultInquiryHref}>{siteConfig.email}</a>
+          </address>
+        </div>
       </div>
 
       <div className="site-footer__legal">

@@ -18,9 +18,9 @@ afterEach(cleanup);
 
 const navigationItems = [
   { href: "/", label: "ホーム" },
+  { href: "/about/company-profile", label: "企業情報" },
   { href: "/products", label: "製品情報" },
   { href: "/applications", label: "導入分野・事例" },
-  { href: "/about/company-profile", label: "企業情報" },
   { href: "/insights", label: "ニュース・技術情報" },
   { href: "/contact", label: "お問い合わせ" },
 ] as const;
@@ -38,9 +38,10 @@ function expectExactNavigationItems(navigation: HTMLElement): void {
 }
 
 describe("shared Bebur Japan components", () => {
-  it("renders exactly six required items in each header navigation", () => {
+  it("renders the source header order without a language switch", () => {
     const { container } = render(createElement(Header));
 
+    expect(screen.getByTestId("source-header")).toBeTruthy();
     const desktopNavigation = screen.getByRole("navigation", {
       name: "メインナビゲーション",
     });
@@ -55,6 +56,33 @@ describe("shared Bebur Japan components", () => {
     expect(screen.getByText(siteConfig.distributorLabel)).toBeTruthy();
     const wordmark = screen.getByRole("link", { name: "BEBUR JAPAN" });
     expect(wordmark.getAttribute("href")).toBe("/");
+    expect(container.textContent).not.toMatch(/English|中文|言語/);
+  });
+
+  it("keeps source footer groups ahead of the approved Japan contact block", () => {
+    const { container } = render(createElement(Footer));
+
+    const footer = screen.getByTestId("source-footer");
+    const navigation = within(footer).getByRole("navigation", {
+      name: "フッターナビゲーション",
+    });
+    const address = within(footer).getByText(siteConfig.address);
+    const email = within(footer).getByRole("link", {
+      name: siteConfig.email,
+    });
+
+    expect(
+      footer.compareDocumentPosition(navigation) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      navigation.compareDocumentPosition(address) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(email.getAttribute("href")).toMatch(
+      /^mailto:info@newtree-i\.com\?subject=/,
+    );
+    expect(container.textContent).not.toMatch(/English|中文|言語/);
   });
 
   it("exports the exact default Japanese metadata", () => {
