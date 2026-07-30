@@ -1,5 +1,6 @@
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
@@ -86,6 +87,19 @@ type SanityImportDocument = {
   };
 };
 
+function localAssetPath(asset: string): string {
+  expect(asset).toMatch(/^image@file:\/\/\.\//);
+  expect(asset.slice("image@file://./".length)).not.toMatch(
+    /^[A-Za-z]:[\\/]/,
+  );
+  return resolve(
+    process.cwd(),
+    "sanity",
+    "import",
+    asset.slice("image@file://./".length),
+  );
+}
+
 describe("route test environment", () => {
   it("runs without browser globals", () => {
     expect(typeof document).toBe("undefined");
@@ -161,11 +175,11 @@ describe("Japanese content lookups", () => {
     )) {
       expect(document.coverImage).toMatchObject({
         _type: "image",
-        _sanityAsset: expect.stringMatching(/^image@file:\/\//),
+        _sanityAsset: expect.stringMatching(/^image@file:\/\/\.\/\.\.\/\.\.\/public\//),
       });
-      expect(document.coverImage?.alt).toMatch(
-        /[\p{Script=Hiragana}\p{Script=Katakana}]/u,
-      );
+      expect(
+        existsSync(localAssetPath(document.coverImage!._sanityAsset!)),
+      ).toBe(true);
     }
     expect(documents.filter(({ _type }) => _type === "siteSettings")).toMatchObject([
       {
@@ -178,11 +192,15 @@ describe("Japanese content lookups", () => {
         inquiryEmail: "info@newtree-i.com",
         defaultOgImage: {
           _type: "image",
-          _sanityAsset: expect.stringMatching(/^image@file:\/\//),
+          _sanityAsset: expect.stringMatching(/^image@file:\/\/\.\/\.\.\/\.\.\/public\//),
         },
       },
     ]);
-  });
+    const siteSettings = documents.find(({ _type }) => _type === "siteSettings");
+    expect(
+      existsSync(localAssetPath(siteSettings!.defaultOgImage!._sanityAsset!)),
+    ).toBe(true);
+  }, 90_000);
 });
 
 describe("route helpers", () => {

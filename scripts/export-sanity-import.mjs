@@ -1,11 +1,13 @@
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
+
+import { validateSanityImportDocuments } from "./validate-sanity-import.mjs";
 
 const root = process.cwd();
 const contentDirectory = path.join(root, "content", "ja");
 const destination = path.join(root, "sanity", "import", "initial.ndjson");
+const importDirectory = path.dirname(destination);
 const approvedInquiryEmail = "info@newtree-i.com";
 const approvedContact = {
   distributorName: "Bebur 日本総代理店",
@@ -76,14 +78,19 @@ const importedImage = (image, key) => {
   if (!existsSync(imagePath)) {
     throw new Error(`Missing local image for Sanity import: ${image.src}`);
   }
+  const relativePath = path
+    .relative(importDirectory, imagePath)
+    .split(path.sep)
+    .join("/");
+  if (!relativePath.startsWith("../../public/")) {
+    throw new Error(`Expected import image to stay within public: ${image.src}`);
+  }
 
   return {
     _key: key,
     _type: "image",
-    _sanityAsset: `image@${pathToFileURL(imagePath).href}`,
-    alt: /[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(image.alt)
-      ? image.alt
-      : `${image.alt}の製品画像`,
+    _sanityAsset: `image@file://./${relativePath}`,
+    alt: image.alt,
   };
 };
 
@@ -202,6 +209,17 @@ const documents = [
   ...insights.map((article) => buildNews(article, productsBySlug)),
   buildSiteSettings(contact),
 ].toSorted((left, right) => left._id.localeCompare(right._id, "en"));
+const validationMarkers = await validateSanityImportDocuments(documents);
+
+if (validationMarkers.length > 0) {
+  throw new Error(
+    `Sanity import validation failed:\n${validationMarkers
+      .map(({ message, path: markerPath }) =>
+        `${markerPath.join(".") || "document"}: ${message}`,
+      )
+      .join("\n")}`,
+  );
+}
 
 await mkdir(path.dirname(destination), { recursive: true });
 await writeFile(

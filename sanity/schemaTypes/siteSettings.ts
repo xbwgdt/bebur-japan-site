@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-import { validateJapaneseText } from "./validation";
+import { validateJapaneseProse, validateJapaneseText } from "./validation";
 
 const requiredJapaneseField = (
   name: string,
@@ -137,7 +137,7 @@ export default defineType({
         Rule.required()
           .min(50)
           .max(160)
-          .custom(validateJapaneseText)
+          .custom(validateJapaneseProse)
           .error("请输入 50 至 160 个字符的默认日文 SEO 描述"),
     }),
     defineField({

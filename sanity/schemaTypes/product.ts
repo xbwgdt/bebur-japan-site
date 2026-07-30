@@ -1,6 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-import { validateJapaneseText } from "./validation";
+import { validateJapaneseProse, validateJapaneseText } from "./validation";
 
 const validSlug = (value: unknown) => {
   const current =
@@ -99,7 +99,7 @@ export default defineType({
       validation: (Rule) =>
         Rule.required()
           .max(240)
-          .custom(validateJapaneseText)
+          .custom(validateJapaneseProse)
           .error("请输入 240 个字符以内的日文简要说明"),
     }),
     defineField({
@@ -236,7 +236,7 @@ export default defineType({
         Rule.required()
           .min(50)
           .max(160)
-          .custom(validateJapaneseText)
+          .custom(validateJapaneseProse)
           .error("请输入 50 至 160 个字符的日文 SEO 描述"),
     }),
     defineField({

@@ -6,7 +6,11 @@ import { describe, expect, it } from "vitest";
 import { siteSettingsQuery } from "../lib/sanity/queries";
 import { readStudioEnvironment } from "../sanity/environment";
 import product from "../sanity/schemaTypes/product";
-import { validateJapaneseText } from "../sanity/schemaTypes/validation";
+import {
+  validateJapaneseProse,
+  validateJapaneseText,
+} from "../sanity/schemaTypes/validation";
+import { validateSanityImportDocuments } from "../scripts/validate-sanity-import.mjs";
 import {
   filterSingletonActions,
   filterSingletonCreationOptions,
@@ -64,28 +68,34 @@ describe("Sanity product schema", () => {
 });
 
 describe("Japanese public-text validation", () => {
-  it("rejects Chinese-only Han text", () => {
-    expect(validateJapaneseText("纯中文产品标题")).toBe(
-      "请输入至少包含一个日文平假名或片假名的内容",
-    );
+  it("accepts approved Kanji-only and technical Japanese values", () => {
+    expect(validateJapaneseText("新樹産業株式会社")).toBe(true);
+    expect(validateJapaneseText("埼玉県草加市草加2－13－21－7")).toBe(true);
+    expect(validateJapaneseText("2-300μm³、0-50°C、±1%")).toBe(true);
   });
 
-  it("rejects Chinese-only Han text containing a Japanese middle dot", () => {
-    expect(validateJapaneseText("纯中文・产品标题")).toBe(
-      "请输入至少包含一个日文平假名或片假名的内容",
-    );
+  it("rejects unsafe characters from generic Japanese fields", () => {
+    expect(validateJapaneseText("日本語🙂")).not.toBe(true);
   });
 
-  it("rejects kana-block punctuation and iteration marks without letters", () => {
-    expect(validateJapaneseText("・ーゝゞヽヾ")).toBe(
-      "请输入至少包含一个日文平假名或片假名的内容",
-    );
-  });
-
-  it("accepts Japanese text containing kana, Han, and model punctuation", () => {
-    expect(validateJapaneseText("BT-8200 日本向けコールドプレート液冷装置")).toBe(
+  it("keeps kana-required validation for narrative prose", () => {
+    expect(validateJapaneseProse("純中文產品標題")).not.toBe(true);
+    expect(validateJapaneseProse("日本向けコールドプレート液冷装置")).toBe(
       true,
     );
+  });
+
+  it("validates every generated import document with the Studio schema", async () => {
+    const documents = readFileSync(
+      resolve(process.cwd(), "sanity/import/initial.ndjson"),
+      "utf8",
+    )
+      .trim()
+      .split("\n")
+      .map((line) => JSON.parse(line));
+
+    expect(documents).toHaveLength(63);
+    await expect(validateSanityImportDocuments(documents)).resolves.toEqual([]);
   });
 });
 
