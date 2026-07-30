@@ -223,8 +223,56 @@ const duplicateRoutes = [...routeMappings]
   .toSorted();
 
 const canonicalRoutes = [...routeMappings.keys()].toSorted();
-const sitemapUrls = canonicalRoutes.map((route) =>
-  new URL(route, `${canonicalOrigin}/`).toString(),
+
+const { createViteServer } = await import("vitest/node");
+const moduleServer = await createViteServer({
+  appType: "custom",
+  configFile: path.join(root, "vitest.config.ts"),
+  logLevel: "silent",
+  root,
+  server: {
+    middlewareMode: true,
+  },
+});
+
+let sitemapEntries;
+let robotsPolicy;
+let liveSiteConfig;
+let organizationJsonLd;
+let auditSeoOutputs;
+try {
+  const [
+    sitemapModule,
+    robotsModule,
+    constantsModule,
+    layoutModule,
+    seoAuditModule,
+  ] = await Promise.all([
+    moduleServer.ssrLoadModule("/app/sitemap.ts"),
+    moduleServer.ssrLoadModule("/app/robots.ts"),
+    moduleServer.ssrLoadModule("/lib/constants.ts"),
+    moduleServer.ssrLoadModule("/app/layout.tsx"),
+    moduleServer.ssrLoadModule("/lib/seo-output-audit.ts"),
+  ]);
+  sitemapEntries = sitemapModule.default();
+  robotsPolicy = robotsModule.default();
+  liveSiteConfig = constantsModule.siteConfig;
+  organizationJsonLd = layoutModule.organizationJsonLd;
+  auditSeoOutputs = seoAuditModule.auditSeoOutputs;
+} finally {
+  await moduleServer.close();
+}
+
+const seoOutputErrors = auditSeoOutputs({
+  canonicalOrigin,
+  canonicalRoutes,
+  sitemapEntries,
+  robotsPolicy,
+  siteConfig: liveSiteConfig,
+  organizationJsonLd,
+});
+const sitemapUrls = sitemapEntries.map(({ url }) =>
+  typeof url === "string" ? url : url?.toString() ?? "",
 );
 const duplicateSitemapUrls = sitemapUrls
   .filter((url, index) => sitemapUrls.indexOf(url) !== index)
@@ -232,35 +280,6 @@ const duplicateSitemapUrls = sitemapUrls
 const invalidSitemapUrls = sitemapUrls
   .filter((url) => !url.startsWith(`${canonicalOrigin}/`))
   .toSorted();
-const sitemapSource = readFileSync(
-  path.join(root, "app", "sitemap.ts"),
-  "utf8",
-);
-const sitemapImplementationErrors = [
-  !sitemapSource.includes("getAllRoutes()")
-    ? "app/sitemap.ts does not consume getAllRoutes()"
-    : undefined,
-  !sitemapSource.includes("siteConfig.origin")
-    ? "app/sitemap.ts does not consume siteConfig.origin"
-    : undefined,
-].filter(Boolean);
-
-const robotsSource = readFileSync(
-  path.join(root, "app", "robots.ts"),
-  "utf8",
-);
-const robotsImplementationErrors = [
-  !/allow\s*:\s*["']\/["']/.test(robotsSource)
-    ? "app/robots.ts does not explicitly allow /"
-    : undefined,
-  /disallow\s*:/.test(robotsSource)
-    ? "app/robots.ts unexpectedly disallows public routes"
-    : undefined,
-  !robotsSource.includes("siteConfig.origin") ||
-  !robotsSource.includes("/sitemap.xml")
-    ? "app/robots.ts does not reference the canonical sitemap"
-    : undefined,
-].filter(Boolean);
 
 const aliasMappings = contentEntries
   .flatMap(({ file, record }) =>
@@ -321,23 +340,6 @@ const forbiddenPublicSourceMatches = publicSourceEntries.flatMap(
     const match = source.match(forbiddenContactPattern);
     return match ? [`${file} -> ${match[0]}`] : [];
   },
-);
-
-const constantsSource = readFileSync(
-  path.join(root, "lib", "constants.ts"),
-  "utf8",
-);
-const requiredDistributorLiterals = [
-  canonicalOrigin,
-  "Bebur 日本総代理店｜新樹産業株式会社",
-  "新樹産業株式会社",
-  "〒340-0043",
-  "埼玉県草加市草加2－13－21－7",
-  "080-5189-8663",
-  "info@newtree-i.com",
-];
-const missingDistributorLiterals = requiredDistributorLiterals.filter(
-  (literal) => !constantsSource.includes(literal),
 );
 
 const languageSwitchPattern =
@@ -455,15 +457,10 @@ printList(
   "forbidden public-source contact matches",
   forbiddenPublicSourceMatches,
 );
-printList("missing distributor literals", missingDistributorLiterals);
 printList("language-switch matches", languageSwitchMatches);
 printList("duplicate sitemap URLs", duplicateSitemapUrls);
 printList("invalid sitemap URLs", invalidSitemapUrls);
-printList(
-  "sitemap implementation errors",
-  sitemapImplementationErrors,
-);
-printList("robots implementation errors", robotsImplementationErrors);
+printList("live SEO output errors", seoOutputErrors);
 printList("raw English public prose", rawEnglishPublicProse);
 printList(
   "missing Japanese titles/descriptions",
@@ -487,12 +484,10 @@ const failed =
   sitemapUrls.length !== 110 ||
   duplicateSitemapUrls.length > 0 ||
   invalidSitemapUrls.length > 0 ||
-  sitemapImplementationErrors.length > 0 ||
-  robotsImplementationErrors.length > 0 ||
+  seoOutputErrors.length > 0 ||
   missingLocalImages.length > 0 ||
   forbiddenContactMatches.length > 0 ||
   forbiddenPublicSourceMatches.length > 0 ||
-  missingDistributorLiterals.length > 0 ||
   languageSwitchMatches.length > 0 ||
   rawEnglishPublicProse.length > 0 ||
   missingJapaneseTitlesDescriptions.length > 0 ||

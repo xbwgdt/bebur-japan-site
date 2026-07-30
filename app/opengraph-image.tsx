@@ -1,5 +1,4 @@
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 
 import { ImageResponse } from "next/og";
 
@@ -11,6 +10,13 @@ export const size = {
 };
 export const contentType = "image/png";
 
+export const openGraphBackgroundPath = [
+  "public",
+  "media",
+  "brand",
+  "bebur-og-background.png",
+] as const;
+
 export const openGraphImageText = {
   brand: "Bebur Japan",
   message: "水質分析・ガス検知の精密ソリューション",
@@ -19,12 +25,9 @@ export const openGraphImageText = {
 
 export default async function OpenGraphImage(): Promise<ImageResponse> {
   const backgroundData = await readFile(
-    join(
-      process.cwd(),
-      "public",
-      "media",
-      "brand",
-      "bebur-og-background.png",
+    new URL(
+      "../public/media/brand/bebur-og-background.png",
+      import.meta.url,
     ),
     "base64",
   );

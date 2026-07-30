@@ -1,3 +1,6 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import {
@@ -11,6 +14,8 @@ import RootLayout, {
 import {
   alt as openGraphAlt,
   contentType as openGraphContentType,
+  default as OpenGraphImage,
+  openGraphBackgroundPath,
   openGraphImageText,
   size as openGraphSize,
 } from "../app/opengraph-image";
@@ -53,6 +58,7 @@ import {
   getStaticPages,
 } from "../lib/content";
 import { siteConfig } from "../lib/constants";
+import { auditSeoOutputs } from "../lib/seo-output-audit";
 import {
   canonicalUrl,
   productCategoryLabels,
@@ -160,6 +166,53 @@ describe("production SEO metadata routes", () => {
     );
   });
 
+  it("rejects broken live sitemap and robots output in the release audit", () => {
+    const validInput = {
+      canonicalOrigin: siteConfig.origin,
+      canonicalRoutes: getAllRoutes(),
+      sitemapEntries: sitemap(),
+      robotsPolicy: robots(),
+      siteConfig,
+      organizationJsonLd,
+    };
+
+    expect(auditSeoOutputs(validInput)).toEqual([]);
+    expect(
+      auditSeoOutputs({
+        ...validInput,
+        sitemapEntries: [],
+        robotsPolicy: {
+          rules: { userAgent: "*", disallow: "/" },
+          sitemap: "https://wrong.example/sitemap.xml",
+        },
+      }),
+    ).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("sitemap route coverage"),
+        expect.stringContaining("robots rules"),
+        expect.stringContaining("robots sitemap"),
+      ]),
+    );
+    expect(
+      auditSeoOutputs({
+        ...validInput,
+        siteConfig: {
+          ...siteConfig,
+          email: "sales@example.invalid",
+        },
+        organizationJsonLd: {
+          ...organizationJsonLd,
+          alternateName: "Global manufacturer",
+        },
+      }),
+    ).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("site config email"),
+        expect.stringContaining("organization JSON-LD"),
+      ]),
+    );
+  });
+
   it("uses the approved origin and complete Japanese share metadata", () => {
     expect(globalMetadata.metadataBase?.toString()).toBe(
       "https://www.bebur-jp.com/",
@@ -177,12 +230,28 @@ describe("production SEO metadata routes", () => {
       type: "website",
       url: "https://www.bebur-jp.com",
     });
+    expect(globalMetadata.openGraph?.images).toEqual([
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Bebur Japan｜水質分析・ガス検知の精密ソリューション",
+      },
+    ]);
     expect(globalMetadata.twitter).toMatchObject({
       card: "summary_large_image",
       title: "Bebur Japan｜水質分析・ガス検知の精密計測",
       description:
         "Bebur 日本総代理店の新樹産業株式会社が、水質分析計、ガス検知器、清浄度測定装置、薬注制御装置をご案内します。",
     });
+    expect(globalMetadata.twitter?.images).toEqual([
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Bebur Japan｜水質分析・ガス検知の精密ソリューション",
+      },
+    ]);
   });
 
   it("identifies New Tree Industries only as the Japanese exclusive distributor", () => {
@@ -239,6 +308,38 @@ describe("production SEO metadata routes", () => {
     expect(iconSize).toEqual({ width: 64, height: 64 });
     expect(iconContentType).toBe("image/png");
   });
+
+  it(
+    "renders the committed background through a real PNG ImageResponse",
+    async () => {
+      expect(openGraphBackgroundPath).toEqual([
+        "public",
+        "media",
+        "brand",
+        "bebur-og-background.png",
+      ]);
+
+      const background = await readFile(
+        join(process.cwd(), ...openGraphBackgroundPath),
+      );
+      expect([...background.subarray(0, 8)]).toEqual([
+        0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+      ]);
+      expect(background.byteLength).toBeGreaterThan(1_000_000);
+
+      const response = await OpenGraphImage();
+      const rendered = new Uint8Array(await response.arrayBuffer());
+
+      expect(response.status).toBe(200);
+      expect(response.headers.get("content-type")).toBe("image/png");
+      expect([...rendered.subarray(0, 8)]).toEqual([
+        0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+      ]);
+      expect(rendered.byteLength).toBeGreaterThan(500_000);
+      expect(rendered.byteLength).not.toBe(background.byteLength);
+    },
+    120_000,
+  );
 });
 
 describe("product discovery route generation", () => {
