@@ -9,17 +9,17 @@ import { pathToFileURL } from "node:url";
 
 import * as cheerio from "cheerio";
 
-function collectHtmlFiles(directory) {
+const MAX_STATIC_ASSET_BYTES = 25 * 1024 * 1024;
+
+function collectFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const entryPath = path.join(directory, entry.name);
 
     if (entry.isDirectory()) {
-      return collectHtmlFiles(entryPath);
+      return collectFiles(entryPath);
     }
 
-    return entry.isFile() && entry.name.endsWith(".html")
-      ? [entryPath]
-      : [];
+    return entry.isFile() ? [entryPath] : [];
   });
 }
 
@@ -131,12 +131,53 @@ function localReferences(html) {
   return references;
 }
 
+function cssReferences(css) {
+  const references = [];
+  const pattern =
+    /url\(\s*(?:"([^"]*)"|'([^']*)'|([^)]*?))\s*\)/giu;
+
+  for (const match of css.matchAll(pattern)) {
+    const value = (match[1] ?? match[2] ?? match[3] ?? "").trim();
+    if (value) {
+      references.push(value);
+    }
+  }
+
+  return references;
+}
+
 function isExternalReference(reference) {
   return (
     reference.startsWith("//") ||
     reference.startsWith("#") ||
     /^[a-z][a-z\d+.-]*:/iu.test(reference)
   );
+}
+
+function isRemoteBeburReference(reference) {
+  if (
+    !reference.startsWith("//") &&
+    !/^https?:/iu.test(reference)
+  ) {
+    return false;
+  }
+
+  try {
+    const url = new URL(
+      reference,
+      reference.startsWith("//") ? "https://audit.invalid" : undefined,
+    );
+    const hostname = url.hostname.toLowerCase();
+
+    return (
+      hostname === "bebur.net" ||
+      hostname.endsWith(".bebur.net") ||
+      hostname === "bebur-jp.com" ||
+      hostname.endsWith(".bebur-jp.com")
+    );
+  } catch {
+    return false;
+  }
 }
 
 function resolveReference(reference, htmlPath, outputRoot) {
@@ -182,9 +223,21 @@ export function runStaticAudit(
 
   const outputRoot = outputRootFor(entryPath);
   const htmlFiles = statSync(entryPath).isDirectory()
-    ? collectHtmlFiles(entryPath)
-    : collectHtmlFiles(outputRoot);
+    ? collectFiles(entryPath).filter((file) => file.endsWith(".html"))
+    : collectFiles(outputRoot).filter((file) => file.endsWith(".html"));
+  const cssFiles = collectFiles(outputRoot).filter((file) =>
+    file.endsWith(".css"),
+  );
   const unresolved = new Set();
+
+  for (const assetPath of collectFiles(outputRoot)) {
+    const assetSize = statSync(assetPath).size;
+    if (assetSize > MAX_STATIC_ASSET_BYTES) {
+      unresolved.add(
+        `${path.relative(outputRoot, assetPath).split(path.sep).join("/")} exceeds 25 MiB -> ${assetSize} bytes`,
+      );
+    }
+  }
 
   for (const htmlPath of htmlFiles) {
     const html = readFileSync(htmlPath, "utf8");
@@ -212,6 +265,33 @@ export function runStaticAudit(
       unresolved.add(
         `${htmlLabel} ${reference.selector}[${reference.attribute}] -> ${reference.value}`,
       );
+    }
+  }
+
+  for (const cssPath of cssFiles) {
+    const css = readFileSync(cssPath, "utf8");
+    const cssLabel = path
+      .relative(outputRoot, cssPath)
+      .split(path.sep)
+      .join("/");
+
+    for (const reference of cssReferences(css)) {
+      if (isRemoteBeburReference(reference)) {
+        unresolved.add(`${cssLabel} css url() -> ${reference}`);
+        continue;
+      }
+
+      const resolved = resolveReference(reference, cssPath, outputRoot);
+      if (
+        resolved === undefined ||
+        (resolved !== null &&
+          existsSync(resolved) &&
+          statSync(resolved).isFile())
+      ) {
+        continue;
+      }
+
+      unresolved.add(`${cssLabel} css url() -> ${reference}`);
     }
   }
 

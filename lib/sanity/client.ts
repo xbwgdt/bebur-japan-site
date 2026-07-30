@@ -25,7 +25,7 @@ export function getSanityClient(): SanityClient | null {
   try {
     sanityClient = createClient({
       ...sanityEnvironment,
-      useCdn: true,
+      useCdn: false,
       perspective: "published",
     });
   } catch {

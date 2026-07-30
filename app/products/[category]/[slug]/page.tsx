@@ -44,31 +44,22 @@ export function generateStaticParams(): Array<{
   return getProducts().map(({ category, slug }) => ({ category, slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<ProductRouteParams>;
-}): Promise<Metadata> {
-  const { category, slug } = await params;
-  const product = resolveProductForRoute(category, slug);
-
-  if (!product) {
-    notFound();
-  }
-
+export function buildProductMetadata(product: Product): Metadata {
   const route = productRoute(product);
   const canonical = canonicalUrl(route);
   const image = product.images[0];
+  const title = product.seoTitle ?? product.title;
+  const description = product.seoDescription ?? product.description;
 
   return {
-    title: product.title,
-    description: product.description,
+    title,
+    description,
     alternates: {
       canonical,
     },
     openGraph: {
-      title: product.title,
-      description: product.description,
+      title,
+      description,
       type: "website",
       url: canonical,
       images: image
@@ -81,6 +72,21 @@ export async function generateMetadata({
         : undefined,
     },
   };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<ProductRouteParams>;
+}): Promise<Metadata> {
+  const { category, slug } = await params;
+  const product = resolveProductForRoute(category, slug);
+
+  if (!product) {
+    notFound();
+  }
+
+  return buildProductMetadata(product);
 }
 
 function arraysMatch(

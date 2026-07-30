@@ -1,16 +1,22 @@
 import { Mail, Phone } from "lucide-react";
 import type React from "react";
 
-import { buildMailto, siteConfig } from "@/lib/constants";
+import { buildMailto } from "@/lib/constants";
+import {
+  publicSiteSettings,
+  type PublicSiteSettings,
+} from "@/lib/site-settings";
 
 type ContactCtaProps = {
   subject?: string;
   compact?: boolean;
+  settings?: PublicSiteSettings;
 };
 
 export function ContactCta({
   subject = "Bebur 製品",
   compact = false,
+  settings = publicSiteSettings,
 }: ContactCtaProps): React.ReactElement {
   return (
     <section
@@ -30,11 +36,14 @@ export function ContactCta({
         )}
       </div>
       <div className="contact-cta__actions">
-        <a className="button button--light" href={`tel:${siteConfig.phone}`}>
+        <a className="button button--light" href={`tel:${settings.phone}`}>
           <Phone aria-hidden="true" size={19} strokeWidth={1.8} />
           <span>電話で相談</span>
         </a>
-        <a className="button button--accent" href={buildMailto(subject)}>
+        <a
+          className="button button--accent"
+          href={buildMailto(subject, settings.inquiryEmail)}
+        >
           <Mail aria-hidden="true" size={19} strokeWidth={1.8} />
           <span>メールで問い合わせ</span>
         </a>
@@ -43,14 +52,18 @@ export function ContactCta({
   );
 }
 
-export function MobileContactBar(): React.ReactElement {
+export function MobileContactBar({
+  settings = publicSiteSettings,
+}: {
+  settings?: PublicSiteSettings;
+} = {}): React.ReactElement {
   return (
     <aside className="mobile-contact-bar" aria-label="お問い合わせショートカット">
-      <a href={`tel:${siteConfig.phone}`}>
+      <a href={`tel:${settings.phone}`}>
         <Phone aria-hidden="true" size={20} strokeWidth={1.8} />
         <span>電話で相談</span>
       </a>
-      <a href={buildMailto("Bebur 製品")}>
+      <a href={buildMailto("Bebur 製品", settings.inquiryEmail)}>
         <Mail aria-hidden="true" size={20} strokeWidth={1.8} />
         <span>メールで問い合わせ</span>
       </a>

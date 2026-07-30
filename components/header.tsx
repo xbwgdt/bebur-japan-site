@@ -1,31 +1,46 @@
 import Link from "next/link";
 
-import { siteConfig } from "@/lib/constants";
+import {
+  publicSiteSettings,
+  type PublicSiteSettings,
+} from "@/lib/site-settings";
 
-const navigationItems = [
-  { href: "/", label: "ホーム" },
-  { href: "/about/company-profile", label: "企業情報" },
-  { href: "/products", label: "製品情報" },
-  { href: "/applications", label: "導入分野・事例" },
-  { href: "/insights", label: "ニュース・技術情報" },
-  { href: "/contact", label: "お問い合わせ" },
-] as const;
+function navigationItems(settings: PublicSiteSettings) {
+  const labels = settings.navigationLabels;
 
-function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
+  return [
+    { href: "/", label: labels.home },
+    { href: "/about/company-profile", label: labels.company },
+    { href: "/products", label: labels.products },
+    { href: "/applications", label: labels.applications },
+    { href: "/insights", label: labels.news },
+    { href: "/contact", label: labels.contact },
+  ];
+}
+
+function NavigationLinks({
+  settings,
+  mobile = false,
+}: {
+  settings: PublicSiteSettings;
+  mobile?: boolean;
+}) {
   return (
     <ul className={mobile ? "mobile-nav__list" : "desktop-nav__list"}>
-      {navigationItems.map((item) => (
+      {navigationItems(settings).map((item) => (
         <li key={item.href}>
-          <Link href={item.href}>
-            {item.label}
-          </Link>
+          <Link href={item.href}>{item.label}</Link>
         </li>
       ))}
     </ul>
   );
 }
 
-export function Header(): React.ReactElement {
+export function Header({
+  settings = publicSiteSettings,
+}: {
+  settings?: PublicSiteSettings;
+} = {}): React.ReactElement {
   return (
     <header
       className="site-header source-header"
@@ -39,19 +54,19 @@ export function Header(): React.ReactElement {
               <span className="wordmark__region">JAPAN</span>
             </Link>
             <p className="site-header__distributor">
-              {siteConfig.distributorLabel}
+              {settings.footerText}
             </p>
           </div>
 
           <nav className="desktop-nav" aria-label="メインナビゲーション">
-            <NavigationLinks />
+            <NavigationLinks settings={settings} />
           </nav>
 
           <details className="mobile-nav">
             <summary>メニュー</summary>
             <div className="mobile-nav__panel">
               <nav aria-label="モバイルナビゲーション">
-                <NavigationLinks mobile />
+                <NavigationLinks mobile settings={settings} />
               </nav>
             </div>
           </details>

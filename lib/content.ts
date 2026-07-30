@@ -87,6 +87,22 @@ function nonEmptyString(value: unknown): string | undefined {
   return normalized === "" ? undefined : normalized;
 }
 
+function safeMetadataText(
+  value: unknown,
+  maxLength: number,
+): string | undefined {
+  const text = nonEmptyString(value);
+  if (
+    !text ||
+    text.length > maxLength ||
+    /[\u0000-\u001f\u007f<>]/u.test(text)
+  ) {
+    return undefined;
+  }
+
+  return text;
+}
+
 function stringArray(value: unknown): string[] {
   if (!Array.isArray(value)) {
     return [];
@@ -276,6 +292,8 @@ function normalizeSanityProduct(record: SanityProduct): Product | undefined {
   );
   const images = sanityImages(record.coverImage, record.gallery);
   const sections = portableTextSections(record.body);
+  const seoTitle = safeMetadataText(record.seoTitle, 60);
+  const seoDescription = safeMetadataText(record.seoDescription, 160);
 
   return {
     kind: "product",
@@ -284,6 +302,8 @@ function normalizeSanityProduct(record: SanityProduct): Product | undefined {
     route: productRoute({ category, slug }),
     title,
     description,
+    ...(seoTitle ? { seoTitle } : {}),
+    ...(seoDescription ? { seoDescription } : {}),
     sourceUrl:
       localFallback?.sourceUrl ??
       `https://www.bebur-jp.com${productRoute({ category, slug })}`,
@@ -325,6 +345,8 @@ function normalizeSanityArticle(record: SanityNews): Article | undefined {
   const sections = portableTextSections(record.body);
   const publishedAt = nonEmptyString(record.publishedAt);
   const route = insightRoute(slug);
+  const seoTitle = safeMetadataText(record.seoTitle, 60);
+  const seoDescription = safeMetadataText(record.seoDescription, 160);
 
   return {
     kind: "article",
@@ -332,6 +354,8 @@ function normalizeSanityArticle(record: SanityNews): Article | undefined {
     route,
     title,
     description,
+    ...(seoTitle ? { seoTitle } : {}),
+    ...(seoDescription ? { seoDescription } : {}),
     sourceUrl:
       localFallback?.sourceUrl ?? `https://www.bebur-jp.com${route}`,
     ...(publishedAt && isoDatePattern.test(publishedAt)

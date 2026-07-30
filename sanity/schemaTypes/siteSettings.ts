@@ -1,6 +1,29 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, type StringRule } from "sanity";
 
+import { approvedContact } from "../../lib/constants";
 import { validateJapaneseProse, validateJapaneseText } from "./validation";
+
+type ApprovedContactField = keyof typeof approvedContact;
+
+export function validateApprovedContactValue(
+  field: ApprovedContactField,
+  value: unknown,
+): true | string {
+  if (value === undefined || value === null || value === "") {
+    return true;
+  }
+
+  return (
+    value === approvedContact[field] ||
+    `必须与已批准的日本站联系信息一致：${approvedContact[field]}`
+  );
+}
+
+const approvedContactValidation =
+  (field: ApprovedContactField) => (Rule: StringRule) =>
+    Rule.required()
+      .custom((value) => validateApprovedContactValue(field, value))
+      .error("只能使用已批准公开的日本站联系信息");
 
 const requiredJapaneseField = (
   name: string,
@@ -48,20 +71,14 @@ export default defineType({
       title: "日文总代理名称",
       type: "string",
       group: "contact",
-      validation: (Rule) =>
-        Rule.required()
-          .custom(validateJapaneseText)
-          .error("请输入已批准的日文总代理名称"),
+      validation: approvedContactValidation("distributorName"),
     }),
     defineField({
       name: "companyName",
       title: "日文公司名称",
       type: "string",
       group: "contact",
-      validation: (Rule) =>
-        Rule.required()
-          .custom(validateJapaneseText)
-          .error("请输入已批准的日文公司名称"),
+      validation: approvedContactValidation("companyName"),
     }),
     defineField({
       name: "postalCode",
@@ -69,20 +86,14 @@ export default defineType({
       description: "格式：123-4567",
       type: "string",
       group: "contact",
-      validation: (Rule) =>
-        Rule.required()
-          .regex(/^\d{3}-\d{4}$/u)
-          .error("请输入 123-4567 格式的日本邮政编码"),
+      validation: approvedContactValidation("postalCode"),
     }),
     defineField({
       name: "address",
       title: "日文地址",
       type: "string",
       group: "contact",
-      validation: (Rule) =>
-        Rule.required()
-          .custom(validateJapaneseText)
-          .error("请输入已批准的日文地址"),
+      validation: approvedContactValidation("address"),
     }),
     defineField({
       name: "phone",
@@ -90,10 +101,7 @@ export default defineType({
       description: "只填写已批准公开的日本联系电话。",
       type: "string",
       group: "contact",
-      validation: (Rule) =>
-        Rule.required()
-          .regex(/^[0-9+()-]{8,20}$/u)
-          .error("请输入有效的联系电话"),
+      validation: approvedContactValidation("phone"),
     }),
     defineField({
       name: "inquiryEmail",
@@ -101,8 +109,7 @@ export default defineType({
       description: "只填写已批准公开的咨询邮箱。",
       type: "string",
       group: "contact",
-      validation: (Rule) =>
-        Rule.required().email().error("请输入有效的咨询邮箱"),
+      validation: approvedContactValidation("inquiryEmail"),
     }),
     defineField({
       name: "footerText",

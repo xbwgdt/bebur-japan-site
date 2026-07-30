@@ -4,8 +4,9 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SourceHero } from "@/components/source-faithful/source-hero";
 import { SourceShell } from "@/components/source-faithful/source-shell";
-import { buildMailto, siteConfig } from "@/lib/constants";
+import { buildMailto } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/routes";
+import { publicSiteSettings } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
@@ -15,7 +16,10 @@ export const metadata: Metadata = {
   },
 };
 
-const inquiryMailto = buildMailto("Bebur 製品");
+const inquiryMailto = buildMailto(
+  "Bebur 製品",
+  publicSiteSettings.inquiryEmail,
+);
 
 export default function ContactPage(): React.ReactElement {
   return (
@@ -39,18 +43,22 @@ export default function ContactPage(): React.ReactElement {
             className="contact-panel surface"
             aria-labelledby="contact-company-title"
           >
-            <p className="contact-panel__label">Bebur 日本総代理店</p>
-            <h2 id="contact-company-title">{siteConfig.company}</h2>
+            <p className="contact-panel__label">
+              {publicSiteSettings.distributorName}
+            </p>
+            <h2 id="contact-company-title">
+              {publicSiteSettings.companyName}
+            </h2>
             <address>
-              <span>{siteConfig.postalCode}</span>
-              <span>{siteConfig.address}</span>
-              <a href={`tel:${siteConfig.phone}`}>
+              <span>〒{publicSiteSettings.postalCode}</span>
+              <span>{publicSiteSettings.address}</span>
+              <a href={`tel:${publicSiteSettings.phone}`}>
                 <Phone aria-hidden="true" size={20} strokeWidth={1.8} />
-                {siteConfig.phone}
+                {publicSiteSettings.phone}
               </a>
               <a href={inquiryMailto}>
                 <Mail aria-hidden="true" size={20} strokeWidth={1.8} />
-                {siteConfig.email}
+                {publicSiteSettings.inquiryEmail}
               </a>
             </address>
             <p className="contact-panel__description">

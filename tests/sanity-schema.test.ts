@@ -4,8 +4,12 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { siteSettingsQuery } from "../lib/sanity/queries";
+import { approvedContact } from "../lib/constants";
 import { readStudioEnvironment } from "../sanity/environment";
 import product from "../sanity/schemaTypes/product";
+import siteSettings, {
+  validateApprovedContactValue,
+} from "../sanity/schemaTypes/siteSettings";
 import {
   validateJapaneseProse,
   validateJapaneseText,
@@ -96,6 +100,63 @@ describe("Japanese public-text validation", () => {
 
     expect(documents).toHaveLength(63);
     await expect(validateSanityImportDocuments(documents)).resolves.toEqual([]);
+  });
+});
+
+describe("approved site contact validation", () => {
+  const substituteValues = {
+    distributorName: "別の日本総代理店",
+    companyName: "別会社株式会社",
+    postalCode: "100-0001",
+    address: "東京都千代田区1－1",
+    phone: "03-1234-5678",
+    inquiryEmail: "valid@example.com",
+  } as const;
+
+  it("accepts only the exact approved contact constants", () => {
+    for (const field of Object.keys(
+      approvedContact,
+    ) as Array<keyof typeof approvedContact>) {
+      expect(
+        validateApprovedContactValue(field, approvedContact[field]),
+      ).toBe(true);
+      expect(
+        validateApprovedContactValue(field, substituteValues[field]),
+      ).not.toBe(true);
+    }
+  });
+
+  it("attaches exact-value checks to every site settings contact field", () => {
+    for (const fieldName of Object.keys(
+      approvedContact,
+    ) as Array<keyof typeof approvedContact>) {
+      const field = siteSettings.fields?.find(
+        ({ name }) => name === fieldName,
+      );
+      const customValidators: Array<(value: unknown) => true | string> = [];
+      const rule = {
+        required: () => rule,
+        regex: () => rule,
+        email: () => rule,
+        custom: (validator: (value: unknown) => true | string) => {
+          customValidators.push(validator);
+          return rule;
+        },
+        error: () => rule,
+      };
+
+      expect(field).toBeDefined();
+      const validation = field?.validation;
+      expect(validation).toBeTypeOf("function");
+      if (typeof validation !== "function") {
+        throw new Error(`Missing validation callback for ${fieldName}`);
+      }
+      validation(rule as never);
+      expect(customValidators).toHaveLength(1);
+      expect(customValidators[0](substituteValues[fieldName])).not.toBe(
+        true,
+      );
+    }
   });
 });
 

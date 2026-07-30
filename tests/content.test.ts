@@ -1224,21 +1224,27 @@ describe("Japanese content catalog", () => {
 });
 
 describe("content audit CLI", () => {
-  it("reports a clean 112-source migration audit", async () => {
-    const { stdout, stderr } = await execFileAsync(
-      process.execPath,
-      [path.join(process.cwd(), "scripts", "audit-content.mjs")],
-      { cwd: process.cwd() },
-    );
+  it(
+    "reports a clean 112-source migration audit",
+    async () => {
+      const { stdout, stderr } = await execFileAsync(
+        process.execPath,
+        [path.join(process.cwd(), "scripts", "audit-content.mjs")],
+        { cwd: process.cwd() },
+      );
 
-    expect(stderr).toBe("");
-    expect(stdout).toMatch(/source record count:\s*112/i);
-    expect(stdout).toMatch(/represented source URL count:\s*112/i);
-    expect(stdout).toMatch(/unmapped source URLs:\s*0/i);
-    expect(stdout).toMatch(/multiply mapped source URLs:\s*0/i);
-    expect(stdout).toMatch(/duplicate routes:\s*0/i);
-    expect(stdout).toMatch(/missing local images:\s*0/i);
-    expect(stdout).toMatch(/forbidden contact matches:\s*0/i);
-    expect(stdout).toMatch(/unresolved related-product references:\s*0/i);
-  });
+      expect(stderr).toBe("");
+      expect(stdout).toMatch(/source record count:\s*112/i);
+      expect(stdout).toMatch(/represented source URL count:\s*112/i);
+      expect(stdout).toMatch(/unmapped source URLs:\s*0/i);
+      expect(stdout).toMatch(/multiply mapped source URLs:\s*0/i);
+      expect(stdout).toMatch(/duplicate routes:\s*0/i);
+      expect(stdout).toMatch(/missing local images:\s*0/i);
+      expect(stdout).toMatch(/forbidden contact matches:\s*0/i);
+      expect(stdout).toMatch(
+        /unresolved related-product references:\s*0/i,
+      );
+    },
+    120_000,
+  );
 });

@@ -41,6 +41,19 @@ function isFirstPartyVisualReference(sourceUrl: string) {
 }
 
 describe("source page-family assets", () => {
+  it("replaces the oversized source video with a local image alternative", async () => {
+    const assetMap = JSON.parse(
+      await readFile(assetMapPath, "utf8"),
+    ) as Record<string, string>;
+    const videoAlternative =
+      assetMap["https://www.bebur.net/en/static/upload/video.mp4"];
+
+    expect(videoAlternative).toMatch(
+      /^\/source-media\/.+\.(?:avif|jpe?g|png|webp)$/u,
+    );
+    await readFile(path.join(process.cwd(), "public", videoAlternative.slice(1)));
+  });
+
   it("captures a local visual reference for every representative route", async () => {
     const pageFamilies = JSON.parse(
       await readFile(pageFamilyManifestPath, "utf8"),

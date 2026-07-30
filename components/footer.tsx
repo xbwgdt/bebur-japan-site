@@ -1,35 +1,48 @@
 import Link from "next/link";
 
-import { siteConfig } from "@/lib/constants";
+import {
+  publicSiteSettings,
+  type PublicSiteSettings,
+} from "@/lib/site-settings";
 
-const defaultInquiryHref =
-  "mailto:info@newtree-i.com?subject=Bebur%20%E8%A3%BD%E5%93%81%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B";
+function footerGroups(settings: PublicSiteSettings) {
+  return [
+    {
+      title: "クイックリンク",
+      links: [
+        {
+          href: "/about/company-profile",
+          label: settings.navigationLabels.company,
+        },
+        { href: "/products", label: settings.navigationLabels.products },
+        {
+          href: "/applications",
+          label: settings.navigationLabels.applications,
+        },
+        { href: "/insights", label: settings.navigationLabels.news },
+        { href: "/contact", label: settings.navigationLabels.contact },
+      ],
+    },
+    {
+      title: "製品情報",
+      links: [
+        { href: "/products/cleanliness", label: "清浄度測定装置" },
+        { href: "/products/dosing", label: "薬注制御装置" },
+        { href: "/products/water-quality", label: "水質分析計" },
+        { href: "/products/gas-detection", label: "ガス検知器" },
+        { href: "/products/flow-level", label: "流量計・液位計" },
+      ],
+    },
+  ];
+}
 
-const footerGroups = [
-  {
-    title: "クイックリンク",
-    links: [
-      { href: "/about/company-profile", label: "企業情報" },
-      { href: "/products", label: "製品一覧" },
-      { href: "/applications", label: "導入分野・事例" },
-      { href: "/insights", label: "ニュース・技術情報" },
-      { href: "/contact", label: "お問い合わせ" },
-    ],
-  },
-  {
-    title: "製品情報",
-    links: [
-      { href: "/products/cleanliness", label: "清浄度測定装置" },
-      { href: "/products/dosing", label: "薬注制御装置" },
-      { href: "/products/water-quality", label: "水質分析計" },
-      { href: "/products/gas-detection", label: "ガス検知器" },
-      { href: "/products/flow-level", label: "流量計・液位計" },
-    ],
-  },
-] as const;
-
-export function Footer(): React.ReactElement {
+export function Footer({
+  settings = publicSiteSettings,
+}: {
+  settings?: PublicSiteSettings;
+} = {}): React.ReactElement {
   const currentYear = new Date().getFullYear();
+  const inquiryHref = `mailto:${settings.inquiryEmail}?subject=${encodeURIComponent("Bebur 製品お問い合わせ")}`;
 
   return (
     <footer
@@ -38,7 +51,7 @@ export function Footer(): React.ReactElement {
     >
       <div className="site-container site-footer__grid">
         <nav className="site-footer__navigation" aria-label="フッターナビゲーション">
-          {footerGroups.map((group) => (
+          {footerGroups(settings).map((group) => (
             <div className="site-footer__group" key={group.title}>
               <h2>{group.title}</h2>
               <ul>
@@ -62,13 +75,13 @@ export function Footer(): React.ReactElement {
             <span className="wordmark__region">JAPAN</span>
           </Link>
           <p className="site-footer__distributor">
-            {siteConfig.distributorLabel}
+            {settings.footerText}
           </p>
           <address className="site-footer__address">
-            <span>{siteConfig.postalCode}</span>
-            <span>{siteConfig.address}</span>
-            <a href={`tel:${siteConfig.phone}`}>{siteConfig.phone}</a>
-            <a href={defaultInquiryHref}>{siteConfig.email}</a>
+            <span>〒{settings.postalCode}</span>
+            <span>{settings.address}</span>
+            <a href={`tel:${settings.phone}`}>{settings.phone}</a>
+            <a href={inquiryHref}>{settings.inquiryEmail}</a>
           </address>
         </div>
       </div>
@@ -76,7 +89,7 @@ export function Footer(): React.ReactElement {
       <div className="site-footer__legal">
         <div className="site-container">
           <small>
-            © {currentYear} {siteConfig.company}. All rights reserved.
+            © {currentYear} {settings.companyName}. All rights reserved.
           </small>
         </div>
       </div>

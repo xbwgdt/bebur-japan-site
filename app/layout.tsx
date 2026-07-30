@@ -5,59 +5,77 @@ import { MobileContactBar } from "@/components/contact-cta";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { siteConfig } from "@/lib/constants";
+import {
+  publicSiteSettings,
+  type PublicSiteSettings,
+} from "@/lib/site-settings";
 
-const defaultTitle = "Bebur Japan｜水質分析・ガス検知の精密計測";
-const defaultDescription =
-  "Bebur 日本総代理店の新樹産業株式会社が、水質分析計、ガス検知器、清浄度測定装置、薬注制御装置をご案内します。";
-const socialImage = {
-  url: "/opengraph-image",
-  width: 1200,
-  height: 630,
-  alt: "Bebur Japan｜水質分析・ガス検知の精密ソリューション",
-};
+function socialImage(settings: PublicSiteSettings) {
+  const image = {
+    url: settings.defaultOgImage.src,
+    alt: settings.defaultOgImage.alt,
+  };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.origin),
-  title: {
-    default: defaultTitle,
-    template: "%s｜Bebur Japan",
-  },
-  description: defaultDescription,
-  openGraph: {
-    title: defaultTitle,
-    description: defaultDescription,
+  return settings.defaultOgImage.src === "/opengraph-image"
+    ? { ...image, width: 1200, height: 630 }
+    : image;
+}
+
+export function buildRootMetadata(
+  settings: PublicSiteSettings,
+): Metadata {
+  const image = socialImage(settings);
+
+  return {
+    metadataBase: new URL(siteConfig.origin),
+    title: {
+      default: settings.defaultSeoTitle,
+      template: "%s｜Bebur Japan",
+    },
+    description: settings.defaultSeoDescription,
+    openGraph: {
+      title: settings.defaultSeoTitle,
+      description: settings.defaultSeoDescription,
+      url: siteConfig.origin,
+      siteName: siteConfig.name,
+      locale: "ja_JP",
+      type: "website",
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: settings.defaultSeoTitle,
+      description: settings.defaultSeoDescription,
+      images: [image],
+    },
+  };
+}
+
+export const metadata = buildRootMetadata(publicSiteSettings);
+
+export function buildOrganizationJsonLd(settings: PublicSiteSettings) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: settings.companyName,
+    alternateName: settings.distributorName,
+    description: settings.distributorName,
     url: siteConfig.origin,
-    siteName: siteConfig.name,
-    locale: "ja_JP",
-    type: "website",
-    images: [socialImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: defaultTitle,
-    description: defaultDescription,
-    images: [socialImage],
-  },
-};
+    email: settings.inquiryEmail,
+    telephone: settings.phone,
+    address: {
+      "@type": "PostalAddress",
+      postalCode: settings.postalCode,
+      addressRegion: "埼玉県",
+      addressLocality: "草加市",
+      streetAddress: "草加2－13－21－7",
+      addressCountry: "JP",
+    },
+  } as const;
+}
 
-export const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.company,
-  alternateName: "Bebur 日本総代理店",
-  description: "Bebur 日本総代理店",
-  url: siteConfig.origin,
-  email: siteConfig.email,
-  telephone: siteConfig.phone,
-  address: {
-    "@type": "PostalAddress",
-    postalCode: siteConfig.postalCode.replace("〒", ""),
-    addressRegion: "埼玉県",
-    addressLocality: "草加市",
-    streetAddress: "草加2－13－21－7",
-    addressCountry: "JP",
-  },
-} as const;
+export const organizationJsonLd =
+  buildOrganizationJsonLd(publicSiteSettings);
 
 export default function RootLayout({
   children,
@@ -79,12 +97,12 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           本文へ移動
         </a>
-        <Header />
+        <Header settings={publicSiteSettings} />
         <main id="main-content" tabIndex={-1}>
           {children}
         </main>
-        <Footer />
-        <MobileContactBar />
+        <Footer settings={publicSiteSettings} />
+        <MobileContactBar settings={publicSiteSettings} />
       </body>
     </html>
   );

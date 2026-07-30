@@ -219,6 +219,9 @@ describe("build content source", () => {
       category: "cleanliness",
       description: "Sanity で公開された日本語の製品概要です。",
       route: "/products/cleanliness/bt8500",
+      seoDescription:
+        "Sanity で公開された清浄度モニターの日本語製品情報です。",
+      seoTitle: "Sanity 清浄度モニター 製品情報",
       title: "Sanity 清浄度モニター",
     });
     expect(
@@ -243,8 +246,13 @@ describe("build content source", () => {
     expect(
       snapshot.articles.find(
         ({ slug }) => slug === "ozone-monitoring-equipment",
-      )?.title,
-    ).toBe("Sanity オゾン監視技術情報");
+      ),
+    ).toMatchObject({
+      seoDescription:
+        "Sanity で公開されたオゾン監視に関する日本語の技術情報です。",
+      seoTitle: "Sanity オゾン監視技術情報",
+      title: "Sanity オゾン監視技術情報",
+    });
     expect(resolveSourceMediaPath(sanityImage)).toBe(sanityImage);
   });
 

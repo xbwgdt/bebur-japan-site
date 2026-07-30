@@ -48,6 +48,31 @@ export function generateStaticParams(): Array<{ slug: string }> {
     .toSorted((left, right) => left.slug.localeCompare(right.slug));
 }
 
+export function buildInsightMetadata(article: Article): Metadata {
+  const canonical = canonicalUrl(insightRoute(article.slug));
+  const image = article.images[0];
+  const title = article.seoTitle ?? article.title;
+  const description = article.seoDescription ?? article.description;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: canonical,
+      publishedTime: article.publishedAt,
+      images: image
+        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
+        : undefined,
+    },
+  };
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -60,26 +85,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const canonical = canonicalUrl(insightRoute(article.slug));
-  const image = article.images[0];
-
-  return {
-    title: article.title,
-    description: article.description,
-    alternates: {
-      canonical,
-    },
-    openGraph: {
-      title: article.title,
-      description: article.description,
-      type: "article",
-      url: canonical,
-      publishedTime: article.publishedAt,
-      images: image
-        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
-        : undefined,
-    },
-  };
+  return buildInsightMetadata(article);
 }
 
 export default async function InsightDetailPage({

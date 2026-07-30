@@ -14,6 +14,8 @@ export type ContentBase = {
   route: string;
   title: string;
   description: string;
+  seoTitle?: string;
+  seoDescription?: string;
   sourceUrl: string;
   publishedAt?: string;
   images: ContentImage[];
