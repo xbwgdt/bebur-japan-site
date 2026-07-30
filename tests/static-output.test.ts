@@ -86,7 +86,9 @@ describe("static export asset audit", () => {
         <body>
           <picture>
             <source src="/assets/present.webp" srcset="/assets/present.webp 1x, /assets/missing-2x.webp 2x">
+            <source srcset="data:image/svg+xml,%3Csvg%3E%3C/svg%3E 1x, /assets/present.webp 2x">
             <img src="/assets/present.png" srcset="/assets/present.png 1x, /assets/missing-2x.png 2x" alt="">
+            <img srcset="data:image/png;base64,iVBORw0KGgo=, /assets/present.png 2x" alt="">
           </picture>
           <img src="https://cdn.sanity.io/images/project/production/remote.jpg" alt="">
         </body>

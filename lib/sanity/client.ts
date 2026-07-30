@@ -9,10 +9,28 @@ export const sanityEnvironment = {
 
 export const isSanityConfigured = Boolean(sanityEnvironment.projectId);
 
-export const sanityClient: SanityClient | null = isSanityConfigured
-  ? createClient({
+export let sanityClient: SanityClient | null = null;
+let clientInitializationAttempted = false;
+
+export function getSanityClient(): SanityClient | null {
+  if (clientInitializationAttempted) {
+    return sanityClient;
+  }
+
+  clientInitializationAttempted = true;
+  if (!isSanityConfigured) {
+    return null;
+  }
+
+  try {
+    sanityClient = createClient({
       ...sanityEnvironment,
       useCdn: true,
       perspective: "published",
-    })
-  : null;
+    });
+  } catch {
+    sanityClient = null;
+  }
+
+  return sanityClient;
+}

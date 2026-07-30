@@ -4,7 +4,7 @@ import insightsData from "../content/ja/insights.json";
 import pagesData from "../content/ja/pages.json";
 import productsData from "../content/ja/products.json";
 import { insightRoute, isProductCategory, productRoute } from "./routes";
-import { isSanityConfigured } from "./sanity/client";
+import { getSanityClient } from "./sanity/client";
 import {
   getNews as getSanityNews,
   getProducts as getSanityProducts,
@@ -35,6 +35,12 @@ type ContentSnapshotInput = {
   sanityConfigured: boolean;
   sanityProducts: readonly SanityProduct[];
   sanityNews: readonly SanityNews[];
+};
+
+type ContentSnapshotLoaderInput = {
+  sanityConfigured: boolean;
+  readProducts?: () => Promise<SanityProduct[]>;
+  readNews?: () => Promise<SanityNews[]>;
 };
 
 type PortableTextBlock = {
@@ -367,29 +373,56 @@ export function createContentSnapshot({
     };
   }
 
-  const products = uniqueRoutes(
+  const normalizedProducts = uniqueRoutes(
     sanityProducts.flatMap((record) => {
       const normalized = normalizeSanityProduct(record);
       return normalized === undefined ? [] : [normalized];
     }),
   );
-  const articles = uniqueRoutes(
+  const normalizedArticles = uniqueRoutes(
     sanityNews.flatMap((record) => {
       const normalized = normalizeSanityArticle(record);
       return normalized === undefined ? [] : [normalized];
     }),
   );
-  const hasSanityContent = products.length > 0 || articles.length > 0;
+  const approvedProductRoutes = new Set(
+    localProducts.map(({ route }) => route),
+  );
+  const approvedArticleRoutes = new Set(
+    localArticles.map(({ route }) => route),
+  );
+  const productOverlays = new Map(
+    normalizedProducts
+      .filter(({ route }) => approvedProductRoutes.has(route))
+      .map((product) => [product.route, product]),
+  );
+  const articleOverlays = new Map(
+    normalizedArticles
+      .filter(({ route }) => approvedArticleRoutes.has(route))
+      .map((article) => [article.route, article]),
+  );
+  const products = localProducts.map(
+    (product) => productOverlays.get(product.route) ?? product,
+  );
+  const articles = localArticles.map(
+    (article) => articleOverlays.get(article.route) ?? article,
+  );
+  const hasSanityContent =
+    productOverlays.size > 0 || articleOverlays.size > 0;
 
   return {
     source: hasSanityContent ? "sanity" : "local",
-    products: products.length > 0 ? products : localProducts,
-    articles: articles.length > 0 ? articles : localArticles,
+    products,
+    articles,
   };
 }
 
-async function loadContentSnapshot(): Promise<ContentSnapshot> {
-  if (!isSanityConfigured) {
+export async function loadContentSnapshot({
+  sanityConfigured,
+  readProducts = getSanityProducts,
+  readNews = getSanityNews,
+}: ContentSnapshotLoaderInput): Promise<ContentSnapshot> {
+  if (!sanityConfigured) {
     return createContentSnapshot({
       sanityConfigured: false,
       sanityProducts: [],
@@ -397,27 +430,29 @@ async function loadContentSnapshot(): Promise<ContentSnapshot> {
     });
   }
 
-  try {
-    const [sanityProducts, sanityNews] = await Promise.all([
-      getSanityProducts(),
-      getSanityNews(),
-    ]);
+  const [productsResult, newsResult] = await Promise.allSettled([
+    readProducts(),
+    readNews(),
+  ]);
 
-    return createContentSnapshot({
-      sanityConfigured: true,
-      sanityProducts,
-      sanityNews,
-    });
-  } catch {
-    return createContentSnapshot({
-      sanityConfigured: false,
-      sanityProducts: [],
-      sanityNews: [],
-    });
-  }
+  return createContentSnapshot({
+    sanityConfigured: true,
+    sanityProducts:
+      productsResult.status === "fulfilled" &&
+      Array.isArray(productsResult.value)
+        ? productsResult.value
+        : [],
+    sanityNews:
+      newsResult.status === "fulfilled" &&
+      Array.isArray(newsResult.value)
+        ? newsResult.value
+        : [],
+  });
 }
 
-const contentSnapshot = await loadContentSnapshot();
+const contentSnapshot = await loadContentSnapshot({
+  sanityConfigured: getSanityClient() !== null,
+});
 const products = contentSnapshot.products;
 const articles = contentSnapshot.articles;
 

@@ -42,10 +42,56 @@ function outputRootFor(entryPath) {
 }
 
 function srcsetReferences(value) {
-  return value
-    .split(",")
-    .map((candidate) => candidate.trim().split(/\s+/u)[0] ?? "")
-    .filter(Boolean);
+  const references = [];
+  let position = 0;
+
+  while (position < value.length) {
+    while (
+      position < value.length &&
+      (/[\t\n\f\r ]/u.test(value[position]) ||
+        value[position] === ",")
+    ) {
+      position += 1;
+    }
+
+    const urlStart = position;
+    while (
+      position < value.length &&
+      !/[\t\n\f\r ]/u.test(value[position])
+    ) {
+      position += 1;
+    }
+
+    let url = value.slice(urlStart, position);
+    if (!url) {
+      break;
+    }
+
+    if (url.endsWith(",")) {
+      url = url.replace(/,+$/u, "");
+      if (url) {
+        references.push(url);
+      }
+      continue;
+    }
+
+    references.push(url);
+    let parentheses = 0;
+    while (position < value.length) {
+      const character = value[position];
+      position += 1;
+
+      if (character === "(") {
+        parentheses += 1;
+      } else if (character === ")" && parentheses > 0) {
+        parentheses -= 1;
+      } else if (character === "," && parentheses === 0) {
+        break;
+      }
+    }
+  }
+
+  return references;
 }
 
 function localReferences(html) {

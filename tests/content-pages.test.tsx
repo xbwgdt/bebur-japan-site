@@ -26,6 +26,10 @@ import {
   getArticles,
   getProduct,
 } from "@/lib/content";
+import type {
+  SanityNews,
+  SanityProduct,
+} from "@/lib/sanity/queries";
 
 afterEach(cleanup);
 
@@ -68,6 +72,89 @@ const expectedCaseSlugs = [
   "scm530-jiangsu-power-plant",
 ] as const;
 
+const sanityImage =
+  "https://cdn.sanity.io/images/project/production/bt8500.jpg";
+
+function sanityProductFixture(
+  overrides: Partial<SanityProduct> = {},
+): SanityProduct {
+  return {
+    _id: "product-bt8500",
+    category: "cleanliness",
+    title: "Sanity 清浄度モニター",
+    slug: "bt8500",
+    model: "BT8500",
+    summary: "Sanity で公開された日本語の製品概要です。",
+    body: [
+      {
+        _type: "block",
+        style: "h2",
+        children: [{ _type: "span", text: "Sanity 製品説明" }],
+      },
+      {
+        _type: "block",
+        style: "normal",
+        children: [
+          {
+            _type: "span",
+            text: "公開データだけを ",
+          },
+          {
+            _type: "span",
+            text: "静的ページへ反映します。",
+          },
+        ],
+      },
+    ],
+    features: ["公開済みの特長"],
+    applications: ["公開済みの用途"],
+    specifications: [{ label: "測定方式", value: "Sanity" }],
+    coverImage: {
+      alt: "Sanity に登録した BT8500",
+      asset: { url: sanityImage },
+    },
+    gallery: [],
+    seoTitle: "Sanity 清浄度モニター 製品情報",
+    seoDescription:
+      "Sanity で公開された清浄度モニターの日本語製品情報です。",
+    ...overrides,
+  };
+}
+
+function sanityNewsFixture(
+  overrides: Partial<SanityNews> = {},
+): SanityNews {
+  return {
+    _id: "news-ozone-monitoring-equipment",
+    title: "Sanity オゾン監視技術情報",
+    slug: "ozone-monitoring-equipment",
+    publishedAt: "2026-02-27",
+    summary: "Sanity で公開された日本語の技術情報概要です。",
+    body: [
+      {
+        _type: "block",
+        style: "normal",
+        children: [
+          {
+            _type: "span",
+            text: "公開済みの技術情報本文です。",
+          },
+        ],
+      },
+    ],
+    relatedProductSlugs: ["bt3500-oz"],
+    coverImage: {
+      alt: "Sanity に登録したオゾン監視技術情報",
+      asset: { url: sanityImage },
+    },
+    gallery: [],
+    seoTitle: "Sanity オゾン監視技術情報",
+    seoDescription:
+      "Sanity で公開されたオゾン監視に関する日本語の技術情報です。",
+    ...overrides,
+  };
+}
+
 describe("build content source", () => {
   it("uses deterministic local content without a Sanity project ID", async () => {
     vi.stubEnv("NEXT_PUBLIC_SANITY_PROJECT_ID", "");
@@ -84,77 +171,123 @@ describe("build content source", () => {
     }
   });
 
+  it("falls back locally when a malformed public project ID cannot create a client", async () => {
+    vi.stubEnv(
+      "NEXT_PUBLIC_SANITY_PROJECT_ID",
+      "malformed project id!",
+    );
+    vi.resetModules();
+
+    try {
+      const { getContentSource } = await import("@/lib/content");
+
+      expect(getContentSource()).toBe("local");
+    } finally {
+      vi.unstubAllEnvs();
+      vi.resetModules();
+    }
+  });
+
   it("normalizes available public Sanity content by family", async () => {
     const { createContentSnapshot } = await import("@/lib/content");
-    const sanityImage =
-      "https://cdn.sanity.io/images/project/production/bt8500.jpg";
 
     const snapshot = createContentSnapshot({
       sanityConfigured: true,
       sanityProducts: [
-        {
-          _id: "product-bt8500",
-          category: "cleanliness",
-          title: "Sanity 清浄度モニター",
-          slug: "bt8500",
-          model: "BT8500",
-          summary: "Sanity で公開された日本語の製品概要です。",
-          body: [
-            {
-              _type: "block",
-              style: "h2",
-              children: [{ _type: "span", text: "Sanity 製品説明" }],
-            },
-            {
-              _type: "block",
-              style: "normal",
-              children: [
-                {
-                  _type: "span",
-                  text: "公開データだけを ",
-                },
-                {
-                  _type: "span",
-                  text: "静的ページへ反映します。",
-                },
-              ],
-            },
-          ],
-          features: ["公開済みの特長"],
-          applications: ["公開済みの用途"],
-          specifications: [{ label: "測定方式", value: "Sanity" }],
-          coverImage: {
-            alt: "Sanity に登録した BT8500",
-            asset: { url: sanityImage },
-          },
-          gallery: [],
-          seoTitle: "Sanity 清浄度モニター 製品情報",
-          seoDescription:
-            "Sanity で公開された清浄度モニターの日本語製品情報です。",
-        },
+        sanityProductFixture(),
+        sanityProductFixture({
+          _id: "product-bt8200-malformed",
+          model: "BT8200",
+          slug: "bt8200",
+          title: "",
+        }),
+        sanityProductFixture({
+          _id: "product-unapproved",
+          model: "UNAPPROVED",
+          slug: "unapproved",
+        }),
       ],
-      sanityNews: [],
+      sanityNews: [sanityNewsFixture()],
     });
 
     expect(snapshot.source).toBe("sanity");
-    expect(snapshot.products).toHaveLength(1);
-    expect(snapshot.products[0]).toMatchObject({
+    expect(snapshot.products).toHaveLength(45);
+    expect(snapshot.articles).toHaveLength(17);
+    expect(
+      snapshot.products.find(({ slug }) => slug === "bt8500"),
+    ).toMatchObject({
       category: "cleanliness",
       description: "Sanity で公開された日本語の製品概要です。",
       route: "/products/cleanliness/bt8500",
       title: "Sanity 清浄度モニター",
     });
-    expect(snapshot.products[0]?.images).toEqual([
+    expect(
+      snapshot.products.find(({ slug }) => slug === "bt8500")?.images,
+    ).toEqual([
       { alt: "Sanity に登録した BT8500", src: sanityImage },
     ]);
-    expect(snapshot.products[0]?.sections).toEqual([
+    expect(
+      snapshot.products.find(({ slug }) => slug === "bt8500")?.sections,
+    ).toEqual([
       {
         heading: "Sanity 製品説明",
         paragraphs: ["公開データだけを 静的ページへ反映します。"],
       },
     ]);
-    expect(snapshot.articles).toHaveLength(17);
+    expect(
+      snapshot.products.find(({ slug }) => slug === "bt8200")?.title,
+    ).toBe(getProduct("cleanliness", "bt8200")?.title);
+    expect(
+      snapshot.products.find(({ slug }) => slug === "unapproved"),
+    ).toBeUndefined();
+    expect(
+      snapshot.articles.find(
+        ({ slug }) => slug === "ozone-monitoring-equipment",
+      )?.title,
+    ).toBe("Sanity オゾン監視技術情報");
     expect(resolveSourceMediaPath(sanityImage)).toBe(sanityImage);
+  });
+
+  it("settles product and news reads independently", async () => {
+    const { loadContentSnapshot } = await import("@/lib/content");
+    const localProductTitle = getProduct("cleanliness", "bt8500")?.title;
+    const localArticleTitle = getArticle(
+      "ozone-monitoring-equipment",
+    )?.title;
+
+    const productAvailable = await loadContentSnapshot({
+      sanityConfigured: true,
+      readProducts: async () => [sanityProductFixture()],
+      readNews: async () => {
+        throw new Error("news unavailable");
+      },
+    });
+    expect(
+      productAvailable.products.find(({ slug }) => slug === "bt8500")
+        ?.title,
+    ).toBe("Sanity 清浄度モニター");
+    expect(
+      productAvailable.articles.find(
+        ({ slug }) => slug === "ozone-monitoring-equipment",
+      )?.title,
+    ).toBe(localArticleTitle);
+
+    const newsAvailable = await loadContentSnapshot({
+      sanityConfigured: true,
+      readProducts: async () => {
+        throw new Error("products unavailable");
+      },
+      readNews: async () => [sanityNewsFixture()],
+    });
+    expect(
+      newsAvailable.products.find(({ slug }) => slug === "bt8500")
+        ?.title,
+    ).toBe(localProductTitle);
+    expect(
+      newsAvailable.articles.find(
+        ({ slug }) => slug === "ozone-monitoring-equipment",
+      )?.title,
+    ).toBe("Sanity オゾン監視技術情報");
   });
 });
 

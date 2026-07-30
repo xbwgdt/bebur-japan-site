@@ -1,6 +1,6 @@
 import type { QueryParams } from "@sanity/client";
 
-import { sanityClient } from "./client";
+import { getSanityClient } from "./client";
 
 export type SanityImage = {
   asset?: {
@@ -104,6 +104,7 @@ async function fetchConfigured<T>(
   query: string,
   params: QueryParams = {},
 ): Promise<T | null> {
+  const sanityClient = getSanityClient();
   if (!sanityClient) {
     return null;
   }
