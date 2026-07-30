@@ -1,5 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 
 import { describe, expect, it } from "vitest";
 
@@ -67,6 +69,23 @@ import {
   productRoute,
 } from "../lib/routes";
 
+const execFileAsync = promisify(execFile);
+
+type SanityImportDocument = {
+  _id: string;
+  _type: string;
+  coverImage?: {
+    _type?: string;
+    _sanityAsset?: string;
+    alt?: string;
+  };
+  defaultOgImage?: {
+    _type?: string;
+    _sanityAsset?: string;
+    alt?: string;
+  };
+};
+
 describe("route test environment", () => {
   it("runs without browser globals", () => {
     expect(typeof document).toBe("undefined");
@@ -99,6 +118,70 @@ describe("Japanese content lookups", () => {
     expect(getStaticPages().some(({ route }) => route === "/contact")).toBe(
       true,
     );
+  });
+
+  it("preserves 110 canonical routes across the 112 approved rendered source pages", async () => {
+    const sourceManifest = JSON.parse(
+      await readFile(
+        join(process.cwd(), "content", "source", "source-manifest.json"),
+        "utf8",
+      ),
+    ) as unknown[];
+
+    expect(getAllRoutes()).toHaveLength(110);
+    expect(sourceManifest).toHaveLength(112);
+  });
+
+  it("exports a stable import with every product, insight, and site setting", async () => {
+    const script = join(process.cwd(), "scripts", "export-sanity-import.mjs");
+    const destination = join(
+      process.cwd(),
+      "sanity",
+      "import",
+      "initial.ndjson",
+    );
+
+    await execFileAsync(process.execPath, [script]);
+    const firstOutput = await readFile(destination, "utf8");
+    await execFileAsync(process.execPath, [script]);
+    const secondOutput = await readFile(destination, "utf8");
+    const documents = firstOutput
+      .trim()
+      .split("\n")
+      .map((line) => JSON.parse(line) as SanityImportDocument);
+
+    expect(secondOutput).toBe(firstOutput);
+    expect(documents).toHaveLength(63);
+    expect(documents.filter(({ _type }) => _type === "product")).toHaveLength(
+      45,
+    );
+    expect(documents.filter(({ _type }) => _type === "news")).toHaveLength(17);
+    for (const document of documents.filter(
+      ({ _type }) => _type === "product" || _type === "news",
+    )) {
+      expect(document.coverImage).toMatchObject({
+        _type: "image",
+        _sanityAsset: expect.stringMatching(/^image@file:\/\//),
+      });
+      expect(document.coverImage?.alt).toMatch(
+        /[\p{Script=Hiragana}\p{Script=Katakana}]/u,
+      );
+    }
+    expect(documents.filter(({ _type }) => _type === "siteSettings")).toMatchObject([
+      {
+        _id: "siteSettings",
+        _type: "siteSettings",
+        companyName: "新樹産業株式会社",
+        postalCode: "340-0043",
+        address: "埼玉県草加市草加2－13－21－7",
+        phone: "080-5189-8663",
+        inquiryEmail: "info@newtree-i.com",
+        defaultOgImage: {
+          _type: "image",
+          _sanityAsset: expect.stringMatching(/^image@file:\/\//),
+        },
+      },
+    ]);
   });
 });
 

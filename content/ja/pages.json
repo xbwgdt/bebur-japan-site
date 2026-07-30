@@ -113,6 +113,14 @@
     "title": "お問い合わせ",
     "description": "Bebur製品に関する日本国内のお問い合わせ先をご案内します。",
     "sourceUrl": "https://www.bebur.net/en/list_40",
+    "contact": {
+      "distributorName": "Bebur 日本総代理店",
+      "companyName": "新樹産業株式会社",
+      "postalCode": "340-0043",
+      "address": "埼玉県草加市草加2－13－21－7",
+      "phone": "080-5189-8663",
+      "inquiryEmail": "info@newtree-i.com"
+    },
     "images": [],
     "sections": [
       {

@@ -3,6 +3,8 @@
 import { cleanup, render, screen, within } from "@testing-library/react";
 import { createElement } from "react";
 import { afterEach, describe, expect, it } from "vitest";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 import ContactPage from "@/app/contact/page";
 import { ContactCta, MobileContactBar } from "@/components/contact-cta";
@@ -12,6 +14,30 @@ import { buildMailto, siteConfig } from "@/lib/constants";
 afterEach(cleanup);
 
 describe("Bebur Japan contact details", () => {
+  it("keeps the approved inquiry address and excludes obsolete contacts from localized CMS content", async () => {
+    const content = await readFile(
+      join(process.cwd(), "content", "ja", "pages.json"),
+      "utf8",
+    );
+    const pages = JSON.parse(content) as Array<{
+      route: string;
+      contact?: unknown;
+    }>;
+
+    expect(content).toContain("info@newtree-i.com");
+    expect(content).not.toMatch(
+      /18001379750|010-87653191|0838-2236056|sales@bebur\.net|wechat|douyin/i,
+    );
+    expect(pages.find(({ route }) => route === "/contact")?.contact).toEqual({
+      distributorName: "Bebur 日本総代理店",
+      companyName: "新樹産業株式会社",
+      postalCode: "340-0043",
+      address: "埼玉県草加市草加2－13－21－7",
+      phone: "080-5189-8663",
+      inquiryEmail: "info@newtree-i.com",
+    });
+  });
+
   it("exposes the approved distributor identity", () => {
     expect(siteConfig.company).toBe("新樹産業株式会社");
     expect(siteConfig.distributorLabel).toBe(
