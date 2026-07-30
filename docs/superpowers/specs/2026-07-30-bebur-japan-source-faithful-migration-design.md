@@ -34,6 +34,35 @@ This is selected because it preserves the original brand appearance while keepin
 4. **Japanese content layer**: preserve the existing route/content data model, translate visible labels and metadata, replace global contact data, and use Japanese-ready typography without altering source visual hierarchy.
 5. **Deployment layer**: publish the `out/` directory as a directory upload, then verify root, representative image, JavaScript bundle, five route families, and the custom-domain HTTPS endpoint all return HTTP 200.
 
+## Content management
+
+### Platform and access
+
+- Use Sanity's Free plan for the Japanese site content dataset and hosted Studio.
+- Studio is localized for Chinese-speaking operators; field labels, validation messages, desk navigation labels, and authoring help text are Chinese.
+- Invite each operator through Sanity's account-invitation flow. Each approved operator receives the Sanity Administrator role and can create, edit, upload media, and publish immediately.
+- The Free plan supports up to 20 included seats. This is intentionally an all-publish model: it has no separate restricted editor role. Access must be granted only to trusted people.
+
+### Content models
+
+**Product**: category, Japanese title, model number, short summary, body, technical-specification rows, application references, gallery images, cover image, SEO title, SEO description, slug, and publish state.
+
+**News**: Japanese title, publication date, short summary, Portable Text body, cover image, gallery images, SEO title, SEO description, slug, and publish state.
+
+**Shared site settings**: Japanese navigation labels, primary contacts, Japanese distributor identity, inquiry email, footer content, and SEO defaults. The approved contact details remain validation-protected values, not ad-hoc per-page copy.
+
+### Publish flow
+
+1. Operator signs into the Chinese-language Sanity Studio with an invited account.
+2. Operator creates or edits a product/news document and uploads media to Sanity.
+3. Operator selects Publish; the document immediately becomes available through the public Sanity API.
+4. A Sanity webhook triggers a Cloudflare Pages deployment hook.
+5. Cloudflare rebuilds the static Next.js site from its connected source repository and publishes the changed content to `www.bebur-jp.com`.
+
+This automatic flow requires converting the current direct-upload Pages project into a Git-connected Pages project, hosted in a new user-owned repository. Direct-upload Pages has no build environment and cannot regenerate `out/` when Sanity data changes. If repository connection is not authorized, the fallback is manual `next build` plus directory deployment after each Sanity publish.
+
+This keeps the public site static and cached while giving operators a familiar content-admin experience. New content is not visible until the Pages deployment completes; the Studio will display the deployment status link supplied by the webhook response where available.
+
 ## Data flow
 
 `bebur.net source page/assets` → local source manifest and local assets → page-family components plus Japanese content data → `next build` static `out/` → Cloudflare Pages directory deployment → `www.bebur-jp.com` verification checks.
