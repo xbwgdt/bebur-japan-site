@@ -1,10 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-const japaneseText = (value: unknown) =>
-  typeof value !== "string" ||
-  value.length === 0 ||
-  /[\u3040-\u30ff\u3400-\u9fff]/u.test(value) ||
-  "请输入包含日文假名或汉字的内容";
+import { validateJapaneseText } from "./validation";
 
 const validSlug = (value: unknown) => {
   const current =
@@ -28,7 +24,7 @@ const imageFields = [
     description: "用于无障碍阅读和搜索引擎，需准确描述图片内容。",
     type: "string",
     validation: (Rule) =>
-      Rule.required().custom(japaneseText).error("请输入日文替代文字"),
+      Rule.required().custom(validateJapaneseText).error("请输入日文替代文字"),
   }),
 ];
 
@@ -70,7 +66,7 @@ export default defineType({
         Rule.required()
           .min(2)
           .max(100)
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入 2 至 100 个字符的日文产品名称"),
     }),
     defineField({
@@ -103,7 +99,7 @@ export default defineType({
       validation: (Rule) =>
         Rule.required()
           .max(240)
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入 240 个字符以内的日文简要说明"),
     }),
     defineField({
@@ -123,7 +119,9 @@ export default defineType({
         defineArrayMember({
           type: "string",
           validation: (Rule) =>
-            Rule.required().custom(japaneseText).error("请输入日文特点"),
+            Rule.required()
+              .custom(validateJapaneseText)
+              .error("请输入日文特点"),
         }),
       ],
     }),
@@ -136,7 +134,9 @@ export default defineType({
         defineArrayMember({
           type: "string",
           validation: (Rule) =>
-            Rule.required().custom(japaneseText).error("请输入日文用途"),
+            Rule.required()
+              .custom(validateJapaneseText)
+              .error("请输入日文用途"),
         }),
       ],
     }),
@@ -158,7 +158,7 @@ export default defineType({
               type: "string",
               validation: (Rule) =>
                 Rule.required()
-                  .custom(japaneseText)
+                  .custom(validateJapaneseText)
                   .error("请输入日文规格名称"),
             }),
             defineField({
@@ -223,7 +223,7 @@ export default defineType({
         Rule.required()
           .min(10)
           .max(60)
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入 10 至 60 个字符的日文 SEO 标题"),
     }),
     defineField({
@@ -236,7 +236,7 @@ export default defineType({
         Rule.required()
           .min(50)
           .max(160)
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入 50 至 160 个字符的日文 SEO 描述"),
     }),
     defineField({

@@ -1,5 +1,7 @@
 import type { StructureResolver } from "sanity/structure";
 
+import { SITE_SETTINGS_DOCUMENT_ID } from "./singletons";
+
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("内容管理")
@@ -8,13 +10,13 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("news").title("新闻管理"),
       S.divider(),
       S.listItem()
-        .id("siteSettings")
+        .id(SITE_SETTINGS_DOCUMENT_ID)
         .title("网站设置")
         .child(
           S.document()
-            .id("siteSettings")
+            .id(SITE_SETTINGS_DOCUMENT_ID)
             .schemaType("siteSettings")
-            .documentId("siteSettings")
+            .documentId(SITE_SETTINGS_DOCUMENT_ID)
             .title("网站设置"),
         ),
     ]);

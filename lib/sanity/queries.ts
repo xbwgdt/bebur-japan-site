@@ -151,23 +151,25 @@ export async function getNewsBySlug(
   );
 }
 
+export const siteSettingsQuery = `*[
+  _type == "siteSettings" && _id == "siteSettings"
+][0] {
+  navigationLabels,
+  distributorName,
+  companyName,
+  postalCode,
+  address,
+  phone,
+  inquiryEmail,
+  footerText,
+  defaultSeoTitle,
+  defaultSeoDescription,
+  defaultOgImage {
+    ...,
+    asset->{_ref, url}
+  }
+}`;
+
 export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
-  return fetchConfigured<SanitySiteSettings>(
-    `*[_type == "siteSettings"][0] {
-      navigationLabels,
-      distributorName,
-      companyName,
-      postalCode,
-      address,
-      phone,
-      inquiryEmail,
-      footerText,
-      defaultSeoTitle,
-      defaultSeoDescription,
-      defaultOgImage {
-        ...,
-        asset->{_ref, url}
-      }
-    }`,
-  );
+  return fetchConfigured<SanitySiteSettings>(siteSettingsQuery);
 }

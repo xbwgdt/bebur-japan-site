@@ -1,10 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-const japaneseText = (value: unknown) =>
-  typeof value !== "string" ||
-  value.length === 0 ||
-  /[\u3040-\u30ff\u3400-\u9fff]/u.test(value) ||
-  "请输入包含日文假名或汉字的内容";
+import { validateJapaneseText } from "./validation";
 
 const requiredJapaneseField = (
   name: string,
@@ -17,7 +13,7 @@ const requiredJapaneseField = (
     description,
     type: "string",
     validation: (Rule) =>
-      Rule.required().custom(japaneseText).error(`请输入${title}`),
+      Rule.required().custom(validateJapaneseText).error(`请输入${title}`),
   });
 
 export default defineType({
@@ -54,7 +50,7 @@ export default defineType({
       group: "contact",
       validation: (Rule) =>
         Rule.required()
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入已批准的日文总代理名称"),
     }),
     defineField({
@@ -64,7 +60,7 @@ export default defineType({
       group: "contact",
       validation: (Rule) =>
         Rule.required()
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入已批准的日文公司名称"),
     }),
     defineField({
@@ -85,7 +81,7 @@ export default defineType({
       group: "contact",
       validation: (Rule) =>
         Rule.required()
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入已批准的日文地址"),
     }),
     defineField({
@@ -116,7 +112,7 @@ export default defineType({
       group: "footer",
       validation: (Rule) =>
         Rule.required()
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入日文页脚说明"),
     }),
     defineField({
@@ -128,7 +124,7 @@ export default defineType({
         Rule.required()
           .min(10)
           .max(60)
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入 10 至 60 个字符的默认日文 SEO 标题"),
     }),
     defineField({
@@ -141,7 +137,7 @@ export default defineType({
         Rule.required()
           .min(50)
           .max(160)
-          .custom(japaneseText)
+          .custom(validateJapaneseText)
           .error("请输入 50 至 160 个字符的默认日文 SEO 描述"),
     }),
     defineField({
@@ -157,7 +153,7 @@ export default defineType({
           type: "string",
           validation: (Rule) =>
             Rule.required()
-              .custom(japaneseText)
+              .custom(validateJapaneseText)
               .error("请输入日文替代文字"),
         }),
       ],
