@@ -417,18 +417,15 @@ describe("Bebur reusable source assets", () => {
       expect(["bebur.net", "www.bebur.net"]).toContain(
         new URL(sourceUrl).hostname,
       );
-      expect(publicUrl).toMatch(/^\/(?:products|applications)\//);
+      expect(publicUrl).toMatch(/^\/source-media\//);
       await expect(
         readFile(path.join(process.cwd(), "public", publicUrl.slice(1))),
       ).resolves.toBeInstanceOf(Buffer);
     }
 
-    expect(entries.some(([, value]) => value.startsWith("/products/"))).toBe(
+    expect(entries.every(([, value]) => value.startsWith("/source-media/"))).toBe(
       true,
     );
-    expect(
-      entries.some(([, value]) => value.startsWith("/applications/")),
-    ).toBe(true);
   });
 
   it("stores each downloaded binary hash only once", async () => {
@@ -449,7 +446,7 @@ describe("Bebur reusable source assets", () => {
     expect(new Set(hashes).size).toBe(localUrls.length);
   });
 
-  it("stores Exhibition Site images as application assets", async () => {
+  it("stores Exhibition Site images as normalized source assets", async () => {
     const pages = await readManifest();
     const assetMap = await readAssetMap();
     const exhibitionPage = pages.find(
@@ -462,11 +459,11 @@ describe("Bebur reusable source assets", () => {
 
     expect(mappedAssets.length).toBeGreaterThan(0);
     expect(mappedAssets.every((publicUrl) =>
-      publicUrl.startsWith("/applications/")
+      publicUrl.startsWith("/source-media/")
     )).toBe(true);
   });
 
-  it("keeps every product-detail primary image under products", async () => {
+  it("keeps every product-detail primary image in normalized source media", async () => {
     const pages = await readManifest();
     const assetMap = await readAssetMap();
     const productDetails = pages.filter(({ sourcePath }) =>
@@ -485,7 +482,7 @@ describe("Bebur reusable source assets", () => {
 
       expect(primaryImage, page.sourcePath).toBeDefined();
       expect(assetMap[primaryImage!.src], page.sourcePath).toMatch(
-        /^\/products\//,
+        /^\/source-media\//,
       );
     }
   });

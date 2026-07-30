@@ -171,7 +171,7 @@ function uniqueText(elements, $) {
   return values;
 }
 
-function normalizeImageUrl(src, pageUrl) {
+function normalizeVisualUrl(src, pageUrl) {
   try {
     const url = new URL(src, pageUrl);
     if (url.protocol !== "http:" && url.protocol !== "https:") {
@@ -185,6 +185,89 @@ function normalizeImageUrl(src, pageUrl) {
   } catch {
     return null;
   }
+}
+
+function extractSrcsetUrls(value) {
+  return value
+    .split(",")
+    .map((candidate) => candidate.trim().split(/\s+/, 1)[0])
+    .filter(Boolean);
+}
+
+function extractCssUrls(value) {
+  return [...value.matchAll(/url\(\s*(["']?)(.*?)\1\s*\)/gi)]
+    .map(([, , source]) => source.trim())
+    .filter(Boolean);
+}
+
+function collectVisualReferences($, sourceUrl) {
+  const references = new Map();
+  const add = (rawUrl, kind) => {
+    const src = normalizeVisualUrl(rawUrl, sourceUrl);
+    if (!src) return;
+    const reference = references.get(src) ?? { src, kinds: [] };
+    if (!reference.kinds.includes(kind)) reference.kinds.push(kind);
+    references.set(src, reference);
+  };
+
+  $("img[src], picture source[src], video[src]")
+    .each((_, element) => add($(element).attr("src"), element.tagName));
+  $("[srcset]").each((_, element) => {
+    for (const src of extractSrcsetUrls($(element).attr("srcset") ?? "")) {
+      add(src, `${element.tagName}:srcset`);
+    }
+  });
+  $("[poster]").each((_, element) => add($(element).attr("poster"), "poster"));
+  $("[data-src], [data-lazy-src], [data-original], [data-bg], [data-background]")
+    .each((_, element) => {
+      for (const attribute of [
+        "data-src",
+        "data-lazy-src",
+        "data-original",
+        "data-bg",
+        "data-background",
+      ]) {
+        const value = $(element).attr(attribute);
+        if (value) add(value, attribute);
+      }
+    });
+  $("[style]").each((_, element) => {
+    for (const src of extractCssUrls($(element).attr("style") ?? "")) add(src, "style");
+  });
+  $("style").each((_, element) => {
+    for (const src of extractCssUrls($(element).text())) add(src, "stylesheet");
+  });
+  $("link[rel~='icon'][href], link[as='image'][href]")
+    .each((_, element) => add($(element).attr("href"), "link"));
+  $("meta[property='og:image'][content], meta[name='twitter:image'][content]")
+    .each((_, element) => add($(element).attr("content"), "meta-image"));
+
+  return [...references.values()]
+    .map((reference) => ({ ...reference, kinds: reference.kinds.toSorted() }))
+    .toSorted((left, right) => left.src.localeCompare(right.src));
+}
+
+function collectLayoutMarkers($) {
+  const markers = new Map();
+  const layoutSelector = [
+    "header", "nav", "main", "footer", "section", "article", "aside", "[id]",
+    "[class*='banner']", "[class*='product']", "[class*='about']",
+    "[class*='news']", "[class*='case']", "[class*='contact']",
+  ].join(",");
+
+  $(layoutSelector).each((_, element) => {
+    const id = $(element).attr("id") ?? "";
+    const classes = ($(element).attr("class") ?? "")
+      .split(/\s+/)
+      .filter(Boolean)
+      .toSorted();
+    const marker = `${element.tagName}${id ? `#${id}` : ""}${
+      classes.length ? `.${classes.join(".")}` : ""
+    }`;
+    markers.set(marker, { tag: element.tagName, id, classes });
+  });
+
+  return [...markers.values()];
 }
 
 function parseTables($, root) {
@@ -242,7 +325,7 @@ function parsePage(html, sourceUrl) {
   const images = [];
 
   body.find("img[src]").each((_, image) => {
-    const src = normalizeImageUrl($(image).attr("src"), sourceUrl);
+    const src = normalizeVisualUrl($(image).attr("src"), sourceUrl);
     if (!src || seenImages.has(src)) {
       return;
     }
@@ -261,6 +344,8 @@ function parsePage(html, sourceUrl) {
     paragraphs,
     tables,
     images,
+    layoutMarkers: collectLayoutMarkers($),
+    visualReferences: collectVisualReferences($, sourceUrl),
   };
 }
 

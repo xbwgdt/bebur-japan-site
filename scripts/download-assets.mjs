@@ -19,24 +19,46 @@ const ASSET_MAP_PATH = path.join(
   "source",
   "asset-map.json",
 );
+const PAGE_FAMILY_MANIFEST_PATH = path.join(
+  process.cwd(),
+  "content",
+  "source",
+  "page-family-manifest.json",
+);
 const PUBLIC_PATH = path.join(process.cwd(), "public");
 const ALLOWED_HOSTS = new Set(["bebur.net", "www.bebur.net"]);
-const ALLOWED_EXTENSIONS = new Set(["jpg", "jpeg", "png", "webp", "gif"]);
-const PRODUCT_PATH_PATTERN = /^\/en\/list_(?:37(?:_2)?|4[6-9]|50)(?:\/|$)/;
-const PRODUCT_DETAIL_PATH_PATTERN =
-  /^\/en\/list_(?:4[6-9]|50)\/\d+\.html$/;
-const APPLICATION_PATH_PATTERN =
-  /^\/en\/list_(?:38|45|5[2-9]|60|61)(?:\/|$)/;
+const ALLOWED_EXTENSIONS = new Set([
+  "avif", "gif", "ico", "jpeg", "jpg", "png", "svg", "webp",
+]);
 const EXCLUDED_IMAGE_PATTERN =
   /(?:wechat|weixin|weibo|douyin|tiktok|qr(?:code)?|qrcode|whatsapp|skype|contact|footer|sprite|tracker|tracking|pixel|lan\.gif|index_13\.jpg|index_14\.jpg)/i;
 const USER_AGENT =
   "BeburJapanMigration/1.0 (+https://www.bebur-jp.com)";
 const CONCURRENCY = 4;
 const REQUEST_TIMEOUT_MS = 30_000;
-
-function normalizeWhitespace(value) {
-  return value.replace(/\s+/g, " ").trim();
-}
+const PAGE_FAMILY_DEFINITIONS = [
+  { route: "/", family: "home", sourcePath: "/en/" },
+  { route: "/products", family: "product-index", sourcePath: "/en/list_37" },
+  {
+    route: "/products/cleanliness/bt8500",
+    family: "product-detail",
+    sourcePath: "/en/list_46/254.html",
+  },
+  {
+    route: "/applications",
+    family: "application",
+    sourcePath: "/en/list_38",
+    assetSourcePaths: ["/en/list_52"],
+  },
+  { route: "/insights", family: "insight", sourcePath: "/en/list_39" },
+  { route: "/about/company-profile", family: "about", sourcePath: "/en/about_41" },
+  {
+    route: "/contact",
+    family: "contact",
+    sourcePath: "/en/list_40",
+    assetSourcePaths: ["/en/about_41"],
+  },
+];
 
 function isFirstPartyHttpImage(sourceUrl) {
   try {
@@ -111,57 +133,26 @@ async function mapWithConcurrency(items, concurrency, mapper) {
   return results;
 }
 
-function collectImageRecords(manifest) {
+function collectVisualRecords(manifest) {
   const records = new Map();
 
   for (const page of manifest) {
-    const primaryImage = PRODUCT_DETAIL_PATH_PATTERN.test(page.sourcePath)
-      ? page.images.find(
-        ({ src, alt }) =>
-          normalizeWhitespace(alt) && isFirstPartyHttpImage(src) &&
-          !EXCLUDED_IMAGE_PATTERN.test(src),
-      )?.src
-      : null;
-
-    for (const image of page.images) {
-      const record = records.get(image.src) ?? {
-        sourceUrl: image.src,
+    for (const reference of page.visualReferences ?? page.images ?? []) {
+      const record = records.get(reference.src) ?? {
+        sourceUrl: reference.src,
         sourcePaths: new Set(),
-        primary: false,
       };
       record.sourcePaths.add(page.sourcePath);
-      record.primary ||= image.src === primaryImage;
-      records.set(image.src, record);
+      records.set(reference.src, record);
     }
   }
 
   return [...records.values()]
     .map((record) => {
       const sourcePaths = [...record.sourcePaths].sort();
-      const category = sourcePaths.some((sourcePath) =>
-        PRODUCT_PATH_PATTERN.test(sourcePath)
-      )
-        ? "products"
-        : sourcePaths.some((sourcePath) =>
-            APPLICATION_PATH_PATTERN.test(sourcePath)
-          )
-          ? "applications"
-          : null;
-      return { ...record, sourcePaths, category };
+      return { ...record, sourcePaths };
     })
-    .sort((left, right) => {
-      if (left.category !== right.category) {
-        if (left.category === "products") return -1;
-        if (right.category === "products") return 1;
-        if (left.category === "applications") return -1;
-        if (right.category === "applications") return 1;
-      }
-      return left.sourceUrl < right.sourceUrl
-        ? -1
-        : left.sourceUrl > right.sourceUrl
-          ? 1
-          : 0;
-    });
+    .sort((left, right) => left.sourceUrl.localeCompare(right.sourceUrl));
 }
 
 function extensionFor(sourceUrl, contentType) {
@@ -179,6 +170,9 @@ function extensionFor(sourceUrl, contentType) {
     ["image/png", "png"],
     ["image/webp", "webp"],
     ["image/gif", "gif"],
+    ["image/avif", "avif"],
+    ["image/svg+xml", "svg"],
+    ["image/x-icon", "ico"],
   ]);
   extension = extensionsByContentType.get(normalizedContentType);
   return extension && ALLOWED_EXTENSIONS.has(extension) ? extension : null;
@@ -205,6 +199,34 @@ function sanitizedBasename(sourceUrl) {
   );
 }
 
+function createPageFamilyManifest(sourceManifest, assetMap) {
+  const pageBySourcePath = new Map(
+    sourceManifest.map((page) => [page.sourcePath, page]),
+  );
+
+  return PAGE_FAMILY_DEFINITIONS.map(({
+    route,
+    family,
+    sourcePath,
+    assetSourcePaths = [],
+  }) => {
+    const page = pageBySourcePath.get(sourcePath);
+    if (!page) throw new Error(`Missing source page for ${family}: ${sourcePath}`);
+    const localAssets = [...new Set(
+      [sourcePath, ...assetSourcePaths].flatMap((assetSourcePath) =>
+        (pageBySourcePath.get(assetSourcePath)?.visualReferences ??
+          pageBySourcePath.get(assetSourcePath)?.images ?? [])
+          .map(({ src }) => assetMap[src])
+          .filter(Boolean)
+      ),
+    )].sort();
+    if (localAssets.length === 0) {
+      throw new Error(`No downloaded visual assets for ${family}: ${page.sourceUrl}`);
+    }
+    return { route, family, sourceUrl: page.sourceUrl, localAssets };
+  });
+}
+
 async function downloadCandidate(record, index, total) {
   try {
     const response = await fetchWithRetry(record.sourceUrl);
@@ -217,8 +239,8 @@ async function downloadCandidate(record, index, total) {
     if (
       !dimensions.width ||
       !dimensions.height ||
-      dimensions.width < 160 ||
-      dimensions.height < 60
+      dimensions.width < 16 ||
+      dimensions.height < 16
     ) {
       console.log(
         `[${index + 1}/${total}] rejected-small ${record.sourceUrl} ` +
@@ -258,7 +280,7 @@ async function downloadCandidate(record, index, total) {
 
 async function main() {
   const manifest = JSON.parse(await readFile(MANIFEST_PATH, "utf8"));
-  const records = collectImageRecords(manifest);
+  const records = collectVisualRecords(manifest);
   const totals = {
     considered: records.length,
     downloaded: 0,
@@ -269,17 +291,14 @@ async function main() {
     failed: 0,
   };
   const candidates = [];
-  const brokenPrimaryImages = [];
 
   for (const record of records) {
     if (!isFirstPartyHttpImage(record.sourceUrl)) {
       totals.rejectedNonFirstParty += 1;
-      if (record.primary) brokenPrimaryImages.push(record.sourceUrl);
       continue;
     }
-    if (!record.category || EXCLUDED_IMAGE_PATTERN.test(record.sourceUrl)) {
+    if (EXCLUDED_IMAGE_PATTERN.test(record.sourceUrl)) {
       totals.rejectedExcluded += 1;
-      if (record.primary) brokenPrimaryImages.push(record.sourceUrl);
       continue;
     }
     candidates.push(record);
@@ -291,20 +310,17 @@ async function main() {
     (record, index) => downloadCandidate(record, index, candidates.length),
   );
 
-  await mkdir(path.join(PUBLIC_PATH, "products"), { recursive: true });
-  await mkdir(path.join(PUBLIC_PATH, "applications"), { recursive: true });
+  await mkdir(path.join(PUBLIC_PATH, "source-media"), { recursive: true });
 
   const assetMap = {};
   const localUrlByHash = new Map();
   for (const result of downloaded) {
     if (result.status === "rejected-small") {
       totals.rejectedSmall += 1;
-      if (result.primary) brokenPrimaryImages.push(result.sourceUrl);
       continue;
     }
     if (result.status === "failed") {
       totals.failed += 1;
-      if (result.primary) brokenPrimaryImages.push(result.sourceUrl);
       continue;
     }
 
@@ -316,7 +332,7 @@ async function main() {
       const filename =
         `${sanitizedBasename(result.sourceUrl)}-${result.hash.slice(0, 16)}.` +
         result.extension;
-      localUrl = `/${result.category}/${filename}`;
+      localUrl = `/source-media/${filename}`;
       localUrlByHash.set(result.hash, localUrl);
       await writeFile(
         path.join(PUBLIC_PATH, localUrl.slice(1)),
@@ -336,6 +352,12 @@ async function main() {
     `${JSON.stringify(sortedAssetMap, null, 2)}\n`,
     "utf8",
   );
+  const pageFamilyManifest = createPageFamilyManifest(manifest, sortedAssetMap);
+  await writeFile(
+    PAGE_FAMILY_MANIFEST_PATH,
+    `${JSON.stringify(pageFamilyManifest, null, 2)}\n`,
+    "utf8",
+  );
 
   console.log("Asset acquisition totals:");
   console.log(`  considered: ${totals.considered}`);
@@ -349,13 +371,8 @@ async function main() {
   console.log(`  failed: ${totals.failed}`);
   console.log(`  local files: ${localUrlByHash.size}`);
   console.log(`  mapped source URLs: ${Object.keys(sortedAssetMap).length}`);
+  console.log(`  page families: ${pageFamilyManifest.length}`);
 
-  if (brokenPrimaryImages.length > 0) {
-    throw new Error(
-      `${brokenPrimaryImages.length} primary product image(s) were not ` +
-        `downloaded:\n${brokenPrimaryImages.map((url) => `- ${url}`).join("\n")}`,
-    );
-  }
 }
 
 main().catch((error) => {
