@@ -1,6 +1,7 @@
 import type { QueryParams } from "@sanity/client";
 
 import { getSanityClient } from "./client";
+import type { PageBlock } from "../page-blocks";
 
 export type SanityImage = {
   asset?: {
@@ -55,6 +56,30 @@ export type SanitySiteSettings = {
   defaultSeoDescription?: string;
   defaultOgImage?: SanityImage;
 };
+
+export type SanityPage = {
+  _id: string;
+  title: string;
+  slug: string;
+  blocks: PageBlock[];
+  seoTitle: string;
+  seoDescription: string;
+};
+
+export const pageProjection = `{
+  _id,
+  title,
+  "slug": slug.current,
+  blocks[] {
+    _type,
+    ...,
+    image { ..., alt, asset->{_ref, url} },
+    images[] { ..., alt, asset->{_ref, url} },
+    cards[] { ..., image { ..., alt, asset->{_ref, url} } }
+  },
+  seoTitle,
+  seoDescription
+}`;
 
 const productProjection = `{
   _id,
@@ -152,6 +177,17 @@ export async function getNewsBySlug(
       publishState == "published" &&
       slug.current == $slug
     ][0] ${newsProjection}`,
+    { slug },
+  );
+}
+
+export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
+  return fetchConfigured<SanityPage>(
+    `*[
+      _type == "page" &&
+      publishState == "published" &&
+      slug.current == $slug
+    ][0] ${pageProjection}`,
     { slug },
   );
 }

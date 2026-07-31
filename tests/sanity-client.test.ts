@@ -29,4 +29,13 @@ describe("Sanity static-build client", () => {
       }),
     );
   });
+
+  it("projects page modules with image URLs and required accessible alt text", async () => {
+    const { pageProjection } = await import("../lib/sanity/queries");
+
+    expect(pageProjection).toContain("blocks[]");
+    expect(pageProjection).toContain("_type");
+    expect(pageProjection).toContain("alt");
+    expect(pageProjection).toContain("asset->{_ref, url}");
+  });
 });
