@@ -6,12 +6,12 @@
 
 ## 根因
 
-`scripts/validate-sanity-import.mjs` 会把缺失的 `globalThis.window` 临时指向 Node 的 `globalThis`。Sanity 3.99 在检测到 `window` 后会调用 RxJS `fromEvent(window, ...)`；Node 的 `globalThis` 没有浏览器事件目标所需的 `addEventListener` 与 `removeEventListener`，因而失败。
+`scripts/validate-sanity-import.mjs` 会把缺失的 `globalThis.window` 临时指向 Node 的 `globalThis`。Sanity 3.99 在检测到 `window` 后会调用 RxJS `fromEvent(window, ...)`，并进一步访问 `document.querySelectorAll`。Node 的 `globalThis` 没有浏览器事件目标和 DOM 查询接口，因而失败。
 
 ## 范围
 
 - 仅修改 Sanity 导入校验的临时全局环境和它的测试。
-- 临时 `window` 使用具备浏览器事件监听接口的事件目标，并在校验完成后完整恢复全局状态。
+- 临时使用 JSDOM 提供完整的浏览器 `window` 和 `document`，并在校验完成后关闭实例、完整恢复全局状态。
 - 不修改 Sanity schema、CMS 内容、前台站点、Cloudflare 配置或产品数据。
 
 ## 验收标准
@@ -23,4 +23,4 @@
 
 ## 风险与回退
 
-影响范围限于构建时校验脚本。若发生问题，撤销临时事件目标逻辑即可恢复原行为；不会影响生产网页或 Sanity Studio。
+影响范围限于构建时校验脚本。若发生问题，撤销临时 JSDOM 环境逻辑即可恢复原行为；不会影响生产网页或 Sanity Studio。
