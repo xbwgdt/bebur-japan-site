@@ -7,9 +7,11 @@ import { siteSettingsQuery } from "../lib/sanity/queries";
 import { approvedContact } from "../lib/constants";
 import { readStudioEnvironment } from "../sanity/environment";
 import product from "../sanity/schemaTypes/product";
+import page from "../sanity/schemaTypes/page";
 import siteSettings, {
   validateApprovedContactValue,
 } from "../sanity/schemaTypes/siteSettings";
+import { pageBlocks } from "../sanity/schemaTypes/blocks";
 import {
   validateJapaneseProse,
   validateJapaneseText,
@@ -68,6 +70,81 @@ describe("Sanity product schema", () => {
         "specifications",
       ]),
     );
+  });
+});
+
+describe("Sanity modular page schemas", () => {
+  const expectedBlockNames = [
+    "hero",
+    "richText",
+    "gallery",
+    "cardGrid",
+    "dataTable",
+    "cta",
+  ];
+
+  const findField = (
+    fields: Array<{ name: string; options?: { list?: unknown[] } }> | undefined,
+    name: string,
+  ) => fields?.find((field) => field.name === name);
+
+  it("defines a page document with modular content and controlled publishing", () => {
+    expect(page.title).toBe("页面内容");
+    expect(page.fields?.map((field) => field.name)).toEqual(
+      expect.arrayContaining(["title", "slug", "blocks", "seoTitle", "seoDescription", "publishState"]),
+    );
+    expect(findField(page.fields, "blocks")?.type).toBe("array");
+    expect(findField(page.fields, "publishState")?.options?.list).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ value: "draft" }),
+        expect.objectContaining({ value: "published" }),
+      ]),
+    );
+  });
+
+  it("defines every required page block and requires Japanese alt text for images", () => {
+    expect(pageBlocks.map((block) => block.name)).toEqual(
+      expect.arrayContaining(expectedBlockNames),
+    );
+
+    for (const block of pageBlocks) {
+      expect(block.title).toMatch(/[\u4e00-\u9fff]/u);
+    }
+
+    const hero = pageBlocks.find((block) => block.name === "hero");
+    const heroImage = findField(hero?.fields, "image");
+    const alt = findField(heroImage?.fields, "alt");
+    expect(alt?.validation).toBeTypeOf("function");
+
+    const gallery = pageBlocks.find((block) => block.name === "gallery");
+    const galleryImages = findField(gallery?.fields, "images");
+    const galleryImage = galleryImages?.of?.[0];
+    expect(findField(galleryImage?.fields, "alt")?.validation).toBeTypeOf("function");
+  });
+
+  it("uses fixed lists for all page style controls", () => {
+    const controlledFields = ["color", "fontSize", "alignment", "spacing", "desktopTitleWrap"];
+
+    for (const block of pageBlocks) {
+      for (const fieldName of controlledFields) {
+        const field = findField(block.fields, fieldName);
+        expect(field).toBeDefined();
+        expect(field?.type).toBe("string");
+        expect(field?.options?.list).toEqual(expect.any(Array));
+        expect(field?.options?.list?.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("adds a Chinese page-content entry without removing existing Studio entries", () => {
+    const structureSource = readFileSync(
+      resolve(process.cwd(), "sanity/structure.ts"),
+      "utf8",
+    );
+
+    expect(structureSource).toContain('documentTypeListItem("page").title("页面内容")');
+    expect(structureSource).toContain('documentTypeListItem("product")');
+    expect(structureSource).toContain('documentTypeListItem("news")');
   });
 });
 

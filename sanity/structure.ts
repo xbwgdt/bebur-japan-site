@@ -6,6 +6,7 @@ export const structure: StructureResolver = (S) =>
   S.list().id("content")
     .title("内容管理")
     .items([
+      S.documentTypeListItem("page").title("页面内容"),
       S.documentTypeListItem("product").title("产品管理"),
       S.documentTypeListItem("news").title("新闻管理"),
       S.divider(),
