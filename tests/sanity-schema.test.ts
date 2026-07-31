@@ -161,6 +161,15 @@ describe("approved site contact validation", () => {
 });
 
 describe("Sanity singleton controls", () => {
+  it("assigns an ID to the root desk list", () => {
+    const structureSource = readFileSync(
+      resolve(process.cwd(), "sanity/structure.ts"),
+      "utf8",
+    );
+
+    expect(structureSource).toContain('S.list().id("content")');
+  });
+
   it("removes site settings from schema templates and new-document options", () => {
     expect(
       filterSingletonTemplates([

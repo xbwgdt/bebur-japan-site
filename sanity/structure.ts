@@ -3,7 +3,7 @@ import type { StructureResolver } from "sanity/structure";
 import { SITE_SETTINGS_DOCUMENT_ID } from "./singletons";
 
 export const structure: StructureResolver = (S) =>
-  S.list()
+  S.list().id("content")
     .title("内容管理")
     .items([
       S.documentTypeListItem("product").title("产品管理"),
