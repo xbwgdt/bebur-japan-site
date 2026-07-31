@@ -2216,6 +2216,50 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   text-align: left;
 }
 
+.source-home-hero--align-center .source-hero__content {
+  justify-items: center;
+  text-align: center;
+}
+
+.source-home-hero--align-center .source-hero__actions {
+  justify-content: center;
+}
+
+.source-home-hero--color-blue .source-hero h1,
+.source-home-hero--color-blue .source-hero__eyebrow {
+  color: var(--source-blue);
+}
+
+.source-home-hero--color-red .source-hero h1,
+.source-home-hero--color-red .source-hero__eyebrow {
+  color: #a12c36;
+}
+
+.source-home-hero--color-neutral .source-hero h1,
+.source-home-hero--color-neutral .source-hero__eyebrow {
+  color: var(--source-ink);
+}
+
+.source-home-hero--font-sm .source-hero h1 {
+  font-size: clamp(2.15rem, 4.5vw, 3.5rem);
+}
+
+.source-home-hero--font-md .source-hero h1 {
+  font-size: clamp(2.4rem, 5vw, 4.1rem);
+}
+
+.source-home-hero--font-lg .source-hero h1 {
+  font-size: clamp(2.55rem, 5.6vw, 4.7rem);
+}
+
+.source-home-hero--spacing-compact .source-hero__content {
+  padding-block: 7rem 3rem;
+}
+
+.source-home-hero--spacing-spacious .source-hero__content {
+  padding-block: 10rem 6rem;
+}
+
 .source-home-hero .source-hero__eyebrow {
   color: var(--source-blue);
 }
@@ -2827,7 +2871,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
 }
 
 @media (min-width: 64rem) {
-  .source-home-hero .source-hero h1 {
+  .source-home-hero.source-home-hero--title-nowrap .source-hero h1 {
     max-width: none;
     white-space: nowrap;
   }

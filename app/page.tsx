@@ -18,6 +18,7 @@ import {
 } from "@/lib/content";
 import { siteConfig } from "@/lib/constants";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
+import { publicSiteSettings, resolveHomeHeroStyle } from "@/lib/site-settings";
 import type { Application, Product, ProductCategory } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -100,21 +101,23 @@ function formatJapaneseDate(date: string): string {
 }
 
 export default function HomePage(): React.ReactElement {
+  const homeHero = publicSiteSettings.homeHero;
+
   return (
     <SourceShell>
-      <div className="source-home-hero">
+      <div className={resolveHomeHeroStyle(homeHero.style)}>
         <SourceHero
-          eyebrow="WATER QUALITY & GAS DETECTION"
-          image="/source-media/1761791363673595-08e6a0255dfd817e.jpg"
-          summary="Beburの精密計測技術で、水処理、製造、医薬、液冷設備の安全と品質管理を支えます。"
-          title="水質とガスを、より確かに。"
+          eyebrow={homeHero.eyebrow}
+          image={homeHero.backgroundImage.src as import("@/components/source-faithful/source-media").ContentMediaPath}
+          summary={homeHero.summary}
+          title={homeHero.title}
           actions={
             <>
-              <Link className="button button--accent" href="/products">
-                製品情報を見る
+              <Link className="button button--accent" href={homeHero.primaryAction.href}>
+                {homeHero.primaryAction.label}
               </Link>
-              <Link className="button button--light" href="/contact">
-                お問い合わせ
+              <Link className="button button--light" href={homeHero.secondaryAction.href}>
+                {homeHero.secondaryAction.label}
               </Link>
             </>
           }

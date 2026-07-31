@@ -44,6 +44,21 @@ export type SanityNews = {
 };
 
 export type SanitySiteSettings = {
+  homeHero?: {
+    eyebrow?: string;
+    title?: string;
+    summary?: string;
+    backgroundImage?: SanityImage;
+    primaryAction?: { label?: string; href?: string };
+    secondaryAction?: { label?: string; href?: string };
+    style?: {
+      color?: string;
+      fontSize?: string;
+      alignment?: string;
+      spacing?: string;
+      desktopTitleWrap?: string;
+    };
+  };
   navigationLabels?: Record<string, string>;
   distributorName?: string;
   companyName?: string;
@@ -195,6 +210,15 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
 export const siteSettingsQuery = `*[
   _type == "siteSettings" && _id == "siteSettings"
 ][0] {
+  homeHero {
+    eyebrow,
+    title,
+    summary,
+    backgroundImage { ..., asset->{_ref, url} },
+    primaryAction,
+    secondaryAction,
+    style
+  },
   navigationLabels,
   distributorName,
   companyName,

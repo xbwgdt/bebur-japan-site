@@ -44,12 +44,34 @@ export default defineType({
   title: "网站设置",
   type: "document",
   groups: [
+    { name: "home", title: "ホーム" },
     { name: "navigation", title: "导航", default: true },
     { name: "contact", title: "联系信息" },
     { name: "footer", title: "页脚" },
     { name: "seo", title: "搜索优化" },
   ],
   fields: [
+    defineField({
+      name: "homeHero",
+      title: "ホーム ヒーロー",
+      type: "object",
+      group: "home",
+      fields: [
+        requiredJapaneseField("eyebrow", "アイブロー"),
+        requiredJapaneseField("title", "見出し"),
+        defineField({ name: "summary", title: "概要", type: "text", rows: 3, validation: (Rule) => Rule.required().custom(validateJapaneseProse) }),
+        defineField({ name: "backgroundImage", title: "背景画像", type: "image", options: { hotspot: true }, fields: [defineField({ name: "alt", title: "代替テキスト", type: "string", validation: (Rule) => Rule.required().custom(validateJapaneseText) })] }),
+        defineField({ name: "primaryAction", title: "主ボタン", type: "object", fields: [requiredJapaneseField("label", "ラベル"), defineField({ name: "href", title: "リンク先", type: "string", validation: (Rule) => Rule.required().regex(/^(?:\/|https:\/\/|mailto:|tel:)/u) })] }),
+        defineField({ name: "secondaryAction", title: "副ボタン", type: "object", fields: [requiredJapaneseField("label", "ラベル"), defineField({ name: "href", title: "リンク先", type: "string", validation: (Rule) => Rule.required().regex(/^(?:\/|https:\/\/|mailto:|tel:)/u) })] }),
+        defineField({ name: "style", title: "表示プリセット", type: "object", fields: [
+          defineField({ name: "color", title: "色", type: "string", options: { list: ["brand", "blue", "red", "neutral"], layout: "radio" } }),
+          defineField({ name: "fontSize", title: "文字サイズ", type: "string", options: { list: ["sm", "md", "lg", "xl"], layout: "radio" } }),
+          defineField({ name: "alignment", title: "配置", type: "string", options: { list: ["left", "center"], layout: "radio" } }),
+          defineField({ name: "spacing", title: "余白", type: "string", options: { list: ["compact", "normal", "spacious"], layout: "radio" } }),
+          defineField({ name: "desktopTitleWrap", title: "デスクトップ見出し折り返し", type: "string", options: { list: ["wrap", "nowrap"], layout: "radio" } }),
+        ] }),
+      ],
+    }),
     defineField({
       name: "navigationLabels",
       title: "日文导航文字",

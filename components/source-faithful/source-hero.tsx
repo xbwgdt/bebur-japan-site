@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-import type { SourceAssetPath } from "@/components/source-faithful/source-media";
+import type { ContentMediaPath } from "@/components/source-faithful/source-media";
 
 export function SourceHero({
   image,
@@ -11,7 +11,7 @@ export function SourceHero({
   actions,
   identity,
 }: {
-  image: SourceAssetPath;
+  image: ContentMediaPath;
   eyebrow: string;
   title: string;
   summary: string;

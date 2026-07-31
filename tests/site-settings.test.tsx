@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import {
   localPublicSiteSettings,
+  resolveHomeHeroStyle,
   resolvePublicSiteSettings,
 } from "@/lib/site-settings";
 
@@ -42,6 +43,37 @@ const remoteSettings = resolvePublicSiteSettings({
 });
 
 describe("safe public site settings", () => {
+  it("uses only approved home hero presentation presets", () => {
+    const settings = resolvePublicSiteSettings({
+      homeHero: {
+        title: "CMS home title",
+        eyebrow: "CMS EYEBROW",
+        summary: "CMS summary",
+        style: {
+          color: "javascript:alert(1)",
+          fontSize: "9rem",
+          alignment: "right",
+          spacing: "calc(100vw)",
+          desktopTitleWrap: "nowrap",
+        },
+      },
+    });
+
+    expect(settings.homeHero.style).toEqual({
+      color: localPublicSiteSettings.homeHero.style.color,
+      fontSize: localPublicSiteSettings.homeHero.style.fontSize,
+      alignment: localPublicSiteSettings.homeHero.style.alignment,
+      spacing: localPublicSiteSettings.homeHero.style.spacing,
+      desktopTitleWrap: "nowrap",
+    });
+    expect(resolveHomeHeroStyle(settings.homeHero.style)).toContain(
+      "source-home-hero--title-nowrap",
+    );
+    expect(resolveHomeHeroStyle(settings.homeHero.style)).not.toContain(
+      "javascript:alert",
+    );
+  });
+
   it("falls back locally for missing or unapproved remote values", () => {
     expect(resolvePublicSiteSettings(null)).toEqual(
       localPublicSiteSettings,

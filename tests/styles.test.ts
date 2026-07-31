@@ -160,11 +160,30 @@ describe("global focus indicator", () => {
 });
 
 describe("home hero desktop title", () => {
-  it("keeps the title on one line at desktop widths", async () => {
+  it("applies nowrap only through the approved desktop preset class", async () => {
+    const css = await readFile("app/globals.css", "utf8");
+    const desktopStyles = mediaBlock(css, "min-width: 64rem");
+    const nowrapRule = desktopStyles
+      ? ruleBlock(
+          desktopStyles,
+          ".source-home-hero.source-home-hero--title-nowrap .source-hero h1",
+        )
+      : null;
+
+    expect(nowrapRule).not.toBeNull();
+    expect(declarationValue(nowrapRule!.declarations, "white-space")).toBe(
+      "nowrap",
+    );
+  });
+
+  it("keeps the default title preset on one line at desktop widths", async () => {
     const css = await readFile("app/globals.css", "utf8");
     const desktopStyles = mediaBlock(css, "min-width: 64rem");
     const desktopRule = desktopStyles
-      ? ruleBlock(desktopStyles, ".source-home-hero .source-hero h1")
+      ? ruleBlock(
+          desktopStyles,
+          ".source-home-hero.source-home-hero--title-nowrap .source-hero h1",
+        )
       : null;
 
     expect(desktopRule).not.toBeNull();
