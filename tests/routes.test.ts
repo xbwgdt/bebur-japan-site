@@ -264,6 +264,35 @@ describe("route helpers", () => {
     }
   });
 
+  it("cleans up JSDOM when document installation fails", async () => {
+    const previousDocument = Object.getOwnPropertyDescriptor(globalThis, "document");
+    const documentValue = { source: "read-only test" };
+    Object.defineProperty(globalThis, "document", {
+      configurable: true,
+      value: documentValue,
+      writable: false,
+    });
+    const readOnlyDocument = Object.getOwnPropertyDescriptor(
+      globalThis,
+      "document",
+    );
+
+    try {
+      await expect(validateSanityImportDocuments([])).rejects.toThrow(TypeError);
+
+      expect(Object.hasOwn(globalThis, "window")).toBe(false);
+      expect(Object.getOwnPropertyDescriptor(globalThis, "document")).toEqual(
+        readOnlyDocument,
+      );
+    } finally {
+      if (previousDocument) {
+        Object.defineProperty(globalThis, "document", previousDocument);
+      } else {
+        delete globalThis.document;
+      }
+    }
+  });
+
   it("restores descriptor-backed browser globals when Vite setup fails", async () => {
     const previousWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
     const previousDocument = Object.getOwnPropertyDescriptor(globalThis, "document");

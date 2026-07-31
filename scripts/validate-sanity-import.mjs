@@ -19,14 +19,14 @@ export async function validateSanityImportDocuments(documents) {
   const hadDocument = Object.hasOwn(globalThis, "document");
   const previousDocument = Object.getOwnPropertyDescriptor(globalThis, "document");
   let dom;
-  if (!hadWindow) {
-    dom = new JSDOM("<!doctype html><html><body></body></html>");
-    globalThis.window = dom.window;
-    globalThis.document = dom.window.document;
-  }
   let moduleServer;
 
   try {
+    if (!hadWindow) {
+      dom = new JSDOM("<!doctype html><html><body></body></html>");
+      globalThis.window = dom.window;
+      globalThis.document = dom.window.document;
+    }
     moduleServer = await createViteServer({
       appType: "custom",
       configFile: path.join(root, "vitest.config.ts"),
@@ -64,17 +64,23 @@ export async function validateSanityImportDocuments(documents) {
     try {
       await moduleServer?.close();
     } finally {
-      if (hadWindow) {
-        Object.defineProperty(globalThis, "window", previousWindow);
-      } else {
-        delete globalThis.window;
+      try {
+        if (hadWindow) {
+          Object.defineProperty(globalThis, "window", previousWindow);
+        } else {
+          delete globalThis.window;
+        }
+      } finally {
+        try {
+          if (hadDocument) {
+            Object.defineProperty(globalThis, "document", previousDocument);
+          } else {
+            delete globalThis.document;
+          }
+        } finally {
+          dom?.window.close();
+        }
       }
-      if (hadDocument) {
-        Object.defineProperty(globalThis, "document", previousDocument);
-      } else {
-        delete globalThis.document;
-      }
-      dom?.window.close();
     }
   }
 }
