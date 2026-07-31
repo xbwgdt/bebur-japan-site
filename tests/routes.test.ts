@@ -69,6 +69,7 @@ import {
   productCategoryLabels,
   productRoute,
 } from "../lib/routes";
+import { validateSanityImportDocuments } from "../scripts/validate-sanity-import.mjs";
 
 const execFileAsync = promisify(execFile);
 
@@ -217,6 +218,27 @@ describe("route helpers", () => {
       expect(route).toBe(`/products/${category}/fixture`);
     }
   });
+
+  it("validates generated import documents without retaining browser globals", async () => {
+    const documents = JSON.parse(
+      `[${(
+        await readFile(
+          join(process.cwd(), "sanity", "import", "initial.ndjson"),
+          "utf8",
+        )
+      )
+        .trim()
+        .replaceAll("\n", ",")}]`,
+    ) as SanityImportDocument[];
+
+    expect(Object.hasOwn(globalThis, "window")).toBe(false);
+    expect(Object.hasOwn(globalThis, "document")).toBe(false);
+
+    await expect(validateSanityImportDocuments(documents)).resolves.toEqual([]);
+
+    expect(Object.hasOwn(globalThis, "window")).toBe(false);
+    expect(Object.hasOwn(globalThis, "document")).toBe(false);
+  }, 60_000);
 
   it("builds canonical URLs on the approved origin", () => {
     expect(canonicalUrl("/")).toBe("https://www.bebur-jp.com/");

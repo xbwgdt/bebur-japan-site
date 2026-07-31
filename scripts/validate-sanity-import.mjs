@@ -1,5 +1,6 @@
 import path from "node:path";
 
+import { JSDOM } from "jsdom";
 import { createSchema, validateDocument } from "sanity";
 import { createViteServer } from "vitest/node";
 
@@ -14,15 +15,14 @@ const offlineClient = {
 export async function validateSanityImportDocuments(documents) {
   const root = process.cwd();
   const hadWindow = Object.hasOwn(globalThis, "window");
-  const previousWindow = globalThis.window;
+  const previousWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
+  const hadDocument = Object.hasOwn(globalThis, "document");
+  const previousDocument = Object.getOwnPropertyDescriptor(globalThis, "document");
+  let dom;
   if (!hadWindow) {
-    const temporaryWindow = new EventTarget();
-    Object.assign(temporaryWindow, {
-      clearTimeout: globalThis.clearTimeout,
-      navigator: globalThis.navigator,
-      setTimeout: globalThis.setTimeout,
-    });
-    globalThis.window = temporaryWindow;
+    dom = new JSDOM("<!doctype html><html><body></body></html>");
+    globalThis.window = dom.window;
+    globalThis.document = dom.window.document;
   }
   const moduleServer = await createViteServer({
     appType: "custom",
@@ -60,11 +60,20 @@ export async function validateSanityImportDocuments(documents) {
 
     return validationResults.flat().filter(({ level }) => level === "error");
   } finally {
-    await moduleServer.close();
-    if (hadWindow) {
-      globalThis.window = previousWindow;
-    } else {
-      delete globalThis.window;
+    try {
+      await moduleServer.close();
+    } finally {
+      if (hadWindow) {
+        Object.defineProperty(globalThis, "window", previousWindow);
+      } else {
+        delete globalThis.window;
+      }
+      if (hadDocument) {
+        Object.defineProperty(globalThis, "document", previousDocument);
+      } else {
+        delete globalThis.document;
+      }
+      dom?.window.close();
     }
   }
 }

@@ -89,7 +89,7 @@ describe("Japanese public-text validation", () => {
     );
   });
 
-  it("validates every generated import document with a temporary event-target window", async () => {
+  it("validates every generated import document with the Studio schema", async () => {
     const documents = readFileSync(
       resolve(process.cwd(), "sanity/import/initial.ndjson"),
       "utf8",
@@ -100,41 +100,8 @@ describe("Japanese public-text validation", () => {
 
     expect(documents).toHaveLength(63);
 
-    const previousWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
-    const NativeEventTarget = globalThis.EventTarget;
-    let temporaryWindow: EventTarget | undefined;
-    class TrackingEventTarget extends NativeEventTarget {
-      constructor() {
-        super();
-        temporaryWindow = this;
-      }
-    }
-
-    Object.defineProperty(globalThis, "EventTarget", {
-      configurable: true,
-      value: TrackingEventTarget,
-      writable: true,
-    });
-    delete globalThis.window;
-
-    try {
-      await expect(validateSanityImportDocuments(documents)).resolves.toEqual([]);
-      expect(temporaryWindow).toBeInstanceOf(NativeEventTarget);
-      expect(temporaryWindow).not.toBe(globalThis);
-      expect(Object.hasOwn(globalThis, "window")).toBe(false);
-    } finally {
-      Object.defineProperty(globalThis, "EventTarget", {
-        configurable: true,
-        value: NativeEventTarget,
-        writable: true,
-      });
-      if (previousWindow) {
-        Object.defineProperty(globalThis, "window", previousWindow);
-      } else {
-        delete globalThis.window;
-      }
-    }
-  });
+    await expect(validateSanityImportDocuments(documents)).resolves.toEqual([]);
+  }, 60_000);
 });
 
 describe("approved site contact validation", () => {
