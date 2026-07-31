@@ -38,4 +38,23 @@ describe("Sanity static-build client", () => {
     expect(pageProjection).toContain("alt");
     expect(pageProjection).toContain("asset->{_ref, url}");
   });
+
+  it("fetches a published page by slug with the page-block projection", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(null);
+    createClientMock.mockReturnValue({ fetch: fetchMock });
+    const { getPageBySlug, pageProjection } = await import(
+      "../lib/sanity/queries"
+    );
+
+    await getPageBySlug("company-profile");
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('_type == "page"'),
+      { slug: "company-profile" },
+    );
+    expect(fetchMock.mock.calls[0]?.[0]).toContain(
+      'publishState == "published"',
+    );
+    expect(fetchMock.mock.calls[0]?.[0]).toContain(pageProjection);
+  });
 });

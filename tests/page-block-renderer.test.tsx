@@ -19,6 +19,30 @@ describe("PageBlockRenderer", () => {
     expect(container.innerHTML).toBe("");
   });
 
+  it("keeps valid modules when unknown blocks surround them", () => {
+    render(
+      <PageBlockRenderer
+        blocks={[
+          { _type: "unsupported-before" },
+          {
+            _type: "cta",
+            title: "お問い合わせ",
+            label: "相談する",
+            href: "/contact",
+          },
+          { _type: "unsupported-after" },
+        ]}
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "お問い合わせ", level: 2 }),
+    ).toBeTruthy();
+    expect(
+      screen.getByRole("link", { name: "相談する" }).getAttribute("href"),
+    ).toBe("/contact");
+  });
+
   it("maps only approved style presets to renderer class names", () => {
     const { container } = render(
       <PageBlockRenderer
