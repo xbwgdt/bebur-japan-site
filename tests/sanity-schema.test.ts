@@ -88,6 +88,26 @@ describe("Sanity modular page schemas", () => {
     name: string,
   ) => fields?.find((field) => field.name === name);
 
+  const imageAltValidator = (field: { validation?: unknown }) => {
+    const validators: Array<(value: unknown) => true | string> = [];
+    const rule = {
+      required: () => rule,
+      custom: (validator: (value: unknown) => true | string) => {
+        validators.push(validator);
+        return rule;
+      },
+      error: () => rule,
+    };
+
+    expect(field.validation).toBeTypeOf("function");
+    if (typeof field.validation !== "function") {
+      throw new Error("Image alt field is missing validation.");
+    }
+    field.validation(rule as never);
+    expect(validators).toHaveLength(1);
+    return validators[0];
+  };
+
   it("defines a page document with modular content and controlled publishing", () => {
     expect(page.title).toBe("页面内容");
     expect(page.fields?.map((field) => field.name)).toEqual(
@@ -102,7 +122,7 @@ describe("Sanity modular page schemas", () => {
     );
   });
 
-  it("defines every required page block and requires Japanese alt text for images", () => {
+  it("defines every required page block and rejects English-only image alt text", () => {
     expect(pageBlocks.map((block) => block.name)).toEqual(
       expect.arrayContaining(expectedBlockNames),
     );
@@ -113,13 +133,27 @@ describe("Sanity modular page schemas", () => {
 
     const hero = pageBlocks.find((block) => block.name === "hero");
     const heroImage = findField(hero?.fields, "image");
-    const alt = findField(heroImage?.fields, "alt");
-    expect(alt?.validation).toBeTypeOf("function");
+    const heroAlt = findField(heroImage?.fields, "alt");
 
     const gallery = pageBlocks.find((block) => block.name === "gallery");
     const galleryImages = findField(gallery?.fields, "images");
     const galleryImage = galleryImages?.of?.[0];
-    expect(findField(galleryImage?.fields, "alt")?.validation).toBeTypeOf("function");
+    const galleryAlt = findField(galleryImage?.fields, "alt");
+
+    const cardGrid = pageBlocks.find((block) => block.name === "cardGrid");
+    const cards = findField(cardGrid?.fields, "cards");
+    const card = cards?.of?.[0];
+    const cardImage = findField(card?.fields, "image");
+    const cardAlt = findField(cardImage?.fields, "alt");
+
+    for (const altField of [heroAlt, galleryAlt, cardAlt]) {
+      if (!altField) {
+        throw new Error("Expected page-block image alt field.");
+      }
+      const validator = imageAltValidator(altField);
+      expect(validator("工場内の流量計")).toBe(true);
+      expect(validator("product image")).not.toBe(true);
+    }
   });
 
   it("uses fixed lists for all page style controls", () => {
@@ -145,6 +179,7 @@ describe("Sanity modular page schemas", () => {
     expect(structureSource).toContain('documentTypeListItem("page").title("页面内容")');
     expect(structureSource).toContain('documentTypeListItem("product")');
     expect(structureSource).toContain('documentTypeListItem("news")');
+    expect(structureSource).toContain('.schemaType("siteSettings")');
   });
 });
 

@@ -2,6 +2,17 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 import { validateJapaneseProse, validateJapaneseText } from "./validation";
 
+const japaneseCharacterPattern = /[\u3041-\u30ff\u31f0-\u31ff\u3400-\u9fff\uf900-\ufaff]/u;
+
+export function validateJapaneseImageAltText(value: unknown): true | string {
+  const textValidation = validateJapaneseText(value);
+  if (textValidation !== true || typeof value !== "string" || value === "") {
+    return textValidation;
+  }
+
+  return japaneseCharacterPattern.test(value) || "图片替代文字必须包含日文。";
+}
+
 const imageFields = [
   defineField({
     name: "alt",
@@ -9,7 +20,7 @@ const imageFields = [
     description: "请填写对应图片的日文替代文字，用于无障碍阅读和搜索。",
     type: "string",
     validation: (Rule) =>
-      Rule.required().custom(validateJapaneseText).error("请填写日文替代文字。"),
+      Rule.required().custom(validateJapaneseImageAltText).error("请填写日文替代文字。"),
   }),
 ];
 
