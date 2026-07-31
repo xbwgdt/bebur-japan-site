@@ -4,6 +4,8 @@ import { readFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 
+import { validateApprovedPageIdentities } from "./page-import-integrity.mjs";
+
 const projectId = "gbzt89e5";
 const dataset = "production";
 const apiVersion = "2025-02-19";
@@ -12,15 +14,6 @@ const importDirectory = path.join(root, "sanity", "import");
 const source = path.join(importDirectory, "pages.ndjson");
 const dryRun = process.argv.includes("--dry-run");
 const apiBase = `https://${projectId}.api.sanity.io/v${apiVersion}`;
-
-const configPath = [
-  path.join(process.env.APPDATA ?? path.join(os.homedir(), "AppData", "Roaming"), "sanity", "config.json"),
-  path.join(os.homedir(), ".config", "sanity", "config.json"),
-].find(existsSync);
-const token = process.env.SANITY_AUTH_TOKEN ?? (configPath ? JSON.parse(readFileSync(configPath, "utf8")).authToken : undefined);
-if (!token) {
-  throw new Error("Sanity authentication token is required for page import.");
-}
 
 const request = async (pathname, options = {}) => {
   const headers = new Headers(options.headers);
@@ -118,6 +111,16 @@ if (
   )
 ) {
   throw new Error("Refusing import: pages.ndjson must contain exactly 48 published page--* documents.");
+}
+validateApprovedPageIdentities(documents);
+
+const configPath = [
+  path.join(process.env.APPDATA ?? path.join(os.homedir(), "AppData", "Roaming"), "sanity", "config.json"),
+  path.join(os.homedir(), ".config", "sanity", "config.json"),
+].find(existsSync);
+const token = process.env.SANITY_AUTH_TOKEN ?? (configPath ? JSON.parse(readFileSync(configPath, "utf8")).authToken : undefined);
+if (!token) {
+  throw new Error("Sanity authentication token is required for page import.");
 }
 
 const imagesByPath = new Map();

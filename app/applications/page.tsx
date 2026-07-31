@@ -4,9 +4,11 @@ import Link from "next/link";
 import { ApplicationCard } from "@/components/application-card";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
+import { PublishedPage } from "@/components/published-page";
 import { SectionHeading } from "@/components/section-heading";
 import { getApplications, getStaticPages } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import { applicationCaseSlugs } from "./cases/page";
 
 const pageContent = getStaticPages().find(
@@ -68,7 +70,12 @@ const industries = [
 
 const caseSlugSet = new Set<string>(applicationCaseSlugs);
 
-export default function ApplicationsPage(): React.ReactElement {
+export default async function ApplicationsPage(): Promise<React.ReactElement> {
+  const cmsPage = await getPublishedPageForRoute("application-index");
+  if (cmsPage) {
+    return <PublishedPage page={cmsPage} />;
+  }
+
   const applications = getApplications();
   const overviewApplications = applications.filter(
     ({ slug }) => !caseSlugSet.has(slug),

@@ -4,8 +4,10 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
+import { PublishedPage } from "@/components/published-page";
 import { getArticles, getStaticPages } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import type { Article } from "@/lib/types";
 
 const pageContent = getStaticPages().find(
@@ -55,7 +57,12 @@ export function orderArticlesByDate(articles: Article[]): Article[] {
   });
 }
 
-export default function InsightsPage(): React.ReactElement {
+export default async function InsightsPage(): Promise<React.ReactElement> {
+  const cmsPage = await getPublishedPageForRoute("insight-index");
+  if (cmsPage) {
+    return <PublishedPage page={cmsPage} />;
+  }
+
   const articles = orderArticlesByDate(getArticles());
 
   return (

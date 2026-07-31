@@ -236,8 +236,8 @@ describe("product cards and detail content", () => {
 });
 
 describe("home product discovery", () => {
-  it("uses the captured source hero image and Japanese source hierarchy", () => {
-    const { container } = render(<HomePage />);
+  it("uses the captured source hero image and Japanese source hierarchy", async () => {
+    const { container } = render(await HomePage());
     const sourceHero = screen.getByTestId("source-hero");
     const image = sourceHero.querySelector("img");
 
@@ -271,8 +271,8 @@ describe("home product discovery", () => {
     ).not.toBeNull();
   });
 
-  it("renders the product family banner and source catalog landmark", () => {
-    const { container } = render(<ProductsPage />);
+  it("renders the product family banner and source catalog landmark", async () => {
+    const { container } = render(await ProductsPage());
     const sourceHero = screen.getByTestId("source-hero");
     const image = sourceHero.querySelector("img");
 
@@ -287,8 +287,8 @@ describe("home product discovery", () => {
     expectLocalizedRenderedImages(container);
   });
 
-  it("shows the five reviewed categories and required section headings", () => {
-    const { container } = render(<HomePage />);
+  it("shows the five reviewed categories and required section headings", async () => {
+    const { container } = render(await HomePage());
     const categorySection = screen.getByRole("region", {
       name: "計測課題から選べる製品ラインアップ",
     });
@@ -320,8 +320,8 @@ describe("home product discovery", () => {
     );
   });
 
-  it("follows the captured homepage sequence and preserves Japanese actions", () => {
-    render(<HomePage />);
+  it("follows the captured homepage sequence and preserves Japanese actions", async () => {
+    render(await HomePage());
 
     const sectionMarkers = [
       screen.getByText("PRODUCT CENTER"),

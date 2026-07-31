@@ -4,8 +4,14 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import AboutDetailPage from "@/app/about/[slug]/page";
+import ApplicationsPage from "@/app/applications/page";
+import ApplicationCasesPage from "@/app/applications/cases/page";
 import ApplicationDetailPage from "@/app/applications/[slug]/page";
 import ContactPage from "@/app/contact/page";
+import InsightsPage from "@/app/insights/page";
+import HomePage from "@/app/page";
+import ProductsPage from "@/app/products/page";
+import ProductCategoryPage from "@/app/products/[category]/page";
 import { publicSiteSettings } from "@/lib/site-settings";
 import type { SanityPage } from "@/lib/sanity/queries";
 
@@ -70,5 +76,59 @@ describe("normal public CMS routes", () => {
 
     expect(getPageBySlug).toHaveBeenCalledWith("contact");
     expect(screen.getByText(publicSiteSettings.companyName)).toBeTruthy();
+  });
+
+  it.each([
+    ["/", "home", () => HomePage()],
+    ["/products", "product-index", () => ProductsPage()],
+    ["/applications", "application-index", () => ApplicationsPage()],
+    ["/applications/cases", "application-case-index", () => ApplicationCasesPage()],
+    ["/insights", "insight-index", () => InsightsPage()],
+    ["/products/cleanliness", "cleanliness", () => ProductCategoryPage({ params: Promise.resolve({ category: "cleanliness" }) })],
+    ["/products/dosing", "dosing", () => ProductCategoryPage({ params: Promise.resolve({ category: "dosing" }) })],
+    ["/products/water-quality", "water-quality", () => ProductCategoryPage({ params: Promise.resolve({ category: "water-quality" }) })],
+    ["/products/gas-detection", "gas-detection", () => ProductCategoryPage({ params: Promise.resolve({ category: "gas-detection" }) })],
+    ["/products/flow-level", "flow-level", () => ProductCategoryPage({ params: Promise.resolve({ category: "flow-level" }) })],
+  ] as const)("gives the published CMS page priority for %s", async (_route, slug, renderRoute) => {
+    const page = pageFixture(slug, `CMS ${slug}`);
+    getPageBySlug.mockResolvedValue(page);
+
+    render(await renderRoute());
+
+    expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    expect(screen.getByRole("heading", { name: page.title })).toBeTruthy();
+    expect(screen.getByText(`${page.title} body`)).toBeTruthy();
+  });
+
+  it.each([
+    ["/", "home", () => HomePage()],
+    ["/products", "product-index", () => ProductsPage()],
+    ["/applications", "application-index", () => ApplicationsPage()],
+    ["/applications/cases", "application-case-index", () => ApplicationCasesPage()],
+    ["/insights", "insight-index", () => InsightsPage()],
+    ["/products/cleanliness", "cleanliness", () => ProductCategoryPage({ params: Promise.resolve({ category: "cleanliness" }) })],
+    ["/products/dosing", "dosing", () => ProductCategoryPage({ params: Promise.resolve({ category: "dosing" }) })],
+    ["/products/water-quality", "water-quality", () => ProductCategoryPage({ params: Promise.resolve({ category: "water-quality" }) })],
+    ["/products/gas-detection", "gas-detection", () => ProductCategoryPage({ params: Promise.resolve({ category: "gas-detection" }) })],
+    ["/products/flow-level", "flow-level", () => ProductCategoryPage({ params: Promise.resolve({ category: "flow-level" }) })],
+  ] as const)("keeps the local page as fallback for %s", async (_route, slug, renderRoute) => {
+    getPageBySlug.mockResolvedValue(null);
+
+    const { container } = render(await renderRoute());
+
+    expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    expect(screen.queryByText(`CMS ${slug} body`)).toBeNull();
+    expect(container.textContent?.trim().length).toBeGreaterThan(0);
+  });
+
+  it("keeps telephone, email, inquiry CTA, and guide available with CMS contact content", async () => {
+    getPageBySlug.mockResolvedValue(pageFixture("contact", "CMS contact"));
+
+    const { container } = render(await ContactPage());
+
+    expect(container.querySelector(`a[href="tel:${publicSiteSettings.phone}"]`)).toBeTruthy();
+    expect(container.querySelector(`a[href^="mailto:${publicSiteSettings.inquiryEmail}"]`)).toBeTruthy();
+    expect(container.querySelectorAll('a[href^="mailto:"]')).toHaveLength(3);
+    expect(container.querySelector(".inquiry-guide")).toBeTruthy();
   });
 });

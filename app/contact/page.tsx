@@ -23,6 +23,41 @@ const inquiryMailto = buildMailto(
   publicSiteSettings.inquiryEmail,
 );
 
+function ContactInteractivity(): React.ReactElement {
+  return (
+    <div className="contact-page__grid">
+      <article className="contact-panel surface">
+        <address>
+          <a href={`tel:${publicSiteSettings.phone}`}>
+            <Phone aria-hidden="true" size={20} strokeWidth={1.8} />
+            {publicSiteSettings.phone}
+          </a>
+          <a href={inquiryMailto}>
+            <Mail aria-hidden="true" size={20} strokeWidth={1.8} />
+            {publicSiteSettings.inquiryEmail}
+          </a>
+        </address>
+        <div className="contact-panel__actions">
+          <a className="button button--primary" href={inquiryMailto}>
+            オンラインお問い合わせ（メール）
+          </a>
+        </div>
+      </article>
+      <section className="inquiry-guide" aria-labelledby="cms-inquiry-guide-title">
+        <h2 id="cms-inquiry-guide-title">お問い合わせの流れ</h2>
+        <ol>
+          <li>用途・課題を確認</li>
+          <li>必要事項をメールで送信</li>
+          <li>担当者より回答</li>
+        </ol>
+        <a className="inquiry-guide__link" href={inquiryMailto}>
+          メールでお問い合わせ
+        </a>
+      </section>
+    </div>
+  );
+}
+
 export default async function ContactPage(): Promise<React.ReactElement> {
   const cmsPage = await getPublishedPageForRoute("contact");
 
@@ -31,6 +66,7 @@ export default async function ContactPage(): Promise<React.ReactElement> {
       <SourceShell>
         <main className="section source-section site-container">
           <PageBlockRenderer blocks={cmsPage.blocks} />
+          <ContactInteractivity />
         </main>
       </SourceShell>
     );

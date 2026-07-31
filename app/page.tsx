@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { ApplicationCard } from "@/components/application-card";
 import { ContactCta } from "@/components/contact-cta";
+import { PublishedPage } from "@/components/published-page";
 import { ProductCard } from "@/components/product-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
@@ -18,6 +19,7 @@ import {
 } from "@/lib/content";
 import { siteConfig } from "@/lib/constants";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import { publicSiteSettings, resolveHomeHeroStyle } from "@/lib/site-settings";
 import type { Application, Product, ProductCategory } from "@/lib/types";
 
@@ -100,7 +102,12 @@ function formatJapaneseDate(date: string): string {
   return japaneseDateFormatter.format(new Date(`${date}T00:00:00Z`));
 }
 
-export default function HomePage(): React.ReactElement {
+export default async function HomePage(): Promise<React.ReactElement> {
+  const cmsPage = await getPublishedPageForRoute("home");
+  if (cmsPage) {
+    return <PublishedPage page={cmsPage} />;
+  }
+
   const homeHero = publicSiteSettings.homeHero;
 
   return (

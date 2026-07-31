@@ -12,6 +12,7 @@ export type PortableTextBlock = {
   _type?: string;
   children?: Array<{ text?: string }>;
   style?: string;
+  listItem?: string;
 };
 
 export type HeroPageBlock = PageBlockStyle & {

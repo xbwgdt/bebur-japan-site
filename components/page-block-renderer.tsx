@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import { createElement, type ReactElement } from "react";
 
 import type {
   CardGridPageBlock,
@@ -86,11 +86,37 @@ function HeroBlock({ block }: { block: HeroPageBlock }): ReactElement | null {
 }
 
 function RichTextBlock({ block }: { block: RichTextPageBlock }): ReactElement | null {
-  const paragraphs = (block.content ?? [])
-    .map((entry) => entry.children?.map((child) => child.text ?? "").join("").trim())
-    .filter((text): text is string => Boolean(text));
-  if (!block.title && paragraphs.length === 0) return null;
-  return <section className={blockClassName("rich-text", block)}>{block.title && <h2>{block.title}</h2>}{paragraphs.map((paragraph, index) => <p key={`${paragraph.slice(0, 32)}-${index}`}>{paragraph}</p>)}</section>;
+  const entries = (block.content ?? [])
+    .map((entry, index) => ({
+      index,
+      listItem: entry.listItem,
+      style: entry.style,
+      text: entry.children?.map((child) => child.text ?? "").join("").trim() ?? "",
+    }))
+    .filter((entry) => Boolean(entry.text));
+  if (!block.title && entries.length === 0) return null;
+
+  const content: ReactElement[] = [];
+  for (let index = 0; index < entries.length;) {
+    const entry = entries[index]!;
+    if (entry.listItem === "bullet" || entry.listItem === "number") {
+      const tag = entry.listItem === "number" ? "ol" : "ul";
+      const items = [] as ReactElement[];
+      while (entries[index]?.listItem === entry.listItem) {
+        const listEntry = entries[index]!;
+        items.push(<li key={listEntry.index}>{listEntry.text}</li>);
+        index += 1;
+      }
+      content.push(createElement(tag, { key: `list-${entry.index}` }, items));
+      continue;
+    }
+
+    const tag = /^h[1-6]$/u.test(entry.style ?? "") ? entry.style! : "p";
+    content.push(createElement(tag, { key: entry.index }, entry.text));
+    index += 1;
+  }
+
+  return <section className={blockClassName("rich-text", block)}>{block.title && <h2>{block.title}</h2>}{content}</section>;
 }
 
 function GalleryBlock({ block }: { block: GalleryPageBlock }): ReactElement | null {

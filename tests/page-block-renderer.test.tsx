@@ -84,6 +84,31 @@ describe("PageBlockRenderer", () => {
     expect(blocks[1]?.className).not.toContain("zero");
   });
 
+  it("preserves Portable Text heading and list semantics", () => {
+    const { container } = render(
+      <PageBlockRenderer
+        blocks={[
+          {
+            _type: "richText",
+            title: "Details",
+            content: [
+              { _type: "block", style: "h3", children: [{ text: "Technical heading" }] },
+              { _type: "block", children: [{ text: "Introduction" }] },
+              { _type: "block", listItem: "bullet", children: [{ text: "First feature" }] },
+              { _type: "block", listItem: "bullet", children: [{ text: "Second feature" }] },
+              { _type: "block", listItem: "number", children: [{ text: "First step" }] },
+            ],
+          },
+        ]}
+      />,
+    );
+
+    expect(screen.getByRole("heading", { name: "Technical heading", level: 3 })).toBeTruthy();
+    expect(container.querySelectorAll("p")).toHaveLength(1);
+    expect(Array.from(container.querySelectorAll("ul > li")).map((item) => item.textContent)).toEqual(["First feature", "Second feature"]);
+    expect(Array.from(container.querySelectorAll("ol > li")).map((item) => item.textContent)).toEqual(["First step"]);
+  });
+
   it("renders gallery image alternative text", () => {
     render(
       <PageBlockRenderer

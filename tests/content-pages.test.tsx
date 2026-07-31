@@ -365,9 +365,9 @@ describe("ContentSections", () => {
 describe("application indexes and details", () => {
   it(
     "shows all eight industries and links every application exactly once",
-    () => {
+    async () => {
       const applications = getApplications();
-      const { container } = render(<ApplicationsPage />);
+      const { container } = render(await ApplicationsPage());
 
       for (const label of industryLabels) {
         expect(screen.getByText(label)).toBeTruthy();
@@ -402,8 +402,8 @@ describe("application indexes and details", () => {
     expect(applications).toHaveLength(31);
   });
 
-  it("lists only case-classified records on the cases index", () => {
-    const { container } = render(<ApplicationCasesPage />);
+  it("lists only case-classified records on the cases index", async () => {
+    const { container } = render(await ApplicationCasesPage());
     const linkedApplicationSlugs = getApplications()
       .filter(({ route }) =>
         container.querySelector(`a[href="${route}"]`),
@@ -513,10 +513,10 @@ describe("company pages", () => {
 });
 
 describe("insight indexes and details", () => {
-  it("links all 17 insights once in deterministic newest-first order", () => {
+  it("links all 17 insights once in deterministic newest-first order", async () => {
     const articles = getArticles();
     const expected = orderArticlesByDate(articles);
-    const { container } = render(<InsightsPage />);
+    const { container } = render(await InsightsPage());
     const links = Array.from(
       container.querySelectorAll<HTMLAnchorElement>("a.insight-card__link"),
     );
@@ -592,11 +592,13 @@ describe("content image and contact policy", () => {
     const insight = await InsightDetailPage({
       params: Promise.resolve({ slug: "ozone-monitoring-equipment" }),
     });
+    const applicationsPage = await ApplicationsPage();
+    const insightsPage = await InsightsPage();
     const { container } = render(
       <>
-        <ApplicationsPage />
+        {applicationsPage}
         {application}
-        <InsightsPage />
+        {insightsPage}
         {insight}
       </>,
     );

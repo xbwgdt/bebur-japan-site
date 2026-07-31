@@ -44,8 +44,8 @@ const remoteSettings = resolvePublicSiteSettings({
 });
 
 describe("safe public site settings", () => {
-  it("renders the home hero image alt text and desktop nowrap preset", () => {
-    const { container } = render(<HomePage />);
+  it("renders the home hero image alt text and desktop nowrap preset", async () => {
+    const { container } = render(await HomePage());
     const hero = screen.getByTestId("source-hero");
 
     expect(

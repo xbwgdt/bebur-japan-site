@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
+import { PublishedPage } from "@/components/published-page";
 import { ProductExplorer } from "@/components/product-explorer";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getProducts } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
 
 export const metadata: Metadata = {
   title: "製品情報",
@@ -18,7 +20,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProductsPage(): React.ReactElement {
+export default async function ProductsPage(): Promise<React.ReactElement> {
+  const cmsPage = await getPublishedPageForRoute("product-index");
+  if (cmsPage) {
+    return <PublishedPage page={cmsPage} />;
+  }
+
   const products = getProducts();
 
   return (
