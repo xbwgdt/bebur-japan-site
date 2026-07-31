@@ -118,8 +118,8 @@ describe("Bebur Japan contact details", () => {
 });
 
 describe("contact page", () => {
-  it("shows the exact approved Japan distributor identity and contact details", () => {
-    render(createElement(ContactPage));
+  it("shows the exact approved Japan distributor identity and contact details", async () => {
+    render(await ContactPage());
 
     expect(screen.getByText("Bebur 日本総代理店")).toBeTruthy();
     expect(screen.getByText(siteConfig.company)).toBeTruthy();
@@ -133,8 +133,8 @@ describe("contact page", () => {
     ).toBe(buildMailto("Bebur 製品"));
   });
 
-  it("sends every online inquiry action to the approved email address", () => {
-    const { container } = render(createElement(ContactPage));
+  it("sends every online inquiry action to the approved email address", async () => {
+    const { container } = render(await ContactPage());
     const inquiryLinks = Array.from(
       container.querySelectorAll<HTMLAnchorElement>("a"),
     ).filter((link) =>
@@ -149,8 +149,8 @@ describe("contact page", () => {
     }
   });
 
-  it("contains no form controls, submission behavior, or forbidden contacts", () => {
-    const { container } = render(createElement(ContactPage));
+  it("contains no form controls, submission behavior, or forbidden contacts", async () => {
+    const { container } = render(await ContactPage());
 
     expect(container.querySelector("form")).toBeNull();
     expect(container.querySelector("input")).toBeNull();
@@ -164,8 +164,8 @@ describe("contact page", () => {
     );
   });
 
-  it("presents exactly the approved three-step inquiry guide", () => {
-    render(createElement(ContactPage));
+  it("presents exactly the approved three-step inquiry guide", async () => {
+    render(await ContactPage());
 
     const guide = screen
       .getByRole("heading", { name: "お問い合わせの流れ" })

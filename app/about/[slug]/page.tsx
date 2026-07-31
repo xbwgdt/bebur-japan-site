@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
+import { PageBlockRenderer } from "@/components/page-block-renderer";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
 import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
@@ -12,6 +13,7 @@ import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getAboutPage, getAboutPages } from "@/lib/content";
 import { siteConfig } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/routes";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import type { AboutPage } from "@/lib/types";
 
 type AboutRouteParams = {
@@ -42,18 +44,20 @@ export async function generateMetadata({
     notFound();
   }
 
+  const cmsPage = await getPublishedPageForRoute(slug);
+
   const canonical = canonicalUrl(aboutPage.route);
   const image = aboutPage.images[0];
 
   return {
-    title: aboutPage.title,
-    description: aboutPage.description,
+    title: cmsPage?.seoTitle || aboutPage.title,
+    description: cmsPage?.seoDescription || aboutPage.description,
     alternates: {
       canonical,
     },
     openGraph: {
-      title: aboutPage.title,
-      description: aboutPage.description,
+      title: cmsPage?.seoTitle || aboutPage.title,
+      description: cmsPage?.seoDescription || aboutPage.description,
       type: "website",
       url: canonical,
       images: image
@@ -73,6 +77,18 @@ export default async function AboutDetailPage({
 
   if (!aboutPage) {
     notFound();
+  }
+
+  const cmsPage = await getPublishedPageForRoute(slug);
+
+  if (cmsPage) {
+    return (
+      <SourceShell>
+        <main className="section source-section site-container">
+          <PageBlockRenderer blocks={cmsPage.blocks} />
+        </main>
+      </SourceShell>
+    );
   }
 
   return (

@@ -2,10 +2,12 @@ import { Mail, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { PageBlockRenderer } from "@/components/page-block-renderer";
 import { SourceHero } from "@/components/source-faithful/source-hero";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { buildMailto } from "@/lib/constants";
 import { canonicalUrl } from "@/lib/routes";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import { publicSiteSettings } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
@@ -21,7 +23,19 @@ const inquiryMailto = buildMailto(
   publicSiteSettings.inquiryEmail,
 );
 
-export default function ContactPage(): React.ReactElement {
+export default async function ContactPage(): Promise<React.ReactElement> {
+  const cmsPage = await getPublishedPageForRoute("contact");
+
+  if (cmsPage) {
+    return (
+      <SourceShell>
+        <main className="section source-section site-container">
+          <PageBlockRenderer blocks={cmsPage.blocks} />
+        </main>
+      </SourceShell>
+    );
+  }
+
   return (
     <SourceShell>
       <SourceHero
