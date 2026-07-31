@@ -16,7 +16,13 @@ export async function validateSanityImportDocuments(documents) {
   const hadWindow = Object.hasOwn(globalThis, "window");
   const previousWindow = globalThis.window;
   if (!hadWindow) {
-    globalThis.window = globalThis;
+    const temporaryWindow = new EventTarget();
+    Object.assign(temporaryWindow, {
+      clearTimeout: globalThis.clearTimeout,
+      navigator: globalThis.navigator,
+      setTimeout: globalThis.setTimeout,
+    });
+    globalThis.window = temporaryWindow;
   }
   const moduleServer = await createViteServer({
     appType: "custom",
