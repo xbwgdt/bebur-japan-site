@@ -2827,6 +2827,11 @@ body:has(.source-home-hero) .source-header .wordmark__region {
 }
 
 @media (min-width: 64rem) {
+  .source-home-hero .source-hero h1 {
+    max-width: none;
+    white-space: nowrap;
+  }
+
   .source-card-grid--categories {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1rem;

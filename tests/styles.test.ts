@@ -66,6 +66,29 @@ function declarationValue(declarations: string, property: string): string | null
   return declaration?.slice(property.length + 1).trim() ?? null;
 }
 
+function mediaBlock(css: string, condition: string): string | null {
+  const mediaStart = css.lastIndexOf(`@media (${condition}) {`);
+  if (mediaStart === -1) {
+    return null;
+  }
+
+  const declarationsStart = css.indexOf("{", mediaStart);
+  let depth = 0;
+
+  for (let index = declarationsStart; index < css.length; index += 1) {
+    if (css[index] === "{") {
+      depth += 1;
+    } else if (css[index] === "}") {
+      depth -= 1;
+      if (depth === 0) {
+        return css.slice(declarationsStart + 1, index);
+      }
+    }
+  }
+
+  return null;
+}
+
 function resolvedFocusedSkipLinkProperty(
   css: string,
   property: string,
@@ -132,6 +155,22 @@ describe("global focus indicator", () => {
     );
     expect(contrastRatio(palette.paper, palette.navy900)).toBeGreaterThanOrEqual(
       3,
+    );
+  });
+});
+
+describe("home hero desktop title", () => {
+  it("keeps the title on one line at desktop widths", async () => {
+    const css = await readFile("app/globals.css", "utf8");
+    const desktopStyles = mediaBlock(css, "min-width: 64rem");
+    const desktopRule = desktopStyles
+      ? ruleBlock(desktopStyles, ".source-home-hero .source-hero h1")
+      : null;
+
+    expect(desktopRule).not.toBeNull();
+    expect(declarationValue(desktopRule!.declarations, "max-width")).toBe("none");
+    expect(declarationValue(desktopRule!.declarations, "white-space")).toBe(
+      "nowrap",
     );
   });
 });
