@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "bebur-japan",
+  "account_id": "d52a2a061be25e596e3f47c272f402d8",
   "pages_build_output_dir": "./out",
   "compatibility_date": "2026-07-29"
 }
