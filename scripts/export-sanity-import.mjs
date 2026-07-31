@@ -229,3 +229,6 @@ await writeFile(
 );
 
 console.log(`Wrote ${documents.length} deterministic Sanity documents to ${path.relative(root, destination)}.`);
+if (process.env.EXPORT_PAGE_BLOCKS === "1") {
+  await import("./export-page-blocks.mjs");
+}

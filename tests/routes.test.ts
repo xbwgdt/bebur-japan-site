@@ -211,6 +211,72 @@ describe("Japanese content lookups", () => {
       existsSync(localAssetPath(siteSettings!.defaultOgImage!._sanityAsset!)),
     ).toBe(true);
   }, 90_000);
+
+  it("exports one deterministic published page document for every normal public route", async () => {
+    const script = join(process.cwd(), "scripts", "export-page-blocks.mjs");
+    const destination = join(
+      process.cwd(),
+      "sanity",
+      "import",
+      "pages.ndjson",
+    );
+
+    await execFileAsync(process.execPath, [script]);
+    const firstOutput = await readFile(destination, "utf8");
+    await execFileAsync(process.execPath, [script]);
+    const secondOutput = await readFile(destination, "utf8");
+    const documents = firstOutput
+      .trim()
+      .split("\n")
+      .map((line) => JSON.parse(line) as {
+        _id: string;
+        _type: string;
+        slug: { current: string };
+        publishState: string;
+        blocks: Array<Record<string, unknown>>;
+      });
+    const expectedSlugs = [
+      ...getAboutPages(),
+      ...getApplications(),
+      ...getStaticPages(),
+    ].map(({ slug }) => slug).toSorted();
+
+    expect(secondOutput).toBe(firstOutput);
+    expect(documents).toHaveLength(48);
+    expect(documents.map(({ _type }) => _type)).toEqual(
+      Array(48).fill("page"),
+    );
+    expect(documents.map(({ slug }) => slug.current).toSorted()).toEqual(
+      expectedSlugs,
+    );
+    expect(new Set(documents.map(({ _id }) => _id)).size).toBe(48);
+    expect(documents.map(({ publishState }) => publishState)).toEqual(
+      Array(48).fill("published"),
+    );
+
+    const importedImages = documents.flatMap(({ blocks }) =>
+      blocks.flatMap((block) => {
+        if (block._type === "hero" && block.image) {
+          return [block.image];
+        }
+        if (block._type === "gallery" && Array.isArray(block.images)) {
+          return block.images;
+        }
+        return [];
+      }),
+    ) as Array<{ _sanityAsset: string; alt: string }>;
+    for (const image of importedImages) {
+      expect(image.alt).toMatch(/[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u);
+      expect(existsSync(localAssetPath(image._sanityAsset))).toBe(true);
+    }
+
+    const contactDocument = documents.find(
+      ({ slug }) => slug.current === "contact",
+    );
+    expect(JSON.stringify(contactDocument)).toContain("新樹産業株式会社");
+    expect(JSON.stringify(contactDocument)).toContain("080-5189-8663");
+    expect(JSON.stringify(contactDocument)).toContain("info@newtree-i.com");
+  }, 90_000);
 });
 
 describe("route helpers", () => {
