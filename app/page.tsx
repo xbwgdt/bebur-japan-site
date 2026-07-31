@@ -109,6 +109,7 @@ export default function HomePage(): React.ReactElement {
         <SourceHero
           eyebrow={homeHero.eyebrow}
           image={homeHero.backgroundImage.src as import("@/components/source-faithful/source-media").ContentMediaPath}
+          imageAlt={homeHero.backgroundImage.alt}
           summary={homeHero.summary}
           title={homeHero.title}
           actions={

@@ -4,6 +4,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
 import { buildRootMetadata } from "@/app/layout";
+import HomePage from "@/app/page";
 import { ContactCta, MobileContactBar } from "@/components/contact-cta";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -43,6 +44,22 @@ const remoteSettings = resolvePublicSiteSettings({
 });
 
 describe("safe public site settings", () => {
+  it("renders the home hero image alt text and desktop nowrap preset", () => {
+    const { container } = render(<HomePage />);
+    const hero = screen.getByTestId("source-hero");
+
+    expect(
+      within(hero).getByAltText(
+        localPublicSiteSettings.homeHero.backgroundImage.alt,
+      ),
+    ).not.toBeNull();
+    expect(
+      container
+        .querySelector(".source-home-hero")
+        ?.classList.contains("source-home-hero--title-nowrap"),
+    ).toBe(true);
+  });
+
   it("uses only approved home hero presentation presets", () => {
     const settings = resolvePublicSiteSettings({
       homeHero: {

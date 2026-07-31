@@ -5,6 +5,7 @@ import type { ContentMediaPath } from "@/components/source-faithful/source-media
 
 export function SourceHero({
   image,
+  imageAlt = "",
   eyebrow,
   title,
   summary,
@@ -12,6 +13,7 @@ export function SourceHero({
   identity,
 }: {
   image: ContentMediaPath;
+  imageAlt?: string;
   eyebrow: string;
   title: string;
   summary: string;
@@ -21,7 +23,7 @@ export function SourceHero({
   return (
     <header className="source-hero" data-testid="source-hero">
       <Image
-        alt=""
+        alt={imageAlt}
         className="source-hero__image"
         fill
         priority
