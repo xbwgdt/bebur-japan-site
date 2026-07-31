@@ -4,7 +4,8 @@ import { join, resolve } from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { createViteServer } from "vitest/node";
 
 import {
   contentType as iconContentType,
@@ -70,6 +71,14 @@ import {
   productRoute,
 } from "../lib/routes";
 import { validateSanityImportDocuments } from "../scripts/validate-sanity-import.mjs";
+
+vi.mock("vitest/node", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("vitest/node")>();
+  return {
+    ...actual,
+    createViteServer: vi.fn(actual.createViteServer),
+  };
+});
 
 const execFileAsync = promisify(execFile);
 
@@ -239,6 +248,73 @@ describe("route helpers", () => {
     expect(Object.hasOwn(globalThis, "window")).toBe(false);
     expect(Object.hasOwn(globalThis, "document")).toBe(false);
   }, 60_000);
+
+  it("cleans up temporary JSDOM globals when Vite setup fails", async () => {
+    const setupFailure = new Error("Vite setup failed");
+    vi.mocked(createViteServer).mockRejectedValueOnce(setupFailure);
+
+    try {
+      await expect(validateSanityImportDocuments([])).rejects.toThrow(setupFailure);
+
+      expect(Object.hasOwn(globalThis, "window")).toBe(false);
+      expect(Object.hasOwn(globalThis, "document")).toBe(false);
+    } finally {
+      delete globalThis.window;
+      delete globalThis.document;
+    }
+  });
+
+  it("restores descriptor-backed browser globals when Vite setup fails", async () => {
+    const previousWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
+    const previousDocument = Object.getOwnPropertyDescriptor(globalThis, "document");
+    const windowValue = { source: "test" };
+    const documentValue = { source: "test" };
+    const windowDescriptor = {
+      configurable: true,
+      get: () => windowValue,
+    };
+    const documentDescriptor = {
+      configurable: true,
+      get: () => documentValue,
+    };
+
+    Object.defineProperty(globalThis, "window", windowDescriptor);
+    Object.defineProperty(globalThis, "document", documentDescriptor);
+    const appliedWindowDescriptor = Object.getOwnPropertyDescriptor(
+      globalThis,
+      "window",
+    );
+    const appliedDocumentDescriptor = Object.getOwnPropertyDescriptor(
+      globalThis,
+      "document",
+    );
+    vi.mocked(createViteServer).mockRejectedValueOnce(
+      new Error("Vite setup failed"),
+    );
+
+    try {
+      await expect(validateSanityImportDocuments([])).rejects.toThrow(
+        "Vite setup failed",
+      );
+      expect(Object.getOwnPropertyDescriptor(globalThis, "window")).toEqual(
+        appliedWindowDescriptor,
+      );
+      expect(Object.getOwnPropertyDescriptor(globalThis, "document")).toEqual(
+        appliedDocumentDescriptor,
+      );
+    } finally {
+      if (previousWindow) {
+        Object.defineProperty(globalThis, "window", previousWindow);
+      } else {
+        delete globalThis.window;
+      }
+      if (previousDocument) {
+        Object.defineProperty(globalThis, "document", previousDocument);
+      } else {
+        delete globalThis.document;
+      }
+    }
+  });
 
   it("builds canonical URLs on the approved origin", () => {
     expect(canonicalUrl("/")).toBe("https://www.bebur-jp.com/");

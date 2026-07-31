@@ -24,15 +24,16 @@ export async function validateSanityImportDocuments(documents) {
     globalThis.window = dom.window;
     globalThis.document = dom.window.document;
   }
-  const moduleServer = await createViteServer({
-    appType: "custom",
-    configFile: path.join(root, "vitest.config.ts"),
-    logLevel: "silent",
-    root,
-    server: { middlewareMode: true },
-  });
+  let moduleServer;
 
   try {
+    moduleServer = await createViteServer({
+      appType: "custom",
+      configFile: path.join(root, "vitest.config.ts"),
+      logLevel: "silent",
+      root,
+      server: { middlewareMode: true },
+    });
     const { schemaTypes } = await moduleServer.ssrLoadModule(
       "/sanity/schemaTypes/index.ts",
     );
@@ -61,7 +62,7 @@ export async function validateSanityImportDocuments(documents) {
     return validationResults.flat().filter(({ level }) => level === "error");
   } finally {
     try {
-      await moduleServer.close();
+      await moduleServer?.close();
     } finally {
       if (hadWindow) {
         Object.defineProperty(globalThis, "window", previousWindow);
