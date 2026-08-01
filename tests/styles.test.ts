@@ -193,3 +193,33 @@ describe("home hero desktop title", () => {
     );
   });
 });
+
+describe("source-shell contact contrast", () => {
+  it("uses dark readable text when the distributor panel is placed on a pale surface", async () => {
+    const css = await readFile("app/globals.css", "utf8");
+    const panelRule = ruleBlock(css, ".source-shell .distributor-panel");
+    const headingRule = ruleBlock(css, ".source-shell .distributor-panel h2");
+
+    expect(panelRule).not.toBeNull();
+    expect(headingRule).not.toBeNull();
+    expect(declarationValue(panelRule!.declarations, "color")).toBe(
+      "var(--source-ink)",
+    );
+    expect(declarationValue(headingRule!.declarations, "color")).toBe(
+      "var(--source-blue-deep)",
+    );
+  });
+
+  it("gives the email action a distinct high-contrast surface inside the blue contact CTA", async () => {
+    const css = await readFile("app/globals.css", "utf8");
+    const accentRule = ruleBlock(css, ".source-shell .button--accent");
+
+    expect(accentRule).not.toBeNull();
+    expect(declarationValue(accentRule!.declarations, "background")).toBe(
+      "var(--cyan-400)",
+    );
+    expect(declarationValue(accentRule!.declarations, "color")).toBe(
+      "var(--source-blue-deep)",
+    );
+  });
+});

@@ -2714,6 +2714,18 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   background: var(--source-blue);
 }
 
+.source-shell .button--accent {
+  border-color: var(--cyan-400);
+  background: var(--cyan-400);
+  color: var(--source-blue-deep);
+}
+
+.source-shell .button--accent:hover {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--source-blue-deep);
+}
+
 .source-product-detail .product-detail__breadcrumb {
   padding-block: 0;
 }
@@ -2787,7 +2799,20 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   border-top: 0.24rem solid var(--source-blue);
   border-radius: 0;
   background: var(--source-pale);
+  color: var(--source-ink);
   box-shadow: none;
+}
+
+.source-shell .distributor-panel h2 {
+  color: var(--source-blue-deep);
+}
+
+.source-shell .distributor-panel strong {
+  color: var(--source-blue-deep);
+}
+
+.source-shell .distributor-panel > p:first-child {
+  color: var(--source-blue);
 }
 
 .source-shell .contact-page__grid {
