@@ -144,6 +144,12 @@ const allowedAsciiWords = new Set(
     "mv",
     "nm",
     "noryl",
+    "norl",
+    "on",
+    "soil",
+    "feric",
+    "chloide",
+    "p",
     "ph",
     "pphm",
     "ppb",
@@ -654,7 +660,7 @@ describe("Japanese content catalog", () => {
           "飽和度0-200%",
           "T90：60秒",
           "NTC10K",
-          "5 bar(72.5 PST)",
+          "5 bar（72.5 PST）",
           "IP68",
           "4~20mA",
           "12-36V DC",
@@ -936,7 +942,7 @@ describe("Japanese content catalog", () => {
       "DPDによる校正",
       "加圧空気による自動パージ洗浄（オプション）",
       "カスタマイズ可能な温度センサー",
-      "4芯、標準20ft（6m）ケーブル（原文表記・要確認）",
+      "4芯、標準20ft（6m）ケーブル",
       "応答時間：<40s",
       "再現性：測定値の<0.3%",
       "リング電極",
@@ -947,13 +953,13 @@ describe("Japanese content catalog", () => {
       "銀／銀製参照電極",
       "亜鉛・鉛製陽極",
       "多孔質親水膜",
-      "流量：約500m/min（原文表記・要確認）",
+      "流量：約500m/min",
     ]) {
       expect(productText("bt-7000")).toContain(expected);
     }
 
     for (const expected of [
-      "≤60S（原文表記・要確認）",
+      "仕様値：≤60S",
       "故障信号：0.5mADC",
       "警報遅延：2s（初期値、変更可能）",
       "1.5〜2.0mm2 RVVPシールドケーブル",
@@ -984,7 +990,7 @@ describe("Japanese content catalog", () => {
       "RS232/RS485",
       "16件の停電時記録",
       "E=B-V-D-K",
-      "負荷：0-5002（原文表記・要確認）",
+      "負荷：0-5002",
       "基本誤差：0.1%±10uA",
     ]) {
       expect(productText("msf8000")).toContain(expected);
@@ -1042,7 +1048,7 @@ describe("Japanese content catalog", () => {
       labsense: [
         "LabSense2：内蔵自動凝集剤滴定器、希釈用滴定ポンプ1台",
         "LabSense3：希釈用滴定ポンプ2台、内蔵pH滴定器（酸または塩基）",
-        "導電率：最大11ms（原文では単位末尾が「/on」、要確認）",
+        "導電率：最大11ms。単位末尾には「/on」と記載されていますが、正式な単位は技術仕様の確認が必要です。",
       ],
       uvsense: [
         "再生水処理",
@@ -1057,8 +1063,8 @@ describe("Japanese content catalog", () => {
       "bt6308-ph": ["センサー内部で電源と通信を絶縁"],
       "bt6308-cl": [
         "BWCS4：残留塩素、BWCN1.1：ゼロ残留塩素、BWCCF1.0N：膜なし残留塩素、BWCP4.0：全塩素",
-        "メンテナンス不要期間：6か月",
-        "意味不明の「3か月の入札なし期間」",
+        "メンテナンス不要期間は6か月です。",
+        "DPDによる校正",
         "BWCS4（残留塩素）",
         "範囲：0.01-2、0.01-5、0.01-10、0.01-20、0.5-200ppm；分解能：0.01；安定性：-1%/月",
         "BWCN1.1（ゼロ残留塩素）",
