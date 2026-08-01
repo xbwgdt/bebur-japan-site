@@ -52,16 +52,16 @@ describe("Cloudflare Pages static export", () => {
     );
   });
 
-  it("documents the actual webhook types and Administrator-only Sanity access", () => {
+  it("documents the actual webhook types, including modular pages, and Administrator-only Sanity access", () => {
     const runbook = readProjectFile(
       "docs/operations/sanity-cloudflare-publishing.md",
     );
 
     expect(runbook).toContain(
-      '_type in ["product", "news", "siteSettings"]',
+      '_type in ["product", "news", "page", "siteSettings"]',
     );
     expect(runbook).not.toContain(
-      '_type in ["product", "application", "article", "siteSettings", "page"]',
+      '_type in ["product", "application", "article", "siteSettings"]',
     );
     expect(runbook).toMatch(
       /Sanity:\s+Administrator access only; do not assign Editor access\./,
@@ -69,6 +69,20 @@ describe("Cloudflare Pages static export", () => {
     expect(runbook).not.toMatch(
       /Sanity:.*Editor role for normal content work/,
     );
+  });
+
+  it("provides a Chinese page-editor guide for blocks, presets, and publishing", () => {
+    const guide = readProjectFile("docs/operations/sanity-page-editor-guide.zh-CN.md");
+
+    expect(guide).toContain("页面内容");
+    expect(guide).toContain("Hero");
+    expect(guide).toContain("富文本");
+    expect(guide).toContain("图片画廊");
+    expect(guide).toContain("卡片网格");
+    expect(guide).toContain("数据表");
+    expect(guide).toContain("行动号召");
+    expect(guide).toContain("预设");
+    expect(guide).toContain("发布状态");
   });
 
   it("removes Railway-only deployment files", () => {

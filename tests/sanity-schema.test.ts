@@ -170,7 +170,7 @@ describe("Sanity modular page schemas", () => {
     }
   });
 
-  it("adds a Chinese page-content entry without removing existing Studio entries", () => {
+  it("keeps every published-content entry point reachable from Studio navigation", () => {
     const structureSource = readFileSync(
       resolve(process.cwd(), "sanity/structure.ts"),
       "utf8",
