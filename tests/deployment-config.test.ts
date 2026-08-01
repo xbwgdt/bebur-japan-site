@@ -97,4 +97,12 @@ describe("Cloudflare Pages static export", () => {
     expect(headers).toMatch(/\/opengraph-image\s+Content-Type: image\/png/s);
     expect(headers).toMatch(/\/icon\s+Content-Type: image\/png/s);
   });
+
+  it("requires browsers to revalidate generated assets after a deployment", () => {
+    const headers = readProjectFile("public/_headers");
+
+    expect(headers).toMatch(
+      /\/_next\/static\/\*\s+Cache-Control: public, max-age=0, must-revalidate/s,
+    );
+  });
 });
