@@ -36,6 +36,7 @@ describe("Cloudflare Pages static export", () => {
       pages_build_output_dir: "./out",
       compatibility_date: "2026-07-29",
     });
+    expect(wranglerConfig).not.toHaveProperty("account_id");
   });
 
   it("documents the public Sanity build variables used by the static site", () => {
