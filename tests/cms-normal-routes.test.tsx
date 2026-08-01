@@ -12,6 +12,7 @@ import InsightsPage from "@/app/insights/page";
 import HomePage from "@/app/page";
 import ProductsPage from "@/app/products/page";
 import ProductCategoryPage from "@/app/products/[category]/page";
+import { getAboutPage, getApplication } from "@/lib/content";
 import { publicSiteSettings } from "@/lib/site-settings";
 import type { SanityPage } from "@/lib/sanity/queries";
 
@@ -79,6 +80,28 @@ describe("normal public CMS routes", () => {
   });
 
   it.each([
+    [
+      "about",
+      "company-profile",
+      () => AboutDetailPage({ params: Promise.resolve({ slug: "company-profile" }) }),
+      () => getAboutPage("company-profile")!.title,
+    ],
+    [
+      "application",
+      "liquid-cooling-industry",
+      () => ApplicationDetailPage({ params: Promise.resolve({ slug: "liquid-cooling-industry" }) }),
+      () => getApplication("liquid-cooling-industry")!.title,
+    ],
+  ] as const)("keeps recognizable local %s content when its CMS read is unavailable", async (_family, slug, renderRoute, localTitle) => {
+    getPageBySlug.mockResolvedValue(null);
+
+    render(await renderRoute());
+
+    expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    expect(screen.getByRole("heading", { name: localTitle(), level: 1 })).toBeTruthy();
+  });
+
+  it.each([
     ["/", "home", () => HomePage()],
     ["/products", "product-index", () => ProductsPage()],
     ["/applications", "application-index", () => ApplicationsPage()],
@@ -119,6 +142,26 @@ describe("normal public CMS routes", () => {
     expect(getPageBySlug).toHaveBeenCalledWith(slug);
     expect(screen.queryByText(`CMS ${slug} body`)).toBeNull();
     expect(container.textContent?.trim().length).toBeGreaterThan(0);
+  });
+
+  it.each([
+    ["/", "home", () => HomePage(), "[data-testid=\"source-hero\"]"],
+    ["/products", "product-index", () => ProductsPage(), "[data-testid=\"source-hero\"]"],
+    ["/applications", "application-index", () => ApplicationsPage(), ".application-industries"],
+    ["/applications/cases", "application-case-index", () => ApplicationCasesPage(), ".application-grid"],
+    ["/insights", "insight-index", () => InsightsPage(), ".insight-grid"],
+    ["/products/cleanliness", "cleanliness", () => ProductCategoryPage({ params: Promise.resolve({ category: "cleanliness" }) }), ".product-index"],
+    ["/products/dosing", "dosing", () => ProductCategoryPage({ params: Promise.resolve({ category: "dosing" }) }), ".product-index"],
+    ["/products/water-quality", "water-quality", () => ProductCategoryPage({ params: Promise.resolve({ category: "water-quality" }) }), ".product-index"],
+    ["/products/gas-detection", "gas-detection", () => ProductCategoryPage({ params: Promise.resolve({ category: "gas-detection" }) }), ".product-index"],
+    ["/products/flow-level", "flow-level", () => ProductCategoryPage({ params: Promise.resolve({ category: "flow-level" }) }), ".product-index"],
+  ] as const)("keeps static %s locally usable when its CMS read rejects", async (_route, slug, renderRoute, fallbackSelector) => {
+    getPageBySlug.mockRejectedValue(new Error("Sanity unavailable"));
+
+    const { container } = render(await renderRoute());
+
+    expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    expect(container.querySelector(fallbackSelector)).toBeTruthy();
   });
 
   it("keeps telephone, email, inquiry CTA, and guide available with CMS contact content", async () => {

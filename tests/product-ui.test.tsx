@@ -13,6 +13,7 @@ import { ProductExplorer } from "@/components/product-explorer";
 import { getProduct, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/constants";
 import { productCategoryLabels, productRoute } from "@/lib/routes";
+import { publicSiteSettings } from "@/lib/site-settings";
 
 afterEach(cleanup);
 
@@ -247,12 +248,14 @@ describe("home product discovery", () => {
         level: 1,
       }),
     ).toBeTruthy();
-    expect(image?.getAttribute("alt")).toBe("");
+    expect(image?.getAttribute("alt")).toBe(
+      publicSiteSettings.homeHero.backgroundImage.alt,
+    );
     expect(
-      within(sourceHero).queryByRole("img", {
-        name: "水質とガスを、より確かに。",
+      within(sourceHero).getByRole("img", {
+        name: publicSiteSettings.homeHero.backgroundImage.alt,
       }),
-    ).toBeNull();
+    ).toBeTruthy();
     expect(decodeURIComponent(image?.getAttribute("src") ?? "")).toContain(
       "/source-media/1761791363673595-08e6a0255dfd817e.jpg",
     );
