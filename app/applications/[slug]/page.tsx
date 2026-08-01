@@ -173,7 +173,7 @@ export default async function ApplicationDetailPage({
           <div className="site-container">
             <h2>推奨製品</h2>
             <p className="related-products__description">
-              原文で関連付けられた製品情報です。
+              関連製品をご紹介します。
             </p>
             <SourceCardGrid
               ariaLabel="推奨製品"

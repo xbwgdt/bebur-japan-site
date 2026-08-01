@@ -151,7 +151,7 @@ export default async function ApplicationsPage(): Promise<React.ReactElement> {
               eyebrow="CASES"
               title="導入事例"
               titleId="application-cases-title"
-              description="原文に掲載された設備、組織、機器の導入・適用事例です。"
+              description="設備、組織、機器の導入・適用事例をご紹介します。"
             />
             <Link className="button button--secondary" href="/applications/cases">
               導入事例一覧を見る

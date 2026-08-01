@@ -119,7 +119,7 @@ export default async function AboutDetailPage({
           >
             <h2 id="about-brand-title">Beburブランド・企業情報</h2>
             <p className="about-detail__scope-note">
-              以下は、Beburの原文に掲載されたブランド・企業情報です。
+              以下は、Beburのブランドおよび企業情報です。
             </p>
 
             {aboutPage.images.length > 0 && (
