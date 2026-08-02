@@ -39,6 +39,52 @@ const requiredJapaneseField = (
       Rule.required().custom(validateJapaneseText).error(`请输入${title}`),
   });
 
+const contactPanelStyleFields = () => [
+  defineField({
+    name: "color",
+    title: "配色",
+    type: "string",
+    options: {
+      list: [
+        { title: "浅色", value: "light" },
+        { title: "深蓝", value: "deepBlue" },
+        { title: "浅蓝", value: "paleBlue" },
+      ],
+      layout: "radio",
+    },
+    validation: (Rule) => Rule.required(),
+  }),
+  defineField({
+    name: "fontSize",
+    title: "字号",
+    type: "string",
+    options: {
+      list: [
+        { title: "小", value: "sm" },
+        { title: "中", value: "md" },
+        { title: "大", value: "lg" },
+        { title: "特大", value: "xl" },
+      ],
+      layout: "radio",
+    },
+    validation: (Rule) => Rule.required(),
+  }),
+  defineField({
+    name: "fontFamily",
+    title: "字体",
+    type: "string",
+    options: {
+      list: [
+        { title: "无衬线", value: "sans" },
+        { title: "衬线", value: "serif" },
+        { title: "等宽", value: "mono" },
+      ],
+      layout: "radio",
+    },
+    validation: (Rule) => Rule.required(),
+  }),
+];
+
 export default defineType({
   name: "siteSettings",
   title: "网站设置",
@@ -132,6 +178,75 @@ export default defineType({
       type: "string",
       group: "contact",
       validation: approvedContactValidation("inquiryEmail"),
+    }),
+    defineField({
+      name: "contactPage",
+      title: "联系页内容与样式",
+      description:
+        "电话和邮件去向已保护，始终从已批准的联系字段生成，不能在此修改。",
+      type: "object",
+      group: "contact",
+      fields: [
+        defineField({
+          name: "panel",
+          title: "左侧联系卡片",
+          type: "object",
+          fields: [
+            requiredJapaneseField("label", "卡片标签"),
+            defineField({
+              name: "description",
+              title: "说明",
+              type: "text",
+              rows: 3,
+              validation: (Rule) =>
+                Rule.required()
+                  .custom(validateJapaneseProse)
+                  .error("请输入日文说明"),
+            }),
+            requiredJapaneseField("phoneActionLabel", "电话按钮标签"),
+            requiredJapaneseField("emailActionLabel", "邮件按钮标签"),
+            defineField({
+              name: "style",
+              title: "卡片样式",
+              type: "object",
+              fields: contactPanelStyleFields(),
+            }),
+          ],
+        }),
+        defineField({
+          name: "guide",
+          title: "右侧咨询流程",
+          type: "object",
+          fields: [
+            requiredJapaneseField("eyebrow", "眉题"),
+            requiredJapaneseField("title", "标题"),
+            defineField({
+              name: "steps",
+              title: "步骤",
+              type: "array",
+              of: [
+                defineField({
+                  name: "step",
+                  title: "步骤内容",
+                  type: "string",
+                  validation: (Rule) =>
+                    Rule.required()
+                      .custom(validateJapaneseText)
+                      .error("请输入日文步骤内容"),
+                }),
+              ],
+              validation: (Rule) => Rule.required().min(1),
+            }),
+            requiredJapaneseField("linkLabel", "邮件链接标签"),
+            defineField({
+              name: "style",
+              title: "流程样式",
+              type: "object",
+              fields: contactPanelStyleFields(),
+            }),
+          ],
+        }),
+      ],
     }),
     defineField({
       name: "footerText",

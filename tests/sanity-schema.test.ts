@@ -273,6 +273,70 @@ describe("approved site contact validation", () => {
   });
 });
 
+describe("contact-page Sanity controls", () => {
+  type SchemaField = {
+    name: string;
+    type?: string;
+    fields?: SchemaField[];
+    of?: SchemaField[];
+    options?: { list?: Array<string | { value: string }>; layout?: string };
+  };
+
+  const findField = (fields: SchemaField[] | undefined, name: string) =>
+    fields?.find((field) => field.name === name);
+
+  const optionValues = (field: SchemaField | undefined, name: string) => {
+    const optionField = findField(field?.fields, name);
+    return optionField?.options?.list?.map((option) =>
+      typeof option === "string" ? option : option.value,
+    );
+  };
+
+  it("exposes fixed panel and guide presentation controls", () => {
+    const contactPage = findField(siteSettings.fields as SchemaField[], "contactPage");
+    const panel = findField(contactPage?.fields, "panel");
+    const guide = findField(contactPage?.fields, "guide");
+    const panelStyle = findField(panel?.fields, "style");
+    const guideStyle = findField(guide?.fields, "style");
+    const guideSteps = findField(guide?.fields, "steps");
+
+    expect(contactPage).toBeDefined();
+    expect(panel).toBeDefined();
+    expect(guide).toBeDefined();
+    expect(guideSteps?.type).toBe("array");
+    expect(guideSteps?.of?.[0]?.type).toBe("string");
+    expect(optionValues(panelStyle, "color")).toEqual([
+      "light",
+      "deepBlue",
+      "paleBlue",
+    ]);
+    expect(optionValues(panelStyle, "fontSize")).toEqual(["sm", "md", "lg", "xl"]);
+    expect(optionValues(panelStyle, "fontFamily")).toEqual(["sans", "serif", "mono"]);
+    expect(optionValues(guideStyle, "color")).toEqual([
+      "light",
+      "deepBlue",
+      "paleBlue",
+    ]);
+    expect(optionValues(guideStyle, "fontSize")).toEqual(["sm", "md", "lg", "xl"]);
+    expect(optionValues(guideStyle, "fontFamily")).toEqual(["sans", "serif", "mono"]);
+
+    for (const style of [panelStyle, guideStyle]) {
+      expect(style?.fields?.map((field) => field.name)).toEqual([
+        "color",
+        "fontSize",
+        "fontFamily",
+      ]);
+      for (const field of style?.fields ?? []) {
+        expect(field.type).toBe("string");
+        expect(field.options?.layout).toBe("radio");
+        expect(field.options?.list).toEqual(expect.any(Array));
+      }
+    }
+
+    expect(siteSettingsQuery).toContain("contactPage");
+  });
+});
+
 describe("Sanity singleton controls", () => {
   it("assigns an ID to the root desk list", () => {
     const structureSource = readFileSync(
