@@ -185,4 +185,44 @@ describe("contact page", () => {
       "仕様・見積もりをご案内",
     ]);
   });
+
+  it("applies the default accessible presentation presets to the contact panels", async () => {
+    render(await ContactPage());
+
+    const panel = screen
+      .getByRole("heading", { name: siteConfig.company })
+      .closest("article");
+    const guide = screen
+      .getByRole("heading", { name: "お問い合わせの流れ" })
+      .closest("section");
+
+    expect(panel?.className).toContain("contact-card contact-card--color-light");
+    expect(panel?.className).toContain("contact-card--font-sans");
+    expect(panel?.className).toContain("contact-card--size-md");
+    expect(guide?.className).toContain("contact-card contact-card--color-deep-blue");
+    expect(guide?.className).toContain("contact-card--font-sans");
+    expect(guide?.className).toContain("contact-card--size-md");
+  });
+
+  it("defines inherited colors, typography, and visible link states for contact presets", async () => {
+    const styles = await readFile(join(process.cwd(), "app", "globals.css"), "utf8");
+
+    expect(styles).toContain(".contact-card--color-deep-blue");
+    expect(styles).toContain("--contact-card-background: var(--source-blue);");
+    expect(styles).toMatch(
+      /\.contact-card\.contact-card--color-pale-blue\s*\{[\s\S]*?background: var\(--contact-card-background\);/,
+    );
+    expect(styles).toContain("--contact-card-foreground: var(--paper);");
+    expect(styles).toContain(".contact-card h2");
+    expect(styles).toContain("color: var(--contact-card-heading);");
+    expect(styles).toContain(".contact-card--font-sans");
+    expect(styles).toContain("font-family: var(--font-sans);");
+    expect(styles).toContain(".contact-card--font-serif");
+    expect(styles).toContain(".contact-card--font-mono");
+    expect(styles).toContain(".contact-card--size-sm");
+    expect(styles).toContain(".contact-card--size-xl");
+    expect(styles).toContain("--contact-card-action-size");
+    expect(styles).toContain(".contact-card a:hover");
+    expect(styles).toContain(".contact-card a:focus-visible");
+  });
 });

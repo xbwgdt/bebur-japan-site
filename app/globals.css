@@ -2833,6 +2833,172 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   background: var(--source-blue);
 }
 
+/* Contact page presentation presets are deliberately card-scoped so CMS values
+   affect every descendant without accepting arbitrary inline styles. */
+.contact-card {
+  --contact-card-background: var(--paper);
+  --contact-card-foreground: var(--source-ink);
+  --contact-card-heading: var(--source-blue-deep);
+  --contact-card-accent: var(--source-blue);
+  --contact-card-link: var(--source-blue);
+  --contact-card-step-background: var(--navy-900);
+  --contact-card-step-foreground: var(--paper);
+  --contact-card-focus: var(--source-blue);
+  --contact-card-focus-ring: var(--paper);
+  --contact-card-font-family: var(--font-sans);
+  --contact-card-font-size: 1rem;
+  --contact-card-heading-size: clamp(1.6rem, 5vw, 2.4rem);
+  --contact-card-eyebrow-size: 0.75rem;
+  --contact-card-action-size: 0.875rem;
+  border-color: var(--source-rule);
+  background: var(--contact-card-background);
+  color: var(--contact-card-foreground);
+  font-family: var(--contact-card-font-family);
+  font-size: var(--contact-card-font-size);
+  line-height: 1.7;
+}
+
+.contact-card h2,
+.contact-card h3 {
+  color: var(--contact-card-heading);
+  font-size: var(--contact-card-heading-size);
+}
+
+.contact-card .contact-panel__label,
+.contact-card .inquiry-guide__eyebrow {
+  color: var(--contact-card-accent);
+  font-family: var(--contact-card-font-family);
+  font-size: var(--contact-card-eyebrow-size);
+}
+
+.contact-card a {
+  color: var(--contact-card-link);
+}
+
+.contact-card a:hover,
+.contact-card a:focus-visible {
+  text-decoration: underline;
+}
+
+.contact-card a:focus-visible {
+  outline: 3px solid var(--contact-card-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--contact-card-focus-ring);
+}
+
+.contact-card .button,
+.contact-card .inquiry-guide__link {
+  font-size: var(--contact-card-action-size);
+}
+
+.contact-card .button:hover,
+.contact-card .button:focus-visible {
+  text-decoration: none;
+}
+
+.contact-card .inquiry-guide li::before {
+  background: var(--contact-card-step-background);
+  color: var(--contact-card-step-foreground);
+  font-family: var(--contact-card-font-family);
+}
+
+.contact-card.contact-card--color-light {
+  --contact-card-background: var(--paper);
+  --contact-card-foreground: var(--source-ink);
+  --contact-card-heading: var(--source-blue-deep);
+  --contact-card-accent: var(--source-blue);
+  --contact-card-link: var(--source-blue);
+  --contact-card-focus: var(--source-blue);
+  background: var(--contact-card-background);
+  border-top-color: var(--source-blue);
+}
+
+.contact-card.contact-card--color-pale-blue {
+  --contact-card-background: var(--source-pale);
+  --contact-card-foreground: var(--source-ink);
+  --contact-card-heading: var(--source-blue-deep);
+  --contact-card-accent: var(--source-blue);
+  --contact-card-link: var(--source-blue);
+  --contact-card-focus: var(--source-blue);
+  background: var(--contact-card-background);
+  border-color: var(--source-rule);
+  border-top-color: var(--source-blue);
+}
+
+.contact-card.contact-card--color-deep-blue {
+  --contact-card-background: var(--source-blue);
+  --contact-card-foreground: var(--paper);
+  --contact-card-heading: var(--paper);
+  --contact-card-accent: #c0f6fb;
+  --contact-card-link: #c0f6fb;
+  --contact-card-step-background: var(--navy-900);
+  --contact-card-step-foreground: var(--paper);
+  --contact-card-focus: var(--paper);
+  --contact-card-focus-ring: var(--source-blue);
+  background: var(--contact-card-background);
+  border-color: rgb(255 255 255 / 38%);
+}
+
+.contact-card--color-deep-blue .button--primary {
+  background: var(--navy-900);
+  color: var(--paper);
+}
+
+.contact-card--color-deep-blue .button--primary:hover {
+  background: var(--source-blue-deep);
+}
+
+.contact-card--color-deep-blue .button--secondary {
+  border-color: var(--contact-card-accent);
+  background: transparent;
+  color: var(--paper);
+}
+
+.contact-card--color-deep-blue .button--secondary:hover {
+  background: rgb(255 255 255 / 12%);
+}
+
+.contact-card--font-sans {
+  --contact-card-font-family: var(--font-sans);
+}
+
+.contact-card--font-serif {
+  --contact-card-font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN",
+    serif;
+}
+
+.contact-card--font-mono {
+  --contact-card-font-family: var(--font-mono);
+}
+
+.contact-card--size-sm {
+  --contact-card-font-size: 0.875rem;
+  --contact-card-heading-size: clamp(1.35rem, 4vw, 1.8rem);
+  --contact-card-eyebrow-size: 0.6875rem;
+  --contact-card-action-size: 0.8125rem;
+}
+
+.contact-card--size-md {
+  --contact-card-font-size: 1rem;
+  --contact-card-heading-size: clamp(1.6rem, 5vw, 2.4rem);
+  --contact-card-eyebrow-size: 0.75rem;
+  --contact-card-action-size: 0.875rem;
+}
+
+.contact-card--size-lg {
+  --contact-card-font-size: 1.125rem;
+  --contact-card-heading-size: clamp(1.8rem, 5.5vw, 2.7rem);
+  --contact-card-eyebrow-size: 0.8125rem;
+  --contact-card-action-size: 1rem;
+}
+
+.contact-card--size-xl {
+  --contact-card-font-size: 1.25rem;
+  --contact-card-heading-size: clamp(2rem, 6vw, 3rem);
+  --contact-card-eyebrow-size: 0.875rem;
+  --contact-card-action-size: 1.125rem;
+}
+
 .source-footer {
   background: #282d33;
 }
