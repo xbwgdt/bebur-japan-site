@@ -164,14 +164,25 @@ describe("normal public CMS routes", () => {
     expect(container.querySelector(fallbackSelector)).toBeTruthy();
   });
 
-  it("keeps telephone, email, inquiry CTA, and guide available with CMS contact content", async () => {
+  it("keeps the shared telephone and email contact actions with CMS content", async () => {
     getPageBySlug.mockResolvedValue(pageFixture("contact", "CMS contact"));
 
-    const { container } = render(await ContactPage());
+    render(await ContactPage());
 
-    expect(container.querySelector(`a[href="tel:${publicSiteSettings.phone}"]`)).toBeTruthy();
-    expect(container.querySelector(`a[href^="mailto:${publicSiteSettings.inquiryEmail}"]`)).toBeTruthy();
-    expect(container.querySelectorAll('a[href^="mailto:"]')).toHaveLength(3);
-    expect(container.querySelector(".inquiry-guide")).toBeTruthy();
+    expect(
+      screen
+        .getByRole("link", { name: publicSiteSettings.contactPage.panel.phoneActionLabel })
+        .getAttribute("href"),
+    ).toBe(`tel:${publicSiteSettings.phone}`);
+    expect(
+      screen
+        .getByRole("link", { name: publicSiteSettings.contactPage.panel.emailActionLabel })
+        .getAttribute("href"),
+    ).toMatch(new RegExp(`^mailto:${publicSiteSettings.inquiryEmail}\\?subject=`));
+    expect(
+      screen
+        .getByRole("link", { name: publicSiteSettings.contactPage.guide.linkLabel })
+        .getAttribute("href"),
+    ).toMatch(new RegExp(`^mailto:${publicSiteSettings.inquiryEmail}\\?subject=`));
   });
 });

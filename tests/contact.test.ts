@@ -133,20 +133,25 @@ describe("contact page", () => {
     ).toBe(buildMailto("Bebur 製品"));
   });
 
-  it("sends every online inquiry action to the approved email address", async () => {
-    const { container } = render(await ContactPage());
-    const inquiryLinks = Array.from(
-      container.querySelectorAll<HTMLAnchorElement>("a"),
-    ).filter((link) =>
-      /オンライン留言|オンライン相談|問い合わせ/.test(link.textContent ?? ""),
-    );
+  it("separates the approved telephone CTA from email inquiry links", async () => {
+    render(await ContactPage());
 
-    expect(inquiryLinks.length).toBeGreaterThanOrEqual(2);
-    for (const link of inquiryLinks) {
-      expect(link.getAttribute("href")).toMatch(
-        /^mailto:info@newtree-i\.com\?subject=/,
-      );
-    }
+    expect(
+      screen
+        .getByRole("link", { name: "電話で相談" })
+        .getAttribute("href"),
+    ).toBe("tel:080-5189-8663");
+    expect(
+      screen
+        .getByRole("link", { name: "メールでお問い合わせ" })
+        .getAttribute("href"),
+    ).toMatch(/^mailto:info@newtree-i\.com\?subject=/);
+    expect(
+      screen
+        .getByRole("link", { name: "メールで問い合わせ" })
+        .getAttribute("href"),
+    ).toMatch(/^mailto:info@newtree-i\.com\?subject=/);
+    expect(screen.queryByText("オンライン相談（メール）")).toBeNull();
   });
 
   it("contains no form controls, submission behavior, or forbidden contacts", async () => {
