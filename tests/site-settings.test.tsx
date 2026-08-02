@@ -121,11 +121,21 @@ describe("safe public site settings", () => {
     });
 
     expect(settings.contactPage.panel.label).toBe("Bebur 日本総代理店");
+    expect(settings.contactPage.panel.description).toBe(
+      "日本国内の製品選定とお見積もりをご案内します。",
+    );
+    expect(settings.contactPage.panel.phoneActionLabel).toBe("電話で相談");
+    expect(settings.contactPage.panel.emailActionLabel).toBe(
+      "メールでお問い合わせ",
+    );
+    expect(settings.contactPage.guide.eyebrow).toBe("INQUIRY GUIDE");
+    expect(settings.contactPage.guide.title).toBe("お問い合わせの流れ");
     expect(settings.contactPage.guide.steps).toEqual([
       "製品・用途を確認",
       "電話またはメールで相談",
       "仕様・見積もりをご案内",
     ]);
+    expect(settings.contactPage.guide.linkLabel).toBe("メールで問い合わせ");
     expect(settings.contactPage.guide.style).toEqual({
       color: "deepBlue",
       fontSize: "md",
