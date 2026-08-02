@@ -222,6 +222,16 @@ describe("contact page", () => {
     expect(styles).toContain(".contact-card--size-sm");
     expect(styles).toContain(".contact-card--size-xl");
     expect(styles).toContain("--contact-card-action-size");
+    for (const size of ["sm", "md", "lg", "xl"]) {
+      expect(styles).toMatch(
+        new RegExp(
+          `\\.contact-card--size-${size}\\s*\\{[\\s\\S]*?--contact-card-step-size:\\s*[^;]+;`,
+        ),
+      );
+    }
+    expect(styles).toMatch(
+      /\.contact-card \.inquiry-guide li::before\s*\{[\s\S]*?font-size: var\(--contact-card-step-size\);/,
+    );
     expect(styles).toContain(".contact-card a:hover");
     expect(styles).toContain(".contact-card a:focus-visible");
   });

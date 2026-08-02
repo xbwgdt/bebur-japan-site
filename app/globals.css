@@ -2850,6 +2850,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   --contact-card-heading-size: clamp(1.6rem, 5vw, 2.4rem);
   --contact-card-eyebrow-size: 0.75rem;
   --contact-card-action-size: 0.875rem;
+  --contact-card-step-size: 0.75rem;
   border-color: var(--source-rule);
   background: var(--contact-card-background);
   color: var(--contact-card-foreground);
@@ -2900,6 +2901,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   background: var(--contact-card-step-background);
   color: var(--contact-card-step-foreground);
   font-family: var(--contact-card-font-family);
+  font-size: var(--contact-card-step-size);
 }
 
 .contact-card.contact-card--color-light {
@@ -2976,6 +2978,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   --contact-card-heading-size: clamp(1.35rem, 4vw, 1.8rem);
   --contact-card-eyebrow-size: 0.6875rem;
   --contact-card-action-size: 0.8125rem;
+  --contact-card-step-size: 0.6875rem;
 }
 
 .contact-card--size-md {
@@ -2983,6 +2986,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   --contact-card-heading-size: clamp(1.6rem, 5vw, 2.4rem);
   --contact-card-eyebrow-size: 0.75rem;
   --contact-card-action-size: 0.875rem;
+  --contact-card-step-size: 0.75rem;
 }
 
 .contact-card--size-lg {
@@ -2990,6 +2994,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   --contact-card-heading-size: clamp(1.8rem, 5.5vw, 2.7rem);
   --contact-card-eyebrow-size: 0.8125rem;
   --contact-card-action-size: 1rem;
+  --contact-card-step-size: 0.8125rem;
 }
 
 .contact-card--size-xl {
@@ -2997,6 +3002,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   --contact-card-heading-size: clamp(2rem, 6vw, 3rem);
   --contact-card-eyebrow-size: 0.875rem;
   --contact-card-action-size: 1.125rem;
+  --contact-card-step-size: 0.875rem;
 }
 
 .source-footer {
