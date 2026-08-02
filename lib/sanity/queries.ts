@@ -59,6 +59,30 @@ export type SanitySiteSettings = {
       desktopTitleWrap?: string;
     };
   };
+  contactPage?: {
+    panel?: {
+      label?: string;
+      description?: string;
+      phoneActionLabel?: string;
+      emailActionLabel?: string;
+      style?: {
+        color?: string;
+        fontSize?: string;
+        fontFamily?: string;
+      };
+    };
+    guide?: {
+      eyebrow?: string;
+      title?: string;
+      steps?: unknown[];
+      linkLabel?: string;
+      style?: {
+        color?: string;
+        fontSize?: string;
+        fontFamily?: string;
+      };
+    };
+  };
   navigationLabels?: Record<string, string>;
   distributorName?: string;
   companyName?: string;
@@ -218,6 +242,22 @@ export const siteSettingsQuery = `*[
     primaryAction,
     secondaryAction,
     style
+  },
+  contactPage {
+    panel {
+      label,
+      description,
+      phoneActionLabel,
+      emailActionLabel,
+      style
+    },
+    guide {
+      eyebrow,
+      title,
+      steps,
+      linkLabel,
+      style
+    }
   },
   navigationLabels,
   distributorName,

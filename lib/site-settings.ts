@@ -16,6 +16,29 @@ export type PublicNavigationLabels = {
   contact: string;
 };
 
+export type ContactPanelStyle = {
+  color: "light" | "deepBlue" | "paleBlue";
+  fontSize: "sm" | "md" | "lg" | "xl";
+  fontFamily: "sans" | "serif" | "mono";
+};
+
+export type PublicContactPageSettings = {
+  panel: {
+    label: string;
+    description: string;
+    phoneActionLabel: string;
+    emailActionLabel: string;
+    style: ContactPanelStyle;
+  };
+  guide: {
+    eyebrow: string;
+    title: string;
+    steps: string[];
+    linkLabel: string;
+    style: ContactPanelStyle;
+  };
+};
+
 export type PublicSiteSettings = {
   homeHero: {
     eyebrow: string;
@@ -26,6 +49,7 @@ export type PublicSiteSettings = {
     secondaryAction: { label: string; href: string };
     style: HomeHeroStyle;
   };
+  contactPage: PublicContactPageSettings;
   navigationLabels: PublicNavigationLabels;
   distributorName: string;
   companyName: string;
@@ -58,6 +82,12 @@ const homeHeroPresetValues = {
   desktopTitleWrap: ["wrap", "nowrap"],
 } as const;
 
+const contactPanelPresetValues = {
+  color: ["light", "deepBlue", "paleBlue"],
+  fontSize: ["sm", "md", "lg", "xl"],
+  fontFamily: ["sans", "serif", "mono"],
+} as const;
+
 export const localPublicSiteSettings: PublicSiteSettings = {
   homeHero: {
     eyebrow: "WATER QUALITY & GAS DETECTION",
@@ -76,6 +106,35 @@ export const localPublicSiteSettings: PublicSiteSettings = {
       alignment: "left",
       spacing: "normal",
       desktopTitleWrap: "nowrap",
+    },
+  },
+  contactPage: {
+    panel: {
+      label: "Bebur 日本総代理店",
+      description:
+        "新樹産業株式会社が、日本国内の製品選定、用途確認、お見積もり、アフターサービスに関するご相談を承ります。",
+      phoneActionLabel: "電話で相談",
+      emailActionLabel: "メールでお問い合わせ",
+      style: {
+        color: "light",
+        fontSize: "md",
+        fontFamily: "sans",
+      },
+    },
+    guide: {
+      eyebrow: "INQUIRY GUIDE",
+      title: "お問い合わせの流れ",
+      steps: [
+        "製品・用途を確認",
+        "電話またはメールで相談",
+        "仕様・見積もりをご案内",
+      ],
+      linkLabel: "メールで問い合わせ",
+      style: {
+        color: "deepBlue",
+        fontSize: "md",
+        fontFamily: "sans",
+      },
     },
   },
   navigationLabels: {
@@ -193,6 +252,82 @@ function resolveHomeHero(
   };
 }
 
+function resolveContactPanelStyleSettings(
+  style:
+    | { color?: string; fontSize?: string; fontFamily?: string }
+    | undefined,
+  fallback: ContactPanelStyle,
+): ContactPanelStyle {
+  return {
+    color: safePreset(
+      style?.color,
+      contactPanelPresetValues.color,
+      fallback.color,
+    ),
+    fontSize: safePreset(
+      style?.fontSize,
+      contactPanelPresetValues.fontSize,
+      fallback.fontSize,
+    ),
+    fontFamily: safePreset(
+      style?.fontFamily,
+      contactPanelPresetValues.fontFamily,
+      fallback.fontFamily,
+    ),
+  };
+}
+
+function safeGuideSteps(value: unknown): string[] | undefined {
+  if (!Array.isArray(value) || value.length < 1 || value.length > 6) {
+    return undefined;
+  }
+
+  const steps = value.map((step) => safeText(step, { max: 120 }));
+  return steps.every((step) => step !== undefined)
+    ? (steps as string[])
+    : undefined;
+}
+
+function resolveContactPage(
+  contactPage: SanitySiteSettings["contactPage"],
+): PublicContactPageSettings {
+  const fallback = localPublicSiteSettings.contactPage;
+
+  return {
+    panel: {
+      label: safeText(contactPage?.panel?.label, { max: 80 }) ?? fallback.panel.label,
+      description:
+        safeText(contactPage?.panel?.description, { max: 240 }) ??
+        fallback.panel.description,
+      phoneActionLabel:
+        safeText(contactPage?.panel?.phoneActionLabel, { max: 40 }) ??
+        fallback.panel.phoneActionLabel,
+      emailActionLabel:
+        safeText(contactPage?.panel?.emailActionLabel, { max: 40 }) ??
+        fallback.panel.emailActionLabel,
+      style: resolveContactPanelStyleSettings(
+        contactPage?.panel?.style,
+        fallback.panel.style,
+      ),
+    },
+    guide: {
+      eyebrow:
+        safeText(contactPage?.guide?.eyebrow, { max: 40 }) ??
+        fallback.guide.eyebrow,
+      title:
+        safeText(contactPage?.guide?.title, { max: 80 }) ?? fallback.guide.title,
+      steps: safeGuideSteps(contactPage?.guide?.steps) ?? fallback.guide.steps,
+      linkLabel:
+        safeText(contactPage?.guide?.linkLabel, { max: 40 }) ??
+        fallback.guide.linkLabel,
+      style: resolveContactPanelStyleSettings(
+        contactPage?.guide?.style,
+        fallback.guide.style,
+      ),
+    },
+  };
+}
+
 export function resolveHomeHeroStyle(style: HomeHeroStyle): string {
   return [
     "source-home-hero",
@@ -202,6 +337,29 @@ export function resolveHomeHeroStyle(style: HomeHeroStyle): string {
     `source-home-hero--spacing-${style.spacing}`,
     `source-home-hero--title-${style.desktopTitleWrap}`,
   ].join(" ");
+}
+
+export function resolveContactPanelStyle(style: ContactPanelStyle): string {
+  const colorClass = {
+    light: "contact-card--color-light",
+    deepBlue: "contact-card--color-deep-blue",
+    paleBlue: "contact-card--color-pale-blue",
+  } as const;
+  const sizeClass = {
+    sm: "contact-card--size-sm",
+    md: "contact-card--size-md",
+    lg: "contact-card--size-lg",
+    xl: "contact-card--size-xl",
+  } as const;
+  const fontClass = {
+    sans: "contact-card--font-sans",
+    serif: "contact-card--font-serif",
+    mono: "contact-card--font-mono",
+  } as const;
+
+  return ["contact-card", colorClass[style.color], sizeClass[style.fontSize], fontClass[style.fontFamily]].join(
+    " ",
+  );
 }
 
 export function resolvePublicSiteSettings(
@@ -223,6 +381,7 @@ export function resolvePublicSiteSettings(
 
   return {
     homeHero: resolveHomeHero(settings.homeHero),
+    contactPage: resolveContactPage(settings.contactPage),
     navigationLabels,
     distributorName: exactApproved(
       "distributorName",

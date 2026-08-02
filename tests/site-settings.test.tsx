@@ -10,6 +10,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import {
   localPublicSiteSettings,
+  resolveContactPanelStyle,
   resolveHomeHeroStyle,
   resolvePublicSiteSettings,
 } from "@/lib/site-settings";
@@ -89,6 +90,81 @@ describe("safe public site settings", () => {
     expect(resolveHomeHeroStyle(settings.homeHero.style)).not.toContain(
       "javascript:alert",
     );
+  });
+
+  it("preserves safe contact page copy, guide steps, and presentation presets", () => {
+    const settings = resolvePublicSiteSettings({
+      contactPage: {
+        panel: {
+          label: "Bebur 日本総代理店",
+          description: "日本国内の製品選定とお見積もりをご案内します。",
+          phoneActionLabel: "電話で相談",
+          emailActionLabel: "メールでお問い合わせ",
+          style: { color: "light", fontSize: "md", fontFamily: "sans" },
+        },
+        guide: {
+          eyebrow: "INQUIRY GUIDE",
+          title: "お問い合わせの流れ",
+          steps: [
+            "製品・用途を確認",
+            "電話またはメールで相談",
+            "仕様・見積もりをご案内",
+          ],
+          linkLabel: "メールで問い合わせ",
+          style: {
+            color: "deepBlue",
+            fontSize: "md",
+            fontFamily: "sans",
+          },
+        },
+      },
+    });
+
+    expect(settings.contactPage.panel.label).toBe("Bebur 日本総代理店");
+    expect(settings.contactPage.guide.steps).toEqual([
+      "製品・用途を確認",
+      "電話またはメールで相談",
+      "仕様・見積もりをご案内",
+    ]);
+    expect(settings.contactPage.guide.style).toEqual({
+      color: "deepBlue",
+      fontSize: "md",
+      fontFamily: "sans",
+    });
+    expect(resolveContactPanelStyle(settings.contactPage.guide.style)).toContain(
+      "contact-card--color-deep-blue",
+    );
+  });
+
+  it("falls back to local contact page settings for invalid presets and guide steps", () => {
+    const settings = resolvePublicSiteSettings({
+      contactPage: {
+        panel: {
+          label: "<script>alert(1)</script>",
+          description: "",
+          phoneActionLabel: "",
+          emailActionLabel: "<b>unsafe</b>",
+          style: {
+            color: "javascript:alert(1)",
+            fontSize: "9rem",
+            fontFamily: "Comic Sans",
+          },
+        },
+        guide: {
+          eyebrow: "",
+          title: "<script>alert(1)</script>",
+          steps: ["", "<b>unsafe</b>", 42],
+          linkLabel: "",
+          style: {
+            color: "#000000",
+            fontSize: "calc(100vw)",
+            fontFamily: "url(evil)",
+          },
+        },
+      },
+    });
+
+    expect(settings.contactPage).toEqual(localPublicSiteSettings.contactPage);
   });
 
   it("falls back locally for missing or unapproved remote values", () => {
