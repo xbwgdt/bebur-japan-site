@@ -200,6 +200,15 @@ describe("Japanese content lookups", () => {
         address: "埼玉県草加市草加2－13－21－7",
         phone: "080-5189-8663",
         inquiryEmail: "info@newtree-i.com",
+        contactPage: {
+          panel: {
+            phoneActionLabel: "電話で相談",
+            style: { fontFamily: "sans" },
+          },
+          guide: {
+            style: { color: "deepBlue" },
+          },
+        },
         defaultOgImage: {
           _type: "image",
           _sanityAsset: expect.stringMatching(/^image@file:\/\/\.\/\.\.\/\.\.\/public\//),

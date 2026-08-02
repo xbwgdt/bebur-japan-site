@@ -177,6 +177,35 @@ const buildSiteSettings = (contact) => ({
   address: contact.address,
   phone: contact.phone,
   inquiryEmail: contact.inquiryEmail,
+  contactPage: {
+    panel: {
+      label: "Bebur 日本総代理店",
+      description:
+        "新樹産業株式会社が、日本国内の製品選定、用途確認、お見積もり、アフターサービスに関するご相談を承ります。",
+      phoneActionLabel: "電話で相談",
+      emailActionLabel: "メールでお問い合わせ",
+      style: {
+        color: "light",
+        fontSize: "md",
+        fontFamily: "sans",
+      },
+    },
+    guide: {
+      eyebrow: "INQUIRY GUIDE",
+      title: "お問い合わせの流れ",
+      steps: [
+        "製品・用途を確認",
+        "電話またはメールで相談",
+        "仕様・見積もりをご案内",
+      ],
+      linkLabel: "メールで問い合わせ",
+      style: {
+        color: "deepBlue",
+        fontSize: "md",
+        fontFamily: "sans",
+      },
+    },
+  },
   footerText: "Bebur 日本総代理店｜新樹産業株式会社",
   defaultSeoTitle: "Bebur Japan｜水質分析・ガス検知の精密計測",
   defaultSeoDescription:
