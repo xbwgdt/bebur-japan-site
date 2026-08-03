@@ -3,11 +3,9 @@ import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
-import { PublishedPage } from "@/components/published-page";
 import { ProductExplorer } from "@/components/product-explorer";
 import { getProducts } from "@/lib/content";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
-import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import type { ProductCategory } from "@/lib/types";
 
 type CategoryPageContent = {
@@ -95,11 +93,6 @@ export default async function ProductCategoryPage({
 
   if (!content) {
     notFound();
-  }
-
-  const cmsPage = await getPublishedPageForRoute(content.category);
-  if (cmsPage) {
-    return <PublishedPage page={cmsPage} />;
   }
 
   const categoryProducts = getProducts(content.category);

@@ -4,10 +4,8 @@ import Link from "next/link";
 import { ApplicationCard } from "@/components/application-card";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
-import { PublishedPage } from "@/components/published-page";
 import { getApplications, getStaticPages } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
-import { getPublishedPageForRoute } from "@/lib/cms-pages";
 
 export const applicationCaseSlugs = [
   "liquid-cooling-cases",
@@ -51,11 +49,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ApplicationCasesPage(): Promise<React.ReactElement> {
-  const cmsPage = await getPublishedPageForRoute("application-case-index");
-  if (cmsPage) {
-    return <PublishedPage page={cmsPage} />;
-  }
-
   const cases = getApplications().filter(({ slug }) =>
     caseSlugSet.has(slug),
   );

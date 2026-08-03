@@ -46,20 +46,6 @@ function pageFixture(slug: string, title: string): SanityPage {
 }
 
 describe("normal public CMS routes", () => {
-  it.each([
-    ["about", "company-profile", () => AboutDetailPage({ params: Promise.resolve({ slug: "company-profile" }) })],
-    ["application", "liquid-cooling-industry", () => ApplicationDetailPage({ params: Promise.resolve({ slug: "liquid-cooling-industry" }) })],
-  ] as const)("renders published CMS blocks before local %s content", async (_family, slug, renderRoute) => {
-    const page = pageFixture(slug, `CMS ${slug}`);
-    getPageBySlug.mockResolvedValue(page);
-
-    render(await renderRoute());
-
-    expect(getPageBySlug).toHaveBeenCalledWith(slug);
-    expect(screen.getByRole("heading", { name: page.title })).toBeTruthy();
-    expect(screen.getByText(`${page.title} body`)).toBeTruthy();
-  });
-
   it("keeps the canonical contact hero and excludes legacy generic CMS blocks", async () => {
     getPageBySlug.mockResolvedValue(pageFixture("contact", "Legacy CMS contact"));
 
@@ -97,30 +83,32 @@ describe("normal public CMS routes", () => {
 
     render(await renderRoute());
 
-    expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(screen.getByRole("heading", { name: localTitle(), level: 1 })).toBeTruthy();
   });
 
   it.each([
-    ["/", "home", () => HomePage()],
-    ["/products", "product-index", () => ProductsPage()],
-    ["/applications", "application-index", () => ApplicationsPage()],
-    ["/applications/cases", "application-case-index", () => ApplicationCasesPage()],
-    ["/insights", "insight-index", () => InsightsPage()],
-    ["/products/cleanliness", "cleanliness", () => ProductCategoryPage({ params: Promise.resolve({ category: "cleanliness" }) })],
-    ["/products/dosing", "dosing", () => ProductCategoryPage({ params: Promise.resolve({ category: "dosing" }) })],
-    ["/products/water-quality", "water-quality", () => ProductCategoryPage({ params: Promise.resolve({ category: "water-quality" }) })],
-    ["/products/gas-detection", "gas-detection", () => ProductCategoryPage({ params: Promise.resolve({ category: "gas-detection" }) })],
-    ["/products/flow-level", "flow-level", () => ProductCategoryPage({ params: Promise.resolve({ category: "flow-level" }) })],
-  ] as const)("gives the published CMS page priority for %s", async (_route, slug, renderRoute) => {
+    ["/", "home", () => HomePage(), "[data-testid=\"source-hero\"]"],
+    ["/products", "product-index", () => ProductsPage(), "[data-testid=\"source-hero\"]"],
+    ["/applications", "application-index", () => ApplicationsPage(), ".application-industries"],
+    ["/applications/cases", "application-case-index", () => ApplicationCasesPage(), ".application-grid"],
+    ["/insights", "insight-index", () => InsightsPage(), ".insight-grid"],
+    ["/products/cleanliness", "cleanliness", () => ProductCategoryPage({ params: Promise.resolve({ category: "cleanliness" }) }), ".product-index"],
+    ["/products/dosing", "dosing", () => ProductCategoryPage({ params: Promise.resolve({ category: "dosing" }) }), ".product-index"],
+    ["/products/water-quality", "water-quality", () => ProductCategoryPage({ params: Promise.resolve({ category: "water-quality" }) }), ".product-index"],
+    ["/products/gas-detection", "gas-detection", () => ProductCategoryPage({ params: Promise.resolve({ category: "gas-detection" }) }), ".product-index"],
+    ["/products/flow-level", "flow-level", () => ProductCategoryPage({ params: Promise.resolve({ category: "flow-level" }) }), ".product-index"],
+    ["/about/company-profile", "company-profile", () => AboutDetailPage({ params: Promise.resolve({ slug: "company-profile" }) }), "[data-testid=\"source-hero\"]"],
+    ["/applications/liquid-cooling-industry", "liquid-cooling-industry", () => ApplicationDetailPage({ params: Promise.resolve({ slug: "liquid-cooling-industry" }) }), "[data-testid=\"source-hero\"]"],
+  ] as const)("keeps the canonical design for %s when legacy CMS blocks exist", async (_route, slug, renderRoute, canonicalSelector) => {
     const page = pageFixture(slug, `CMS ${slug}`);
     getPageBySlug.mockResolvedValue(page);
 
-    render(await renderRoute());
+    const { container } = render(await renderRoute());
 
-    expect(getPageBySlug).toHaveBeenCalledWith(slug);
-    expect(screen.getByRole("heading", { name: page.title })).toBeTruthy();
-    expect(screen.getByText(`${page.title} body`)).toBeTruthy();
+    expect(container.querySelector(canonicalSelector)).toBeTruthy();
+    expect(screen.queryByText(`${page.title} body`)).toBeNull();
+    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
   });
 
   it.each([
@@ -139,7 +127,7 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(screen.queryByText(`CMS ${slug} body`)).toBeNull();
     expect(container.textContent?.trim().length).toBeGreaterThan(0);
   });
@@ -160,7 +148,7 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(container.querySelector(fallbackSelector)).toBeTruthy();
   });
 

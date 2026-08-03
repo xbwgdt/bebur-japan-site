@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
-import { PageBlockRenderer } from "@/components/page-block-renderer";
 import { ProductCard } from "@/components/product-card";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
@@ -97,18 +96,6 @@ export default async function ApplicationDetailPage({
 
   if (!application) {
     notFound();
-  }
-
-  const cmsPage = await getPublishedPageForRoute(slug);
-
-  if (cmsPage) {
-    return (
-      <SourceShell>
-        <main className="section source-section site-container">
-          <PageBlockRenderer blocks={cmsPage.blocks} />
-        </main>
-      </SourceShell>
-    );
   }
 
   const recommendedProducts = resolveRecommendedProducts(
