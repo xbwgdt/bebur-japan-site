@@ -23,6 +23,7 @@ describe("Cloudflare Pages static export", () => {
       name?: string;
       pages_build_output_dir?: string;
       compatibility_date?: string;
+      vars?: Record<string, string>;
     };
 
     expect(packageJson.scripts?.["deploy:cloudflare"]).toBe(
@@ -37,6 +38,11 @@ describe("Cloudflare Pages static export", () => {
       compatibility_date: "2026-07-29",
     });
     expect(wranglerConfig).not.toHaveProperty("account_id");
+    expect(wranglerConfig.vars).toEqual({
+      NEXT_PUBLIC_SANITY_PROJECT_ID: "gbzt89e5",
+      NEXT_PUBLIC_SANITY_DATASET: "production",
+      NEXT_PUBLIC_SANITY_API_VERSION: "2025-02-19",
+    });
   });
 
   it("documents the public Sanity build variables used by the static site", () => {
