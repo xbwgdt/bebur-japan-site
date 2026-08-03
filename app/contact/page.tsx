@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactPagePanels } from "@/components/contact-page-panels";
-import { PageBlockRenderer } from "@/components/page-block-renderer";
 import { SourceHero } from "@/components/source-faithful/source-hero";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { canonicalUrl } from "@/lib/routes";
-import { getPublishedPageForRoute } from "@/lib/cms-pages";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
@@ -17,19 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage(): Promise<React.ReactElement> {
-  const cmsPage = await getPublishedPageForRoute("contact");
-
-  if (cmsPage) {
-    return (
-      <SourceShell>
-        <main className="section source-section site-container">
-          <PageBlockRenderer blocks={cmsPage.blocks} />
-          <ContactPagePanels />
-        </main>
-      </SourceShell>
-    );
-  }
-
   return (
     <SourceShell>
       <SourceHero

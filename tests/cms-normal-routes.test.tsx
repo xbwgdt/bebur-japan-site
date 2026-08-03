@@ -49,7 +49,6 @@ describe("normal public CMS routes", () => {
   it.each([
     ["about", "company-profile", () => AboutDetailPage({ params: Promise.resolve({ slug: "company-profile" }) })],
     ["application", "liquid-cooling-industry", () => ApplicationDetailPage({ params: Promise.resolve({ slug: "liquid-cooling-industry" }) })],
-    ["contact", "contact", () => ContactPage()],
   ] as const)("renders published CMS blocks before local %s content", async (_family, slug, renderRoute) => {
     const page = pageFixture(slug, `CMS ${slug}`);
     getPageBySlug.mockResolvedValue(page);
@@ -61,22 +60,23 @@ describe("normal public CMS routes", () => {
     expect(screen.getByText(`${page.title} body`)).toBeTruthy();
   });
 
-  it("keeps the local contact content when Sanity has no published page", async () => {
-    getPageBySlug.mockResolvedValue(null);
+  it("keeps the canonical contact hero and excludes legacy generic CMS blocks", async () => {
+    getPageBySlug.mockResolvedValue(pageFixture("contact", "Legacy CMS contact"));
 
-    render(await ContactPage());
+    const { container } = render(await ContactPage());
 
-    expect(getPageBySlug).toHaveBeenCalledWith("contact");
-    expect(screen.getByText(publicSiteSettings.companyName)).toBeTruthy();
-  });
-
-  it("keeps the local contact content when the CMS read fails", async () => {
-    getPageBySlug.mockRejectedValue(new Error("Sanity unavailable"));
-
-    render(await ContactPage());
-
-    expect(getPageBySlug).toHaveBeenCalledWith("contact");
-    expect(screen.getByText(publicSiteSettings.companyName)).toBeTruthy();
+    expect(container.querySelector('[data-testid="source-hero"]')).toBeTruthy();
+    expect(screen.getByText("CONTACT")).toBeTruthy();
+    expect(
+      screen.getByRole("heading", { name: "お問い合わせ", level: 1 }),
+    ).toBeTruthy();
+    expect(
+      screen.getByText(
+        "日本国内の製品選定、仕様確認、お見積もり、アフターサービスのご相談を承ります。",
+      ),
+    ).toBeTruthy();
+    expect(screen.queryByText("Legacy CMS contact body")).toBeNull();
+    expect(getPageBySlug).not.toHaveBeenCalledWith("contact");
   });
 
   it.each([
