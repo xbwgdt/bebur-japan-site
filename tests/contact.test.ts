@@ -233,8 +233,9 @@ describe("contact page", () => {
       /\.contact-card\.inquiry-guide li::before\s*\{[\s\S]*?font-size: var\(--contact-card-step-size\);/,
     );
     expect(styles).not.toMatch(/\.contact-card a\s*\{\s*color:/);
+    expect(styles).not.toContain(".contact-card .contact-panel address a");
     expect(styles).toMatch(
-      /\.contact-card \.contact-panel address a,\s*\.contact-card \.inquiry-guide__link\s*\{[\s\S]*?color: var\(--contact-card-link\);/,
+      /\.contact-card\.contact-panel address a,\s*\.contact-card \.inquiry-guide__link\s*\{[\s\S]*?color: var\(--contact-card-link\);/,
     );
     expect(styles).toMatch(
       /\.contact-card \.button--primary\s*\{\s*color: var\(--paper\);/,

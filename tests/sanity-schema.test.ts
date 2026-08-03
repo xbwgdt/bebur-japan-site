@@ -337,48 +337,57 @@ describe("contact-page Sanity controls", () => {
     expect(siteSettingsQuery).toContain("contactPage");
   });
 
-  it("keeps contact prose and guide-step limits aligned with the public resolver", () => {
+  it("keeps every contact copy field within the public runtime limits", () => {
     const contactPage = findField(siteSettings.fields as SchemaField[], "contactPage");
     const panel = findField(contactPage?.fields, "panel");
     const guide = findField(contactPage?.fields, "guide");
     const description = findField(panel?.fields, "description");
     const steps = findField(guide?.fields, "steps");
-    const descriptionMaxValues: number[] = [];
-    const descriptionValidators: Array<(value: unknown) => true | string> = [];
-    const descriptionRule = {
-      required: () => descriptionRule,
-      max: (value: number) => {
-        descriptionMaxValues.push(value);
-        return descriptionRule;
-      },
-      custom: (validator: (value: unknown) => true | string) => {
-        descriptionValidators.push(validator);
-        return descriptionRule;
-      },
-      error: () => descriptionRule,
-    };
-    const stepMaxValues: number[] = [];
-    const stepRule = {
-      required: () => stepRule,
-      min: () => stepRule,
-      max: (value: number) => {
-        stepMaxValues.push(value);
-        return stepRule;
-      },
-    };
+    const captureValidation = (field: SchemaField | undefined) => {
+      const maxValues: number[] = [];
+      const validators: Array<(value: unknown) => true | string> = [];
+      const rule = {
+        required: () => rule,
+        min: () => rule,
+        max: (value: number) => {
+          maxValues.push(value);
+          return rule;
+        },
+        custom: (validator: (value: unknown) => true | string) => {
+          validators.push(validator);
+          return rule;
+        },
+        error: () => rule,
+      };
 
-    expect(description?.validation).toBeTypeOf("function");
-    expect(steps?.validation).toBeTypeOf("function");
-    description?.validation?.(descriptionRule as never);
-    steps?.validation?.(stepRule as never);
+      expect(field?.validation).toBeTypeOf("function");
+      field?.validation?.(rule as never);
+      return { maxValues, validators };
+    };
+    const copyFields: Array<[SchemaField | undefined, number]> = [
+      [findField(panel?.fields, "label"), 80],
+      [description, 240],
+      [findField(panel?.fields, "phoneActionLabel"), 40],
+      [findField(panel?.fields, "emailActionLabel"), 40],
+      [findField(guide?.fields, "eyebrow"), 40],
+      [findField(guide?.fields, "title"), 80],
+      [findField(guide?.fields, "linkLabel"), 40],
+      [steps?.of?.[0], 120],
+    ];
 
-    expect(descriptionMaxValues).toEqual([240]);
-    expect(
-      descriptionValidators.some(
-        (validator) => validator("お問い合わせ\n詳細") !== true,
-      ),
-    ).toBe(true);
-    expect(stepMaxValues).toEqual([6]);
+    for (const [field, max] of copyFields) {
+      const { maxValues, validators } = captureValidation(field);
+      expect(maxValues).toEqual([max]);
+      for (const unsafeText of [
+        "お問い合わせ\n詳細",
+        "お問い合わせ\t詳細",
+        "<お問い合わせ>",
+      ]) {
+        expect(validators.some((validator) => validator(unsafeText) !== true)).toBe(true);
+      }
+    }
+
+    expect(captureValidation(steps).maxValues).toEqual([6]);
   });
 });
 

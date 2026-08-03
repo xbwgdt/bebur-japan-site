@@ -39,6 +39,33 @@ const requiredJapaneseField = (
       Rule.required().custom(validateJapaneseText).error(`请输入${title}`),
   });
 
+const validateRuntimeSafeContactText = (
+  value: unknown,
+  max: number,
+): true | string => {
+  if (typeof value !== "string") {
+    return true;
+  }
+
+  const text = value.trim();
+  return text.length < 1 || text.length > max || /[\u0000-\u001f\u007f<>]/u.test(text)
+    ? "请输入不含控制字符或尖括号的安全文本"
+    : true;
+};
+
+const requiredContactTextField = (name: string, title: string, max: number) =>
+  defineField({
+    name,
+    title,
+    type: "string",
+    validation: (Rule: StringRule) =>
+      Rule.required()
+        .max(max)
+        .custom(validateJapaneseText)
+        .custom((value) => validateRuntimeSafeContactText(value, max))
+        .error(`请输入${title}`),
+  });
+
 const contactPanelStyleFields = () => [
   defineField({
     name: "color",
@@ -192,7 +219,7 @@ export default defineType({
           title: "左侧联系卡片",
           type: "object",
           fields: [
-            requiredJapaneseField("label", "卡片标签"),
+            requiredContactTextField("label", "卡片标签", 80),
             defineField({
               name: "description",
               title: "说明",
@@ -202,14 +229,11 @@ export default defineType({
                 Rule.required()
                   .max(240)
                   .custom(validateJapaneseProse)
-                  .custom((value) =>
-                    typeof value !== "string" || !/[\r\n]/u.test(value) ||
-                    "说明不能包含换行",
-                  )
+                  .custom((value) => validateRuntimeSafeContactText(value, 240))
                   .error("请输入日文说明"),
             }),
-            requiredJapaneseField("phoneActionLabel", "电话按钮标签"),
-            requiredJapaneseField("emailActionLabel", "邮件按钮标签"),
+            requiredContactTextField("phoneActionLabel", "电话按钮标签", 40),
+            requiredContactTextField("emailActionLabel", "邮件按钮标签", 40),
             defineField({
               name: "style",
               title: "卡片样式",
@@ -223,8 +247,8 @@ export default defineType({
           title: "右侧咨询流程",
           type: "object",
           fields: [
-            requiredJapaneseField("eyebrow", "眉题"),
-            requiredJapaneseField("title", "标题"),
+            requiredContactTextField("eyebrow", "眉题", 40),
+            requiredContactTextField("title", "标题", 80),
             defineField({
               name: "steps",
               title: "步骤",
@@ -236,13 +260,15 @@ export default defineType({
                   type: "string",
                   validation: (Rule) =>
                     Rule.required()
+                      .max(120)
                       .custom(validateJapaneseText)
+                      .custom((value) => validateRuntimeSafeContactText(value, 120))
                       .error("请输入日文步骤内容"),
                 }),
               ],
               validation: (Rule) => Rule.required().min(1).max(6),
             }),
-            requiredJapaneseField("linkLabel", "邮件链接标签"),
+            requiredContactTextField("linkLabel", "邮件链接标签", 40),
             defineField({
               name: "style",
               title: "流程样式",
