@@ -2872,8 +2872,13 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   font-size: var(--contact-card-eyebrow-size);
 }
 
-.contact-card a {
+.contact-card .contact-panel address a,
+.contact-card .inquiry-guide__link {
   color: var(--contact-card-link);
+}
+
+.contact-card .button--primary {
+  color: var(--paper);
 }
 
 .contact-card a:hover,
@@ -2897,7 +2902,7 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   text-decoration: none;
 }
 
-.contact-card .inquiry-guide li::before {
+.contact-card.inquiry-guide li::before {
   background: var(--contact-card-step-background);
   color: var(--contact-card-step-foreground);
   font-family: var(--contact-card-font-family);

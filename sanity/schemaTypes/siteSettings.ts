@@ -200,7 +200,12 @@ export default defineType({
               rows: 3,
               validation: (Rule) =>
                 Rule.required()
+                  .max(240)
                   .custom(validateJapaneseProse)
+                  .custom((value) =>
+                    typeof value !== "string" || !/[\r\n]/u.test(value) ||
+                    "说明不能包含换行",
+                  )
                   .error("请输入日文说明"),
             }),
             requiredJapaneseField("phoneActionLabel", "电话按钮标签"),
@@ -235,7 +240,7 @@ export default defineType({
                       .error("请输入日文步骤内容"),
                 }),
               ],
-              validation: (Rule) => Rule.required().min(1),
+              validation: (Rule) => Rule.required().min(1).max(6),
             }),
             requiredJapaneseField("linkLabel", "邮件链接标签"),
             defineField({

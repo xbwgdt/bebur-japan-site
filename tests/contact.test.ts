@@ -230,8 +230,20 @@ describe("contact page", () => {
       );
     }
     expect(styles).toMatch(
-      /\.contact-card \.inquiry-guide li::before\s*\{[\s\S]*?font-size: var\(--contact-card-step-size\);/,
+      /\.contact-card\.inquiry-guide li::before\s*\{[\s\S]*?font-size: var\(--contact-card-step-size\);/,
     );
+    expect(styles).not.toMatch(/\.contact-card a\s*\{\s*color:/);
+    expect(styles).toMatch(
+      /\.contact-card \.contact-panel address a,\s*\.contact-card \.inquiry-guide__link\s*\{[\s\S]*?color: var\(--contact-card-link\);/,
+    );
+    expect(styles).toMatch(
+      /\.contact-card \.button--primary\s*\{\s*color: var\(--paper\);/,
+    );
+    for (const preset of ["light", "pale-blue", "deep-blue"]) {
+      expect(styles).toMatch(
+        new RegExp(`\\.contact-card\\.contact-card--color-${preset}\\s*\\{[\\s\\S]*?--contact-card-link:`),
+      );
+    }
     expect(styles).toContain(".contact-card a:hover");
     expect(styles).toContain(".contact-card a:focus-visible");
   });

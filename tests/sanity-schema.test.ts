@@ -280,6 +280,7 @@ describe("contact-page Sanity controls", () => {
     fields?: SchemaField[];
     of?: SchemaField[];
     options?: { list?: Array<string | { value: string }>; layout?: string };
+    validation?: (rule: never) => unknown;
   };
 
   const findField = (fields: SchemaField[] | undefined, name: string) =>
@@ -334,6 +335,50 @@ describe("contact-page Sanity controls", () => {
     }
 
     expect(siteSettingsQuery).toContain("contactPage");
+  });
+
+  it("keeps contact prose and guide-step limits aligned with the public resolver", () => {
+    const contactPage = findField(siteSettings.fields as SchemaField[], "contactPage");
+    const panel = findField(contactPage?.fields, "panel");
+    const guide = findField(contactPage?.fields, "guide");
+    const description = findField(panel?.fields, "description");
+    const steps = findField(guide?.fields, "steps");
+    const descriptionMaxValues: number[] = [];
+    const descriptionValidators: Array<(value: unknown) => true | string> = [];
+    const descriptionRule = {
+      required: () => descriptionRule,
+      max: (value: number) => {
+        descriptionMaxValues.push(value);
+        return descriptionRule;
+      },
+      custom: (validator: (value: unknown) => true | string) => {
+        descriptionValidators.push(validator);
+        return descriptionRule;
+      },
+      error: () => descriptionRule,
+    };
+    const stepMaxValues: number[] = [];
+    const stepRule = {
+      required: () => stepRule,
+      min: () => stepRule,
+      max: (value: number) => {
+        stepMaxValues.push(value);
+        return stepRule;
+      },
+    };
+
+    expect(description?.validation).toBeTypeOf("function");
+    expect(steps?.validation).toBeTypeOf("function");
+    description?.validation?.(descriptionRule as never);
+    steps?.validation?.(stepRule as never);
+
+    expect(descriptionMaxValues).toEqual([240]);
+    expect(
+      descriptionValidators.some(
+        (validator) => validator("お問い合わせ\n詳細") !== true,
+      ),
+    ).toBe(true);
+    expect(stepMaxValues).toEqual([6]);
   });
 });
 
