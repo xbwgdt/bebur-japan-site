@@ -64,6 +64,7 @@ import {
   getStaticPages,
 } from "../lib/content";
 import { siteConfig } from "../lib/constants";
+import { defaultSocialImage } from "../lib/metadata";
 import { auditSeoOutputs } from "../lib/seo-output-audit";
 import {
   canonicalUrl,
@@ -799,5 +800,25 @@ describe("remaining Japanese content route generation", () => {
     expect(String(insight.alternates?.canonical)).toBe(
       "https://www.bebur-jp.com/insights/ozone-monitoring-equipment",
     );
+  });
+
+  it("keeps company titles unique and supplies fallback share images", async () => {
+    const [companyProfile, overview, application] = await Promise.all([
+      generateAboutMetadata({
+        params: Promise.resolve({ slug: "company-profile" }),
+      }),
+      generateAboutMetadata({
+        params: Promise.resolve({ slug: "overview" }),
+      }),
+      generateApplicationMetadata({
+        params: Promise.resolve({ slug: "hydraulic-cases" }),
+      }),
+    ]);
+
+    expect(companyProfile.title).toBe("Beburについて");
+    expect(overview.title).toBe("企業概要");
+    expect(companyProfile.title).not.toBe(overview.title);
+    expect(overview.openGraph?.images).toEqual([defaultSocialImage()]);
+    expect(application.openGraph?.images).toEqual([defaultSocialImage()]);
   });
 });

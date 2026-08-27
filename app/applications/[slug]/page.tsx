@@ -11,6 +11,11 @@ import { SourceHero } from "@/components/source-faithful/source-hero";
 import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getApplication, getApplications, getProducts } from "@/lib/content";
+import {
+  defaultSocialImage,
+  normalizePageTitle,
+  socialTitle,
+} from "@/lib/metadata";
 import { canonicalUrl } from "@/lib/routes";
 import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import type { Application, Product } from "@/lib/types";
@@ -66,22 +71,28 @@ export async function generateMetadata({
   const cmsPage = await getPublishedPageForRoute(slug);
 
   const canonical = canonicalUrl(application.route);
-  const image = application.images[0];
+  const image = application.images[0]
+    ? {
+        url: resolveSourceMediaPath(application.images[0].src),
+        alt: application.images[0].alt,
+      }
+    : defaultSocialImage();
+  const rawTitle = cmsPage?.seoTitle || application.title;
+  const title = normalizePageTitle(rawTitle);
+  const description = cmsPage?.seoDescription || application.description;
 
   return {
-    title: cmsPage?.seoTitle || application.title,
-    description: cmsPage?.seoDescription || application.description,
+    title,
+    description,
     alternates: {
       canonical,
     },
     openGraph: {
-      title: cmsPage?.seoTitle || application.title,
-      description: cmsPage?.seoDescription || application.description,
+      title: socialTitle(rawTitle),
+      description,
       type: "website",
       url: canonical,
-      images: image
-        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
-        : undefined,
+      images: [image],
     },
   };
 }

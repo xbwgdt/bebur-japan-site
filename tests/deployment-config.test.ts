@@ -111,4 +111,24 @@ describe("Cloudflare Pages static export", () => {
       /\/_next\/static\/\*\s+Cache-Control: public, max-age=0, must-revalidate/s,
     );
   });
+
+  it("publishes a scoped security policy for every static page", () => {
+    const headers = readProjectFile("public/_headers");
+
+    expect(headers).toContain(
+      "Strict-Transport-Security: max-age=31536000",
+    );
+    expect(headers).toContain("X-Frame-Options: DENY");
+    expect(headers).toContain("X-Content-Type-Options: nosniff");
+    expect(headers).toContain(
+      "Referrer-Policy: strict-origin-when-cross-origin",
+    );
+    expect(headers).toContain("Permissions-Policy:");
+    expect(headers).toContain("Content-Security-Policy:");
+    expect(headers).toContain("https://static.cloudflareinsights.com");
+    expect(headers).toContain("https://cloudflareinsights.com");
+    expect(headers).toContain("https://cdn.sanity.io");
+    expect(headers).not.toContain("includeSubDomains");
+    expect(headers).not.toContain("preload");
+  });
 });

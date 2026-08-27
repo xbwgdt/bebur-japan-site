@@ -11,6 +11,11 @@ import { resolveSourceMediaPath } from "@/components/source-faithful/source-medi
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getAboutPage, getAboutPages } from "@/lib/content";
 import { siteConfig } from "@/lib/constants";
+import {
+  defaultSocialImage,
+  normalizePageTitle,
+  socialTitle,
+} from "@/lib/metadata";
 import { canonicalUrl } from "@/lib/routes";
 import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import type { AboutPage } from "@/lib/types";
@@ -46,22 +51,32 @@ export async function generateMetadata({
   const cmsPage = await getPublishedPageForRoute(slug);
 
   const canonical = canonicalUrl(aboutPage.route);
-  const image = aboutPage.images[0];
+  const image = aboutPage.images[0]
+    ? {
+        url: resolveSourceMediaPath(aboutPage.images[0].src),
+        alt: aboutPage.images[0].alt,
+      }
+    : defaultSocialImage();
+  const rawTitle = cmsPage?.seoTitle || aboutPage.title;
+  const normalizedTitle = normalizePageTitle(rawTitle);
+  const title =
+    slug === "overview" && normalizedTitle === "Beburについて"
+      ? "企業概要"
+      : normalizedTitle;
+  const description = cmsPage?.seoDescription || aboutPage.description;
 
   return {
-    title: cmsPage?.seoTitle || aboutPage.title,
-    description: cmsPage?.seoDescription || aboutPage.description,
+    title,
+    description,
     alternates: {
       canonical,
     },
     openGraph: {
-      title: cmsPage?.seoTitle || aboutPage.title,
-      description: cmsPage?.seoDescription || aboutPage.description,
+      title: socialTitle(title),
+      description,
       type: "website",
       url: canonical,
-      images: image
-        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
-        : undefined,
+      images: [image],
     },
   };
 }

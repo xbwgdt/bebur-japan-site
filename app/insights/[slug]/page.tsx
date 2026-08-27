@@ -11,6 +11,11 @@ import { SourceHero } from "@/components/source-faithful/source-hero";
 import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getArticle, getArticles, getProducts } from "@/lib/content";
+import {
+  defaultSocialImage,
+  normalizePageTitle,
+  socialTitle,
+} from "@/lib/metadata";
 import { canonicalUrl, insightRoute } from "@/lib/routes";
 import type { Article, Product } from "@/lib/types";
 
@@ -50,8 +55,14 @@ export function generateStaticParams(): Array<{ slug: string }> {
 
 export function buildInsightMetadata(article: Article): Metadata {
   const canonical = canonicalUrl(insightRoute(article.slug));
-  const image = article.images[0];
-  const title = article.seoTitle ?? article.title;
+  const image = article.images[0]
+    ? {
+        url: resolveSourceMediaPath(article.images[0].src),
+        alt: article.images[0].alt,
+      }
+    : defaultSocialImage();
+  const rawTitle = article.seoTitle ?? article.title;
+  const title = normalizePageTitle(rawTitle);
   const description = article.seoDescription ?? article.description;
 
   return {
@@ -61,14 +72,12 @@ export function buildInsightMetadata(article: Article): Metadata {
       canonical,
     },
     openGraph: {
-      title,
+      title: socialTitle(rawTitle),
       description,
       type: "article",
       url: canonical,
       publishedTime: article.publishedAt,
-      images: image
-        ? [{ url: resolveSourceMediaPath(image.src), alt: image.alt }]
-        : undefined,
+      images: [image],
     },
   };
 }

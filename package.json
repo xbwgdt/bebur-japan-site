@@ -19,6 +19,7 @@
     "test:run": "vitest run",
     "audit:content": "node scripts/audit-content.mjs",
     "audit:static": "node scripts/audit-static-assets.mjs",
+    "sanity:sync-home-hero": "node scripts/sync-home-hero-to-sanity.mjs",
     "deploy:cloudflare": "npm exec --yes --package=wrangler@4.115.0 -- wrangler pages deploy"
   },
   "dependencies": {

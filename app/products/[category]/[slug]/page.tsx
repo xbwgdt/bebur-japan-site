@@ -10,6 +10,11 @@ import { resolveSourceMediaPath } from "@/components/source-faithful/source-medi
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import { getProduct, getProducts } from "@/lib/content";
 import {
+  defaultSocialImage,
+  normalizePageTitle,
+  socialTitle,
+} from "@/lib/metadata";
+import {
   canonicalUrl,
   isProductCategory,
   productCategoryLabels,
@@ -47,8 +52,14 @@ export function generateStaticParams(): Array<{
 export function buildProductMetadata(product: Product): Metadata {
   const route = productRoute(product);
   const canonical = canonicalUrl(route);
-  const image = product.images[0];
-  const title = product.seoTitle ?? product.title;
+  const image = product.images[0]
+    ? {
+        url: resolveSourceMediaPath(product.images[0].src),
+        alt: product.images[0].alt,
+      }
+    : defaultSocialImage();
+  const rawTitle = product.seoTitle ?? product.title;
+  const title = normalizePageTitle(rawTitle);
   const description = product.seoDescription ?? product.description;
 
   return {
@@ -58,18 +69,11 @@ export function buildProductMetadata(product: Product): Metadata {
       canonical,
     },
     openGraph: {
-      title,
+      title: socialTitle(rawTitle),
       description,
       type: "website",
       url: canonical,
-      images: image
-        ? [
-            {
-              url: resolveSourceMediaPath(image.src),
-              alt: image.alt,
-            },
-          ]
-        : undefined,
+      images: [image],
     },
   };
 }
