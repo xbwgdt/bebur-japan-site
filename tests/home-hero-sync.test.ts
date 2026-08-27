@@ -1,3 +1,5 @@
+import path from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import {
@@ -65,9 +67,14 @@ describe("Sanity home hero synchronization", () => {
   });
 
   it("resolves a public URL beneath the public directory", () => {
-    const root = "C:\\workspace\\bebur";
+    const root = path.resolve("test-workspace", "bebur");
     expect(resolvePublicAssetPath(root, approvedHomeHero.backgroundImage.src)).toBe(
-      "C:\\workspace\\bebur\\public\\source-media\\1761791363673595-08e6a0255dfd817e.jpg",
+      path.join(
+        root,
+        "public",
+        "source-media",
+        "1761791363673595-08e6a0255dfd817e.jpg",
+      ),
     );
   });
 });
