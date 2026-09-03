@@ -338,7 +338,7 @@
       {
         "heading": "掲載事例",
         "paragraphs": [
-          "適用例として、液冷プレートとマニホールドの清浄度管理、BT8200液体粒子カウンターによる液冷系・コールドプレート液冷系の測定、プレート熱交換器での使用が挙げられます。"
+          "適用例として、液冷プレートとマニホールドの清浄度管理、BT8200 オンライン式液中パーティクルカウンタによる液冷系・コールドプレート液冷系の測定、プレート熱交換器での使用が挙げられます。"
         ]
       }
     ],
@@ -441,13 +441,13 @@
     "kind": "application",
     "slug": "bt8200-liquid-cooling",
     "route": "/applications/bt8200-liquid-cooling",
-    "title": "BT8200液体粒子カウンターの液冷システムへの適用",
+    "title": "BT8200 オンライン式液中パーティクルカウンタの液冷システムへの適用",
     "description": "データセンターおよびパワーエレクトロニクスの液冷で、粒子濃度・粒径分布を連続監視する用途を解説します。",
     "sourceUrl": "https://www.bebur.net/en/list_54/169.html",
     "images": [
       {
         "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
-        "alt": "BT8200液体粒子カウンター"
+        "alt": "BT8200 オンライン式液中パーティクルカウンタ"
       }
     ],
     "sections": [
@@ -501,7 +501,7 @@
     "slug": "municipal-water-cases",
     "route": "/applications/municipal-water-cases",
     "title": "上水処理分野の導入事例",
-    "description": "消毒剤分析、BT8200水中粒子計数器、SCM520流動電流モニターの上水処理における導入事例です。",
+    "description": "消毒剤分析、BT8200 オンライン式液中パーティクルカウンタ、SCM520流動電流モニターの上水処理における導入事例です。",
     "sourceUrl": "https://www.bebur.net/en/list_55",
     "images": [
       {
@@ -513,7 +513,7 @@
       {
         "heading": "掲載事例",
         "paragraphs": [
-          "浄水場では、SCM520、BT8200水中粒子計数器、オンライン消毒剤分析計が導入されています。"
+          "浄水場では、SCM520、BT8200 オンライン式液中パーティクルカウンタ、オンライン消毒剤分析計が導入されています。"
         ]
       }
     ],
@@ -554,13 +554,13 @@
     "kind": "application",
     "slug": "bt8200-jiangnan-water-plant",
     "route": "/applications/bt8200-jiangnan-water-plant",
-    "title": "重慶・万州江南水廠におけるBT8200水中粒子計数器の適用",
+    "title": "重慶・万州江南水廠におけるBT8200 オンライン式液中パーティクルカウンタの適用",
     "description": "江南水廠の浄水・原水送水・配水事業と、BT8200による水中粒子の連続監視を紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_55/164.html",
     "images": [
       {
         "src": "/applications/1763603215388835-667401242e52b35d.png",
-        "alt": "BT8200水中粒子計数器の浄水場適用"
+        "alt": "BT8200 オンライン式液中パーティクルカウンタの浄水場適用"
       }
     ],
     "sections": [

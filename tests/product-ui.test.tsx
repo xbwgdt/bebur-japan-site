@@ -80,7 +80,7 @@ describe("ProductExplorer", () => {
 
     expect(screen.getByRole("status").textContent).toBe("1件の製品");
     expect(
-      screen.getByRole("heading", { name: "BT8500 オンライン液中粒子計" }),
+      screen.getByRole("heading", { name: "BT8500 オンライン式液中パーティクルカウンタ" }),
     ).toBeTruthy();
   });
 
