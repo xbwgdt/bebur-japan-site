@@ -1,0 +1,55 @@
+{
+  "eyebrow": "液冷 / データセンター / 水質と液中粒子",
+  "navigationTitle": "液冷システムの清浄度管理",
+  "tocTitle": "このページの目次",
+  "detailsLabel": "仕様一覧を表示",
+  "fontFamily": "sans",
+  "fontSize": 16,
+  "theme": {
+    "ink": "#0B2543", "ink2": "#153C68", "paper": "#F4F7FB", "paperHi": "#FFFFFF", "paperTint": "#E8F0F8",
+    "line": "#D5E1EC", "lineSoft": "#E3EBF3", "accent": "#2458A0", "accentBright": "#53D5EF", "warning": "#9C6517",
+    "muted": "#506980", "body": "#183550", "heroText": "#FFFFFF", "heroMuted": "#CDDFEF", "diagramLine": "#80ABC9"
+  },
+  "metadata": [
+    { "_key": "updated", "_type": "solutionMeta", "label": "更新", "value": "2026-11-14" },
+    { "_key": "basis", "_type": "solutionMeta", "label": "参照基準", "value": "GB/T 48023-2026など中国の15規格・参考基準" },
+    { "_key": "reading", "_type": "solutionMeta", "label": "読了目安", "value": "約14分" }
+  ],
+  "navigation": [
+    { "_key": "mechanism", "_type": "solutionNavItem", "label": "汚染のメカニズム", "anchor": "mechanism" },
+    { "_key": "parameters", "_type": "solutionNavItem", "label": "4つの測定項目", "anchor": "parameters" },
+    { "_key": "stages", "_type": "solutionNavItem", "label": "5つの工程", "anchor": "stages" },
+    { "_key": "standards", "_type": "solutionNavItem", "label": "15の参照規格", "anchor": "standards" },
+    { "_key": "points", "_type": "solutionNavItem", "label": "測定箇所と設置", "anchor": "measurement-points" },
+    { "_key": "products", "_type": "solutionNavItem", "label": "計器の選定", "anchor": "instruments" },
+    { "_key": "practice", "_type": "solutionNavItem", "label": "現場での注意点", "anchor": "field-notes" },
+    { "_key": "faq", "_type": "solutionNavItem", "label": "よくある質問", "anchor": "faq" }
+  ],
+  "heroActions": [
+    { "_key": "parameters", "_type": "solutionAction", "label": "4項目の使い分けを見る", "anchor": "parameters" },
+    { "_key": "stages", "_type": "solutionAction", "label": "工程別の判定を確認", "anchor": "stages" },
+    { "_key": "standards", "_type": "solutionAction", "label": "規格の引用方法を見る", "anchor": "standards" }
+  ],
+  "metrics": [
+    { "_key": "ph", "_type": "solutionMetric", "label": "pH", "value": "8.0–10.0", "note": "受入時・銅製。アルミ製は8.0–9.0" },
+    { "_key": "ec", "_type": "solutionMetric", "label": "導電率", "value": "技術協定による", "note": "二次側冷却液の報告値。洗浄水は≤10 µS/cm" },
+    { "_key": "turb", "_type": "solutionMetric", "label": "濁度", "value": "≤5 / ≤20 NTU", "note": "受入時 / 稼働中の参考限界値" },
+    { "_key": "particles", "_type": "solutionMetric", "label": "液中粒子", "value": "50 / 300 µm", "note": "二次側 / 一次側のろ過精度。出荷時16/14/11" }
+  ],
+  "metricNote": "中国規格GB/T 48023-2026附属書A・BおよびT/CAEE 098-2026の参考値です。稼働中pHは受入値±1以内という条件も確認します。日本での一律要求ではなく、最終判定は適用規格と契約・技術協定によります。",
+  "parameters": [
+    { "_key": "ph", "_type": "solutionParameter", "title": "pH", "topic": "酸・アルカリ / 防食剤", "value": "8.0–10.0", "note": "受入時・銅製コールドプレート", "summary": "酸・アルカリの状態と防食剤の有効範囲を確認します。稼働中は受入時の基準値からの変動にも着目します。" },
+    { "_key": "ec", "_type": "solutionParameter", "title": "導電率", "topic": "溶存イオン", "value": "案件条件で選定", "note": "冷却液と管理値に合う測定範囲", "summary": "溶存イオンの総量を捉えます。二次側冷却液の判定値は技術協定に明記し、液種と温度に適したレンジを選びます。" },
+    { "_key": "turb", "_type": "solutionParameter", "title": "濁度", "topic": "懸濁物の総量", "value": "5 / 20", "note": "NTU・受入時 / 稼働中の参考値", "summary": "懸濁物による光学的な濁りを捉えます。傾向監視と警報に適しますが、粒径別の清浄度判定を単独では行えません。" },
+    { "_key": "particles", "_type": "solutionParameter", "title": "液中粒子", "topic": "粒径別の個数", "value": "16/14/11", "note": "ISO 4406・出荷時の参考等級", "summary": "粒径分布と清浄度コードを確認します。部品受入、フィルタ評価、異常時の原因調査に用います。" }
+  ],
+  "diagram": {
+    "mode": "animation", "enabled": true, "speed": 14,
+    "accessibleLabel": "コールドプレート式液冷の二次側循環系と4つの測定箇所",
+    "cdu": "CDU・冷却液分配ユニット", "loop": "二次側閉回路", "coolant": "脱イオン水 / EG・PG水溶液", "plates": "コールドプレート",
+    "supply": "供給", "return": "戻り", "ph": "pH", "conductivity": "導電率", "turbidity": "濁度", "particles": "液中粒子",
+    "sampling": "バイパス採水・脱気", "samplingNote": "主管の流れを乱さない設計",
+    "caption": "二次側循環系の配置例。01～04は4つの測定箇所です。実際の位置はCDU、マニホールド、配管構成に合わせ、本文の測定箇所を参照してください。",
+    "image": { "alt": "液冷二次側の測定箇所を示す模式図", "asset": { "url": "" } }
+  }
+}

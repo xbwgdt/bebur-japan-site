@@ -110,6 +110,7 @@ export type SanityPage = {
   title: string;
   slug: string;
   blocks: PageBlock[];
+  liquidCoolingDesign?: unknown;
   seoTitle: string;
   seoDescription: string;
 };
@@ -118,6 +119,7 @@ export const pageProjection = `{
   _id,
   title,
   "slug": slug.current,
+  liquidCoolingDesign { ..., diagram { ..., image { ..., alt, asset->{_ref, url} } } },
   blocks[] {
     _type,
     ...,

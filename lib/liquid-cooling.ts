@@ -1,4 +1,5 @@
 import solutionData from "@/content/ja/liquid-cooling-solution.json";
+import designData from "@/content/ja/liquid-cooling-design.json";
 import type { PageBlock } from "@/lib/page-blocks";
 import type { SanityPage } from "@/lib/sanity/queries";
 import { getPublishedPageForRoute } from "@/lib/cms-pages";
@@ -9,6 +10,7 @@ export const localSolutionPage: SanityPage = {
   ...solutionData,
   slug: solutionData.slug.current,
   blocks: solutionData.blocks as PageBlock[],
+  liquidCoolingDesign: designData,
 };
 
 export async function getLiquidCoolingSolution(): Promise<SanityPage> {
