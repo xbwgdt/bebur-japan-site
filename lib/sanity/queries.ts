@@ -18,6 +18,7 @@ export type SanityProduct = {
   slug: string;
   model: string;
   summary: string;
+  principle?: string;
   body: unknown[];
   features: string[];
   applications: string[];
@@ -44,6 +45,14 @@ export type SanityNews = {
 };
 
 export type SanitySiteSettings = {
+  homeSolution?: {
+    eyebrow?: string;
+    title?: string;
+    summary?: string;
+    image?: SanityImage;
+    action?: { label?: string; href?: string };
+    style?: { color?: string; fontSize?: string; fontFamily?: string };
+  };
   homeHero?: {
     eyebrow?: string;
     title?: string;
@@ -127,6 +136,7 @@ const productProjection = `{
   "slug": slug.current,
   model,
   summary,
+  principle,
   body,
   features,
   applications,
@@ -234,6 +244,11 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
 export const siteSettingsQuery = `*[
   _type == "siteSettings" && _id == "siteSettings"
 ][0] {
+  homeSolution {
+    eyebrow, title, summary,
+    image { ..., asset->{_ref, url} },
+    action, style
+  },
   homeHero {
     eyebrow,
     title,

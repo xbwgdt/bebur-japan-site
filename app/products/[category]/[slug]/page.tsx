@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ProductCard } from "@/components/product-card";
+import { RelatedSolutionLink } from "@/components/solution-promotion";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
@@ -276,6 +277,12 @@ export default async function ProductDetailPage({
             )}
           </div>
 
+          {product.images.length > 1 && (
+            <section className="product-detail__gallery" aria-label={`${product.model} 関連画像`}>
+              <h2>外形図・関連画像</h2>
+              {product.images.slice(1).map((extraImage) => <figure key={extraImage.src}><Image src={resolveSourceMediaPath(extraImage.src)} alt={extraImage.alt} width={900} height={900} sizes="(min-width: 64rem) 56rem, 100vw" /><figcaption>{extraImage.alt}</figcaption></figure>)}
+            </section>
+          )}
           {product.specifications.length > 0 && (
             <section className="product-detail__specifications">
               <h2>主な仕様</h2>
@@ -321,6 +328,7 @@ export default async function ProductDetailPage({
 
       <section className="section source-section page-contact">
         <div className="site-container">
+          {["bt8200", "bt8500", "btp8300", "bs-phs276", "bs-ec350", "bs-turb113"].includes(product.slug) && <RelatedSolutionLink />}
           <ContactCta
             compact
             subject={`${product.model} ${product.title}`}

@@ -11,3 +11,5 @@ sanity/.sanity/
 .env.development
 .env.production
 .env.*.local
+.codex-tmp/
+*.tsbuildinfo

@@ -12,7 +12,7 @@ const offlineClient = {
   fetch: async () => true,
 };
 
-export async function validateSanityImportDocuments(documents) {
+export async function validateSanityImportDocuments(documents, { existingDocumentIds = [] } = {}) {
   const root = process.cwd();
   const hadWindow = Object.hasOwn(globalThis, "window");
   const previousWindow = Object.getOwnPropertyDescriptor(globalThis, "window");
@@ -41,7 +41,7 @@ export async function validateSanityImportDocuments(documents) {
       name: "import-validation",
       types: schemaTypes,
     });
-    const documentIds = new Set(documents.map(({ _id }) => _id));
+    const documentIds = new Set([...documents.map(({ _id }) => _id), ...existingDocumentIds]);
     const workspace = {
       schema,
       // Sanity injects a client into every validator context. The local stub

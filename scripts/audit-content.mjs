@@ -228,7 +228,11 @@ const duplicateRoutes = [...routeMappings]
   .map(([route, labels]) => `${route} -> ${labels.join(", ")}`)
   .toSorted();
 
-const canonicalRoutes = [...routeMappings.keys()].toSorted();
+const expansionRoutes = [
+  ...readJson(path.join(contentDirectory, "liquid-cooling-sensors.json")).map(({ route }) => route),
+  "/solutions/liquid-cooling-cleanliness-testing",
+];
+const canonicalRoutes = [...routeMappings.keys(), ...expansionRoutes].toSorted();
 
 const { createViteServer } = await import("vitest/node");
 const moduleServer = await createViteServer({
@@ -491,8 +495,8 @@ const failed =
   multiplyMappedSourceUrls.length > 0 ||
   unexpectedSourceUrls.length > 0 ||
   duplicateRoutes.length > 0 ||
-  canonicalRoutes.length !== 110 ||
-  sitemapUrls.length !== 110 ||
+  canonicalRoutes.length !== 114 ||
+  sitemapUrls.length !== 114 ||
   duplicateSitemapUrls.length > 0 ||
   invalidSitemapUrls.length > 0 ||
   seoOutputErrors.length > 0 ||

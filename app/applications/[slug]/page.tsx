@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { RelatedSolutionLink } from "@/components/solution-promotion";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -163,6 +164,7 @@ export default async function ApplicationDetailPage({
           )}
 
           <ContentSections sections={application.sections} />
+          {(application.slug.includes("liquid-cooling") || application.slug === "liquid-cooled-plate-cleanliness") && <RelatedSolutionLink />}
         </div>
       </article>
 

@@ -1,0 +1,619 @@
+{
+  "_id": "page--liquid-cooling-cleanliness-testing",
+  "_type": "page",
+  "title": "液冷システムの清浄度検査ソリューション",
+  "slug": { "_type": "slug", "current": "liquid-cooling-cleanliness-testing" },
+  "publishState": "published",
+  "seoTitle": "液冷システムの清浄度検査｜pH・導電率・濁度・粒子数",
+  "seoDescription": "コールドプレート式液冷システムの清浄度を、pH・導電率・濁度・液中粒子数で評価。部品洗浄から配管フラッシング、運用監視まで、測定箇所、基準の使い分け、計器選定とサンプリング時の注意点を解説します。",
+  "blocks": [
+    {
+      "_key": "hero-liquid-cooling", "_type": "hero", "anchorId": "overview", "color": "blue", "title": "液冷システムの清浄度検査", "summary": "コールドプレート内部の粒子、溶存イオン、pHの変動は、流路の閉塞、圧力損失の増加、腐食などにつながります。部品洗浄、システムのフラッシング、稼働後の監視という各工程で、pH・導電率・濁度・液中粒子数をどう使い分けるかを整理します。", "image": { "_type": "image", "asset": { "url": "/media/liquid-cooling-monitoring.svg" }, "alt": "液冷二次側ループにおける水質測定と粒子計数の配置例" }, "ctaLabel": "測定項目を見る", "ctaHref": "#parameters"
+    },
+    {
+      "_key": "summary", "_type": "richText", "anchorId": "summary", "color": "neutral", "title": "要点：4つの測定は互いに代替できない", "content": [
+        { "_key": "summary-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "液中粒子数は粒径別の個数と清浄度等級、pHは酸・アルカリの状態、導電率は溶存イオンの変化、濁度は懸濁物による光学的な濁りを示します。1つの数値で液冷系全体の清浄度を判断することはできません。" }] },
+        { "_key": "summary-2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "部品の出荷時、配管のフラッシング後、冷却液の受入時、稼働中では、対象物も判定基準も異なります。中国のGB/T・YD/T・団体規格は、当該規格を採用する案件の参考基準として扱い、日本の全案件に共通する要求事項とはみなしません。最終判定は適用規格の原文と契約・技術協定によります。" }] },
+        { "_key": "summary-3", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "オンライン測定では単発値より変化傾向が重要です。CDUの供給側と戻り側を対で測り、負荷側で汚染が増えたのか、ろ過が機能しているのかを切り分けます。対象はCDU、コールドプレート、マニホールド、ホース、クイックコネクタの設計・製造・受入・保守に携わる方です。" }] }
+      ]
+    },
+    {
+      "_key": "contamination", "_type": "richText", "anchorId": "mechanism", "color": "neutral", "title": "汚染が引き起こす3つの経路", "content": [
+        { "_key": "contamination-lead", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "粒子による流路閉塞、イオン負荷による腐食、懸濁物・バイオフィルムの堆積は別の問題です。濁度が低いだけでは、微細流路を塞ぐ粒子の有無は判断できません。" }] },
+        { "_key": "particles-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "粒子：粒径と流路寸法の関係" }] },
+        { "_key": "particles-p1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "中国規格GB/T 48023-2026では、二次側フィルタは50 µm以下、一次側は300 µm以下を目安とし、運転中に保守できる構成を求めています。中国団体規格T/CAEE 103-2026では、マニホールドの内部洗浄後に100 µm超の粒子を10個/L以下、50 µm超を100個/L以下としています。これらは中国規格・参考基準であり、案件ごとに採否を確認します。" }] },
+        { "_key": "particles-p2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "ISO 4406は4、6、14 µm(c)超の粒子濃度から3桁の清浄度コードを示します。µm(c)はISO 4406の校正体系に基づく相当粒径です。フィルタの公称ろ過精度は粒子数の合格証明ではありません。実際の通過量は捕集効率、バイパス、エレメントの状態にも左右されます。" }] },
+        { "_key": "ions-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "イオン：導電率とpHを組み合わせて見る" }] },
+        { "_key": "ions-p1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "導電率は冷却液中の溶存イオンの総量を、pHは酸・アルカリの状態を反映します。中国規格GB/T 48023-2026附属書Aの二次側冷却液では、受入時pHは銅製コールドプレートで8.0～10.0、アルミニウム製で8.0～9.0。稼働中は受入時の基準値から±1以内、かつ銅製で7.0～10.0、アルミニウム製で7.0～9.0という二条件を併用します。" }] },
+        { "_key": "ions-p2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "同規格の二次側冷却液の導電率は、供給者と購入者が合意する報告値であり、全国一律の上限値は示されていません。判定値は技術協定に記載します。一方、システム洗浄後の水には25 °C換算で導電率≤10 µS/cm、銅・鉄は各≤0.5 mg/Lという別の値があります。pH低下時は腐食や不動態皮膜の劣化、上昇時は防食剤の有効性、スケールやシール材への影響を、導電率および溶出した銅・鉄と合わせて確認します。" }] },
+        { "_key": "turbidity-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "懸濁物と微生物：濁度は粒径を示さない" }] },
+        { "_key": "turbidity-p1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "濁度は懸濁物による光の散乱・吸収を捉える指標で、粒径別の粒子数とは異なります。GB/T 48023-2026に示される二次側冷却液の濁度は受入時≤5 NTU、稼働中≤20 NTU、洗浄後の水は≤5 NTUです。同表には一般生菌数の参考値として受入時≤100 CFU/mL、稼働中≤1000 CFU/mLも示されています。バイオフィルムの形成は流路の圧力損失や濁度を上げ得るため、濁度の推移だけでなく微生物管理も必要です。" }] }
+      ]
+    },
+    {
+      "_key": "particle-scales", "_type": "dataTable", "anchorId": "particle-scales", "color": "neutral", "title": "粒径・ろ過精度・粒子数基準の関係", "columns": ["粒径", "対象", "位置づけ"], "rows": [
+        { "_key": "scale-4", "cells": [">4 µm(c)", "ISO 4406の第1粒径帯", "清浄度コード用の粒子濃度"] },
+        { "_key": "scale-6", "cells": [">6 µm(c)", "ISO 4406の第2粒径帯", "清浄度コード用の粒子濃度"] },
+        { "_key": "scale-14", "cells": [">14 µm(c)", "ISO 4406の第3粒径帯", "3粒径帯でコードを構成"] },
+        { "_key": "scale-50", "cells": ["50 µm", "二次側フィルタ／マニホールド", "中国規格の参考値：フィルタ≤50 µm、50 µm超の粒子≤100個/L"] },
+        { "_key": "scale-100", "cells": [">100 µm", "マニホールド", "中国団体規格T/CAEE 103-2026の参考値：≤10個/L"] },
+        { "_key": "scale-300", "cells": ["300 µm", "一次側フィルタ", "中国規格GB/T 48023-2026の参考値：≤300 µm"] }
+      ]
+    },
+    {
+      "_key": "parameter-matrix", "_type": "dataTable", "anchorId": "parameters", "color": "blue", "title": "4項目の役割・基準・測定箇所", "columns": ["項目", "分かること", "分からないこと", "中国規格等の参考基準", "推奨測定箇所", "計器"], "rows": [
+        { "_key": "param-ph", "cells": ["pH", "酸・アルカリの状態、防食剤の管理範囲", "粒子・総イオン量・微生物", "受入時：銅8.0～10.0／アルミ8.0～9.0。稼働中：受入値±1以内、かつ銅7.0～10.0／アルミ7.0～9.0（GB/T 48023-2026）", "CDU二次側の供給・戻り", "BS-PHS276"] },
+        { "_key": "param-ec", "cells": ["導電率", "溶存イオンの総量、腐食・溶出の変化傾向", "懸濁粒子・粒径分布・pH", "稼働中：当事者間で合意する報告値。洗浄後の水：25 °Cで≤10 µS/cm（GB/T 48023-2026）", "CDU二次側の供給・戻り、補給液タンク", "BS-EC350"] },
+        { "_key": "param-turb", "cells": ["濁度", "懸濁物による光学的な濁り", "粒径帯・イオン濃度・粒子の組成", "受入時≤5 NTU、稼働中≤20 NTU、洗浄後の水≤5 NTU（GB/T 48023-2026）", "CDU戻り側を優先、供給側を対照に", "BS-TURB113"] },
+        { "_key": "param-count", "cells": ["液中粒子数", "粒径別個数、清浄度コード", "イオン・pH・微生物・粒子組成", "部品出荷時：ISO 4406 16/14/11相当以上の清浄度（T/CAEE 098-2026）。マニホールドは粒径別個数/L（T/CAEE 103-2026）", "バイパス採水、携帯型による抜取検査、洗浄ライン", "BT8500／BT8200／BTP8300"] }
+      ]
+    },
+    {
+      "_key": "parameters-note", "_type": "richText", "anchorId": "parameter-notes", "color": "neutral", "title": "数値を使う前に確認すること", "content": [
+        { "_key": "param-note-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "受入時・稼働中の数値は、エチレングリコールまたはプロピレングリコール水溶液等を対象とする中国規格GB/T 48023-2026附属書Aの枠組みです。配合液と案件条件が異なれば、そのまま適用できません。規格原文と技術協定を確認してください。" }] },
+        { "_key": "param-note-2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "同じ1 NTUでも、多数の微粒子による場合と少数の大粒子による場合があり、微細流路へのリスクは異なります。濁度は推移監視・警報、粒子計数は粒径別評価・受入判定に用います。GB/T 48023-2026はCDUでのpH・導電率・濁度監視を推奨する一方、オンライン式液中パーティクルカウンタを必須とはしていません。追加の要否は流路形状と案件リスクで判断します。" }] }
+      ]
+    },
+    {
+      "_key": "stages", "_type": "richText", "anchorId": "stages", "color": "blue", "title": "清浄度管理の5工程", "content": [
+        { "_key": "stage-intro", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "最終検査1回では清浄度を確保できません。製造、受入、洗浄、稼働、異常解析の各工程で、対象・判定基準・測定方法をつなげて記録します。以下の規格値は中国規格・参考基準であり、日本での一律要求ではありません。" }] },
+        { "_key": "stage1-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "1．工場での部品洗浄" }] },
+        { "_key": "stage1-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "対象はコールドプレート、マニホールド、CDU、コルゲートホース、クイックコネクタです。参考基準は出荷時ISO 4406 16/14/11相当以上の清浄度（T/CAEE 098-2026）、マニホールドの100 µm超≤10個/L・50 µm超≤100個/L（T/CAEE 103-2026）、洗浄水pH 6～8・導電率≤10 µS/cm（YD/T 6358-2025）。洗浄循環ラインのバイパスに粒子計を設け、粒子数の減衰曲線から終点を判断し、同じ箇所でpH・導電率も確認します。計器例：オンライン式BT8500または抜取検査用の携帯型BTP8300、BS-PHS276、BS-EC350。洗浄時間だけを合格根拠にせず、採水・測定方法と基準を報告書に記します。" }] },
+        { "_key": "stage2-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "2．搬入部品の受入・施工前確認" }] },
+        { "_key": "stage2-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "プレハブ配管、マニホールド、CDUなどを対象に、施工前の内部粒子清浄度≤50 µm、CDU二次側フィルタ開口≤50 µm（T/DZJN 524-2026）、初期の内部清浄度は二次側≤50 µm・一次側≤300 µm（T/CIEP 0228-2026）を案件で採用する場合の参考値とします。携帯型液中パーティクルカウンタBTP8300で重要部品を抜取検査し、供給者の報告書で方法・採水位置・判定根拠を照合します。輸送、梱包破損、現地切断で粒子が再混入するため、施工前の記録は工場出荷時の記録と分けます。" }] },
+        { "_key": "stage3-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "3．システムのフラッシング後の検収" }] },
+        { "_key": "stage3-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "中国規格GB/T 48023-2026附属書Bでは、脱イオン水で24時間以上循環し、洗浄後にpH 5～7.5、導電率≤10 µS/cm（25 °C）、濁度≤5 NTU、銅・鉄各≤0.5 mg/Lを確認します。一定間隔で採水・粒子計数し、連続測定で粒子数がそれ以上減少しないことも終点判断に用います。24時間は最短工程時間であって合格証明ではありません。携帯型粒子計とオンラインpH・導電率・濁度計を組み合わせ、採水は乱流域で行い、滞留部や低所ドレンは避けます。粒子数が下げ止まり、濁度だけが高い場合は、気泡と光学窓の汚れを先に確認します。" }] },
+        { "_key": "stage4-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "4．充填・稼働中の監視" }] },
+        { "_key": "stage4-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "二次側冷却液の受入時pHは銅8.0～10.0／アルミ8.0～9.0、濁度≤5 NTU。稼働中pHは受入値±1以内かつ銅7.0～10.0／アルミ7.0～9.0、濁度≤20 NTU。導電率は技術協定による値です（GB/T 48023-2026附属書A）。CDUの供給・戻り側でpH、導電率、濁度を対で監視し、粒子はバイパス流路で測ります。受入時の基準値付近を注意警報、稼働時限界値を異常警報とする二段階設定が実務上有用です。計器例：BS-PHS276、BS-EC350、BS-TURB113、オンライン式BT8500。中国規格で前3項目は推奨構成であり、オンライン粒子計の追加は必須ではありません。" }] },
+        { "_key": "stage5-h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "5．異常の診断と原因追跡" }] },
+        { "_key": "stage5-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "粒子数の急増時は、まずフィルタ差圧、ポンプシール、熱交換器の摩耗、次に補給液からの持ち込みを確認します。施工・保守直後は作業由来の残留粒子も疑います。pHの一方向の低下は防食剤の消耗や微生物活動、上昇は補給液のアルカリ度やスケール傾向を調べ、±0.5を超える変動では採水して再測定します。導電率だけが上がり濁度が横ばいなら材料からの溶出や補給液、濁度だけが上がり粒子数が横ばいなら気泡、光学窓、採水管内の沈積を確認します。これらは原因を断定するものではなく、調査順序の目安です。" }] },
+        { "_key": "stage-order", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "判定の順序は、粒子による閉塞リスク、pHと溶出銅・鉄による腐食リスク、導電率によるイオン負荷、濁度によるクロスチェックが一案です。濁度の総量だけを先に見て、大粒子や腐食の初期兆候を見落とさないことが重要です。" }] }
+      ]
+    },
+    {
+      "_key": "standards-intro", "_type": "richText", "anchorId": "standards", "color": "blue", "title": "15の中国規格・参考基準をどう使うか", "content": [
+        { "_key": "std-intro-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "以下は中国の国家規格（GB/T）、業界規格（YD/T）、団体規格（T/）を、対象とする工程と目的別に整理したものです。日本国内で一律に適用される規格一覧ではありません。「適用範囲」は対象・工程を示すための参照、「条項」は本文中で具体的な値を参照しているものです。採用・判定には各規格の原文、施行状況、契約・技術協定の照合が必要です。" }] }
+      ]
+    },
+    {
+      "_key": "standards-table", "_type": "dataTable", "anchorId": "standards-table", "color": "neutral", "title": "液冷清浄度の検討に用いる15規格", "columns": ["区分", "規格番号", "規格の対象", "このページでの位置づけ", "参照の深さ"], "rows": [
+        { "_key": "std-gb48204", "cells": ["中国国家規格", "GB/T 48204-2026", "サーバー・ストレージ機器用液冷部品", "部品選定、材料・インターフェース比較の技術的な枠組み", "適用範囲"] },
+        { "_key": "std-gb48097", "cells": ["中国国家規格", "GB/T 48097-2026", "データセンターのコールドプレート式液冷キャビネット", "キャビネットの構造、接続、運用保守、現地受入の上位枠組み", "適用範囲"] },
+        { "_key": "std-gb48023", "cells": ["中国国家規格", "GB/T 48023-2026", "データセンターのコールドプレート式液冷システム", "二次側冷却液のpH・導電率・濁度、洗浄後の水質、フィルタ、CDU測定箇所の主要参照元", "条項"] },
+        { "_key": "std-yd7463", "cells": ["中国業界規格", "YD/T 7463-2026", "コールドプレート式液冷計算センターの計画", "容量・配置・付帯設備の検討時に測定点と採水アクセスを設計", "適用範囲"] },
+        { "_key": "std-yd7105", "cells": ["中国業界規格", "YD/T 7105-2026", "コールドプレート式液冷データセンターの試験方法", "受入試験における水質・粒子試験の現場手順", "条項"] },
+        { "_key": "std-yd6358", "cells": ["中国業界規格", "YD/T 6358-2025", "コールドプレート式液冷データセンターの技術要求", "部品洗浄水のpH 6～8、導電率≤10 µS/cm、洗浄前後の変動管理", "条項"] },
+        { "_key": "std-dz524", "cells": ["中国団体規格", "T/DZJN 524-2026", "液冷データセンターの設計要求", "施工前の内部粒子清浄度≤50 µm、CDU二次側フィルタ開口≤50 µm", "条項"] },
+        { "_key": "std-ciep0227", "cells": ["中国団体規格", "T/CIEP 0227-2026", "全面液冷データセンターシステムの設計", "構想段階で監視範囲を定めるための設計枠組み", "適用範囲"] },
+        { "_key": "std-caee099", "cells": ["中国団体規格", "T/CAEE 099-2026", "コールドプレート式データセンター液冷の配管・部品", "部品受入時の専用技術要件を補足", "適用範囲"] },
+        { "_key": "std-caee098", "cells": ["中国団体規格", "T/CAEE 098-2026", "データセンター液冷システムの配管・部品の一般技術要求", "出荷時のISO 4406 16/14/11相当以上の清浄度、洗浄・採水・計数・判定方法", "条項"] },
+        { "_key": "std-caee103", "cells": ["中国団体規格", "T/CAEE 103-2026", "データセンター液冷用マニホールドの性能・試験", "マニホールド内部の粒径別個数/L基準。ISO 4406コードと併記して扱う", "条項"] },
+        { "_key": "std-gdss021", "cells": ["中国団体規格", "T/GDSS 021-2026", "データセンター液冷用ステンレス鋼配管", "材料、清浄度、施工条件と洗浄前の初期汚染管理", "適用範囲"] },
+        { "_key": "std-caee112", "cells": ["中国団体規格", "T/CAEE 112-2026", "サーバー液冷用ステンレス製コルゲートホース", "可撓部・クイックコネクタ周辺の清浄度管理", "適用範囲"] },
+        { "_key": "std-ciep0263", "cells": ["中国団体規格", "T/CIEP 0263-2026", "データセンター液冷システムの技術仕様", "本ページで参照するシステム基準を補う上位要求", "適用範囲"] },
+        { "_key": "std-ciep0228", "cells": ["中国団体規格", "T/CIEP 0228-2026", "データセンターのCDU配管・補助制御部品の製造施工", "初期の内部清浄度：二次側≤50 µm、一次側≤300 µm", "条項"] }
+      ]
+    },
+    {
+      "_key": "standards-use", "_type": "richText", "anchorId": "standards-use", "color": "neutral", "title": "規格と契約条件を報告書へ落とし込む", "content": [
+        { "_key": "std-use-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "出典ページによると、GB/T 48023-2026の公布日は2026年7月30日、施行日は2027年2月1日、YD/T 7105-2026の施行日は2026年11月1日です。その他の規格の現行状況は、中国の国家標準情報公共サービスプラットフォームおよび全国団体標準情報プラットフォームで確認してください。GB/Tは推奨性国家規格で、それ自体が全案件に義務となるものではありません。ただし入札書類、契約、技術協定で採用すれば、その案件の要求になります。施行前に「当該国家規格への認証取得済み」と表示することは避けます。" }] },
+        { "_key": "std-use-2", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "判定根拠が重なる場合" }] },
+        { "_key": "std-use-3", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "ISO 4406の等級と粒子数/L、国家規格の運転範囲と顧客のより厳しい管理値は、同じ報告書に共存できます。まず契約・技術協定の適用条件を確認し、合意がなければ対象に特化した規格と一般規格を比較します。同位の基準では案件で採用した厳しい条件を明記します。規格が数値を定めない二次側導電率などは、合意値を「協定による報告値」と表記し、判定欄に採用根拠を1つ、他方を比較欄に分けます。" }] },
+        { "_key": "std-use-4", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "洗浄後の水質基準（pH 5～7.5、導電率≤10 µS/cm、濁度≤5 NTU）を単一コールドプレートの出荷時清浄度基準に転用したり、部品向けISO 4406 16/14/11を稼働中の水質基準としたりしてはいけません。部品かシステムか、出荷時か稼働中かを別列で管理します。" }] }
+      ]
+    },
+    {
+      "_key": "report-layers", "_type": "dataTable", "anchorId": "report", "color": "neutral", "title": "検査報告書で分ける3つの情報", "columns": ["区分", "確認する問い", "記載する内容"], "rows": [
+        { "_key": "report-method", "cells": ["測定方法", "どのように洗浄・採水・計数したか。ブランクはどう扱ったか。", "抽出／洗浄方法、洗浄液、フィルタ孔径、試料量、ブランク値、丸め方"] },
+        { "_key": "report-limit", "cells": ["判定基準", "合否の閾値と根拠は何か。", "採用した規格の条項、団体規格の等級、または顧客との技術協定番号を明示"] },
+        { "_key": "report-verdict", "cells": ["判定結果", "どの状態・ロットに対する判定か。", "部品出荷時、システム洗浄後、稼働中を分け、それぞれの結果を記載"] }
+      ]
+    },
+    {
+      "_key": "measurement-points", "_type": "dataTable", "anchorId": "measurement-points", "color": "blue", "title": "二次側の5つの測定箇所と採水方法", "columns": ["箇所", "測定項目", "位置・採水方法", "注意点"], "rows": [
+        { "_key": "point-supply", "cells": ["供給主管", "pH、導電率、濁度", "CDU出口の下流にある流れの十分な直管部。挿入深さは管径・計器仕様による", "ポンプ吐出の脈動域と最初のエルボを避け、pH・導電率は温度補正"] },
+        { "_key": "point-return", "cells": ["戻り主管", "pH、導電率、濁度", "CDU入口の上流。供給側の測定点と対にする", "供給・戻り差で負荷側の汚染とフィルタ効果を見分ける。1点だけでは状態把握に限られる"] },
+        { "_key": "point-bypass", "cells": ["バイパス採水", "オンライン式液中パーティクルカウンタ", "供給主管から分岐し、脱気器・背圧弁を経て戻り主管へ返す", "主管を切断せず、急な管径変化を避け、流量を安定させて気泡の誤計数を抑える"] },
+        { "_key": "point-cleaner", "cells": ["洗浄循環ライン", "粒子数、pH、導電率", "洗浄槽の循環ラインからバイパス採水し、工程と並行して測定", "接液部材と洗浄剤の適合性を確認し、粒子数の減衰曲線から終点を判断"] },
+        { "_key": "point-makeup", "cells": ["補給液・リザーバ", "導電率、pH", "補給液の入口下流、液面下の滞留しない箇所", "補給前後の値を記録し、導電率の段差の原因を切り分ける"] }
+      ]
+    },
+    {
+      "_key": "integration", "_type": "richText", "anchorId": "integration", "color": "neutral", "title": "配置と監視系の設計上の注意", "content": [
+        { "_key": "integration-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "測定点は代表性があり、運転中に保守可能で、主管の流れを乱さない位置に設けます。水質計と粒子計のデータ時刻をそろえ、pH変動と粒子数上昇を同一イベントとして追跡できるようにします。警報は基準値からの変化を知らせる注意段階と運用限界の異常段階に分け、対応時間を確保します。" }] },
+        { "_key": "integration-2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "フィルタ寿命や異常後の検証に備えて、少なくとも1運用保守サイクル分の生データ曲線を残します。日次集計だけでは短時間のイベントを再現できません。粒子採水用のバイパスは運転中に取り外し、洗浄、校正できるように設計します。通信・出力は実際に採用する製品構成の仕様を確認し、CDUのPLCや施設のBMSとの接続方法を決めます。" }] },
+        { "_key": "integration-3", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "採水点は流れのある直管部に置き、エルボ・弁・チーズ下流の滞留域や低所ドレンを避けます。沈積粒子の巻き上がりは値を過大にします。粒子用配管では急な径変化と空気がたまる水平配管を避け、必要に応じ脱気と背圧を確保してください。" }] }
+      ]
+    },
+    {
+      "_key": "instrument-selection", "_type": "richText", "anchorId": "instruments", "color": "blue", "title": "計器選定：測定範囲、設置、採水の順で確認", "content": [
+        { "_key": "instrument-intro", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "冷却液の種類と判定値に合う測定範囲を先に決め、配管条件・採水条件、通信・保守方法の順に確認します。下記は用途の整理であり、計器の仕様保証ではありません。レンジ、接液材、圧力、温度、出力、校正条件は現行の個別製品ページと発注時の仕様書で照合してください。" }] },
+        { "_key": "instrument-ph", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "BS-PHS276：液冷用pHセンサ" }] },
+        { "_key": "instrument-ph-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "脱イオン水、エチレングリコール・プロピレングリコール水溶液など、低イオン濃度の冷却液を想定したpH監視に用います。低導電率での測定安定性、温度補正、接液材と配管への取付条件を確認します。製品ページには測定範囲0～14 pH、精度±0.02、T90≤20秒、0～80 °C、0～0.6 MPa、3/4 NPT、9～36 VDCが示されています。通信・電流出力の構成は個別仕様を確認してください。" }] },
+        { "_key": "instrument-ec", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "BS-EC350：液冷用導電率センサ" }] },
+        { "_key": "instrument-ec-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "導電率は判定値だけでなく、低濃度域での変化を分解できるレンジが重要です。脱イオン水の管理では低レンジを、PG・EG系では実際の配合と温度を踏まえて選びます。レンジごとにセル定数、電源電圧、温度範囲が異なるため、A～Eの現行構成を個別製品ページで確認してください。すべてのレンジに同一の電源・温度条件を当てはめないでください。" }] },
+        { "_key": "instrument-turb", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "BS-TURB113：液冷用濁度センサ" }] },
+        { "_key": "instrument-turb-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "冷却液の透過光の変化から濁度を測り、懸濁物の推移と警報に用います。受入時≤5 NTUを評価する低レンジと、稼働中≤20 NTUや洗浄時の高濁度を扱うレンジでは選定条件が異なります。サファイア窓の汚れ・気泡への対処と清掃方法も確認します。自動洗浄ブラシは構成によってオプションとなるため、標準装備とはみなさないでください。" }] },
+        { "_key": "instrument-particles", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "BT8200・BT8500・BTP8300：液中粒子計数" }] },
+        { "_key": "instrument-particles-p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "遮光式では、粒子がレーザー光を遮る際のパルスから粒径と個数を求めます。BT8200とBT8500はオンライン式液中パーティクルカウンタ、BTP8300は携帯型液中パーティクルカウンタです。前者は洗浄ラインや運転中の連続監視、後者は部品受入やフラッシング後の抜取検査に利用できます。両オンライン機種の用途を固定的に分けず、設置・通信・校正構成などで選定します。ISO 4406には4、6、14 µm(c)超、部品の50／100 µm基準にはその粒径を測れるチャネル設定と校正が必要です。最大測定範囲の広さだけで有効分解能を判断しないでください。" }] },
+        { "_key": "instrument-criteria", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "選定時は、①導電率レンジを冷却液と管理値に合わせる、②濁度レンジを受入・運転・洗浄の各判定値に合わせる、③粒子の対象粒径を実測できるセンサ・チャネル・校正を確認する、という順序が有効です。製品仕様とオプションは変更され得るため、見積・発注前に現行資料で最終確認します。" }] }
+      ]
+    },
+    {
+      "_key": "specs-bs-phs276",
+      "_type": "dataTable",
+      "anchorId": "specs-bs-phs276",
+      "color": "neutral",
+      "title": "BS-PHS276 現行仕様（型式・構成別）",
+      "columns": [
+        "仕様項目",
+        "値・条件"
+      ],
+      "rows": [
+        {
+          "_key": "spec0",
+          "cells": [
+            "型式",
+            "BS-PHS276（A：挿入式／B：流通式）"
+          ]
+        },
+        {
+          "_key": "spec1",
+          "cells": [
+            "対応媒体",
+            "純水、脱イオン水、PG25／EG25"
+          ]
+        },
+        {
+          "_key": "spec2",
+          "cells": [
+            "pH測定範囲",
+            "0～14 pH"
+          ]
+        },
+        {
+          "_key": "spec3",
+          "cells": [
+            "温度範囲",
+            "0～80 °C"
+          ]
+        },
+        {
+          "_key": "spec4",
+          "cells": [
+            "耐圧",
+            "0～0.6 MPa"
+          ]
+        },
+        {
+          "_key": "spec5",
+          "cells": [
+            "スロープ",
+            "95%～105%（25 °C）"
+          ]
+        },
+        {
+          "_key": "spec6",
+          "cells": [
+            "精度",
+            "±0.02"
+          ]
+        },
+        {
+          "_key": "spec7",
+          "cells": [
+            "T90応答時間",
+            "≤20 s"
+          ]
+        },
+        {
+          "_key": "spec8",
+          "cells": [
+            "感応膜",
+            "特殊ガラス"
+          ]
+        },
+        {
+          "_key": "spec9",
+          "cells": [
+            "本体材質",
+            "316Lステンレス鋼"
+          ]
+        },
+        {
+          "_key": "spec10",
+          "cells": [
+            "温度補償",
+            "PT1000"
+          ]
+        },
+        {
+          "_key": "spec11",
+          "cells": [
+            "プロセス接続",
+            "3/4 NPT"
+          ]
+        },
+        {
+          "_key": "spec12",
+          "cells": [
+            "電源",
+            "9～36 VDC"
+          ]
+        },
+        {
+          "_key": "spec13",
+          "cells": [
+            "出力",
+            "RS485／4–20 mA"
+          ]
+        },
+        {
+          "_key": "spec14",
+          "cells": [
+            "通信プロトコル",
+            "Modbus RTU"
+          ]
+        },
+        {
+          "_key": "spec15",
+          "cells": [
+            "寸法",
+            "Φ28 × 148 mm（ステンレス製本体）、全長198 mm"
+          ]
+        },
+        {
+          "_key": "spec16",
+          "cells": [
+            "ケーブル",
+            "5 m・4芯（標準）"
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "specs-bs-ec350",
+      "_type": "dataTable",
+      "anchorId": "specs-bs-ec350",
+      "color": "neutral",
+      "title": "BS-EC350 現行仕様（型式・構成別）",
+      "columns": [
+        "仕様項目",
+        "値・条件"
+      ],
+      "rows": [
+        {
+          "_key": "spec0",
+          "cells": [
+            "BS-EC350A 測定範囲",
+            "0～20 μS/cm"
+          ]
+        },
+        {
+          "_key": "spec1",
+          "cells": [
+            "BS-EC350A 温度範囲／セル定数／電源／寸法",
+            "0～100 °C／K=0.01／18～27 VDC／Φ16 × 138 mm"
+          ]
+        },
+        {
+          "_key": "spec2",
+          "cells": [
+            "BS-EC350B 測定範囲",
+            "0～200 μS/cm"
+          ]
+        },
+        {
+          "_key": "spec3",
+          "cells": [
+            "BS-EC350B 温度範囲／セル定数／電源／寸法",
+            "0～100 °C／K=0.01／18～27 VDC／Φ16 × 138 mm"
+          ]
+        },
+        {
+          "_key": "spec4",
+          "cells": [
+            "BS-EC350C 測定範囲",
+            "0～1000 μS/cm"
+          ]
+        },
+        {
+          "_key": "spec5",
+          "cells": [
+            "BS-EC350C 温度範囲／セル定数／電源／寸法",
+            "0～100 °C／K=0.1／9～27 VDC／Φ13 × 165 mm"
+          ]
+        },
+        {
+          "_key": "spec6",
+          "cells": [
+            "BS-EC350D 測定範囲",
+            "0～2000 μS/cm"
+          ]
+        },
+        {
+          "_key": "spec7",
+          "cells": [
+            "BS-EC350D 温度範囲／セル定数／電源／寸法",
+            "0～100 °C／K=0.1／9～27 VDC／Φ13 × 165 mm"
+          ]
+        },
+        {
+          "_key": "spec8",
+          "cells": [
+            "BS-EC350E 測定範囲",
+            "2～20000 μS/cm"
+          ]
+        },
+        {
+          "_key": "spec9",
+          "cells": [
+            "BS-EC350E 温度範囲／セル定数／電源／寸法",
+            "0～60 °C／K=1／12～24 VDC／Φ16 × 160 mm"
+          ]
+        },
+        {
+          "_key": "spec10",
+          "cells": [
+            "精度（全型式共通）",
+            "±1.5%FS"
+          ]
+        },
+        {
+          "_key": "spec11",
+          "cells": [
+            "T90応答時間（全型式共通）",
+            "≤60 s"
+          ]
+        },
+        {
+          "_key": "spec12",
+          "cells": [
+            "出力",
+            "4–20 mA／RS485（選択式）"
+          ]
+        },
+        {
+          "_key": "spec13",
+          "cells": [
+            "通信プロトコル",
+            "Modbus RTU"
+          ]
+        },
+        {
+          "_key": "spec14",
+          "cells": [
+            "温度補償",
+            "PT1000"
+          ]
+        },
+        {
+          "_key": "spec15",
+          "cells": [
+            "対応媒体",
+            "純水、脱イオン水、PG25／EG25"
+          ]
+        },
+        {
+          "_key": "spec16",
+          "cells": [
+            "本体材質",
+            "316Lステンレス鋼"
+          ]
+        },
+        {
+          "_key": "spec17",
+          "cells": [
+            "プロセス接続",
+            "3/4 NPT"
+          ]
+        },
+        {
+          "_key": "spec18",
+          "cells": [
+            "ケーブル",
+            "5 m（標準）、10 mまで延長可能"
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "specs-bs-turb113",
+      "_type": "dataTable",
+      "anchorId": "specs-bs-turb113",
+      "color": "neutral",
+      "title": "BS-TURB113 現行仕様（型式・構成別）",
+      "columns": [
+        "仕様項目",
+        "値・条件"
+      ],
+      "rows": [
+        {
+          "_key": "spec0",
+          "cells": [
+            "型式",
+            "BS-TURB113（A：0～10 NTU／B：0～100 NTU）"
+          ]
+        },
+        {
+          "_key": "spec1",
+          "cells": [
+            "対応媒体",
+            "純水、脱イオン水、PG25／EG25"
+          ]
+        },
+        {
+          "_key": "spec2",
+          "cells": [
+            "測定範囲",
+            "0～10 NTU／0～100 NTU"
+          ]
+        },
+        {
+          "_key": "spec3",
+          "cells": [
+            "分解能",
+            "0.001 NTU"
+          ]
+        },
+        {
+          "_key": "spec4",
+          "cells": [
+            "応答時間・測定周期",
+            "<30 s（測定周期10 s）"
+          ]
+        },
+        {
+          "_key": "spec5",
+          "cells": [
+            "光源",
+            "LED"
+          ]
+        },
+        {
+          "_key": "spec6",
+          "cells": [
+            "繰返し性",
+            "≤1%"
+          ]
+        },
+        {
+          "_key": "spec7",
+          "cells": [
+            "負荷",
+            "120 Ω"
+          ]
+        },
+        {
+          "_key": "spec8",
+          "cells": [
+            "デジタル出力",
+            "RS485"
+          ]
+        },
+        {
+          "_key": "spec9",
+          "cells": [
+            "周囲温度",
+            "0～50 °C"
+          ]
+        },
+        {
+          "_key": "spec10",
+          "cells": [
+            "本体材質",
+            "316Lステンレス鋼、チタン合金"
+          ]
+        },
+        {
+          "_key": "spec11",
+          "cells": [
+            "自動洗浄（オプション）",
+            "洗浄ブラシ"
+          ]
+        },
+        {
+          "_key": "spec12",
+          "cells": [
+            "使用圧力",
+            "<6 bar"
+          ]
+        },
+        {
+          "_key": "spec13",
+          "cells": [
+            "寸法",
+            "Φ30 × 267 mm"
+          ]
+        },
+        {
+          "_key": "spec14",
+          "cells": [
+            "保護等級",
+            "IP68"
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "product-links", "_type": "cardGrid", "anchorId": "products", "color": "neutral", "title": "関連するBebur製品", "cards": [
+        { "_key": "product-ph", "title": "BS-PHS276｜液冷用pHセンサ", "summary": "低導電率の冷却液を含むpH監視。現行仕様と接液条件を確認してください。", "image": { "_type": "image", "asset": { "url": "/media/bs-phs276.jpg" }, "alt": "Bebur BS-PHS276液冷用pHセンサ" }, "linkLabel": "製品情報を見る", "href": "/products/water-quality/bs-phs276" },
+        { "_key": "product-ec", "title": "BS-EC350｜液冷用導電率センサ", "summary": "冷却液と管理範囲に合わせてレンジを選択。各レンジの電源・温度条件を確認してください。", "image": { "_type": "image", "asset": { "url": "/media/bs-ec350.jpg" }, "alt": "Bebur BS-EC350液冷用導電率センサ" }, "linkLabel": "製品情報を見る", "href": "/products/water-quality/bs-ec350" },
+        { "_key": "product-turb", "title": "BS-TURB113｜液冷用濁度センサ", "summary": "受入時と運転中の濁度監視。洗浄ブラシのオプション構成を確認してください。", "image": { "_type": "image", "asset": { "url": "/media/bs-turb113.jpg" }, "alt": "Bebur BS-TURB113液冷用濁度センサ" }, "linkLabel": "製品情報を見る", "href": "/products/water-quality/bs-turb113" },
+        { "_key": "product-bt8500", "title": "BT8500｜オンライン式液中パーティクルカウンタ", "summary": "バイパスラインでの粒子数・清浄度の連続監視に。", "image": { "_type": "image", "asset": { "url": "/source-media/1763022286945333-44e697d79ca64464.jpg" }, "alt": "BT8500 オンライン式液中パーティクルカウンタ" }, "linkLabel": "製品情報を見る", "href": "/products/cleanliness/bt8500" },
+        { "_key": "product-bt8200", "title": "BT8200｜オンライン式液中パーティクルカウンタ", "summary": "製造ラインや液冷系への組込み、粒子数の連続監視に。", "image": { "_type": "image", "asset": { "url": "/source-media/1763021330535352-39b6e8a21d647a43.jpg" }, "alt": "Bebur液中パーティクルカウンタの製品イメージ" }, "linkLabel": "製品情報を見る", "href": "/products/cleanliness/bt8200" },
+        { "_key": "product-btp8300", "title": "BTP8300｜携帯型液中パーティクルカウンタ", "summary": "部品受入、施工前、フラッシング後の抜取検査に。", "image": { "_type": "image", "asset": { "url": "/source-media/1762148195719146-05fc5fdd5a1498d8.png" }, "alt": "BTP8300 携帯型液中パーティクルカウンタ" }, "linkLabel": "製品情報を見る", "href": "/products/cleanliness/btp8300" }
+      ]
+    },
+    {
+      "_key": "field-notes", "_type": "richText", "anchorId": "field-notes", "color": "neutral", "title": "現場での測定誤差と運用上の注意", "content": [
+        { "_key": "field-1h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "気泡は粒子計数の主要な誤差要因" }] },
+        { "_key": "field-1p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "遮光式は気泡と固体粒子を光学的に区別できません。フラッシング、ポンプ吸込、補給液投入直後には微細気泡が入りやすく、計数値が過大になります。バイパス採水には脱気と背圧を検討し、ポンプ入口や補給点直後を避けます。" }] },
+        { "_key": "field-2h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "代表性のない採水では測定値を使えない" }] },
+        { "_key": "field-2p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "流れのある直管部から採り、エルボ・弁・チーズ下流の滞留部や低所ドレンは避けます。急な管径変更、気体が滞留する水平配管を減らし、試料流量を仕様書の設計値に保ちます。" }] },
+        { "_key": "field-3h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "広すぎるレンジでは低濃度域の変化を捉えにくい" }] },
+        { "_key": "field-3p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "導電率の0～20 µS/cm領域で管理する脱イオン水に、常に0～2000 µS/cmの広レンジを選ぶのは適切とは限りません。洗浄終点付近の小さな変化を判別できるか、精度と分解能を実際のレンジで確認します。" }] },
+        { "_key": "field-4h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "温度補正を省かない" }] },
+        { "_key": "field-4p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "pHと導電率は温度の影響を受けます。導電率の25 °C基準値との比較には温度補正が必要です。供給温度が異なる測定値を、補正なしで同一条件として比較しないでください。" }] },
+        { "_key": "field-5h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "汚れ方に応じて保守間隔を決める" }] },
+        { "_key": "field-5p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "濁度計の自動洗浄機構を選んだ場合でも光学窓の定期点検は必要です。pH電極は所定周期で校正し、不使用時は製品指示に従って適切なKCl溶液で保管します。保守と校正の記録を測定データに紐づけます。" }] },
+        { "_key": "field-6h", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "工程をまたいで判定値を流用しない" }] },
+        { "_key": "field-6p", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "部品出荷時、配管洗浄後、冷却液受入時、稼働中は別の評価対象です。標準番号と測定値が正しくても、別工程の結論欄へ転用すれば判定は成立しません。" }] }
+      ]
+    },
+    {
+      "_key": "myths", "_type": "richText", "anchorId": "misconceptions", "color": "neutral", "title": "よくある5つの誤解", "content": [
+        { "_key": "myth-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "「濁度が正常なら清浄度も合格」：濁度には粒径分解能がありません。低い濁度値は大粒子が存在しない証明にはならず、ISO 4406の粒径別計数が必要です。" }] },
+        { "_key": "myth-2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "「中国国家規格に二次側導電率の一律上限がある」：GB/T 48023-2026では当事者間の合意による報告値です。合否値は技術協定に明記します。" }] },
+        { "_key": "myth-3", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "「50 µmフィルタなら50 µm超の粒子は残らない」：公称ろ過精度は系内の最大粒径を保証しません。バイパス、エレメント損傷、起動停止時の流動変化を考慮します。" }] },
+        { "_key": "myth-4", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "「24時間洗浄すれば合格」：24時間は中国規格に示された最短循環時間であり、洗浄後のpH、導電率、濁度、銅・鉄などを別途判定します。" }] },
+        { "_key": "myth-5", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "「オンライン計器があれば採水試験は不要」：オンライン監視は推移と警報に適し、紛争時や受入判定の確認には適用方法に従った採水・再試験が必要です。両者は補完関係です。" }] }
+      ]
+    },
+    {
+      "_key": "application-case", "_type": "richText", "anchorId": "case", "color": "neutral", "title": "部品洗浄ラインへの適用例", "content": [
+        { "_key": "case-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "部品洗浄では、粒子数の減衰から洗浄の終点を判断するとともに、洗浄液のpH・導電率から液の状態を確認します。洗浄機の循環ラインにバイパス測定点を設け、オンライン式液中パーティクルカウンタ、pHセンサ、導電率センサを組み合わせる方法です。主管の流れと洗浄工程への影響、接液材の適合性を事前に確認します。" }] },
+        { "_key": "case-2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "Beburの公開技術資料は、Boyd東莞工場の液冷部品洗浄ラインにおいて、固体粒子、イオン性不純物、pHをオンライン監視し、洗浄状態を工程へフィードバックした事例を紹介しています。これはBebur公開資料に基づく事例紹介であり、当サイトが独立に効果を検証したものではありません。" }] },
+        { "_key": "case-3", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "公開資料に言及される品質改善は、他の設備や案件の成果を保証しません。結果は洗浄条件、ろ過構成、採水の代表性、運転管理に左右されます。数値効果を引用する際は測定条件と統計上の根拠を併記する必要があります。" }] }
+      ]
+    },
+    {
+      "_key": "faq", "_type": "richText", "anchorId": "faq", "color": "blue", "title": "よくある質問", "content": [
+        { "_key": "faq-1q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "コールドプレート式液冷にオンライン粒子計は必須ですか？" }] },
+        { "_key": "faq-1a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "中国規格GB/T 48023-2026は、CDUにおける二次側冷却液のpH・導電率・濁度の監視を推奨していますが、オンライン粒子計を必須とはしていません。濁度計だけでは4／6／14 µm(c)の粒径帯を判別できないため、微細流路を持つコールドプレートでは、清浄度等級の確認やフィルタ評価のためにオンライン式液中パーティクルカウンタの追加を検討します。" }] },
+        { "_key": "faq-2q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "GB/T 48023-2026は義務規格ですか。いつ施行されますか？" }] },
+        { "_key": "faq-2a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "中国の推奨性国家規格（GB/T）であり、出典ページでは2026年7月30日公布、2027年2月1日施行とされています。規格自体はすべての案件に強制適用されるものではありませんが、入札書類・契約・技術協定で引用された案件では、その合意条件として扱われます。施行前は技術比較や事前評価に使えても、「当該国家規格の認証取得済み」とは表示しません。適用と最新の施行状況は公式データベースで確認してください。" }] },
+        { "_key": "faq-3q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "二次側導電率の合格上限はいくつですか？" }] },
+        { "_key": "faq-3a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "GB/T 48023-2026附属書Aでは、二次側冷却液の導電率は供給者と購入者が合意する報告値で、一律の上限はありません。案件の技術協定に限界値を記し、報告書には「協定による限界値」と明記します。システム洗浄後の水は別条件で、25 °C換算≤10 µS/cmです。" }] },
+        { "_key": "faq-4q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "受入時と稼働中のpHはどう判定しますか？" }] },
+        { "_key": "faq-4a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "同規格附属書Aでは、受入時は銅製コールドプレート8.0～10.0、アルミニウム製8.0～9.0です。稼働中は受入時の値から±1以内で、かつ銅製7.0～10.0、アルミニウム製7.0～9.0の絶対範囲内であることを同時に確認します。絶対値だけでは徐々に進む変動を見落とします。" }] },
+        { "_key": "faq-5q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "濁度計で粒子計を代替できますか？" }] },
+        { "_key": "faq-5a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "できません。濁度は懸濁物による光学的な濁りの総量、ISO 4406は4、6、14 µm(c)超の粒径帯ごとの粒子数を3桁で表す方法です。同じ1 NTUでも、微小粒子が多数ある場合と大粒子が少数ある場合では微細流路への影響が異なります。濁度は傾向監視・警報、粒子数は粒径別分類・受入判定に用います。" }] },
+        { "_key": "faq-6q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "フラッシング後の水が合格なら、部品の清浄度も合格ですか？" }] },
+        { "_key": "faq-6a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "いいえ。GB/T 48023-2026の洗浄後の水質値は、pH 5～7.5、導電率≤10 µS/cm、濁度≤5 NTU、銅・鉄各≤0.5 mg/Lというシステム洗浄後の液の状態を対象とします。部品出荷時はT/CAEE 098-2026のISO 4406 16/14/11相当以上の清浄度、マニホールドではT/CAEE 103-2026の個数/L基準を案件に応じて参照します。対象も判定欄も分けてください。" }] },
+        { "_key": "faq-7q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "液中粒子の計数に脱気が必要なのはなぜですか？" }] },
+        { "_key": "faq-7a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "遮光式では気泡も光を遮り、固体粒子として計数されることがあります。フラッシング、ポンプ吸込、補給直後は特に微細気泡が混入しやすいため、脱気・背圧の確保、ポンプ入口を避けた採水を検討します。" }] },
+        { "_key": "faq-8q", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "水質センサは供給側と戻り側のどちらに置きますか？" }] },
+        { "_key": "faq-8a", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "可能なら両側を対にします。供給側はコールドプレートへ入る液、戻り側は負荷を通過した後の変化を示します。差を見ることで負荷側の汚染とろ過効果の切り分けに役立ちます。1点しか設けられない場合は戻り主管を優先し、原因分離やフィルタ評価に限界があることを報告書へ記載します。" }] }
+      ]
+    },
+    {
+      "_key": "closing", "_type": "richText", "anchorId": "closing", "color": "neutral", "title": "基準、測定箇所、計器の順に決める", "content": [
+        { "_key": "closing-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "まず対象物と工程を定め、適用する規格・契約上の判定値を確認します。次に代表性のある測定箇所と採水方法を決め、その条件を満たす計器を選びます。高い測定精度があっても、異なる工程の判定基準を当てれば結論は成立しません。" }] },
+        { "_key": "closing-2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "本記事は中国規格の条項と応用方法を整理した技術資料であり、適合証明書や性能保証ではありません。製品の実際の構成と仕様は現行データシート・発注条件に、最終的な受入判定は適用規格の原文と契約・技術協定に従います。" }] }
+      ]
+    },
+    {
+      "_key": "references", "_type": "cardGrid", "anchorId": "references", "color": "neutral", "title": "規格・技術情報の参照先", "cards": [
+        { "_key": "ref-gb48023", "title": "GB/T 48023-2026｜中国国家規格情報", "summary": "コールドプレート式液冷システムの技術仕様。施行状況と本文を確認してください。", "linkLabel": "公式情報を見る", "href": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=114934594976F57EA3F3683C13B13DB8" },
+        { "_key": "ref-miit", "title": "中国工業・情報化規格情報サービス", "summary": "YD/Tなど業界規格の現行状況を確認するためのプラットフォーム。", "linkLabel": "公式サイトを見る", "href": "https://std.miit.gov.cn/#/implementIndex" },
+        { "_key": "ref-association", "title": "中国全国団体標準情報プラットフォーム", "summary": "T/で始まる団体規格の登録・状況を確認するためのプラットフォーム。", "linkLabel": "公式サイトを見る", "href": "https://www.ttbz.org.cn/" },
+        { "_key": "ref-national", "title": "中国国家標準情報公共サービスプラットフォーム", "summary": "国家規格の適用範囲と現行状況を確認するためのプラットフォーム。", "linkLabel": "公式サイトを見る", "href": "https://std.samr.gov.cn/" },
+        { "_key": "ref-clause", "title": "GB/T 48023-2026の条項解説｜Bebur", "summary": "Bebur公開記事による中国規格の技術解説。判定には規格原文を優先してください。", "linkLabel": "解説記事を見る", "href": "https://www.bebur.net/list_4/427.html" }
+      ]
+    },
+    {
+      "_key": "contact", "_type": "cta", "anchorId": "contact", "color": "blue", "title": "液冷系の測定計画をご相談ください", "summary": "対象の冷却液、管理基準、配管図、採水条件をもとに、測定点と計器構成を検討します。日本でのご相談窓口は新樹産業株式会社です。", "label": "お問い合わせ", "href": "/contact"
+    }
+  ]
+}

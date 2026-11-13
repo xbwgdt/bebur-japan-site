@@ -59,7 +59,7 @@ function safeHref(href: string | undefined): string | null {
     return null;
   }
 
-  return /^(?:\/|https?:\/\/|mailto:|tel:)/u.test(href) ? href : null;
+  return /^(?:\/(?!\/)|https?:\/\/|mailto:|tel:|#[a-z][a-z0-9-]*$)/u.test(href) ? href : null;
 }
 
 function BlockImage({ image, fallbackAlt }: { image?: SanityImage; fallbackAlt: string }): ReactElement | null {

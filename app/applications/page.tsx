@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ApplicationCard } from "@/components/application-card";
+import { SolutionPromotion } from "@/components/solution-promotion";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { SectionHeading } from "@/components/section-heading";
@@ -90,6 +91,7 @@ export default async function ApplicationsPage(): Promise<React.ReactElement> {
         </div>
       </header>
 
+      <SolutionPromotion />
       <section className="section application-industries">
         <div className="site-container">
           <SectionHeading

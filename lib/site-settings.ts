@@ -10,6 +10,7 @@ import {
 export type PublicNavigationLabels = {
   home: string;
   products: string;
+  solutions: string;
   applications: string;
   company: string;
   news: string;
@@ -40,6 +41,14 @@ export type PublicContactPageSettings = {
 };
 
 export type PublicSiteSettings = {
+  homeSolution: {
+    eyebrow: string;
+    title: string;
+    summary: string;
+    image: { src: string; alt: string };
+    action: { label: string; href: string };
+    style: ContactPanelStyle;
+  };
   homeHero: {
     eyebrow: string;
     title: string;
@@ -89,6 +98,14 @@ const contactPanelPresetValues = {
 } as const;
 
 export const localPublicSiteSettings: PublicSiteSettings = {
+  homeSolution: {
+    eyebrow: "液冷・データセンター",
+    title: "液冷システムの清浄度検査ソリューション",
+    summary: "粒子計数とpH・導電率・濁度の測定で、部品洗浄から運用監視まで。測定項目、検査工程、機器選定をまとめてご確認いただけます。",
+    image: { src: "/media/liquid-cooling-monitoring.svg", alt: "液冷二次側ループにおける水質測定と粒子計数の配置例" },
+    action: { label: "液冷ソリューションを見る", href: "/solutions/liquid-cooling-cleanliness-testing" },
+    style: { color: "deepBlue", fontSize: "md", fontFamily: "sans" },
+  },
   homeHero: {
     eyebrow: "WATER QUALITY & GAS DETECTION",
     title: "水質とガスを、より確かに。",
@@ -140,6 +157,7 @@ export const localPublicSiteSettings: PublicSiteSettings = {
   navigationLabels: {
     home: "ホーム",
     products: "製品情報",
+    solutions: "液冷ソリューション",
     applications: "導入分野・事例",
     company: "企業情報",
     news: "ニュース・技術情報",
@@ -381,6 +399,14 @@ export function resolvePublicSiteSettings(
 
   return {
     homeHero: resolveHomeHero(settings.homeHero),
+    homeSolution: {
+      eyebrow: safeText(settings.homeSolution?.eyebrow, { max: 80 }) ?? localPublicSiteSettings.homeSolution.eyebrow,
+      title: safeText(settings.homeSolution?.title, { max: 120 }) ?? localPublicSiteSettings.homeSolution.title,
+      summary: safeText(settings.homeSolution?.summary, { max: 400 }) ?? localPublicSiteSettings.homeSolution.summary,
+      image: safeImage(settings.homeSolution?.image) ?? localPublicSiteSettings.homeSolution.image,
+      action: safeAction(settings.homeSolution?.action, localPublicSiteSettings.homeSolution.action),
+      style: resolveContactPanelStyleSettings(settings.homeSolution?.style, localPublicSiteSettings.homeSolution.style),
+    },
     contactPage: resolveContactPage(settings.contactPage),
     navigationLabels,
     distributorName: exactApproved(

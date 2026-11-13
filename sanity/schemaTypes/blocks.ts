@@ -25,6 +25,7 @@ const imageFields = [
 ];
 
 const styleFields = () => [
+  defineField({ name: "anchorId", title: "章节锚点", description: "用于专题页目录跳转；使用小写英文、数字和连字符，勿重复。", type: "string", validation: (Rule) => Rule.regex(/^[a-z][a-z0-9-]*$/u) }),
   defineField({ name: "color", title: "颜色预设", description: "仅可选择已批准的品牌颜色，不支持自定义 CSS。", type: "string", options: { list: [{ title: "品牌色", value: "brand" }, { title: "蓝色", value: "blue" }, { title: "红色", value: "red" }, { title: "中性色", value: "neutral" }], layout: "radio" } }),
   defineField({ name: "fontSize", title: "字号预设", type: "string", options: { list: [{ title: "小", value: "sm" }, { title: "中", value: "md" }, { title: "大", value: "lg" }, { title: "特大", value: "xl" }], layout: "radio" } }),
   defineField({ name: "alignment", title: "对齐方式", type: "string", options: { list: [{ title: "左对齐", value: "left" }, { title: "居中", value: "center" }], layout: "radio" } }),

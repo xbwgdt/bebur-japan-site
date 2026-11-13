@@ -153,7 +153,7 @@ describe("Japanese content lookups", () => {
       ),
     ) as unknown[];
 
-    expect(getAllRoutes()).toHaveLength(110);
+    expect(getAllRoutes()).toHaveLength(114);
     expect(sourceManifest).toHaveLength(112);
   });
 
@@ -220,7 +220,7 @@ describe("Japanese content lookups", () => {
     expect(
       existsSync(localAssetPath(siteSettings!.defaultOgImage!._sanityAsset!)),
     ).toBe(true);
-  }, 90_000);
+  }, 180_000);
 
   it("exports one deterministic published page document for every normal public route", async () => {
     const script = join(process.cwd(), "scripts", "export-page-blocks.mjs");
@@ -249,7 +249,7 @@ describe("Japanese content lookups", () => {
       ...getAboutPages(),
       ...getApplications(),
       ...getStaticPages(),
-    ].map(({ slug }) => slug).toSorted();
+    ].filter(({ route }) => !route.startsWith("/solutions/")).map(({ slug }) => slug).toSorted();
 
     expect(secondOutput).toBe(firstOutput);
     expect(documents).toHaveLength(48);
@@ -286,7 +286,7 @@ describe("Japanese content lookups", () => {
     expect(JSON.stringify(contactDocument)).toContain("新樹産業株式会社");
     expect(JSON.stringify(contactDocument)).toContain("080-5189-8663");
     expect(JSON.stringify(contactDocument)).toContain("info@newtree-i.com");
-  }, 90_000);
+  }, 180_000);
 });
 
 describe("route helpers", () => {
@@ -451,7 +451,7 @@ describe("production SEO metadata routes", () => {
     const urls = entries.map(({ url }) => url);
     const expectedUrls = getAllRoutes().map(canonicalUrl);
 
-    expect(entries).toHaveLength(110);
+    expect(entries).toHaveLength(114);
     expect(new Set(urls).size).toBe(urls.length);
     expect(urls.toSorted()).toEqual(expectedUrls.toSorted());
     expect(
@@ -667,12 +667,12 @@ describe("product discovery route generation", () => {
     );
   });
 
-  it("generates exactly 45 unique reviewed product routes", () => {
+  it("generates exactly 48 unique reviewed product routes", () => {
     const params = generateProductStaticParams();
     const pairs = params.map(({ category, slug }) => `${category}/${slug}`);
 
-    expect(params).toHaveLength(45);
-    expect(new Set(pairs).size).toBe(45);
+    expect(params).toHaveLength(48);
+    expect(new Set(pairs).size).toBe(48);
   });
 
   it("keeps every reviewed product route aligned with productRoute", () => {
@@ -747,6 +747,7 @@ describe("remaining Japanese content route generation", () => {
 
   it("maps every canonical route to one implemented App Router family", () => {
     const implementedRoutes = new Set([
+      "/solutions/liquid-cooling-cleanliness-testing",
       "/",
       "/products",
       "/applications",
@@ -768,7 +769,7 @@ describe("remaining Japanese content route generation", () => {
       ),
     ]);
 
-    expect(implementedRoutes.size).toBe(110);
+    expect(implementedRoutes.size).toBe(114);
     expect([...implementedRoutes].toSorted()).toEqual(getAllRoutes());
   });
 

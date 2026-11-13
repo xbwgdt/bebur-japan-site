@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="500" viewBox="0 0 820 500" role="img" aria-labelledby="title desc">
+<title id="title">液冷二次側ループの測定配置例</title><desc id="desc">CDUからコールドプレートへの供給と戻りで水質を測定し、分岐サンプリングで粒子を計数する概念図。実際の測点は設備構成に合わせて決定する。</desc>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#1b5dad" stroke-width="1.5"/></marker></defs>
+<rect width="820" height="500" rx="16" fill="#f1f7fc"/>
+<g font-family="sans-serif" fill="#123a62">
+<text x="32" y="44" font-size="22" font-weight="700">液冷二次側ループ｜水質・粒子監視</text>
+<rect x="38" y="130" width="155" height="220" rx="10" fill="white" stroke="#b2c9dc" stroke-width="2"/>
+<text x="115" y="225" text-anchor="middle" font-size="28" font-weight="700">CDU</text><text x="115" y="258" text-anchor="middle" font-size="17">冷却液分配装置</text>
+<rect x="590" y="140" width="190" height="200" rx="10" fill="white" stroke="#b2c9dc" stroke-width="2"/>
+<text x="685" y="220" text-anchor="middle" font-size="23" font-weight="700">コールドプレート</text><text x="685" y="254" text-anchor="middle" font-size="17">冷却対象</text>
+<path d="M193 165H585" stroke="#1b5dad" stroke-width="5" fill="none" marker-end="url(#a)"/>
+<path d="M590 315H198" stroke="#1b5dad" stroke-width="5" fill="none" marker-end="url(#a)"/>
+<text x="245" y="108" font-size="19">供給：pH・導電率・濁度</text><text x="245" y="366" font-size="19">戻り：pH・導電率・濁度</text>
+<circle cx="278" cy="165" r="9" fill="#12a2b8"/><circle cx="500" cy="315" r="9" fill="#12a2b8"/>
+<path d="M330 165V217M485 267V315" fill="none" stroke="#12899c" stroke-width="3" stroke-dasharray="7 4"/>
+<rect x="276" y="218" width="270" height="52" rx="8" fill="#123f75"/>
+<text x="411" y="250" text-anchor="middle" font-size="19" fill="white">分岐採取 → 脱泡 → 粒子計数</text>
+<text x="32" y="425" font-size="17">供給・戻りの比較で変化を把握。粒子測定は安定した試料流量で。</text>
+<text x="32" y="458" font-size="15" fill="#45627b">概念図：実際の設置位置・配管・採取条件は、設備設計と各機器の仕様に従います。</text>
+</g></svg>

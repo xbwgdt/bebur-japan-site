@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ApplicationCard } from "@/components/application-card";
+import { SolutionPromotion } from "@/components/solution-promotion";
 import { ContactCta } from "@/components/contact-cta";
 import { ProductCard } from "@/components/product-card";
 import { SectionHeading } from "@/components/section-heading";
@@ -126,6 +127,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
         />
       </div>
 
+      <SolutionPromotion />
       <section
         className="section source-section home-categories"
         aria-labelledby="home-product-categories-title"

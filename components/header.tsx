@@ -12,6 +12,7 @@ function navigationItems(settings: PublicSiteSettings) {
     { href: "/", label: labels.home },
     { href: "/about/company-profile", label: labels.company },
     { href: "/products", label: labels.products },
+    { href: "/solutions/liquid-cooling-cleanliness-testing", label: labels.solutions },
     { href: "/applications", label: labels.applications },
     { href: "/insights", label: labels.news },
     { href: "/contact", label: labels.contact },

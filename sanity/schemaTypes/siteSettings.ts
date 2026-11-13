@@ -125,6 +125,18 @@ export default defineType({
   ],
   fields: [
     defineField({
+      name: "homeSolution", title: "首页液冷专题推荐", type: "object", group: "home",
+      description: "显示在首页主视觉下方及应用领域页面。发布后由 Cloudflare 重新构建生效。",
+      fields: [
+        requiredJapaneseField("eyebrow", "眉题"),
+        requiredJapaneseField("title", "专题标题"),
+        defineField({ name: "summary", title: "日文摘要", type: "text", validation: (Rule) => Rule.required().max(400).custom(validateJapaneseProse) }),
+        defineField({ name: "image", title: "专题图片", type: "image", options: { hotspot: true }, fields: [requiredJapaneseField("alt", "图片替代文字")] }),
+        defineField({ name: "action", title: "按钮", type: "object", fields: [requiredJapaneseField("label", "按钮文字"), defineField({ name: "href", title: "链接", type: "string", validation: (Rule) => Rule.required().regex(/^\/(?!\/)/u) })] }),
+        defineField({ name: "style", title: "配色、字号与字体", type: "object", fields: contactPanelStyleFields() }),
+      ],
+    }),
+    defineField({
       name: "homeHero",
       title: "ホーム ヒーロー",
       type: "object",
@@ -154,6 +166,7 @@ export default defineType({
       fields: [
         requiredJapaneseField("home", "首页文字"),
         requiredJapaneseField("products", "产品文字"),
+        defineField({ name: "solutions", title: "液冷方案文字", type: "string", validation: (Rule) => Rule.custom(validateJapaneseText) }),
         requiredJapaneseField("applications", "应用领域文字"),
         requiredJapaneseField("company", "企业信息文字"),
         requiredJapaneseField("news", "新闻文字"),

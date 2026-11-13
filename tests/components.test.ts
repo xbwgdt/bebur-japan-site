@@ -20,6 +20,7 @@ const navigationItems = [
   { href: "/", label: "ホーム" },
   { href: "/about/company-profile", label: "企業情報" },
   { href: "/products", label: "製品情報" },
+  { href: "/solutions/liquid-cooling-cleanliness-testing", label: "液冷ソリューション" },
   { href: "/applications", label: "導入分野・事例" },
   { href: "/insights", label: "ニュース・技術情報" },
   { href: "/contact", label: "お問い合わせ" },
@@ -28,7 +29,7 @@ const navigationItems = [
 function expectExactNavigationItems(navigation: HTMLElement): void {
   const links = Array.from(navigation.querySelectorAll("a"));
 
-  expect(links).toHaveLength(6);
+  expect(links).toHaveLength(7);
   expect(
     links.map((link) => ({
       href: link.getAttribute("href"),

@@ -103,6 +103,14 @@ export default defineType({
           .error("请输入 240 个字符以内的日文简要说明"),
     }),
     defineField({
+      name: "principle",
+      title: "日文测量原理",
+      description: "显示在产品详情页的测量原理区域。",
+      type: "text",
+      group: "content",
+      validation: (Rule) => Rule.custom(validateJapaneseProse),
+    }),
+    defineField({
       name: "body",
       title: "日文正文",
       type: "array",

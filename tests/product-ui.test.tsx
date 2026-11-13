@@ -36,10 +36,10 @@ function expectLocalizedRenderedImages(container: HTMLElement): void {
 }
 
 describe("ProductExplorer", () => {
-  it("announces all 45 products initially", () => {
+  it("announces all 48 products initially", () => {
     renderExplorer();
 
-    expect(screen.getByRole("status").textContent).toBe("45件の製品");
+    expect(screen.getByRole("status").textContent).toBe("48件の製品");
   });
 
   it("matches a product model case-insensitively", () => {
@@ -132,7 +132,7 @@ describe("ProductExplorer", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "絞り込みを解除" }));
 
-    expect(screen.getByRole("status").textContent).toBe("45件の製品");
+    expect(screen.getByRole("status").textContent).toBe("48件の製品");
     expect(
       (
         screen.getByRole("searchbox", {

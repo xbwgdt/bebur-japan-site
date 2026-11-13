@@ -211,7 +211,7 @@ describe("build content source", () => {
     });
 
     expect(snapshot.source).toBe("sanity");
-    expect(snapshot.products).toHaveLength(45);
+    expect(snapshot.products).toHaveLength(48);
     expect(snapshot.articles).toHaveLength(17);
     expect(
       snapshot.products.find(({ slug }) => slug === "bt8500"),

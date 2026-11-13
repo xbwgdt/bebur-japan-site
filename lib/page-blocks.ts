@@ -1,6 +1,7 @@
 import type { SanityImage } from "./sanity/queries";
 
 export type PageBlockStyle = {
+  anchorId?: string;
   color?: "brand" | "blue" | "red" | "neutral";
   fontSize?: "sm" | "md" | "lg" | "xl";
   alignment?: "left" | "center";

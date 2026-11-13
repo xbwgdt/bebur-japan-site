@@ -3,6 +3,8 @@ import applicationsData from "../content/ja/applications.json";
 import insightsData from "../content/ja/insights.json";
 import pagesData from "../content/ja/pages.json";
 import productsData from "../content/ja/products.json";
+import sensorData from "../content/ja/liquid-cooling-sensors.json";
+import solutionData from "../content/ja/liquid-cooling-solution.json";
 import { insightRoute, isProductCategory, productRoute } from "./routes";
 import { getSanityClient } from "./sanity/client";
 import {
@@ -50,11 +52,17 @@ type PortableTextBlock = {
   children?: unknown;
 };
 
-const localProducts = productsData as Product[];
+const localProducts = [...productsData, ...sensorData] as Product[];
 const applications = applicationsData as Application[];
 const localArticles = insightsData as Article[];
 const aboutPages = aboutData as AboutPage[];
-const staticPages = pagesData as StaticPage[];
+const staticPages = [...pagesData, {
+  kind: "page", slug: solutionData.slug.current,
+  route: "/solutions/liquid-cooling-cleanliness-testing", title: solutionData.title,
+  description: solutionData.seoDescription, seoTitle: solutionData.seoTitle, seoDescription: solutionData.seoDescription,
+  sourceUrl: "https://www.bebur.net/en/liquid-cooling-cleanliness-testing.html",
+  images: [], sections: [],
+}] as StaticPage[];
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const isoDatePattern = /^\d{4}-\d{2}-\d{2}$/u;
 
@@ -311,8 +319,8 @@ function normalizeSanityProduct(record: SanityProduct): Product | undefined {
     sections:
       sections.length > 0 ? sections : (localFallback?.sections ?? []),
     model,
-    ...(localFallback?.principle
-      ? { principle: localFallback.principle }
+    ...(nonEmptyString(record.principle) ?? localFallback?.principle
+      ? { principle: nonEmptyString(record.principle) ?? localFallback?.principle }
       : {}),
     features: Array.isArray(record.features)
       ? stringArray(record.features)

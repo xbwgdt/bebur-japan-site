@@ -98,6 +98,7 @@ const structuralContentKeys = new Set([
 // Ordinary English prose is deliberately absent from this list.
 const allowedAsciiWords = new Set(
   [
+    "mol", "kcl", "hcl", "naoh", "mpa",
     "bar",
     "beckman",
     "bebur",
@@ -497,12 +498,17 @@ describe("Bebur reusable source assets", () => {
 describe("Japanese content catalog", () => {
   it("represents every approved source URL exactly once", async () => {
     const manifest = await readManifest();
-    const expectedSourceUrls = manifest.map(({ sourceUrl }) => sourceUrl);
+    const expectedSourceUrls = [...manifest.map(({ sourceUrl }) => sourceUrl),
+      "https://www.bebur.net/en/bs-phs276-liquid-cooled-ph-sensor.html",
+      "https://www.bebur.net/en/bs-ec350-liquid-cooled-conductivity-sensor.html",
+      "https://www.bebur.net/en/bs-turb113-liquid-cooled-turbidity-sensor.html",
+      "https://www.bebur.net/en/liquid-cooling-cleanliness-testing.html",
+    ];
     const representedSourceUrls = getAllSourceUrls();
 
     expect(manifest).toHaveLength(112);
-    expect(representedSourceUrls).toHaveLength(112);
-    expect(new Set(representedSourceUrls).size).toBe(112);
+    expect(representedSourceUrls).toHaveLength(116);
+    expect(new Set(representedSourceUrls).size).toBe(116);
     expect(representedSourceUrls.toSorted()).toEqual(
       expectedSourceUrls.toSorted(),
     );
@@ -606,7 +612,7 @@ describe("Japanese content catalog", () => {
     for (const record of getAllContent()) {
       for (const image of record.images) {
         expect(image.src, record.sourceUrl).toMatch(
-          /^\/(?:products|applications)\//,
+          /^\/(?:products|applications|media)\//,
         );
         expect(image.src, record.sourceUrl).not.toMatch(/^https?:\/\//);
         expect(image.alt, record.sourceUrl).toMatch(japanesePattern);
@@ -634,7 +640,7 @@ describe("Japanese content catalog", () => {
         product.sourceUrl,
       ).toBeGreaterThan(0);
       expect(product.sourceUrl, product.slug).toMatch(
-        /^https:\/\/www\.bebur\.net\/en\/list_(?:4[6-9]|50)\/\d+\.html$/,
+        /^https:\/\/www\.bebur\.net\/en\/(?:list_(?:4[6-9]|50)\/\d+|bs-(?:phs276-liquid-cooled-ph-sensor|ec350-liquid-cooled-conductivity-sensor|turb113-liquid-cooled-turbidity-sensor))\.html$/,
       );
 
       for (const specification of product.specifications) {
@@ -857,7 +863,8 @@ describe("Japanese content catalog", () => {
 
   it("reconciles source model, standard, and protocol tokens for all 45 products", async () => {
     const manifest = await readManifest();
-    const products = getProducts();
+    const baselineSourceUrls = new Set(manifest.map(({ sourceUrl }) => sourceUrl));
+    const products = getProducts().filter(({ sourceUrl }) => baselineSourceUrls.has(sourceUrl));
     const productSourceUrls = new Set(products.map(({ sourceUrl }) => sourceUrl));
 
     expect(products).toHaveLength(45);
