@@ -9,6 +9,12 @@ import { getPublishedPageForRoute } from "@/lib/cms-pages";
 vi.mock("@/lib/cms-pages", () => ({ getPublishedPageForRoute: vi.fn(async () => null) }));
 
 describe("English source editorial UI in Japanese", () => {
+  it("does not reserve a missing image column for text-only related readings", async () => {
+    const $=load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));
+    expect($("#related-readings article.reference")).toHaveLength(4);
+    expect($("#related-readings article.prod")).toHaveLength(0);
+    expect($("#products article.prod figure").length).toBeGreaterThan(0);
+  });
   it("faithfully retains the source conclusion, three distinct points and separate audience", async () => {
     const $ = load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));
     expect($(".tldr h2").text()).toBe("結論から");
