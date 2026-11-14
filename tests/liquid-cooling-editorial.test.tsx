@@ -9,6 +9,17 @@ import { getPublishedPageForRoute } from "@/lib/cms-pages";
 vi.mock("@/lib/cms-pages", () => ({ getPublishedPageForRoute: vi.fn(async () => null) }));
 
 describe("English source editorial UI in Japanese", () => {
+  it("faithfully retains the source conclusion, three distinct points and separate audience", async () => {
+    const $ = load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));
+    expect($(".tldr h2").text()).toBe("結論から");
+    expect($(".tldr-answer").text()).toContain("4つの測定項目");
+    expect($(".tldr-list li")).toHaveLength(3);
+    expect($(".tldr-list li").eq(0).text()).toContain("溶存イオンと酸・アルカリのバランス");
+    expect($(".tldr-list li").eq(1).text()).toContain("清浄度報告書が差し戻される最も多い原因");
+    expect($(".tldr-list li").eq(2).text()).toContain("フィルタが機能しているのか");
+    expect($(".tldr-fit").text()).toContain("清浄度報告書と受入判定を担当する品質技術者");
+    expect($(".tldr-list").text()).not.toContain("対象：");
+  });
   it("provides a readable mobile legend using the same editable diagram labels", async () => {
     vi.mocked(getPublishedPageForRoute).mockResolvedValueOnce({ ...localSolutionPage, liquidCoolingDesign: { diagram: { conductivity: "編集した導電率", sampling: "編集した採水" } } } as never);
     const $ = load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));
@@ -64,7 +75,7 @@ describe("English source editorial UI in Japanese", () => {
     const html = renderToStaticMarkup(await LiquidCoolingSolutionPage());
     for (const block of localSolutionPage.blocks) if (block.title) expect(html).toContain(block.title);
     expect(html).toContain("GB/T 48023-2026");
-    expect(html).toContain("日本の全案件に共通する要求事項とはみなしません");
+    expect(html).toContain("日本国内で一律に適用される規格一覧ではありません");
     expect(html).toContain("BS-EC350 現行仕様");
     expect(html).toContain("info@newtree-i.com");
     expect(html).toContain("080-5189-8663");

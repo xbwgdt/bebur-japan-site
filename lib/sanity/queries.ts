@@ -179,13 +179,16 @@ const newsProjection = `{
 async function fetchConfigured<T>(
   query: string,
   params: QueryParams = {},
+  options?: { cache: "no-store" },
 ): Promise<T | null> {
   const sanityClient = getSanityClient();
   if (!sanityClient) {
     return null;
   }
 
-  return sanityClient.fetch<T>(query, params);
+  return options
+    ? sanityClient.fetch<T>(query, params, options)
+    : sanityClient.fetch<T>(query, params);
 }
 
 export async function getProducts(): Promise<SanityProduct[]> {
@@ -240,6 +243,8 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
       slug.current == $slug
     ][0] ${pageProjection}`,
     { slug },
+    // Static deployments must read the latest published page on each build.
+    { cache: "no-store" },
   );
 }
 

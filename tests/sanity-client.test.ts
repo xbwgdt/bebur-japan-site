@@ -51,6 +51,7 @@ describe("Sanity static-build client", () => {
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringContaining('_type == "page"'),
       { slug: "company-profile" },
+      { cache: "no-store" },
     );
     expect(fetchMock.mock.calls[0]?.[0]).toContain(
       'publishState == "published"',

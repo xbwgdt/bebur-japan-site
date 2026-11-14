@@ -11,10 +11,12 @@
       "_key": "hero-liquid-cooling", "_type": "hero", "anchorId": "overview", "color": "blue", "title": "液冷システムの清浄度検査", "summary": "コールドプレート内部の粒子、溶存イオン、pHの変動は、流路の閉塞、圧力損失の増加、腐食などにつながります。部品洗浄、システムのフラッシング、稼働後の監視という各工程で、pH・導電率・濁度・液中粒子数をどう使い分けるかを整理します。", "image": { "_type": "image", "asset": { "url": "/media/liquid-cooling-monitoring.svg" }, "alt": "液冷二次側ループにおける水質測定と粒子計数の配置例" }, "ctaLabel": "測定項目を見る", "ctaHref": "#parameters"
     },
     {
-      "_key": "summary", "_type": "richText", "anchorId": "summary", "color": "neutral", "title": "要点：4つの測定は互いに代替できない", "content": [
-        { "_key": "summary-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "液中粒子数は粒径別の個数と清浄度等級、pHは酸・アルカリの状態、導電率は溶存イオンの変化、濁度は懸濁物による光学的な濁りを示します。1つの数値で液冷系全体の清浄度を判断することはできません。" }] },
-        { "_key": "summary-2", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "部品の出荷時、配管のフラッシング後、冷却液の受入時、稼働中では、対象物も判定基準も異なります。中国のGB/T・YD/T・団体規格は、当該規格を採用する案件の参考基準として扱い、日本の全案件に共通する要求事項とはみなしません。最終判定は適用規格の原文と契約・技術協定によります。" }] },
-        { "_key": "summary-3", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "オンライン測定では単発値より変化傾向が重要です。CDUの供給側と戻り側を対で測り、負荷側で汚染が増えたのか、ろ過が機能しているのかを切り分けます。対象はCDU、コールドプレート、マニホールド、ホース、クイックコネクタの設計・製造・受入・保守に携わる方です。" }] }
+      "_key": "summary", "_type": "richText", "anchorId": "summary", "color": "neutral", "title": "結論から", "content": [
+        { "_key": "summary-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "コールドプレート式液冷システムの清浄度検査で重要なのは、4つの測定項目です。粒子計数で粒径区分と清浄度等級を判定し、pHと導電率でイオン・腐食リスクを評価し、濁度で懸濁物の総量を把握します。4項目は工程ごとに判定し、互いに代替することはできません。" }] },
+        { "_key": "summary-point-1", "_type": "block", "style": "normal", "listItem": "number", "level": 1, "markDefs": [], "children": [{ "_type": "span", "text": "4つのパラメータは、それぞれ異なる役割を担います。pHと導電率は溶存イオンと酸・アルカリのバランスを、濁度は懸濁物の総量を、粒子計数は粒径別の区分を捉えます。いずれの項目も、ほかの項目で代替することはできません。" }] },
+        { "_key": "summary-point-2", "_type": "block", "style": "normal", "listItem": "number", "level": 1, "markDefs": [], "children": [{ "_type": "span", "text": "判定基準は工程ごとに分ける必要があります。部品出荷時、システムのフラッシング時、冷却液の受入時、稼働中の冷却液では、それぞれ異なる判定基準を用います。これらを混同することが、清浄度報告書が差し戻される最も多い原因です。" }] },
+        { "_key": "summary-point-3", "_type": "block", "style": "normal", "listItem": "number", "level": 1, "markDefs": [], "children": [{ "_type": "span", "text": "オンライン監視の価値は、単一時点の測定値ではなく、変化の傾向を捉えることにあります。供給側と戻り側を対にして測定点を配置してこそ、「システム内の汚染が進んでいるのか、それともフィルタが機能しているのか」を判断できます。" }] },
+        { "_key": "summary-audience", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "対象：コールドプレート式液冷データセンターの設計・システム統合・検収・運用保守チーム、CDU・コールドプレート・マニホールド・コルゲートホース・クイックコネクタの製造企業、清浄度報告書と受入判定を担当する品質技術者。" }] }
       ]
     },
     {
