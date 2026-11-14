@@ -195,6 +195,8 @@ export async function getProducts(): Promise<SanityProduct[]> {
   return (
     (await fetchConfigured<SanityProduct[]>(
       `*[_type == "product" && publishState == "published"] | order(category asc, title asc) ${productProjection}`,
+      {},
+      { cache: "no-store" },
     )) ?? []
   );
 }

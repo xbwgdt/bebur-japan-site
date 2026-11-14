@@ -39,6 +39,14 @@ describe("Sanity static-build client", () => {
     expect(pageProjection).toContain("asset->{_ref, url}");
   });
 
+  it("reads current published product specifications on every static build", async () => {
+    const fetchMock=vi.fn().mockResolvedValue([]);
+    createClientMock.mockReturnValue({fetch:fetchMock});
+    const {getProducts}=await import("../lib/sanity/queries");
+    await getProducts();
+    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining('_type == "product"'),{}, {cache:"no-store"});
+  });
+
   it("fetches a published page by slug with the page-block projection", async () => {
     const fetchMock = vi.fn().mockResolvedValue(null);
     createClientMock.mockReturnValue({ fetch: fetchMock });
