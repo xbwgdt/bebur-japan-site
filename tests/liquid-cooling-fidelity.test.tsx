@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { localSolutionPage } from "@/lib/liquid-cooling";
+import sensors from "@/content/ja/liquid-cooling-sensors.json";
 
 const blocks = localSolutionPage.blocks as Array<Record<string, unknown>>;
 const block = (key: string) => {
@@ -13,6 +14,14 @@ const copy = (key: string) => {
 };
 
 describe("Chinese liquid-cooling source fidelity in editable Japanese data", () => {
+  it("marks the retained EC350 values as requiring manufacturer confirmation in both locations", () => {
+    const table=block("specs-bs-ec350");
+    expect(table.title).toContain("メーカー確認が必要");
+    expect((table.rows as Array<{cells:string[]}>)[0].cells).toEqual(["仕様の確認について",expect.stringContaining("メーカーへの確認が必要")]);
+    const product=sensors.find(sensor=>sensor.model==="BS-EC350")!;
+    expect(product.specifications[0]).toMatchObject({label:"仕様の確認について",value:expect.stringContaining("メーカーへの確認が必要")});
+    expect(product.specifications.filter(row=>row.label.includes("測定範囲")).map(row=>row.value)).toEqual(["0～20 μS/cm","0～200 μS/cm","0～1000 μS/cm","0～2000 μS/cm","2～20000 μS/cm"]);
+  });
   it("keeps the reviewed conclusion and the original page identity", () => {
     expect(copy("summary")).toContain("清浄度報告書が差し戻される最も多い原因");
     expect(copy("hero-liquid-cooling")).toContain("腐食");

@@ -88,7 +88,7 @@ describe("English source editorial UI in Japanese", () => {
     for (const block of localSolutionPage.blocks) if (block.title) expect(html).toContain(block.title);
     expect(html).toContain("GB/T 48023-2026");
     expect(html).toContain("日本国内で一律に適用される規格一覧ではありません");
-    expect(html).toContain("BS-EC350 現行仕様");
+    expect(html).toContain("BS-EC350 掲載仕様（メーカー確認が必要）");
     expect(html).toContain("info@newtree-i.com");
     expect(html).toContain("080-5189-8663");
   });
