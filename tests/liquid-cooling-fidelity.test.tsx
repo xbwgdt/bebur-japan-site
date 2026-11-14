@@ -14,12 +14,13 @@ const copy = (key: string) => {
 };
 
 describe("Chinese liquid-cooling source fidelity in editable Japanese data", () => {
-  it("marks the retained EC350 values as requiring manufacturer confirmation in both locations", () => {
+  it("keeps internal manufacturer-reconciliation notes out of public EC350 content without changing specifications", () => {
     const table=block("specs-bs-ec350");
-    expect(table.title).toContain("メーカー確認が必要");
-    expect((table.rows as Array<{cells:string[]}>)[0].cells).toEqual(["仕様の確認について",expect.stringContaining("メーカーへの確認が必要")]);
+    expect(table.title).toBe("BS-EC350 仕様（型式・構成別）");
+    expect((table.rows as Array<{_key:string;cells:string[]}>).some(row=>row._key==="manufacturer-confirmation")).toBe(false);
     const product=sensors.find(sensor=>sensor.model==="BS-EC350")!;
-    expect(product.specifications[0]).toMatchObject({label:"仕様の確認について",value:expect.stringContaining("メーカーへの確認が必要")});
+    expect(product.specifications.some(row=>row.label==="仕様の確認について")).toBe(false);
+    expect(JSON.stringify([table,product])).not.toMatch(/掲載値は現在|メーカーへの確認が必要|メーカーの中国語版|メーカー確認が必要/);
     expect(product.specifications.filter(row=>row.label.includes("測定範囲")).map(row=>row.value)).toEqual(["0～20 μS/cm","0～200 μS/cm","0～1000 μS/cm","0～2000 μS/cm","2～20000 μS/cm"]);
   });
   it("keeps the reviewed conclusion and the original page identity", () => {
