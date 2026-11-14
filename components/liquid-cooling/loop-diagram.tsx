@@ -32,6 +32,15 @@ export function LoopDiagram({ diagram }: { diagram: LiquidCoolingDesign["diagram
         <g fontFamily="var(--editorial-font)" textAnchor="middle" fill="var(--hero-muted)"><text x="327" y="307" fontSize="11">{diagram.sampling}</text><text x="327" y="324" fontSize="9.5">{diagram.samplingNote}</text></g>
         <g stroke="var(--diagram-line)">{[117,149,181,213].map(y=><line key={y} x1="404" y1={y} x2="380" y2={y} />)}</g>
       </svg>}
+    {!(diagram.mode === "image" && diagram.image.asset.url) && <div className="loop-mobile-legend">
+      <ul className="loop-mobile-sensors">
+        {[diagram.ph, diagram.conductivity, diagram.turbidity, diagram.particles].map((label, index) => <li key={index}><b>{String(index + 1).padStart(2, "0")}</b><span>{label}</span></li>)}
+      </ul>
+      <p>{diagram.cdu}</p>
+      <p>{diagram.loop} · {diagram.coolant}</p>
+      <p>{diagram.supply} → {diagram.plates} → {diagram.return}</p>
+      <p>{diagram.sampling}<br />{diagram.samplingNote}</p>
+    </div>}
     <figcaption>{diagram.caption}</figcaption>
   </figure>;
 }

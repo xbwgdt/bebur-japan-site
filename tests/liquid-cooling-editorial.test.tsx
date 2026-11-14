@@ -9,6 +9,24 @@ import { getPublishedPageForRoute } from "@/lib/cms-pages";
 vi.mock("@/lib/cms-pages", () => ({ getPublishedPageForRoute: vi.fn(async () => null) }));
 
 describe("English source editorial UI in Japanese", () => {
+  it("provides a readable mobile legend using the same editable diagram labels", async () => {
+    vi.mocked(getPublishedPageForRoute).mockResolvedValueOnce({ ...localSolutionPage, liquidCoolingDesign: { diagram: { conductivity: "編集した導電率", sampling: "編集した採水" } } } as never);
+    const $ = load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));
+    expect($(".loop-mobile-legend .loop-mobile-sensors li")).toHaveLength(4);
+    expect($(".loop-mobile-legend").text()).toContain("02編集した導電率");
+    expect($(".loop-mobile-legend").text()).toContain("編集した採水");
+    expect($(".loop-mobile-legend").text()).toContain("コールドプレート");
+    const css = readFileSync("app/liquid-cooling-editorial.css", "utf8");
+    expect(css).toMatch(/\.loop-mobile-legend\s*\{\s*display:\s*none/);
+    expect(css).toMatch(/\.loop-mobile-legend\s*\{[^}]*font-size:\s*14px/);
+  });
+  it("keeps mobile contact labels on one line without shrinking the tap target", () => {
+    const css = readFileSync("app/globals.css", "utf8");
+    const rule = css.match(/\.mobile-contact-bar a\s*\{([^}]+)\}/)?.[1] ?? "";
+    expect(rule).toContain("white-space: nowrap");
+    expect(rule).toContain("font-size: clamp(0.75rem, 3.5vw, 0.875rem)");
+    expect(rule).toContain("min-height: 3rem");
+  });
   it("keeps summary styling and the hero anchor editable", async () => {
     vi.mocked(getPublishedPageForRoute).mockResolvedValueOnce({...localSolutionPage,blocks:localSolutionPage.blocks.map(block=>block._type==="hero"?{...block,anchorId:"edited-overview"}:block.anchorId==="summary"?{...block,color:"red",fontSize:"lg",alignment:"center",spacing:"compact"}:block)});
     const $=load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));

@@ -71,6 +71,7 @@
 
 .lc-editorial .loop-fig{margin:0;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.025);padding:12px 12px 10px}
 .lc-editorial .loop-fig svg{width:100%;height:auto;display:block}
+.lc-editorial .loop-mobile-legend { display:none; }
 .lc-editorial .loop-fig figcaption{font-size:11.5px;line-height:1.7;color:var(--hero-muted);margin-top:8px;padding:0 2px}
 .lc-editorial .flow{stroke-dasharray:5 9;animation:lc-flowdash var(--flow-duration,14s) linear infinite}
 @keyframes lc-flowdash{to{stroke-dashoffset:-140}}
@@ -324,6 +325,12 @@
   .lc-editorial .lc-hero h1 { font-size:calc(2.2em * var(--hero-scale,1)); }
   .lc-editorial .hero-in { padding-block:var(--hero-mobile-padding,2.2rem); }
   .lc-editorial .loop-fig { padding:.4rem; }
+  .lc-editorial .loop-mobile-legend { display:block; font-size:14px; line-height:1.7; color:var(--hero-muted); padding:.75rem .5rem; border-top:1px solid var(--diagram-line); }
+  .lc-editorial .loop-mobile-sensors { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.6rem; list-style:none; margin:0 0 .9rem; padding:0; }
+  .lc-editorial .loop-mobile-sensors li { display:flex; align-items:baseline; gap:.45rem; min-width:0; overflow-wrap:anywhere; }
+  .lc-editorial .loop-mobile-sensors b { color:var(--teal-hi); flex-shrink:0; }
+  .lc-editorial .loop-mobile-legend p { margin:.45rem 0 0; }
+  .lc-editorial .loop-fig figcaption { font-size:13px; }
   .lc-editorial .specs { margin-top:1.75rem; }
   .lc-editorial .spec { padding:.9rem; }
   .lc-editorial .spec .v { font-size:.95em; }
