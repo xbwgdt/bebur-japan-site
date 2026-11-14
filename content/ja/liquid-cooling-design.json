@@ -1,5 +1,5 @@
 {
-  "eyebrow": "液冷 / データセンター / 水質と液中粒子",
+  "eyebrow": "液冷 / データセンター / 水質・粒子管理",
   "navigationTitle": "液冷システムの清浄度管理",
   "tocTitle": "このページの目次",
   "detailsLabel": "仕様一覧を表示",
@@ -11,8 +11,9 @@
     "muted": "#506980", "body": "#183550", "heroText": "#FFFFFF", "heroMuted": "#CDDFEF", "diagramLine": "#80ABC9"
   },
   "metadata": [
-    { "_key": "updated", "_type": "solutionMeta", "label": "更新", "value": "2026-11-14" },
-    { "_key": "basis", "_type": "solutionMeta", "label": "参照基準", "value": "GB/T 48023-2026など中国の15規格・参考基準" },
+    { "_key": "updated", "_type": "solutionMeta", "label": "日本語版更新", "value": "2026-11-14" },
+    { "_key": "source-updated", "_type": "solutionMeta", "label": "原資料更新", "value": "2026-11-11" },
+    { "_key": "basis", "_type": "solutionMeta", "label": "参照基準", "value": "GB/T 48023-2026、T/CAEE 098-2026など15規格" },
     { "_key": "reading", "_type": "solutionMeta", "label": "読了目安", "value": "約14分" }
   ],
   "navigation": [
@@ -36,12 +37,12 @@
     { "_key": "turb", "_type": "solutionMetric", "label": "濁度", "value": "≤5 / ≤20 NTU", "note": "受入時 / 稼働中の参考限界値" },
     { "_key": "particles", "_type": "solutionMetric", "label": "液中粒子", "value": "50 / 300 µm", "note": "二次側 / 一次側のろ過精度。出荷時16/14/11" }
   ],
-  "metricNote": "中国規格GB/T 48023-2026附属書A・BおよびT/CAEE 098-2026の参考値です。稼働中pHは受入値±1以内という条件も確認します。日本での一律要求ではなく、最終判定は適用規格と契約・技術協定によります。",
+  "metricNote": "数値はGB/T 48023-2026附属書A表A.1、附属書Bのフラッシング要件、およびT/CAEE 098-2026の清浄度条項から抜粋しています。稼働中のpHは「受入時の基準値±1」の条件も満たす必要があります。判定は規格本文と案件の技術協定に従います。",
   "parameters": [
-    { "_key": "ph", "_type": "solutionParameter", "title": "pH", "topic": "酸・アルカリ / 防食剤", "value": "8.0–10.0", "note": "受入時・銅製コールドプレート", "summary": "酸・アルカリの状態と防食剤の有効範囲を確認します。稼働中は受入時の基準値からの変動にも着目します。" },
-    { "_key": "ec", "_type": "solutionParameter", "title": "導電率", "topic": "溶存イオン", "value": "案件条件で選定", "note": "冷却液と管理値に合う測定範囲", "summary": "溶存イオンの総量を捉えます。二次側冷却液の判定値は技術協定に明記し、液種と温度に適したレンジを選びます。" },
-    { "_key": "turb", "_type": "solutionParameter", "title": "濁度", "topic": "懸濁物の総量", "value": "5 / 20", "note": "NTU・受入時 / 稼働中の参考値", "summary": "懸濁物による光学的な濁りを捉えます。傾向監視と警報に適しますが、粒径別の清浄度判定を単独では行えません。" },
-    { "_key": "particles", "_type": "solutionParameter", "title": "液中粒子", "topic": "粒径別の個数", "value": "16/14/11", "note": "ISO 4406・出荷時の参考等級", "summary": "粒径分布と清浄度コードを確認します。部品受入、フィルタ評価、異常時の原因調査に用います。" }
+    { "_key": "ph", "_type": "solutionParameter", "title": "pH", "topic": "酸・アルカリのバランス / 防食剤", "value": "8.0–10.0", "note": "受入時・銅製コールドプレート", "summary": "酸・アルカリのバランスと防食剤の有効性を管理します。稼働中に重要なのは絶対値だけでなく、受入時の基準値からの変動です。" },
+    { "_key": "ec", "_type": "solutionParameter", "title": "導電率", "topic": "溶存イオン", "value": "0–2000", "note": "μS/cm・計器の測定範囲", "summary": "イオンの総量を管理します。規格が求めるのは報告値と当事者間の協議であり、一律の限界値を探すより、適切な測定範囲を選ぶことが実務的です。" },
+    { "_key": "turb", "_type": "solutionParameter", "title": "濁度", "topic": "懸濁物の総量", "value": "5 / 20", "note": "NTU・受入時 / 稼働中", "summary": "懸濁物の総量を管理しますが、粒径別の区分は分かりません。警報には使えても、単独で清浄度等級の判定を完結させることはできません。" },
+    { "_key": "particles", "_type": "solutionParameter", "title": "液中粒子", "topic": "粒径別の計数", "value": "16/14/11", "note": "ISO 4406・出荷時の清浄度等級", "summary": "粒径分布と清浄度コードを管理し、部品の受入判定、フィルタ評価、異常原因の追跡における主要な判定根拠となります。" }
   ],
   "diagram": {
     "mode": "animation", "enabled": true, "speed": 14,

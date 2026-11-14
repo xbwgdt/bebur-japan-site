@@ -41,9 +41,9 @@ function BodyBlock({block,id,detailsLabel}:{block:PageBlock;id:string;detailsLab
   if(block._type==="hero") return <section className="sec extra-hero" id={id}><h2>{block.title}</h2><p>{block.summary}</p>{block.image?.asset?.url&&<img src={block.image.asset.url} alt={block.image.alt||block.title||""} />}</section>;
   if(block._type==="dataTable") {
     const particleValues=(block.rows??[]).map(row=>Number(row.cells?.[0]?.match(/\d+(?:\.\d+)?/)?.[0]??0));
-    const particleMaximum=Math.max(1,...particleValues);
+    const particleMaximum=Math.max(10,...particleValues);
     if(id.startsWith("specs-")) return <section className="sec sensor-spec" id={id}><details><summary>{block.title} — {detailsLabel}</summary><Table block={block}/></details></section>;
-    if(id==="particle-scales") return <section className="sec" id={id}><h2>{block.title}</h2><div className="scale" aria-label={block.title}>{block.rows?.map((row,i)=><div className="scale-row" key={i}><div className="v">{row.cells?.[0]}</div><div className="bar"><i className={particleValues[i]>=50?"warn":undefined} data-particle-size={particleValues[i]} style={{width:`${Math.round(particleValues[i]/particleMaximum*10000)/100}%`}}/></div><div className="d">{row.cells?.slice(1).join(" — ")}</div></div>)}</div></section>;
+    if(id==="particle-scales") return <section className="sec" id={id}><h2>{block.title}</h2><div className="scale" aria-label={block.title}>{block.rows?.map((row,i)=><div className="scale-row" key={i}><div className="v">{row.cells?.[0]}</div><div className="bar"><i className={particleValues[i]>=50?"warn":undefined} data-particle-size={particleValues[i]} style={{width:`${Math.round(Math.log10(Math.max(1,particleValues[i]))/Math.log10(particleMaximum)*10000)/100}%`}}/></div><div className="d">{row.cells?.slice(1).join(" — ")}</div></div>)}</div></section>;
     return <section className="sec" id={id}><Table block={block}/></section>;
   }
   if(block._type==="richText") {

@@ -52,6 +52,12 @@ describe("English source editorial UI in Japanese", () => {
     expect($(".scale-row .bar i").first().attr("data-particle-size")).toBe("300");
     expect($(".scale-row .bar i").first().attr("style")).toBe("width:100%");
     expect($(".scale-row .bar i").last().attr("data-particle-size")).toBe("4");
+    expect($(".scale-row .bar i").last().attr("style")).toBe("width:24.3%");
+  });
+  it("keeps logarithmic particle scaling finite for zero or nonnumeric CMS rows", async () => {
+    vi.mocked(getPublishedPageForRoute).mockResolvedValueOnce({...localSolutionPage,blocks:localSolutionPage.blocks.map(block=>block._type==="dataTable"&&block.anchorId==="particle-scales"?{...block,rows:[{cells:["0 µm","ゼロ"]},{cells:["未設定","数値なし"]},{cells:["10 µm","編集した粒径"]}]}:block)});
+    const $=load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));
+    expect($(".scale-row .bar i").map((_,e)=>$(e).attr("style")).get()).toEqual(["width:0%","width:0%","width:100%"]);
   });
   it("honors existing hero typography controls without duplicating its action", async () => {
     vi.mocked(getPublishedPageForRoute).mockResolvedValueOnce({ ...localSolutionPage, blocks:localSolutionPage.blocks.map(block=>block._type==="hero"?{...block,fontSize:"lg",alignment:"center",desktopTitleWrap:"nowrap"}:block) });
