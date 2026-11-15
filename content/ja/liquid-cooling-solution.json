@@ -279,7 +279,7 @@
     },
     {
       "_key": "standards-use", "_type": "richText", "anchorId": "standards-use", "color": "neutral", "title": "規格と契約条件を報告書へ落とし込む", "content": [
-        { "_key": "std-use-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "JISは対象となる試験方法やコード表示の範囲で参照します。ASHRAEの白書とOCPのガイドラインは技術指針であり、米国の国家強制規格ではありません。参照するだけで設備やBebur計器が認証を取得したことにもなりません。採用文書の版・節、媒体、温度、対象工程とメーカー条件を記録します。" }] },
+        { "_key": "std-use-1", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "JISは対象となる試験方法やコード表示の範囲で参照します。ASHRAEの白書とOCPのガイドラインは技術指針であり、米国の国家強制規格ではありません。採用文書の版・節、媒体、温度、対象工程とメーカー条件を記録します。" }] },
         { "_key": "std-use-2", "_type": "block", "style": "h3", "markDefs": [], "children": [{ "_type": "span", "text": "判定根拠が重なる場合" }] },
         { "_key": "std-use-3", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "適用法令を満たすことを前提に、メーカーの安全・材料適合条件を確認し、契約・技術協定を優先して案件の判定根拠を定めます。文書が食い違う場合は、対象や処方を確認して関係者と解決します。pHや導電率は単純に低い方が安全とは限らず、複数文書から都合のよい数値や厳しい値だけを寄せ集めません。判定欄には採用した条件を記し、別資料の値は比較欄へ分けます。" }] },
         { "_key": "std-use-4", "_type": "block", "style": "normal", "markDefs": [], "children": [{ "_type": "span", "text": "施設側の冷却水とサーバー側の冷却液、洗浄後の水と添加剤入りの稼働液、部品の抽出液とシステム循環液を区別します。水質値と粒径別個数は別の測定量です。洗浄後の水質が良好でも、単一部品の内部清浄度やすべての運転条件への適合を保証しません。" }] }

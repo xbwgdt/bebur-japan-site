@@ -1,7 +1,7 @@
 import defaults from "@/content/ja/liquid-cooling-design.json";
 import type { CSSProperties } from "react";
 
-export type LiquidCoolingDesign = typeof defaults;
+export type LiquidCoolingDesign = Omit<typeof defaults, "metadata"> & { metadata: Array<{ _key: string; _type: string; label: string; value: string }> };
 const record = (value: unknown): Record<string, unknown> => value !== null && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {};
 
 function mergeKnown(base: unknown, value: unknown): unknown {
@@ -12,6 +12,8 @@ function mergeKnown(base: unknown, value: unknown): unknown {
 
 export function resolveLiquidCoolingDesign(value?: unknown): LiquidCoolingDesign {
   const resolved = mergeKnown(defaults, value) as LiquidCoolingDesign;
+  const metadata = record(value).metadata;
+  resolved.metadata = Array.isArray(metadata) ? metadata.slice(0, 40).map(item => mergeKnown({ _key: "", _type: "solutionMeta", label: "", value: "" }, item)) as LiquidCoolingDesign["metadata"] : structuredClone(defaults.metadata);
   for (const key of Object.keys(defaults.theme) as Array<keyof LiquidCoolingDesign["theme"]>) {
     if (!/^#[0-9a-f]{6}$/i.test(resolved.theme[key])) resolved.theme[key] = defaults.theme[key];
   }

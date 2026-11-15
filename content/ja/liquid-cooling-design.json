@@ -10,12 +10,7 @@
     "line": "#D5E1EC", "lineSoft": "#E3EBF3", "accent": "#2458A0", "accentBright": "#53D5EF", "warning": "#9C6517",
     "muted": "#506980", "body": "#183550", "heroText": "#FFFFFF", "heroMuted": "#CDDFEF", "diagramLine": "#80ABC9"
   },
-  "metadata": [
-    { "_key": "updated", "_type": "solutionMeta", "label": "日本語版更新", "value": "2026-11-15" },
-    { "_key": "source-updated", "_type": "solutionMeta", "label": "原資料更新", "value": "2026-11-11" },
-    { "_key": "basis", "_type": "solutionMeta", "label": "参照体系", "value": "日本規格優先・ASHRAE／OCPで補完" },
-    { "_key": "reading", "_type": "solutionMeta", "label": "読了目安", "value": "約14分" }
-  ],
+  "metadata": [],
   "navigation": [
     { "_key": "mechanism", "_type": "solutionNavItem", "label": "汚染のメカニズム", "anchor": "mechanism" },
     { "_key": "parameters", "_type": "solutionNavItem", "label": "4つの測定項目", "anchor": "parameters" },

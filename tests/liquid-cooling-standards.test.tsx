@@ -10,6 +10,13 @@ vi.mock("@/lib/cms-pages", () => ({ getPublishedPageForRoute: vi.fn(async () => 
 const copy = JSON.stringify([localSolutionPage, design]);
 
 describe("Japan-first liquid cooling standards localization", () => {
+  it("keeps editorial bookkeeping and the rejected certification sentence off the customer page", async () => {
+    expect(design.metadata).toEqual([]);
+    const $=load(renderToStaticMarkup(await LiquidCoolingSolutionPage()));
+    expect($(".hero-meta")).toHaveLength(0);
+    expect($(".lc-hero").text()).not.toMatch(/日本語版更新|原資料更新|参照体系|読了目安/);
+    expect($(".lc-editorial").text()).not.toContain("参照するだけで設備やBebur計器が認証を取得したことにもなりません");
+  });
   it("removes Chinese normative references from every editable public surface", () => {
     expect(copy).not.toMatch(/GB\/T|YD\/T|T\/CAEE|T\/CIEP|T\/DZJN|T\/GDSS|中国規格|中国国家規格|中国団体規格|15規格|15の参照/);
   });
@@ -38,8 +45,8 @@ describe("Japan-first liquid cooling standards localization", () => {
     expect($(".japan-contact").text()).toContain("新樹産業株式会社");
   });
   it("continues to use CMS text, colors, typography, metrics and navigation", async () => {
-    vi.mocked(getPublishedPageForRoute).mockResolvedValueOnce({ ...localSolutionPage, liquidCoolingDesign: { ...design, fontFamily: "sans", fontSize: 18, theme: { ...design.theme, accent: "#123456" }, metrics: [{ ...design.metrics[0], value: "編集した管理条件" }], navigation: [{ _key:"standards",_type:"solutionNavItem",label:"編集した参照資料",anchor:"standards" }] } } as never);
+    vi.mocked(getPublishedPageForRoute).mockResolvedValueOnce({ ...localSolutionPage, liquidCoolingDesign: { ...design, metadata:[{_key:"custom",_type:"solutionMeta",label:"編集した案内",value:"公開する説明"}], fontFamily: "sans", fontSize: 18, theme: { ...design.theme, accent: "#123456" }, metrics: [{ ...design.metrics[0], value: "編集した管理条件" }], navigation: [{ _key:"standards",_type:"solutionNavItem",label:"編集した参照資料",anchor:"standards" }] } } as never);
     const html = renderToStaticMarkup(await LiquidCoolingSolutionPage());
-    for (const term of ["編集した管理条件", "編集した参照資料", "--teal:#123456", "--editorial-size:18px", "Yu Gothic"]) expect(html).toContain(term);
+    for (const term of ["編集した管理条件", "編集した参照資料", "編集した案内", "公開する説明", "--teal:#123456", "--editorial-size:18px", "Yu Gothic"]) expect(html).toContain(term);
   });
 });
