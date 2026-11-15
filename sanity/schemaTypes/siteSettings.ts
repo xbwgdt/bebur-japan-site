@@ -134,7 +134,7 @@ export default defineType({
         defineField({ name: "summary", title: "日文摘要", type: "text", validation: (Rule) => Rule.required().max(400).custom(validateJapaneseProse) }),
         defineField({ name: "image", title: "专题图片", type: "image", options: { hotspot: true }, fields: [requiredJapaneseField("alt", "图片替代文字")] }),
         { ...liquidCoolingDiagramField, description: "仅管理首页右侧示意图；与专题页独立。选择图片模式但未上传替换图时，使用上方专题图片。" },
-        defineField({ name: "diagramColors", title: "首页动画配色", type: "object", initialValue: { background: "#F1F7FC", text: "#113B6B", line: "#2458A0", accent: "#087F9C" }, fields: Object.entries({ background: "动画背景", text: "动画文字", line: "管路与边框", accent: "流动虚线与编号" }).map(([name, title]) => defineField({ name, title, type: "string", description: "# 加六位颜色代码。请保持文字与背景有足够对比。", validation: Rule => Rule.regex(/^#[0-9a-f]{6}$/i).error("请输入 # 加六位颜色代码。") })) }),
+        defineField({ name: "diagramColors", title: "首页动画配色", type: "object", initialValue: { background: "#F1F7FC", text: "#113B6B", line: "#2458A0", accent: "#086D87" }, fields: Object.entries({ background: "动画背景", text: "动画文字", line: "管路与边框", accent: "流动虚线与编号" }).map(([name, title]) => defineField({ name, title, type: "string", description: "# 加六位颜色代码。请保持文字与背景有足够对比。", validation: Rule => Rule.regex(/^#[0-9a-f]{6}$/i).error("请输入 # 加六位颜色代码。") })) }),
         defineField({ name: "action", title: "按钮", type: "object", fields: [requiredJapaneseField("label", "按钮文字"), defineField({ name: "href", title: "链接", type: "string", validation: (Rule) => Rule.required().regex(/^\/(?!\/)/u) })] }),
         defineField({ name: "style", title: "配色、字号与字体", type: "object", fields: contactPanelStyleFields() }),
       ],

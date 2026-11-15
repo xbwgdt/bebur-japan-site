@@ -109,7 +109,7 @@ export const localPublicSiteSettings: PublicSiteSettings = {
     action: { label: "液冷ソリューションを見る", href: "/solutions/liquid-cooling-cleanliness-testing" },
     style: { color: "deepBlue", fontSize: "md", fontFamily: "sans" },
     diagram: resolveLiquidCoolingDesign().diagram,
-    diagramColors: { background: "#F1F7FC", text: "#113B6B", line: "#2458A0", accent: "#087F9C" },
+    diagramColors: { background: "#F1F7FC", text: "#113B6B", line: "#2458A0", accent: "#086D87" },
   },
   homeHero: {
     eyebrow: "WATER QUALITY & GAS DETECTION",

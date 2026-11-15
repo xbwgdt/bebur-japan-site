@@ -16,11 +16,11 @@
 - Publish only after desktop/mobile browser QA, unit tests, static build and independent review.
 
 ## Tasks
-- [ ] Add failing tests: homepage-only animated SVG; existing applications/image mode; editable labels/speed/off/colors; invalid colors/URLs; schema and query coverage.
-- [ ] Reuse the diagram field, add homeSolution diagram/palette resolution and GROQ projection. Defaults animate without overwriting published copy. Render LoopDiagram only when homepage prop is enabled and mode is animation; image mode keeps existing uploaded image fallback.
-- [ ] Add a locally scoped pale-blue diagram wrapper using CSS variables and inherited font, with readable mobile legend. Keep dedicated-page styles/markup unchanged.
-- [ ] Run targeted Vitest tests under Node 22, Studio typecheck/build, production build and static audit. Review diff independently before main.
-- [ ] Preview the built output; inspect desktop and 390px/320px mobile layouts, labels, link, running flow and reduced-motion. Verify Studio's new Chinese controls.
+- [x] Add failing tests: homepage-only animated SVG; existing applications/image mode; editable labels/speed/off/colors; invalid colors/URLs; schema and query coverage.
+- [x] Reuse the diagram field, add homeSolution diagram/palette resolution and GROQ projection. Defaults animate without overwriting published copy. Render LoopDiagram only when homepage prop is enabled and mode is animation; image mode keeps existing uploaded image fallback.
+- [x] Add a locally scoped pale-blue diagram wrapper using CSS variables and inherited font, with readable mobile legend. Keep dedicated-page styles/markup unchanged.
+- [x] Run targeted Vitest tests under Node 22, Studio typecheck/build, production build and static audit. Review diff independently before main.
+- [x] Preview the built output; inspect desktop and 390px/320px mobile layouts, labels, running flow and reduced-motion. Final contrast enhancement gives small accent text 5.48:1 against its panel. Studio controls checked during publishing below.
 - [ ] Publish Studio schema and feature branch; wait for full CI/preview. Promote to main only after required checks. Confirm production homepage and unchanged dedicated page plus original Japan contacts. Save desktop/mobile screenshots.
 
 ## Verification commands

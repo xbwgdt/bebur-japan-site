@@ -7,6 +7,17 @@ import { localPublicSiteSettings, resolvePublicSiteSettings } from "@/lib/site-s
 import { siteSettingsQuery } from "@/lib/sanity/queries";
 
 describe("homepage solution animation", () => {
+  it("gives the small diagram numbers and labels accessible default contrast", () => {
+    const luminance = (hex: string) => {
+      const rgb = hex.slice(1).match(/../g)!.map(value => parseInt(value, 16) / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
+      return .2126 * rgb[0] + .7152 * rgb[1] + .0722 * rgb[2];
+    };
+    const colors = localPublicSiteSettings.homeSolution.diagramColors;
+    for (const color of [colors.text, colors.accent]) {
+      const values = [luminance(colors.background), luminance(color)].sort((a, b) => b - a);
+      expect((values[0] + .05) / (values[1] + .05)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
   it("reuses the native loop only on the homepage and preserves the solution copy and link", () => {
     const $ = load(renderToStaticMarkup(<SolutionPromotion animated />));
     expect($("h2").text()).toBe("液冷システムの清浄度検査ソリューション");
