@@ -613,7 +613,7 @@ describe("production SEO metadata routes", () => {
       distributor: "日本総代理店 新樹産業株式会社",
     });
 
-    expect(iconSize).toEqual({ width: 64, height: 64 });
+    expect(iconSize).toEqual({ width: 1173, height: 406 });
     expect(iconContentType).toBe("image/png");
     expect(iconDynamic).toBe("force-static");
     expect(openGraphDynamic).toBe("force-static");

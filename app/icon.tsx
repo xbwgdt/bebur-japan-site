@@ -1,49 +1,21 @@
-import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const dynamic = "force-static";
 
 export const size = {
-  width: 64,
-  height: 64,
+  width: 1173,
+  height: 406,
 };
 
 export const contentType = "image/png";
 
-export default function Icon(): ImageResponse {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          alignItems: "center",
-          background:
-            "linear-gradient(145deg, #061b39 0%, #0a4d82 58%, #10b9d3 100%)",
-          color: "#ffffff",
-          display: "flex",
-          fontFamily: "Arial, sans-serif",
-          fontSize: 38,
-          fontWeight: 700,
-          height: "100%",
-          justifyContent: "center",
-          letterSpacing: "-0.08em",
-          width: "100%",
-        }}
-      >
-        <span
-          style={{
-            alignItems: "center",
-            border: "2px solid rgba(255,255,255,0.84)",
-            borderRadius: 16,
-            display: "flex",
-            height: 48,
-            justifyContent: "center",
-            paddingRight: 2,
-            width: 48,
-          }}
-        >
-          B
-        </span>
-      </div>
-    ),
-    size,
+export default async function Icon(): Promise<Response> {
+  const image = await readFile(
+    join(process.cwd(), "public", "media", "brand", "bebur-favicon.png"),
   );
+
+  return new Response(new Uint8Array(image), {
+    headers: { "Content-Type": contentType },
+  });
 }
