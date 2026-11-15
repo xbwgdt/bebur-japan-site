@@ -237,7 +237,7 @@ const canonicalRoutes = [...routeMappings.keys(), ...expansionRoutes].toSorted()
 const { createViteServer } = await import("vitest/node");
 const moduleServer = await createViteServer({
   appType: "custom",
-  configFile: path.join(root, "vitest.config.ts"),
+  configFile: path.join(root, "vitest.config.mts"),
   logLevel: "silent",
   root,
   server: {

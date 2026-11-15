@@ -29,7 +29,7 @@ export async function validateSanityImportDocuments(documents, { existingDocumen
     }
     moduleServer = await createViteServer({
       appType: "custom",
-      configFile: path.join(root, "vitest.config.ts"),
+      configFile: path.join(root, "vitest.config.mts"),
       logLevel: "silent",
       root,
       server: { middlewareMode: true },

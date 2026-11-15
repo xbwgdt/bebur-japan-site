@@ -8,11 +8,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sanity/locale-zh-hans": "^2.1.35",
-    "@sanity/vision": "^3.99.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "sanity": "^3.99.0",
+    "@sanity/locale-zh-hans": "^2.1.40",
+    "@sanity/vision": "^6.23.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sanity": "^6.23.0",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {

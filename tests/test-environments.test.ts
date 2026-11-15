@@ -6,7 +6,7 @@ describe("Vitest environment isolation", () => {
   it("keeps Node as the default and opts render tests into JSDOM", async () => {
     const jsdomDirective = ["// @vitest-environment", "jsdom"].join(" ");
     const [config, contactTest, componentTest] = await Promise.all([
-      readFile("vitest.config.ts", "utf8"),
+      readFile("vitest.config.mts", "utf8"),
       readFile("tests/contact.test.ts", "utf8"),
       readFile("tests/components.test.ts", "utf8"),
     ]);
