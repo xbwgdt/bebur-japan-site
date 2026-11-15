@@ -242,6 +242,7 @@ const moduleServer = await createViteServer({
   root,
   server: {
     middlewareMode: true,
+    watch: null,
   },
 });
 
@@ -279,7 +280,7 @@ try {
 
 const seoOutputErrors = auditSeoOutputs({
   canonicalOrigin,
-  canonicalRoutes,
+  canonicalRoutes: canonicalRoutes.filter(route => route !== "/about/company-profile"),
   sitemapEntries,
   robotsPolicy,
   siteConfig: liveSiteConfig,
@@ -496,7 +497,7 @@ const failed =
   unexpectedSourceUrls.length > 0 ||
   duplicateRoutes.length > 0 ||
   canonicalRoutes.length !== 114 ||
-  sitemapUrls.length !== 114 ||
+  sitemapUrls.length !== 113 ||
   duplicateSitemapUrls.length > 0 ||
   invalidSitemapUrls.length > 0 ||
   seoOutputErrors.length > 0 ||

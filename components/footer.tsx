@@ -11,7 +11,7 @@ function footerGroups(settings: PublicSiteSettings) {
       title: "クイックリンク",
       links: [
         {
-          href: "/about/company-profile",
+          href: "/about/overview",
           label: settings.navigationLabels.company,
         },
         { href: "/products", label: settings.navigationLabels.products },

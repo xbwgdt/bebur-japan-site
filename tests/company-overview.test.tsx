@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { load } from "cheerio";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import sitemap from "@/app/sitemap";
 import AboutDetailPage, { generateMetadata } from "@/app/about/[slug]/page";
 import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import { pageProjection } from "@/lib/sanity/queries";
@@ -11,6 +12,15 @@ vi.mock("@/lib/cms-pages", () => ({ getPublishedPageForRoute: vi.fn(async () => 
 const renderOverview = async () => load(renderToStaticMarkup(await AboutDetailPage({params:Promise.resolve({slug:"overview"})})));
 
 describe("complete editable company overview", () => {
+  it("retires the redundant company-profile destination without breaking old links", async () => {
+    const $=await renderOverview();
+    expect($("#company-profile .company-overview__text-link")).toHaveLength(0);
+    expect(sitemap().map(item=>item.url)).not.toContain("https://www.bebur-jp.com/about/company-profile");
+    expect(sitemap().map(item=>item.url)).toContain("https://www.bebur-jp.com/about/overview");
+    const redirects=readFileSync("public/_redirects","utf8");
+    expect(redirects).toMatch(/^\/about\/company-profile\s+\/about\/overview\s+301$/m);
+    expect(redirects).toMatch(/^\/about\/company-profile\/\s+\/about\/overview\s+301$/m);
+  });
   it("fills the empty route with the reference's complete Japanese presentation", async () => {
     const $=await renderOverview();
     expect($("h1")).toHaveLength(1);

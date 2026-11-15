@@ -18,7 +18,7 @@ afterEach(cleanup);
 
 const navigationItems = [
   { href: "/", label: "ホーム" },
-  { href: "/about/company-profile", label: "企業情報" },
+  { href: "/about/overview", label: "企業情報" },
   { href: "/products", label: "製品情報" },
   { href: "/solutions/liquid-cooling-cleanliness-testing", label: "液冷ソリューション" },
   { href: "/applications", label: "導入分野・事例" },
@@ -68,6 +68,7 @@ describe("shared Bebur Japan components", () => {
       name: "フッターナビゲーション",
     });
     const address = within(footer).getByText(siteConfig.address);
+    expect(within(navigation).getByRole("link", { name: "企業情報" }).getAttribute("href")).toBe("/about/overview");
     const email = within(footer).getByRole("link", {
       name: siteConfig.email,
     });

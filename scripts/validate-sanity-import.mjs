@@ -1,8 +1,13 @@
 import path from "node:path";
+import { createRequire } from "node:module";
 
 import { JSDOM } from "jsdom";
-import { createSchema, validateDocument } from "sanity";
+import { Schema } from "@sanity/schema";
+import { builtinTypes, groupProblems, validateSchema } from "@sanity/schema/_internal";
+import { validateDocumentWithWorkspace as validateDocument } from "@sanity/validation";
 import { createViteServer } from "vitest/node";
+
+const require = createRequire(import.meta.url);
 
 const offlineClient = {
   withConfig: () => offlineClient,
@@ -32,14 +37,27 @@ export async function validateSanityImportDocuments(documents, { existingDocumen
       configFile: path.join(root, "vitest.config.mts"),
       logLevel: "silent",
       root,
-      server: { middlewareMode: true },
+      // This server only loads schema definitions once; watching the entire
+      // checkout adds a costly filesystem scan on Windows without any benefit.
+      server: { middlewareMode: true, watch: null },
+      // Schema files only use Sanity's define* helpers and type-only imports.
+      // Resolve those helpers to the same official exports without the Studio UI.
+      resolve: {
+        alias: [{ find: /^sanity$/, replacement: require.resolve("@sanity/types") }],
+      },
     });
     const { schemaTypes } = await moduleServer.ssrLoadModule(
       "/sanity/schemaTypes/index.ts",
     );
-    const schema = createSchema({
+    // Keep Sanity's built-in slug/asset types and schema-definition checks.
+    // These three headless packages are pinned to the same Studio version.
+    const problems = groupProblems(validateSchema(schemaTypes, { parentTypes: builtinTypes }).getTypes());
+    if (problems.some(group => group.problems.some(problem => problem.severity === "error"))) {
+      throw new Error("Sanity schema definition validation failed");
+    }
+    const schema = Schema.compile({
       name: "import-validation",
-      types: schemaTypes,
+      types: [...builtinTypes, ...schemaTypes],
     });
     const documentIds = new Set([...documents.map(({ _id }) => _id), ...existingDocumentIds]);
     const workspace = {
@@ -54,6 +72,9 @@ export async function validateSanityImportDocuments(documents, { existingDocumen
           document,
           workspace,
           environment: "studio",
+          // Match sanity.validateDocument: keep reference shape/existence checks
+          // offline, without enabling the headless API's remote type lookups.
+          validateReferenceTypes: false,
           getDocumentExists: async ({ id }) => documentIds.has(id),
         }),
       ),

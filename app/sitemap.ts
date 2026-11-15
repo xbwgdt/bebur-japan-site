@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/constants";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return getAllRoutes().map((route) => ({
+  return getAllRoutes().filter(route => route !== "/about/company-profile").map((route) => ({
     url: new URL(route, `${siteConfig.origin}/`).toString(),
   }));
 }

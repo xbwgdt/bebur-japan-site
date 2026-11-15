@@ -449,9 +449,9 @@ describe("production SEO metadata routes", () => {
   it("publishes every canonical content route exactly once in the sitemap", () => {
     const entries = sitemap();
     const urls = entries.map(({ url }) => url);
-    const expectedUrls = getAllRoutes().map(canonicalUrl);
+    const expectedUrls = getAllRoutes().filter(route => route !== "/about/company-profile").map(canonicalUrl);
 
-    expect(entries).toHaveLength(114);
+    expect(entries).toHaveLength(113);
     expect(new Set(urls).size).toBe(urls.length);
     expect(urls.toSorted()).toEqual(expectedUrls.toSorted());
     expect(
@@ -477,7 +477,7 @@ describe("production SEO metadata routes", () => {
   it("rejects broken live sitemap and robots output in the release audit", () => {
     const validInput = {
       canonicalOrigin: siteConfig.origin,
-      canonicalRoutes: getAllRoutes(),
+      canonicalRoutes: getAllRoutes().filter(route => route !== "/about/company-profile"),
       sitemapEntries: sitemap(),
       robotsPolicy: robots(),
       siteConfig,
