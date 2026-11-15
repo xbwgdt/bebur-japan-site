@@ -12,6 +12,13 @@ const originals: Record<string, string[]> = {
   "guangdong-guizhou-water-supply-conference-2025": ["20251105/1762329776632484.jpg"],
   "liquid-cooling-technology-conference-2025": ["20251105/1762329046159036.jpg", "20251105/1762329019256214.jpg", "20251105/1762328966142369.png"],
   "sichuan-water-technology-exhibition-2025": ["20251120/1763601600977764.jpg"],
+  "liquid-particle-counter-brands": ["20260311/1773201229211214.jpg"],
+  "online-residual-chlorine-analyzer-brands": ["20260327/1774589627282883.jpg"],
+  "online-residual-chlorine-analyzer-recommendations": ["20260327/1774589627282883.jpg"],
+  "residual-chlorine-detector-brands-2026-april": ["20260327/1774589627282883.jpg", "20251114/1763108910519122.jpg"],
+  "residual-chlorine-detector-brands-2026-march": ["20251114/1763099445589527.jpg"],
+  "toc-analyzer-brands-2026": ["20260324/1774319324598474.jpg"],
+  "toc-analyzer-brands-2026-march": ["20260323/1774251187149620.jpg", "20260323/1774251223120714.jpg"],
 };
 
 describe("approved original news image restoration", () => {

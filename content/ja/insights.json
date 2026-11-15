@@ -340,7 +340,12 @@
     "description": "残留塩素計の測定方式、用途、中国の水質基準を整理し、選定時の確認項目を紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/280.html",
     "publishedAt": "2026-03-16",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1763099445589527-6df03026c6b4128f.jpg",
+        "alt": "Bebur BT6308-CLの残留塩素測定用コントローラーとフローセル付きセンサー"
+      }
+    ],
     "sections": [
       {
         "heading": "測定方式",
@@ -367,7 +372,16 @@
     "description": "全有機炭素分析計の測定方式と用途を整理し、各社モデルと選定観点を紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/281.html",
     "publishedAt": "2026-03-31",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1774251187149620-d6219f792749d271.jpg",
+        "alt": "BeburのTOC分析装置の屋外設置例とキャビネット外観"
+      },
+      {
+        "src": "/source-media/1774251223120714-a4489042362d7c61.jpg",
+        "alt": "BeburのTOC分析装置のキャビネット内部と配管・計測機器の構成"
+      }
+    ],
     "sections": [
       {
         "heading": "TOC分析計の市場データ",
@@ -399,7 +413,12 @@
     "description": "電極法とDPD比色法の違い、システム統合、保守性など、オンライン残留塩素分析計の比較観点を整理します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/282.html",
     "publishedAt": "2026-03-31",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1774589627282883-ee633cf31696b9cb.jpg",
+        "alt": "電極法のBT6308-CLとDPD比色法のBC350によるBeburの残留塩素分析機器"
+      }
+    ],
     "sections": [
       {
         "heading": "Beburの二つの測定方式",
@@ -472,7 +491,12 @@
     "description": "光遮蔽法、光散乱法、電気抵抗法の違いと、測定範囲、用途、選定項目を整理します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/284.html",
     "publishedAt": "2026-04-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1773201229211214-8a070783f98f9d38.jpg",
+        "alt": "Bebur BT8200・BT8500のオンライン式液中パーティクルカウンタとBTP8300の携帯型液中パーティクルカウンタ"
+      }
+    ],
     "sections": [
       {
         "heading": "液体粒子カウンターの市場データ",
@@ -509,7 +533,16 @@
     "description": "上水、二次給水、医療、食品分野における残留塩素計の方式と基準値を整理します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/285.html",
     "publishedAt": "2026-04-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1774589627282883-ee633cf31696b9cb.jpg",
+        "alt": "残留塩素の連続監視に用いるBeburのBT6308-CLとBC350"
+      },
+      {
+        "src": "/source-media/1763108910519122-551811acf1e6398e.jpg",
+        "alt": "上水処理設備とオンライン水質監視のイメージ図"
+      }
+    ],
     "sections": [
       {
         "heading": "方式と掲載ブランド",
@@ -542,7 +575,12 @@
     "description": "上水、純水、製薬、環境監視で用いるTOC分析計について、測定原理、モデル、運用費用の観点を紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/286.html",
     "publishedAt": "2026-04-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1774319324598474-0b0802e2c5781c5c.jpg",
+        "alt": "Bebur UVSenseのコントローラーと光学式水質測定センサー"
+      }
+    ],
     "sections": [
       {
         "heading": "全有機炭素の測定",
@@ -575,7 +613,12 @@
     "description": "オンライン残留塩素分析計について、電極法、DPD比色法、保守、システム統合の観点から比較します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/287.html",
     "publishedAt": "2026-04-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1774589627282883-ee633cf31696b9cb.jpg",
+        "alt": "Beburの電極式残留塩素分析計BT6308-CLとDPD比色式分析計BC350の製品構成"
+      }
+    ],
     "sections": [
       {
         "heading": "Beburの掲載機種",
