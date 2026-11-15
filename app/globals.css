@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./liquid-cooling.css";
 @import "./liquid-cooling-editorial.css";
+@import "./company-overview.css";
 
 :root {
   --navy-950: #071c33;

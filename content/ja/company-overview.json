@@ -1,0 +1,48 @@
+{
+  "_id":"page--overview","_type":"page","title":"企業概要","slug":"overview","publishState":"published",
+  "seoTitle":"企業概要｜Bebur Japan",
+  "seoDescription":"Beburの水質分析・ガス検知・清浄度測定の技術、企業理念、歩み、証明書、展示会活動をご紹介します。日本国内の製品選定や仕様確認、お見積もりは日本総代理店の新樹産業株式会社が承ります。",
+  "companyOverviewStyle":{"fontFamily":"sans","primary":"#2458A0","background":"#FFFFFF","surface":"#F1F6FB","text":"#173550","muted":"#476079","eyebrow":"ABOUT BEBUR","navigationLabel":"企業情報メニュー","documentActionLabel":"資料を拡大する"},
+  "blocks":[
+    {"_key":"hero","_type":"hero","title":"Beburについて","summary":"計測技術で、水質とガス、そして現場の安心を支える。","image":{"_type":"image","alt":"青空へ伸びるビル群を見上げた企業紹介のイメージ","asset":{"url":"/media/company-overview/1761830441866756.jpg"}},"ctaLabel":"企業紹介を見る","ctaHref":"#company-profile","color":"brand","fontSize":"md","spacing":"normal"},
+    {"_key":"profile","_type":"cardGrid","anchorId":"company-profile","title":"企業紹介","cards":[
+      {"_key":"profile-main","title":"水質分析とガス検知を、ひとつの技術力で。","summary":"Bebur Technology Limitedは、水質分析とガス検知のソリューションを提供する電子計測機器メーカーです。20年以上にわたり、研究開発から製造、販売、アフターサービスまで一貫して取り組んできました。\n\n高精度・高信頼性・高安定性を備えた欧州製センサーを採用し、電気化学式・光学式のセンシング技術を用いた分析計を設計・製造しています。欧州と中国の技術を生かして製品を改良し、中国の製造拠点を通じて、計測性能と導入コストの両立を追求しています。\n\n可燃性ガス用伝送器、有毒ガス検知器、水質分析計と専門的な技術サポートを通じて、安全で健全な環境づくりに貢献すること。それがBeburの使命です。分析・センシングシステムを継続的に改善し、信頼できる測定情報を現場に届けます。\n\n中国・四川の製造・サービス拠点と、英国、米国、アジア、アフリカなどの販売ネットワークを通じて、お客様の用途に応じた製品の導入と運用を支えています。","image":{"_type":"image","alt":"Beburの企業紹介に掲載されている建物の外観","asset":{"url":"/media/company-overview/index_16.jpg"}},"linkLabel":"会社紹介を詳しく見る","href":"/about/company-profile"}
+    ],"color":"neutral","fontSize":"md","spacing":"normal"},
+    {"_key":"figures","_type":"cardGrid","anchorId":"key-figures","title":"数字で見るBebur","cards":[
+      {"_key":"years","title":"20年以上","summary":"計測機器分野で積み重ねた経験"},
+      {"_key":"products","title":"300+","summary":"製品ラインアップ"},
+      {"_key":"services","title":"10+","summary":"サービス拠点（グローバル）"},
+      {"_key":"countries","title":"50か国以上","summary":"販売ネットワークが広がる国・地域"}
+    ],"color":"blue","fontSize":"md","spacing":"compact"},
+    {"_key":"culture","_type":"cardGrid","anchorId":"company-culture","title":"企業文化","cards":[
+      {"_key":"mission","title":"ミッション","summary":"信頼性の高いガス・水質・清浄度測定機器と、迅速かつ専門的な技術サポートをお客様に提供します。","image":{"_type":"image","alt":"Beburの使命を表す企業文化のイメージ","asset":{"url":"/media/company-overview/1761881996364563.jpg"}},"linkLabel":"企業文化を見る","href":"/about/culture"},
+      {"_key":"vision","title":"ビジョン","summary":"お客様を中心に、水質分析計、ガス検知器、流量計、液位計、清浄度測定装置の研究開発・製造・サービスに取り組み、現場のニーズに応えます。","image":{"_type":"image","alt":"Beburの目指す姿を表す企業文化のイメージ","asset":{"url":"/media/company-overview/1761881868491509.jpg"}},"linkLabel":"企業文化を見る","href":"/about/culture"},
+      {"_key":"philosophy","title":"ブランド理念","summary":"水質分析・ガス検知の分野で、世界に信頼されるソリューションプロバイダーを目指します。","image":{"_type":"image","alt":"Beburのブランド理念を表すイメージ","asset":{"url":"/media/company-overview/1761881802241667.jpg"}},"linkLabel":"企業文化を見る","href":"/about/culture"}
+    ],"color":"brand","fontSize":"md","spacing":"normal"},
+    {"_key":"history","_type":"cardGrid","anchorId":"company-history","title":"沿革","cards":[
+      {"_key":"year-2024","title":"2024","summary":"欧州を起点に世界へ。品質を磨き続け、グローバルな事業展開を推進。"},
+      {"_key":"year-2020","title":"2020","summary":"アジア市場に向け、中国法人を設立。"},
+      {"_key":"year-2017","title":"2017","summary":"オンライン式ストリーミング電流計とオンライン式レーザーパーティクルカウンタを発売。"},
+      {"_key":"year-2008","title":"2008","summary":"アジア市場へ展開し、Bebur製品の販売を拡大。"},
+      {"_key":"year-2002","title":"2002","summary":"英国でBeburを創業。"}
+    ],"color":"neutral","fontSize":"md","spacing":"normal"},
+    {"_key":"certificates","_type":"cardGrid","anchorId":"company-certificates","title":"認証・証明書","cards":[
+      {"_key":"as300","title":"AS-300 消防製品認証書（中国）","summary":"対象：GTYQ-AS-300\n有効期限：2028年12月4日","image":{"_type":"image","alt":"AS-300の中国消防製品認証書","asset":{"url":"/media/company-overview/1762407811720078.png"}},"linkLabel":"認証・証明書を見る","href":"/about/certifications"},
+      {"_key":"quality","title":"ISO 9001 品質マネジメントシステム証明書","summary":"対象：中国法人の水質分析計・ガス検知器の製造\n有効期限：2027年7月17日","image":{"_type":"image","alt":"中国法人のISO 9001品質マネジメントシステム認証書","asset":{"url":"/media/company-overview/1762407869816422.jpg"}},"linkLabel":"認証・証明書を見る","href":"/about/certifications"},
+      {"_key":"reach","title":"MSF8100 REACH 適合性資料","summary":"対象：MSF8100 電磁流量計\n発行日：2026年3月5日","image":{"_type":"image","alt":"MSF8100電磁流量計のREACH適合性に関する資料","asset":{"url":"/media/company-overview/1789974683469526.png"}},"linkLabel":"認証・証明書を見る","href":"/about/certifications"},
+      {"_key":"rohs","title":"MSF8100 RoHS 適合性資料","summary":"対象：MSF8100 電磁流量計\n発行日：2026年3月5日","image":{"_type":"image","alt":"MSF8100電磁流量計のRoHS適合性に関する資料","asset":{"url":"/media/company-overview/1789974713886050.png"}},"linkLabel":"認証・証明書を見る","href":"/about/certifications"},
+      {"_key":"ce","title":"BT-6308 CE適合性検証書（EMC）","summary":"対象：水質分析計 BT-6308\n発行日：2026年3月11日","image":{"_type":"image","alt":"BT-6308水質分析計の電磁両立性に関するCE適合性検証書","asset":{"url":"/media/company-overview/1789974782176345.png"}},"linkLabel":"認証・証明書を見る","href":"/about/certifications"},
+      {"_key":"patent","title":"中国発明特許証書","summary":"特許番号：ZL 2024 1 0656943.6\n登録日：2024年7月12日","image":{"_type":"image","alt":"Bebur中国法人の発明特許証書","asset":{"url":"/media/company-overview/1789974839312107.png"}},"linkLabel":"認証・証明書を見る","href":"/about/certifications"}
+    ],"color":"brand","fontSize":"md","spacing":"normal"},
+    {"_key":"exhibitions","_type":"cardGrid","anchorId":"company-exhibitions","title":"展示会・技術交流","cards":[
+      {"_key":"ex-1","title":"四川都市給排水技術設備展示会","summary":"2025年11月20日","image":{"_type":"image","alt":"四川都市給排水技術設備展示会の記録","asset":{"url":"/media/company-overview/1763601600977764.jpg"}},"linkLabel":"展示会情報を見る","href":"/insights/sichuan-water-technology-exhibition-2025"},
+      {"_key":"ex-2","title":"第12回 飲料水安全保障交流会","summary":"2025年11月5日","image":{"_type":"image","alt":"2025年の飲料水安全保障交流会の記録","asset":{"url":"/media/company-overview/1762332787874508.jpg"}},"linkLabel":"展示会情報を見る","href":"/about/exhibitions"},
+      {"_key":"ex-3","title":"第3回 雲南給水業界水質技術交流会","summary":"2025年11月5日","image":{"_type":"image","alt":"雲南給水業界水質技術交流会の記録","asset":{"url":"/media/company-overview/1762332683449363.jpg"}},"linkLabel":"展示会情報を見る","href":"/about/exhibitions"},
+      {"_key":"ex-4","title":"第4回 データセンター液冷イノベーション会議","summary":"2025年10月30日","image":{"_type":"image","alt":"データセンター液冷イノベーション会議の記録","asset":{"url":"/media/company-overview/1762330136294160.jpg"}},"linkLabel":"技術情報を見る","href":"/insights/global-data-center-liquid-cooling-conference-2025"},
+      {"_key":"ex-5","title":"第4回 中国液冷サプライチェーンサミット","summary":"2025年10月30日","image":{"_type":"image","alt":"中国液冷サプライチェーンサミットの記録","asset":{"url":"/media/company-overview/1762331908274932.jpg"}},"linkLabel":"技術情報を見る","href":"/insights/liquid-cooling-supply-chain-summit-2025"},
+      {"_key":"ex-6","title":"全国水科学技術会議・技術設備成果展示会","summary":"2025年10月30日","image":{"_type":"image","alt":"全国水科学技術会議の展示会記録","asset":{"url":"/media/company-overview/1762332557368796.jpg"}},"linkLabel":"展示会情報を見る","href":"/about/exhibitions"},
+      {"_key":"ex-7","title":"水処理凝集・消毒 技術革新・産業発展フォーラム","summary":"2025年10月30日","image":{"_type":"image","alt":"水処理凝集・消毒技術革新フォーラムの記録","asset":{"url":"/media/company-overview/1762332636335929.jpg"}},"linkLabel":"展示会情報を見る","href":"/about/exhibitions"}
+    ],"color":"neutral","fontSize":"md","spacing":"normal"},
+    {"_key":"japan-contact","_type":"cta","anchorId":"japan-contact","title":"日本国内のお問い合わせ","summary":"製品選定、仕様確認、お見積もり、アフターサービスのご相談は、Bebur 日本総代理店の新樹産業株式会社が承ります。","label":"メールでお問い合わせ","href":"mailto:info@newtree-i.com","color":"blue","fontSize":"md","spacing":"normal"}
+  ]
+}

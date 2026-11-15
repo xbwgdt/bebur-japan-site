@@ -19,6 +19,8 @@ import {
 import { canonicalUrl } from "@/lib/routes";
 import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import type { AboutPage } from "@/lib/types";
+import { CompanyOverview } from "@/components/company-overview";
+import { getCompanyOverview } from "@/lib/company-overview";
 
 type AboutRouteParams = {
   slug: string;
@@ -48,7 +50,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const cmsPage = await getPublishedPageForRoute(slug);
+  const cmsPage = slug === "overview" ? await getCompanyOverview() : await getPublishedPageForRoute(slug);
 
   const canonical = canonicalUrl(aboutPage.route);
   const image = aboutPage.images[0]
@@ -92,6 +94,8 @@ export default async function AboutDetailPage({
   if (!aboutPage) {
     notFound();
   }
+
+  if (slug === "overview") return <CompanyOverview page={await getCompanyOverview()} />;
 
   return (
     <SourceShell>

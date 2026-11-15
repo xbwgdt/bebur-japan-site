@@ -2,6 +2,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 import { pageBlocks } from "./blocks";
 import { liquidCoolingDesignField } from "./liquid-cooling-design";
+import { companyOverviewStyleField } from "./company-overview-style";
 import { validateJapaneseProse, validateJapaneseText } from "./validation";
 
 const validSlug = (value: unknown) => {
@@ -16,6 +17,7 @@ export default defineType({
   groups: [{ name: "content", title: "页面内容", default: true }, { name: "seo", title: "搜索优化" }, { name: "publishing", title: "发布" }],
   fields: [
     liquidCoolingDesignField,
+    companyOverviewStyleField,
     defineField({ name: "title", title: "页面标题", description: "用于后台识别该页面，请填写日文。", type: "string", group: "content", validation: (Rule) => Rule.required().custom(validateJapaneseText).error("请填写日文页面标题。") }),
     defineField({ name: "slug", title: "URL 路径", description: "与现有网站路径一致，不要修改已发布页面的路径。", type: "slug", group: "content", options: { source: "title", maxLength: 96 }, validation: (Rule) => Rule.required().custom(validSlug).error("请填写有效的 URL 路径。") }),
     defineField({ name: "blocks", title: "页面模块", description: "按页面显示顺序添加和拖动模块。", type: "array", group: "content", of: pageBlocks.map((block) => defineArrayMember({ type: block.name })), validation: (Rule) => Rule.required().min(1).error("请至少添加一个页面模块。") }),
