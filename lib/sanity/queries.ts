@@ -183,7 +183,7 @@ const newsProjection = `{
 async function fetchConfigured<T>(
   query: string,
   params: QueryParams = {},
-  options?: { cache: "no-store" },
+  options?: { cache: "no-store" | "force-cache" },
 ): Promise<T | null> {
   const sanityClient = getSanityClient();
   if (!sanityClient) {
@@ -241,16 +241,22 @@ export async function getNewsBySlug(
   );
 }
 
+// A new process snapshot prevents an older build's cached overview surviving a
+// CMS-triggered rebuild, including rebuilds of the same Git commit.
+const overviewBuildSnapshot = Date.now().toString(36);
+
 export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
+  const overview = slug === "overview";
   return fetchConfigured<SanityPage>(
     `*[
       _type == "page" &&
       publishState == "published" &&
       slug.current == $slug
     ][0] ${pageProjection}`,
-    { slug },
-    // Static deployments must read the latest published page on each build.
-    { cache: "no-store" },
+    overview ? { slug, overviewBuildSnapshot } : { slug },
+    // Static export rejects no-store fetches. Cache only within this overview
+    // build snapshot; keep existing behavior on unrelated page routes.
+    { cache: overview ? "force-cache" : "no-store" },
   );
 }
 
