@@ -7,7 +7,16 @@
     "description": "2025年4月に昆明で開催された水質技術交流会と、Beburの凝集薬注制御システムの展示内容を紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/189.html",
     "publishedAt": "2025-11-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1762332683449363-0783d36202c23388.jpg",
+        "alt": "雲南省水質技術交流会でBeburの水質測定機器と凝集薬注制御システムを紹介する様子"
+      },
+      {
+        "src": "/source-media/1762407003113430-0bdec9fbcfdbf2aa.jpg",
+        "alt": "雲南省水質技術交流会でのBeburの展示・技術交流の様子"
+      }
+    ],
     "sections": [
       {
         "heading": "水質技術交流会",
@@ -34,7 +43,16 @@
     "description": "製紙工程の電荷バランスを測定し、填料の歩留まりや薬品添加量の管理に活用する考え方を解説します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/190.html",
     "publishedAt": "2025-11-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1762406599465283-16aed25d82b9aeab.png",
+        "alt": "製紙工程と工場設備のイメージ図"
+      },
+      {
+        "src": "/source-media/1762406675188202-0733a9819c187a6e.jpg",
+        "alt": "製紙ウェットエンドの電荷管理に用いるBeburのラボ用粒子電荷分析計"
+      }
+    ],
     "sections": [
       {
         "heading": "ウェットエンドの電荷バランス",
@@ -65,7 +83,16 @@
     "description": "液冷システムの清浄度管理に用いる液中粒子計と、展示会で紹介された測定条件をまとめます。",
     "sourceUrl": "https://www.bebur.net/en/list_39/191.html",
     "publishedAt": "2025-11-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1762331908274932-57824fc97b15ac40.jpg",
+        "alt": "2025年液冷サプライチェーンサミットのBebur展示ブースでの記念写真"
+      },
+      {
+        "src": "/source-media/1762335015196653-e4fe950d86a09cd7.png",
+        "alt": "液冷サプライチェーンサミットのBebur展示ブースでの製品説明・技術交流"
+      }
+    ],
     "sections": [
       {
         "heading": "液冷システムの粒子管理",
@@ -92,7 +119,12 @@
     "description": "杭州で開催されたデータセンター液冷技術会議の日時、会場、展示テーマを記録しています。",
     "sourceUrl": "https://www.bebur.net/en/list_39/192.html",
     "publishedAt": "2025-11-03",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1762334545196031-80122c1caa571344.png",
+        "alt": "液冷技術会議で紹介するBeburの粒子清浄度・水質測定機器と導入例の製品展示パネル"
+      }
+    ],
     "sections": [
       {
         "heading": "開催概要",
@@ -118,7 +150,12 @@
     "description": "給水事業の運営と全工程の水質管理を扱う交流会について、開催日時と展示情報を紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/193.html",
     "publishedAt": "2025-11-05",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1762329776632484-8c75f929caf7b24d.jpg",
+        "alt": "2025年広東・貴州水道事業者交流会のBebur出展案内ポスター"
+      }
+    ],
     "sections": [
       {
         "heading": "開催概要",
@@ -144,7 +181,20 @@
     "description": "データセンター液冷会議で紹介された水質測定機器と粒子清浄度測定ソリューションをまとめます。",
     "sourceUrl": "https://www.bebur.net/en/list_39/194.html",
     "publishedAt": "2025-11-05",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1762329046159036-251ea523be6c5d58.jpg",
+        "alt": "2025年グローバルデータセンター液冷技術会議の会場受付"
+      },
+      {
+        "src": "/source-media/1762329019256214-18ab1ef2dd335b95.jpg",
+        "alt": "グローバルデータセンター液冷技術会議の講演会場の様子"
+      },
+      {
+        "src": "/source-media/1762328966142369-3920a6380a794aae.png",
+        "alt": "液冷技術会議のBebur展示ブースでの製品説明・技術交流をまとめた写真"
+      }
+    ],
     "sections": [
       {
         "heading": "液冷技術会議",
@@ -170,7 +220,12 @@
     "description": "2025年11月の給排水技術展示会と、凝集薬注制御システムの展示内容を紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_39/195.html",
     "publishedAt": "2025-11-20",
-    "images": [],
+    "images": [
+      {
+        "src": "/source-media/1763601600977764-080704c42d9d292b.jpg",
+        "alt": "四川省都市給排水技術・設備展示会におけるBeburの凝集薬注制御システム展示ブース"
+      }
+    ],
     "sections": [
       {
         "heading": "展示会概要",

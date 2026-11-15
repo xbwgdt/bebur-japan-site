@@ -612,7 +612,7 @@ describe("Japanese content catalog", () => {
     for (const record of getAllContent()) {
       for (const image of record.images) {
         expect(image.src, record.sourceUrl).toMatch(
-          /^\/(?:products|applications|media)\//,
+          /^\/(?:products|applications|media|source-media)\//,
         );
         expect(image.src, record.sourceUrl).not.toMatch(/^https?:\/\//);
         expect(image.alt, record.sourceUrl).toMatch(japanesePattern);
