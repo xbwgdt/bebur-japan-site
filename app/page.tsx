@@ -127,7 +127,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
         />
       </div>
 
-      <SolutionPromotion />
+      <SolutionPromotion animated />
       <section
         className="section source-section home-categories"
         aria-labelledby="home-product-categories-title"

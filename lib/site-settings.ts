@@ -6,6 +6,7 @@ import {
   getSiteSettings,
   type SanitySiteSettings,
 } from "./sanity/queries";
+import { resolveLiquidCoolingDesign, type LiquidCoolingDesign } from "./liquid-cooling-design";
 
 export type PublicNavigationLabels = {
   home: string;
@@ -48,6 +49,8 @@ export type PublicSiteSettings = {
     image: { src: string; alt: string };
     action: { label: string; href: string };
     style: ContactPanelStyle;
+    diagram: LiquidCoolingDesign["diagram"];
+    diagramColors: { background: string; text: string; line: string; accent: string };
   };
   homeHero: {
     eyebrow: string;
@@ -105,6 +108,8 @@ export const localPublicSiteSettings: PublicSiteSettings = {
     image: { src: "/media/liquid-cooling-monitoring.svg", alt: "液冷二次側ループにおける水質測定と粒子計数の配置例" },
     action: { label: "液冷ソリューションを見る", href: "/solutions/liquid-cooling-cleanliness-testing" },
     style: { color: "deepBlue", fontSize: "md", fontFamily: "sans" },
+    diagram: resolveLiquidCoolingDesign().diagram,
+    diagramColors: { background: "#F1F7FC", text: "#113B6B", line: "#2458A0", accent: "#087F9C" },
   },
   homeHero: {
     eyebrow: "WATER QUALITY & GAS DETECTION",
@@ -406,6 +411,11 @@ export function resolvePublicSiteSettings(
       image: safeImage(settings.homeSolution?.image) ?? localPublicSiteSettings.homeSolution.image,
       action: safeAction(settings.homeSolution?.action, localPublicSiteSettings.homeSolution.action),
       style: resolveContactPanelStyleSettings(settings.homeSolution?.style, localPublicSiteSettings.homeSolution.style),
+      diagram: resolveLiquidCoolingDesign({ diagram: settings.homeSolution?.diagram }).diagram,
+      diagramColors: Object.fromEntries(Object.entries(localPublicSiteSettings.homeSolution.diagramColors).map(([key, fallback]) => {
+        const value = settings.homeSolution?.diagramColors?.[key];
+        return [key, typeof value === "string" && /^#[0-9a-f]{6}$/i.test(value) ? value : fallback];
+      })) as PublicSiteSettings["homeSolution"]["diagramColors"],
     },
     contactPage: resolveContactPage(settings.contactPage),
     navigationLabels,

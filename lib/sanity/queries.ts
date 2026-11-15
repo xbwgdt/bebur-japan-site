@@ -52,6 +52,8 @@ export type SanitySiteSettings = {
     image?: SanityImage;
     action?: { label?: string; href?: string };
     style?: { color?: string; fontSize?: string; fontFamily?: string };
+    diagram?: unknown;
+    diagramColors?: Record<string, string>;
   };
   homeHero?: {
     eyebrow?: string;
@@ -256,7 +258,8 @@ export const siteSettingsQuery = `*[
   homeSolution {
     eyebrow, title, summary,
     image { ..., asset->{_ref, url} },
-    action, style
+    action, style, diagramColors,
+    diagram { ..., image { ..., alt, asset->{_ref, url} } }
   },
   homeHero {
     eyebrow,

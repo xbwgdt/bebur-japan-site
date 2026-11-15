@@ -5,6 +5,31 @@
 .solution-promotion__card img { width: 100%; height: auto; border-radius: .5rem; }
 .solution-promotion__eyebrow { font-weight: 700; letter-spacing: .12em; }
 .solution-promotion__action { display: inline-block; padding: .8rem 1.2rem; margin-top: 1rem; background: white; color: #113b6b !important; font-weight: 700; border: 1px solid #a6c3de; }
+.solution-promotion__card > * { min-width: 0; }
+.solution-promotion__diagram.lc-editorial {
+  --ink-2: var(--home-diagram-background);
+  --hero-muted: var(--home-diagram-text);
+  --diagram-line: var(--home-diagram-line);
+  --teal-hi: var(--home-diagram-accent);
+  --editorial-font: inherit;
+  background: var(--home-diagram-background);
+  color: var(--home-diagram-text);
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: .5rem;
+}
+.solution-promotion__diagram.lc-editorial .loop-fig { margin: 0; padding: 1rem; border: 1px solid var(--home-diagram-line); border-radius: .5rem; }
+.solution-promotion__diagram.lc-editorial .loop-fig figcaption { font-size: .8125rem; line-height: 1.8; }
+.solution-promotion__diagram.lc-editorial svg text { font-size: 12px; }
+@media (max-width: 63.999rem) {
+  .solution-promotion--animated .solution-promotion__action { display: inline-flex; align-items: center; gap: .35rem; max-width: 100%; white-space: nowrap; font-size: clamp(.8125rem, 3.6vw, 1rem); padding-inline: .9rem; }
+  .solution-promotion__diagram.lc-editorial .loop-mobile-legend { display: block; font-size: 14px; line-height: 1.7; color: var(--home-diagram-text); padding: .75rem .25rem; border-top: 1px solid var(--home-diagram-line); }
+  .solution-promotion__diagram.lc-editorial .loop-mobile-sensors { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; list-style: none; margin: 0 0 .9rem; padding: 0; }
+  .solution-promotion__diagram.lc-editorial .loop-mobile-sensors li { display: flex; gap: .45rem; min-width: 0; overflow-wrap: anywhere; }
+  .solution-promotion__diagram.lc-editorial .loop-mobile-sensors b { color: var(--home-diagram-accent); flex-shrink: 0; }
+  .solution-promotion__diagram.lc-editorial .loop-mobile-legend p { margin: .45rem 0 0; }
+  .solution-promotion__diagram.lc-editorial .loop-fig { padding: .5rem; }
+}
 .related-solution { padding: 1.4rem 1.7rem; margin: 2rem 0; background: #edf5fb; border-left: 4px solid #1876b9; color: #123a62; }
 .related-solution a { font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
 .solution-page { background: #fff; color: #17334d; font-family: Arial, "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif; }

@@ -1,9 +1,9 @@
 import type { LiquidCoolingDesign } from "@/lib/liquid-cooling-design";
 
-export function LoopDiagram({ diagram }: { diagram: LiquidCoolingDesign["diagram"] }) {
+export function LoopDiagram({ diagram, compact = false }: { diagram: LiquidCoolingDesign["diagram"]; compact?: boolean }) {
   return <figure className="loop-fig" data-motion={diagram.enabled ? "on" : "off"}>
     {diagram.mode === "image" && diagram.image.asset.url ? <img src={diagram.image.asset.url} alt={diagram.image.alt} width="620" height="350" /> :
-      <svg viewBox="0 0 620 350" role="img" aria-label={diagram.accessibleLabel}>
+      <svg viewBox={compact ? "70 20 480 330" : "0 0 620 350"} role="img" aria-label={diagram.accessibleLabel}>
         <defs><marker id="lc-flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-line)" /></marker></defs>
         <rect x="100" y="88" width="420" height="152" rx="10" fill="none" stroke="var(--diagram-line)" strokeWidth="1.4" />
         <rect x="100" y="88" width="420" height="152" rx="10" fill="none" stroke="var(--teal-hi)" strokeWidth="1.6" className="flow" />

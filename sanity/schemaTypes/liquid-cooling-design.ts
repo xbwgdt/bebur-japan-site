@@ -6,6 +6,14 @@ const navigation = (name: string, title: string, member: string) => defineField(
 const themeLabels = {ink:"首屏背景 / 主标题",ink2:"深色面板",paper:"正文背景",paperHi:"摘要 / 卡片背景",paperTint:"浅色强调背景",line:"边框",lineSoft:"分隔线",accent:"品牌强调色 / 链接",accentBright:"首屏强调色 / 动画虚线",warning:"警示色",muted:"次要正文",body:"正文文字",heroText:"首屏主文字",heroMuted:"首屏次要文字",diagramLine:"示意图管路 / 边框"};
 const diagramLabels = {accessibleLabel:"无障碍说明",cdu:"CDU 标签",loop:"闭回路标签",coolant:"冷却液标签",plates:"冷板标签",supply:"供给标签",return:"返回标签",ph:"pH 标签",conductivity:"电导率标签",turbidity:"浊度标签",particles:"颗粒标签",sampling:"旁路采样标签",samplingNote:"采样备注",caption:"图下说明"};
 
+export const liquidCoolingDiagramField = defineField({name:"diagram",title:"液冷流动动画 / 替换图片",type:"object",options:{collapsible:true},initialValue:Object.fromEntries(Object.entries(defaults.diagram).filter(([key])=>key!=="image")),fields:[
+  defineField({name:"mode",title:"示意图模式",type:"string",options:{list:[{title:"沿用流动动画",value:"animation"},{title:"使用上传图片",value:"image"}]}}),
+  defineField({name:"enabled",title:"启用管路流动动画",description:"关闭时保留示意图，只停止移动。用户系统设置减少动态效果时也会自动停止。",type:"boolean"}),
+  defineField({name:"speed",title:"动画周期（秒）",description:"4～60 秒，数值越大移动越慢。",type:"number",validation:Rule=>Rule.min(4).max(60)}),
+  ...Object.entries(diagramLabels).map(([name,title])=>label(name,title,name==="caption"?"text":"string")),
+  defineField({name:"image",title:"替换示意图图片",description:"选择“使用上传图片”后显示；上传后填写日文替代文字。首页未上传此图时使用“专题图片”。",type:"image",options:{hotspot:true},fields:[label("alt","日文替代文字")]}),
+]});
+
 export const liquidCoolingDesignField = defineField({
   name:"liquidCoolingDesign",title:"液冷专题：版式、动画与配色",description:"仅用于液冷清浄度专题。正文和产品图片仍在下方页面模块中编辑；这里管理首屏、动画标签和配色。",type:"object",group:"content",
   hidden:({document})=> (document?.slug as {current?:string}|undefined)?.current !== "liquid-cooling-cleanliness-testing",
@@ -20,12 +28,6 @@ export const liquidCoolingDesignField = defineField({
     defineField({name:"metrics",title:"首屏四项指标",type:"array",of:[defineArrayMember({name:"solutionMetric",title:"指标",type:"object",fields:[label("label","日文标签"),label("value","显示值"),label("note","日文备注","text")]})]}),
     label("metricNote","首屏指标适用范围说明","text"),
     defineField({name:"parameters",title:"四项测量的说明卡片",type:"array",of:[defineArrayMember({name:"solutionParameter",title:"测量项",type:"object",fields:[label("title","日文名称"),label("topic","日文用途标签"),label("value","显示值"),label("note","日文备注"),label("summary","日文说明","text")]})]}),
-    defineField({name:"diagram",title:"液冷流动动画 / 替换图片",type:"object",options:{collapsible:true},fields:[
-      defineField({name:"mode",title:"首屏示意图模式",type:"string",options:{list:[{title:"沿用流动动画",value:"animation"},{title:"使用上传图片",value:"image"}]}}),
-      defineField({name:"enabled",title:"启用管路流动动画",description:"关闭时保留示意图，只停止移动。用户系统设置减少动态效果时也会自动停止。",type:"boolean"}),
-      defineField({name:"speed",title:"动画周期（秒）",description:"4～60 秒，数值越大移动越慢，英文原版为14秒。",type:"number",validation:Rule=>Rule.min(4).max(60)}),
-      ...Object.entries(diagramLabels).map(([name,title])=>label(name,title,name==="caption"?"text":"string")),
-      defineField({name:"image",title:"替换示意图图片",description:"选择“使用上传图片”后显示；上传后填写日文替代文字。",type:"image",options:{hotspot:true},fields:[label("alt","日文替代文字")]}),
-    ]}),
+    liquidCoolingDiagramField,
   ],
 });
