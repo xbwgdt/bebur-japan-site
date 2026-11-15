@@ -13,7 +13,7 @@ const copy = (key: string) => {
   return [item.title, item.summary, ...(item.content as Array<{ children?: Array<{ text?: string }> }> ?? []).map((line) => line.children?.map((span) => span.text).join("")), ...(item.rows as Array<{ cells?: string[] }> ?? []).flatMap((row) => row.cells ?? []), ...(item.cards as Array<{ title?: string; summary?: string; href?: string }> ?? []).flatMap((card) => [card.title, card.summary, card.href])].filter(Boolean).join(" ");
 };
 
-describe("Chinese liquid-cooling source fidelity in editable Japanese data", () => {
+describe("Liquid-cooling technical meaning with approved Japan-first references", () => {
   it("keeps internal manufacturer-reconciliation notes out of public EC350 content without changing specifications", () => {
     const table=block("specs-bs-ec350");
     expect(table.title).toBe("BS-EC350 仕様（型式・構成別）");
@@ -30,7 +30,7 @@ describe("Chinese liquid-cooling source fidelity in editable Japanese data", () 
   });
 
   it("restores the particle scale explanation and distinct failure mechanisms", () => {
-    expect(copy("contamination")).toContain("50 µm以上");
+    expect(copy("contamination")).toContain("流路寸法");
     expect(copy("contamination")).toContain("シール材の老化");
     expect(copy("contamination")).toContain("清掃費用");
     expect(copy("particle-scale-caption")).toContain("対数目盛");
@@ -39,19 +39,19 @@ describe("Chinese liquid-cooling source fidelity in editable Japanese data", () 
 
   it("keeps all four parameter-specific arguments and the concrete 1 NTU counterexample", () => {
     expect(copy("parameter-intro")).toContain("測定項目を取り違え");
-    expect(copy("parameter-overview")).toContain("16/14/11");
+    expect(copy("parameter-overview")).toContain("目標等級");
     expect(copy("parameters-note")).toContain("100 µm");
     expect(copy("parameters-note")).toContain("高出力密度");
   });
 
   it("preserves all five stages and the operational consequences", () => {
     const stages = copy("stages");
-    for (const phrase of ["5工程", "イオン負荷が飽和", "再現できません", "作業時間だけ", "二段階", "±0.5", "配管を洗浄する前", "フィルタ前後の差圧"]) expect(stages).toContain(phrase);
+    for (const phrase of ["5工程", "イオン負荷が飽和", "再現できません", "作業時間だけ", "二段階", "合意した注意値", "配管を洗浄する前", "フィルタ前後の差圧"]) expect(stages).toContain(phrase);
   });
 
-  it("retains the three standards roles, priority rule and report columns", () => {
+  it("separates Japanese methods, US guidance, agreed limits and report columns", () => {
     const standards = copy("standards-intro") + copy("standards-use") + copy("report-layers");
-    for (const phrase of ["国家規格", "業界規格", "団体規格", "契約・技術協定を優先", "専用規格を一般規格より優先", "同じ階層では厳しい", "ブランク値", "判定欄", "比較欄"]) expect(standards).toContain(phrase);
+    for (const phrase of ["日本", "ASHRAE", "OCP", "契約・技術協定を優先", "メーカー", "厳しい値だけ", "ブランク値", "判定欄", "比較欄"]) expect(standards).toContain(phrase);
   });
 
   it("restores four named integration principles and two hard installation constraints", () => {
@@ -80,7 +80,7 @@ describe("Chinese liquid-cooling source fidelity in editable Japanese data", () 
 
   it("restores author, revision, original boundary and related readings", () => {
     const closing = copy("closing") + copy("source-authorship") + copy("source-related-readings");
-    for (const phrase of ["Bebur（巴倍尔）液冷アプリケーションエンジニアリングチーム", "2026-11-11", "初版", "規格本文", "契約・技術協定", "フィードバック"]) expect(closing).toContain(phrase);
+    for (const phrase of ["Bebur 液冷アプリケーションエンジニアリングチーム", "2026-11-11", "初版", "規格本文", "契約・技術協定", "新樹産業株式会社"]) expect(closing).toContain(phrase);
     expect(copy("source-related-readings")).toContain("https://www.bebur.net/fuwu/manifold-cleanliness-test.html");
     for (const model of ["BT8500", "BT8200", "BTP8300"]) expect(copy("source-related-readings")).toContain(model);
     expect(JSON.stringify(localSolutionPage)).not.toMatch(/原文では|出典ページでは|当サイトが独立に/);

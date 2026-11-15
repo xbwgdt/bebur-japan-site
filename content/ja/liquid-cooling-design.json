@@ -11,16 +11,16 @@
     "muted": "#506980", "body": "#183550", "heroText": "#FFFFFF", "heroMuted": "#CDDFEF", "diagramLine": "#80ABC9"
   },
   "metadata": [
-    { "_key": "updated", "_type": "solutionMeta", "label": "日本語版更新", "value": "2026-11-14" },
+    { "_key": "updated", "_type": "solutionMeta", "label": "日本語版更新", "value": "2026-11-15" },
     { "_key": "source-updated", "_type": "solutionMeta", "label": "原資料更新", "value": "2026-11-11" },
-    { "_key": "basis", "_type": "solutionMeta", "label": "参照基準", "value": "GB/T 48023-2026、T/CAEE 098-2026など15規格" },
+    { "_key": "basis", "_type": "solutionMeta", "label": "参照体系", "value": "日本規格優先・ASHRAE／OCPで補完" },
     { "_key": "reading", "_type": "solutionMeta", "label": "読了目安", "value": "約14分" }
   ],
   "navigation": [
     { "_key": "mechanism", "_type": "solutionNavItem", "label": "汚染のメカニズム", "anchor": "mechanism" },
     { "_key": "parameters", "_type": "solutionNavItem", "label": "4つの測定項目", "anchor": "parameters" },
     { "_key": "stages", "_type": "solutionNavItem", "label": "5つの工程", "anchor": "stages" },
-    { "_key": "standards", "_type": "solutionNavItem", "label": "15の参照規格", "anchor": "standards" },
+    { "_key": "standards", "_type": "solutionNavItem", "label": "規格・技術指針", "anchor": "standards" },
     { "_key": "points", "_type": "solutionNavItem", "label": "測定箇所と設置", "anchor": "measurement-points" },
     { "_key": "products", "_type": "solutionNavItem", "label": "計器の選定", "anchor": "instruments" },
     { "_key": "practice", "_type": "solutionNavItem", "label": "現場での注意点", "anchor": "field-notes" },
@@ -32,17 +32,17 @@
     { "_key": "standards", "_type": "solutionAction", "label": "規格の引用方法を見る", "anchor": "standards" }
   ],
   "metrics": [
-    { "_key": "ph", "_type": "solutionMetric", "label": "pH", "value": "8.0–10.0", "note": "受入時・銅製。アルミ製は8.0–9.0" },
-    { "_key": "ec", "_type": "solutionMetric", "label": "導電率", "value": "技術協定による", "note": "二次側冷却液の報告値。洗浄水は≤10 µS/cm" },
-    { "_key": "turb", "_type": "solutionMetric", "label": "濁度", "value": "≤5 / ≤20 NTU", "note": "受入時 / 稼働中の参考限界値" },
-    { "_key": "particles", "_type": "solutionMetric", "label": "液中粒子", "value": "50 / 300 µm", "note": "二次側 / 一次側のろ過精度。出荷時16/14/11" }
+    { "_key": "ph", "_type": "solutionMetric", "label": "pH", "value": "媒体・材質別", "note": "冷却液と機器メーカーの指定範囲を確認" },
+    { "_key": "ec", "_type": "solutionMetric", "label": "導電率", "value": "初期値と変化", "note": "添加剤・温度・対象回路を区別" },
+    { "_key": "turb", "_type": "solutionMetric", "label": "濁度", "value": "工程別に管理", "note": "測定方式と媒体に合う管理値を設定" },
+    { "_key": "particles", "_type": "solutionMetric", "label": "液中粒子", "value": "粒径別に評価", "note": "採水・校正・個数の単位を明示" }
   ],
-  "metricNote": "数値はGB/T 48023-2026附属書A表A.1、附属書Bのフラッシング要件、およびT/CAEE 098-2026の清浄度条項から抜粋しています。稼働中のpHは「受入時の基準値±1」の条件も満たす必要があります。判定は規格本文と案件の技術協定に従います。",
+  "metricNote": "測定方法は適用可能な日本規格を優先し、液冷の設計・運用は対象回路と冷却液に合うASHRAE・OCPの技術指針で補います。合否値は機器・冷却液メーカーの条件と案件の技術仕様に基づいて定めます。",
   "parameters": [
-    { "_key": "ph", "_type": "solutionParameter", "title": "pH", "topic": "酸・アルカリのバランス / 防食剤", "value": "8.0–10.0", "note": "受入時・銅製コールドプレート", "summary": "酸・アルカリのバランスと防食剤の有効性を管理します。稼働中に重要なのは絶対値だけでなく、受入時の基準値からの変動です。" },
-    { "_key": "ec", "_type": "solutionParameter", "title": "導電率", "topic": "溶存イオン", "value": "0–2000", "note": "μS/cm・計器の測定範囲", "summary": "イオンの総量を管理します。規格が求めるのは報告値と当事者間の協議であり、一律の限界値を探すより、適切な測定範囲を選ぶことが実務的です。" },
-    { "_key": "turb", "_type": "solutionParameter", "title": "濁度", "topic": "懸濁物の総量", "value": "5 / 20", "note": "NTU・受入時 / 稼働中", "summary": "懸濁物の総量を管理しますが、粒径別の区分は分かりません。警報には使えても、単独で清浄度等級の判定を完結させることはできません。" },
-    { "_key": "particles", "_type": "solutionParameter", "title": "液中粒子", "topic": "粒径別の計数", "value": "16/14/11", "note": "ISO 4406・出荷時の清浄度等級", "summary": "粒径分布と清浄度コードを管理し、部品の受入判定、フィルタ評価、異常原因の追跡における主要な判定根拠となります。" }
+    { "_key": "ph", "_type": "solutionParameter", "title": "pH", "topic": "酸・アルカリのバランス / 防食剤", "value": "指定範囲＋推移", "note": "冷却液の処方と接液材で判断", "summary": "機器・冷却液メーカーの指定範囲を確認し、受入時の初期値と稼働中の変化を記録します。" },
+    { "_key": "ec", "_type": "solutionParameter", "title": "導電率", "topic": "溶存イオン・添加剤", "value": "媒体別に設定", "note": "温度換算条件も記録", "summary": "水基・PG系・EG系と添加剤を区別します。低い値だけを良好とせず、初期値からの変化とメーカー条件で評価します。" },
+    { "_key": "turb", "_type": "solutionParameter", "title": "濁度", "topic": "懸濁物の光学的な濁り", "value": "工程別の推移", "note": "方式・校正・気泡の影響を確認", "summary": "受入・洗浄・稼働で管理条件を分けます。濁度だけでは粒径別個数や微生物を判定できません。" },
+    { "_key": "particles", "_type": "solutionParameter", "title": "液中粒子", "topic": "粒径別の計数", "value": "個数＋粒径帯", "note": "目標等級は用途別に合意", "summary": "閉塞リスク、部品の受入、フィルタ評価に用います。コード表示を採用する場合も、冷却液への適用性と校正条件を確認します。" }
   ],
   "diagram": {
     "mode": "animation", "enabled": true, "speed": 14,

@@ -39,7 +39,8 @@ function arrayKeys(value) {
 }
 
 /** Build the reviewed text-only page update without replacing uploaded media or styles. */
-export function buildFidelityPage(current, source, design) {
+export function buildFidelityPage(current, source, design, { approvedDesignFields = [] } = {}) {
+  if (approvedDesignFields.some(field => !["metrics", "navigation"].includes(field))) throw new Error("Unapproved design field");
   if (![pageId, `drafts.${pageId}`].includes(current?._id)) throw new Error("Unexpected page target");
   const existing = new Map((current.blocks ?? []).map(block => [block._key, block]));
   const keys = source.blocks.map(block => block._key);
@@ -71,6 +72,6 @@ export function buildFidelityPage(current, source, design) {
     return arrayKeys(result);
   });
   next.liquidCoolingDesign ??= {};
-  for (const key of ["eyebrow", "metadata", "metricNote", "parameters"]) if (Object.hasOwn(design, key)) next.liquidCoolingDesign[key] = ["metadata","parameters"].includes(key) ? mergeKeyed(next.liquidCoolingDesign[key],design[key]) : structuredClone(design[key]);
+  for (const key of ["eyebrow", "metadata", "metricNote", "parameters", ...approvedDesignFields]) if (Object.hasOwn(design, key)) next.liquidCoolingDesign[key] = ["metadata","parameters","metrics","navigation"].includes(key) ? mergeKeyed(next.liquidCoolingDesign[key],design[key]) : structuredClone(design[key]);
   return next;
 }

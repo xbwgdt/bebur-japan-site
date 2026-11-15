@@ -86,8 +86,8 @@ describe("English source editorial UI in Japanese", () => {
   it("preserves all editable chapters and the reviewed technical rows", async () => {
     const html = renderToStaticMarkup(await LiquidCoolingSolutionPage());
     for (const block of localSolutionPage.blocks) if (block.title) expect(html).toContain(block.title);
-    expect(html).toContain("GB/T 48023-2026");
-    expect(html).toContain("日本国内で一律に適用される規格一覧ではありません");
+    expect(html).toContain("JIS K 0102-1:2021");
+    expect(html).toContain("国家強制規格ではありません");
     expect(html).toContain("BS-EC350 仕様（型式・構成別）");
     expect(html).toContain("info@newtree-i.com");
     expect(html).toContain("080-5189-8663");

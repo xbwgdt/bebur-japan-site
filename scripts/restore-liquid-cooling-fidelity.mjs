@@ -22,7 +22,9 @@ const pages = before.filter(document => [id, `drafts.${id}`].includes(document._
 if (!pages.some(document => document._id === id) || settings?.phone !== "080-5189-8663" || settings?.inquiryEmail !== "info@newtree-i.com") throw new Error("Page/contact precondition failed");
 const source = JSON.parse(readFileSync("content/ja/liquid-cooling-solution.json", "utf8"));
 const design = JSON.parse(readFileSync("content/ja/liquid-cooling-design.json", "utf8"));
-const expected = pages.map(page => buildFidelityPage(page, source, design));
+const standardsLocalization = process.argv.includes("--jp-us-standards");
+if (standardsLocalization && pages.some(page => page._id.startsWith("drafts."))) throw new Error("Unexpected draft requires separate review before standards publication");
+const expected = pages.map(page => buildFidelityPage(page, source, design, { approvedDesignFields: standardsLocalization ? ["metrics", "navigation"] : [] }));
 for (const page of expected) {
   const assets = [...new Set(JSON.stringify(page).match(/image-[a-z0-9-]+/g) ?? [])];
   const errors = await validateSanityImportDocuments([page], { existingDocumentIds: assets });

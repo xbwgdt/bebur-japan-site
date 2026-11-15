@@ -19,10 +19,10 @@ describe("liquid cooling release", () => {
     expect(getAllRoutes()).toContain("/solutions/liquid-cooling-cleanliness-testing");
     for (const product of sensors) for (const image of product.images) expect(existsSync(path.join(process.cwd(), "public", image.src))).toBe(true);
   });
-  it("keeps all 15 standards and 5 measurement locations as editable table rows", () => {
+  it("keeps all 6 Japan/US references and 5 measurement locations as editable table rows", () => {
     const standards = localSolutionPage.blocks.find(({ anchorId }) => anchorId === "standards-table") as DataTablePageBlock;
     const points = localSolutionPage.blocks.find(({ anchorId }) => anchorId === "measurement-points") as DataTablePageBlock;
-    expect(standards.rows).toHaveLength(15);
+    expect(standards.rows).toHaveLength(6);
     expect(points.rows).toHaveLength(5);
   });
   it("uses a published CMS solution in preference to bundled copy", async () => {

@@ -17,6 +17,16 @@ const source = () => ({title:"新しいタイトル",blocks:[
 ]});
 
 describe("precise source-fidelity CMS migration",()=>{
+  it("updates only explicitly approved standard-localization design fields",()=>{
+    const before={...page(),liquidCoolingDesign:{...page().liquidCoolingDesign,metrics:[{_key:"ph",value:"old",custom:"keep"}],navigation:[{_key:"standards",label:"old",anchor:"standards"}]}};
+    const reviewed={metrics:[{_key:"ph",value:"new"}],navigation:[{_key:"standards",label:"規格・技術指針",anchor:"standards"}],theme:{ink:"#FFFFFF"}};
+    const result=buildFidelityPage(before,source(),reviewed,{approvedDesignFields:["metrics","navigation"]});
+    expect(result.liquidCoolingDesign.metrics).toEqual([{_key:"ph",value:"new",custom:"keep"}]);
+    expect(result.liquidCoolingDesign.navigation[0].label).toBe("規格・技術指針");
+    expect(result.liquidCoolingDesign.theme).toEqual(before.liquidCoolingDesign.theme);
+    expect(buildFidelityPage(before,source(),reviewed).liquidCoolingDesign.metrics).toEqual(before.liquidCoolingDesign.metrics);
+    expect(()=>buildFidelityPage(before,source(),reviewed,{approvedDesignFields:["theme"]})).toThrow(/design field/i);
+  });
   it("updates reviewed text and adds blocks while preserving media, styling and unrelated fields",()=>{
     const before=page();
     const result=buildFidelityPage(before,source(),{parameters:[{_key:"ph",value:"復元値"}],theme:{ink:"#FFFFFF"},diagram:{speed:14}});
