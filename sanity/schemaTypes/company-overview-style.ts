@@ -2,9 +2,9 @@ import {defineField} from "sanity";
 import defaults from "../../content/ja/company-overview.json";
 
 export const companyOverviewStyleField = defineField({
-  name:"companyOverviewStyle", title:"企业综合页：配色与字体", type:"object", group:"content",
-  hidden:({document})=>(document?.slug as {current?:string}|undefined)?.current!=="overview",
-  description:"用于 /about/overview。下方页面模块可修改正文、图片、卡片和排序；此处管理整页配色、字体和通用标签。",
+  name:"companyOverviewStyle", title:"企业信息页：配色与字体", type:"object", group:"content",
+  hidden:({document})=>!["overview","culture","history"].includes((document?.slug as {current?:string}|undefined)?.current??""),
+  description:"用于企业概要、企业文化和沿革。下方页面模块可修改正文、图片、卡片和排序；此处管理整页配色、字体和通用标签。",
   initialValue:defaults.companyOverviewStyle,
   fields:[
     defineField({name:"fontFamily",title:"页面字体",type:"string",options:{list:[{title:"标准黑体",value:"sans"},{title:"明朝体",value:"serif"}]}}),

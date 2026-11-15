@@ -1,18 +1,18 @@
 import {expect,it,vi} from 'vitest';
 const {fetchPage}=vi.hoisted(()=>({fetchPage:vi.fn(async(_query: string,_params: Record<string,unknown>,options?:{cache:string})=>{
   if(options?.cache==='no-store')throw new Error('Static export cannot use revalidate: 0 fetch');
-  return {_id:'page--overview',blocks:[{_type:'cardGrid',title:'企業紹介',cards:[{title:'公開本文'}]}]};
+  return {_id:'page--'+_params.slug,blocks:[{_type:'cardGrid',title:'企業紹介',cards:[{title:'公開本文'}]}]};
 })}));
 vi.mock('@/lib/sanity/client',()=>({getSanityClient:()=>({fetch:fetchPage})}));
 import {getPublishedPageForRoute} from '@/lib/cms-pages';
 import {getPageBySlug} from '@/lib/sanity/queries';
 
-it('reads overview during a static export instead of silently taking the fallback',async()=>{
-  const page=await getPublishedPageForRoute('overview');
-  expect(page?._id).toBe('page--overview');
+it.each(['overview','culture','history'])('reads %s during a static export instead of silently taking the fallback',async(slug)=>{
+  const page=await getPublishedPageForRoute(slug);
+  expect(page?._id).toBe('page--'+slug);
   const [,params,options]=fetchPage.mock.calls.at(-1)!;
   expect(options?.cache).toBe('force-cache');
-  expect(params.slug).toBe('overview');
+  expect(params.slug).toBe(slug);
   expect(typeof params.overviewBuildSnapshot).toBe('string');
   expect(String(params.overviewBuildSnapshot).length).toBeGreaterThan(4);
 });

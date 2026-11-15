@@ -56,13 +56,11 @@
       {
         "heading": "主な認証・証明書",
         "paragraphs": [
-        "AS-300の防火証明書、AS-525の防爆証明書、品質マネジメントシステム認証、AS-525の計量評価証明書をご覧いただけます。"
+          "AS-300の中国消防製品認証書と、中国法人の品質マネジメントシステム証明書をご紹介します。"
         ],
         "bullets": [
-        "AS-300 可燃性ガス検知器の防火証明書",
-        "AS-525 防爆証明書",
-        "品質マネジメントシステム認証",
-        "AS-525 計量評価証明書"
+          "AS-300 中国消防製品認証書",
+          "中国法人のISO 9001品質マネジメントシステム証明書"
         ]
       }
     ]
@@ -74,12 +72,7 @@
     "title": "企業文化",
     "description": "信頼性の高い計測機器と顧客中心の技術支援を掲げるBeburの企業文化をご紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_42",
-    "images": [
-      {
-        "src": "/applications/1762407834497676-06642d5f05be6445.jpg",
-        "alt": "Beburの企業文化を表すイメージ"
-      }
-    ],
+    "images": [],
     "sections": [
       {
         "heading": "ミッション",
@@ -103,12 +96,7 @@
     "title": "沿革",
     "description": "Beburの主要な沿革をご紹介します。",
     "sourceUrl": "https://www.bebur.net/en/list_43",
-    "images": [
-      {
-        "src": "/applications/1762407869816422-caefeb89dd155277.jpg",
-        "alt": "Beburの沿革に関するイメージ"
-      }
-    ],
+    "images": [],
     "sections": [
       {
         "heading": "主な歩み",

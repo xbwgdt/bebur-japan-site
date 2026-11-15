@@ -21,6 +21,7 @@ import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import type { AboutPage } from "@/lib/types";
 import { CompanyOverview } from "@/components/company-overview";
 import { getCompanyOverview } from "@/lib/company-overview";
+import { getCompanyInformation } from "@/lib/company-information";
 
 type AboutRouteParams = {
   slug: string;
@@ -50,7 +51,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const cmsPage = slug === "overview" ? await getCompanyOverview() : await getPublishedPageForRoute(slug);
+  const cmsPage = slug === "overview" ? await getCompanyOverview() : slug === "culture" || slug === "history" ? await getCompanyInformation(slug) : await getPublishedPageForRoute(slug);
 
   const canonical = canonicalUrl(aboutPage.route);
   const image = aboutPage.images[0]
@@ -96,6 +97,7 @@ export default async function AboutDetailPage({
   }
 
   if (slug === "overview") return <CompanyOverview page={await getCompanyOverview()} />;
+  if (slug === "culture" || slug === "history") return <CompanyOverview page={await getCompanyInformation(slug)} />;
 
   return (
     <SourceShell>

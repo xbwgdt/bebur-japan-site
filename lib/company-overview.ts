@@ -40,7 +40,7 @@ function cleanImage(value: unknown): SanityImage | undefined {
   return url ? { alt:text(image.alt), asset:{url} } : undefined;
 }
 
-function cleanOverview(page: unknown): SanityPage | null {
+function cleanOverview(page: unknown, fallback: SanityPage): SanityPage | null {
   const input=object(page);
   const blocks=array(input.blocks).flatMap(value=>{
     const original=object(value), type=original._type;
@@ -53,7 +53,7 @@ function cleanOverview(page: unknown): SanityPage | null {
     if(type==="dataTable") {block.columns=array(original.columns).filter(value=>typeof value==="string");block.rows=array(original.rows).map(object).map(row=>({cells:array(row.cells).map(value=>text(value)??"")}));}
     return [block as unknown as PageBlock];
   });
-  return {...localCompanyOverview,...input,_id:text(input._id)??localCompanyOverview._id,title:text(input.title)||localCompanyOverview.title,slug:"overview",seoTitle:text(input.seoTitle)||localCompanyOverview.seoTitle,seoDescription:text(input.seoDescription)||localCompanyOverview.seoDescription,blocks} as SanityPage;
+  return {...fallback,...input,_id:text(input._id)??fallback._id,title:text(input.title)||fallback.title,slug:fallback.slug,seoTitle:text(input.seoTitle)||fallback.seoTitle,seoDescription:text(input.seoDescription)||fallback.seoDescription,blocks} as SanityPage;
 }
 
 function hasBody(page: SanityPage | null): page is SanityPage {
@@ -66,11 +66,15 @@ function hasBody(page: SanityPage | null): page is SanityPage {
 }
 
 export async function getCompanyOverview(): Promise<SanityPage> {
+  return getCompanyPage("overview", localCompanyOverview);
+}
+
+export async function getCompanyPage(slug: string, fallback: SanityPage): Promise<SanityPage> {
   try {
-    const published = await getPublishedPageForRoute("overview");
-    const usable = cleanOverview(published);
-    return hasBody(usable) ? usable : structuredClone(localCompanyOverview);
-  } catch { return structuredClone(localCompanyOverview); }
+    const published = await getPublishedPageForRoute(slug);
+    const usable = cleanOverview(published, fallback);
+    return hasBody(usable) ? usable : structuredClone(fallback);
+  } catch { return structuredClone(fallback); }
 }
 
 export function overviewSections(blocks: PageBlock[]) {

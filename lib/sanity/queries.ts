@@ -241,12 +241,12 @@ export async function getNewsBySlug(
   );
 }
 
-// A new process snapshot prevents an older build's cached overview surviving a
+// A new process snapshot prevents an older build's cached company pages surviving a
 // CMS-triggered rebuild, including rebuilds of the same Git commit.
 const overviewBuildSnapshot = Date.now().toString(36);
 
 export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
-  const overview = slug === "overview";
+  const overview = ["overview", "culture", "history"].includes(slug);
   return fetchConfigured<SanityPage>(
     `*[
       _type == "page" &&
