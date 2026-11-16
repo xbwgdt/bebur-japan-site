@@ -108,7 +108,8 @@ describe("normal public CMS routes", () => {
 
     expect(container.querySelector(canonicalSelector)).toBeTruthy();
     expect(screen.queryByText(`${page.title} body`)).toBeNull();
-    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
+    if (slug === "dosing") expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
   });
 
   it.each([
@@ -127,7 +128,8 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
+    if (slug === "dosing") expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(screen.queryByText(`CMS ${slug} body`)).toBeNull();
     expect(container.textContent?.trim().length).toBeGreaterThan(0);
   });
@@ -148,7 +150,8 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
+    if (slug === "dosing") expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(container.querySelector(fallbackSelector)).toBeTruthy();
   });
 

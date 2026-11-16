@@ -11,6 +11,7 @@ export function SourceHero({
   summary,
   actions,
   identity,
+  className,
 }: {
   image: ContentMediaPath;
   imageAlt?: string;
@@ -19,9 +20,10 @@ export function SourceHero({
   summary: string;
   actions?: ReactNode;
   identity?: string;
+  className?: string;
 }): React.ReactElement {
   return (
-    <header className="source-hero" data-testid="source-hero">
+    <header className={`source-hero${className ? ` ${className}` : ""}`} data-testid="source-hero">
       <Image
         alt={imageAlt}
         className="source-hero__image"

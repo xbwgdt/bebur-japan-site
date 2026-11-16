@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
+import { ApplicationProducts } from "@/components/application-products";
+import { resolveApplicationProducts } from "@/lib/page-enhancements";
 import { ProductCard } from "@/components/product-card";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
@@ -113,6 +115,8 @@ export default async function ApplicationDetailPage({
   const recommendedProducts = resolveRecommendedProducts(
     application.recommendedProductSlugs,
   );
+  const page = slug === "chemical-industry" ? await getPublishedPageForRoute(slug) : null;
+  const productSelection = resolveApplicationProducts(slug, page?.applicationProducts, getProducts());
 
   return (
     <SourceShell>
@@ -169,7 +173,8 @@ export default async function ApplicationDetailPage({
         </div>
       </article>
 
-      {recommendedProducts.length > 0 && (
+      {productSelection && <ApplicationProducts selection={productSelection} products={getProducts()} />}
+      {!productSelection && recommendedProducts.length > 0 && (
         <section className="section source-section related-products">
           <div className="site-container">
             <h2>推奨製品</h2>

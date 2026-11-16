@@ -6,6 +6,9 @@ const readProjectFile = (path: string) =>
   readFileSync(resolve(process.cwd(), path), "utf8").replace(/\r\n/g, "\n");
 
 describe("Cloudflare Pages static export", () => {
+  it("targets the existing Bebur Studio app when publishing editor controls", () => {
+    expect(readProjectFile("sanity/sanity.cli.ts")).toMatch(/deployment:\s*\{\s*appId:\s*["']tv1tbzu23214yqqurejer2e3["']/);
+  });
   it("builds a fully static Next.js export with unoptimized local images", () => {
     const nextConfig = readProjectFile("next.config.ts");
 

@@ -116,6 +116,8 @@ export type SanityPage = {
   blocks: PageBlock[];
   liquidCoolingDesign?: unknown;
   companyOverviewStyle?: unknown;
+  categoryHero?: unknown;
+  applicationProducts?: unknown;
   seoTitle: string;
   seoDescription: string;
 };
@@ -126,6 +128,8 @@ export const pageProjection = `{
   "slug": slug.current,
   liquidCoolingDesign { ..., diagram { ..., image { ..., alt, asset->{_ref, url} } } },
   companyOverviewStyle,
+  categoryHero { ..., image { alt, asset->{url} } },
+  applicationProducts { ..., groups[] { ..., "productSlugs": products[]->slug.current } },
   blocks[] {
     _type,
     ...,
@@ -243,12 +247,12 @@ export async function getNewsBySlug(
   );
 }
 
-// A new process snapshot prevents an older build's cached company pages surviving a
-// CMS-triggered rebuild, including rebuilds of the same Git commit.
+// A new process snapshot prevents stale company pages, category banners and
+// application selections surviving CMS-triggered rebuilds of the same Git commit.
 const overviewBuildSnapshot = Date.now().toString(36);
 
 export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
-  const overview = ["overview", "culture", "history"].includes(slug);
+  const overview = ["overview", "culture", "history", "dosing", "chemical-industry"].includes(slug);
   return fetchConfigured<SanityPage>(
     `*[
       _type == "page" &&
@@ -256,8 +260,8 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
       slug.current == $slug
     ][0] ${pageProjection}`,
     overview ? { slug, overviewBuildSnapshot } : { slug },
-    // Static export rejects no-store fetches. Cache only within this overview
-    // build snapshot; keep existing behavior on unrelated page routes.
+    // Static export rejects no-store fetches. Cache only within this build
+    // snapshot; keep existing behavior on unrelated page routes.
     { cache: overview ? "force-cache" : "no-store" },
   );
 }

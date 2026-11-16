@@ -7,7 +7,7 @@ vi.mock('@/lib/sanity/client',()=>({getSanityClient:()=>({fetch:fetchPage})}));
 import {getPublishedPageForRoute} from '@/lib/cms-pages';
 import {getPageBySlug} from '@/lib/sanity/queries';
 
-it.each(['overview','culture','history'])('reads %s during a static export instead of silently taking the fallback',async(slug)=>{
+it.each(['overview','culture','history','dosing','chemical-industry'])('reads %s during a static export instead of silently taking the fallback',async(slug)=>{
   const page=await getPublishedPageForRoute(slug);
   expect(page?._id).toBe('page--'+slug);
   const [,params,options]=fetchPage.mock.calls.at(-1)!;

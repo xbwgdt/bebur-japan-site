@@ -6,4 +6,5 @@ export default defineCliConfig({
     dataset: "production",
   },
   studioHost: "bebur-japan",
+  deployment: { appId: "tv1tbzu23214yqqurejer2e3" },
 });

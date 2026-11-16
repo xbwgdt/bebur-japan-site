@@ -2161,6 +2161,21 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   object-fit: cover;
 }
 
+/* Dedicated category hero controls; do not restyle other canonical page heroes. */
+.category-banner--sans { font-family: var(--font-sans); }
+.category-banner--serif { font-family: "Noto Serif JP", "Yu Mincho", serif; }
+.source-hero.category-banner--sm h1 { font-size: clamp(2rem, 4vw, 2.7rem); }
+.source-hero.category-banner--md h1 { font-size: clamp(2.15rem, 5vw, 3.1rem); }
+.source-hero.category-banner--lg h1 { font-size: clamp(2.3rem, 5.5vw, 3.7rem); }
+.category-banner__breadcrumb { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+.category-banner--light .source-hero__shade { background: rgb(255 255 255 / 82%); }
+.source-hero.category-banner--light h1, .category-banner--light .source-hero__eyebrow, .category-banner--light .source-hero__summary { color: #092c50; }
+.category-banner--light .source-hero__rule { background: #2258a7; }
+.application-products__group { margin-top: 3rem; }
+.application-products__heading { margin-bottom: .75rem; color: var(--source-blue); font-size: clamp(1.35rem, 2.5vw, 1.8rem); }
+.application-products__summary { max-width: 65ch; margin-bottom: 1.5rem; line-height: 1.9; }
+.application-products__more { display: inline-flex; margin-top: 1.5rem; padding-block: .6rem; color: var(--source-blue); font-weight: 700; text-decoration: underline; text-underline-offset: .25em; }
+
 .source-hero__shade {
   position: absolute;
   z-index: -2;

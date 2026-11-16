@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ProductExplorer } from "@/components/product-explorer";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
+import { SourceShell } from "@/components/source-faithful/source-shell";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
+import { resolveCategoryHero } from "@/lib/page-enhancements";
 import { getProducts } from "@/lib/content";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
 import type { ProductCategory } from "@/lib/types";
@@ -96,9 +102,16 @@ export default async function ProductCategoryPage({
   }
 
   const categoryProducts = getProducts(content.category);
+  const page = content.category === "dosing" ? await getPublishedPageForRoute("dosing") : null;
+  const hero = resolveCategoryHero(content.category, page?.categoryHero);
+  const Shell = hero ? SourceShell : Fragment;
 
   return (
-    <>
+    <Shell>
+      {hero ? <>
+        <SourceHero className={`category-banner category-banner--${hero.color} category-banner--${hero.fontFamily} category-banner--${hero.fontSize}`} image={resolveSourceMediaPath(hero.image.src)} imageAlt={hero.image.alt} eyebrow={hero.eyebrow} title={hero.title} summary={hero.summary} />
+        <div className="source-breadcrumb-band"><div className="site-container category-banner__breadcrumb"><Breadcrumbs items={[{label:"製品情報",href:"/products"},{label:content.label}]} /><span>{categoryProducts.length}製品</span></div></div>
+      </> :
       <header className="page-hero page-hero--compact">
         <div className="site-container">
           <Breadcrumbs
@@ -113,6 +126,7 @@ export default async function ProductCategoryPage({
           <p className="page-hero__count">{categoryProducts.length}製品</p>
         </div>
       </header>
+      }
 
       <section className="section product-index">
         <div className="site-container">
@@ -128,6 +142,6 @@ export default async function ProductCategoryPage({
           <ContactCta compact subject={`${content.label} 製品`} />
         </div>
       </section>
-    </>
+    </Shell>
   );
 }

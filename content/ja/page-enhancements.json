@@ -1,0 +1,31 @@
+{
+  "dosing": {
+    "eyebrow": "PRODUCTS",
+    "title": "薬注制御装置",
+    "summary": "ストリーミング電流と粒子電荷分析を活用し、凝集剤や消毒剤の薬注量を工程条件に合わせて最適化します。",
+    "image": { "src": "/source-media/1762147356906250-b3ac3b47b4049a96.jpg", "alt": "水滴と波紋が広がる水面" },
+    "color": "deepBlue",
+    "fontFamily": "sans",
+    "fontSize": "md"
+  },
+  "chemical-industry": {
+    "title": "化学プロセスを支えるBebur製品",
+    "summary": "ガスの漏えい監視からプロセス水・排水の水質管理まで。測定対象に合わせて、関連する製品をご覧いただけます。",
+    "groups": [
+      {
+        "category": "gas-detection",
+        "title": "ガス検知・臭気監視",
+        "summary": "可燃性ガス、有毒ガス、VOC、臭気成分の監視に。対象ガスと設置環境に応じて検知方式を選定します。",
+        "moreLabel": "ガス検知器をすべて見る",
+        "productSlugs": ["as-300-combustible", "as-300-toxic", "as-300-voc", "gt-3280-ou"]
+      },
+      {
+        "category": "water-quality",
+        "title": "プロセス水・排水の水質監視",
+        "summary": "pH、導電率、溶存酸素、UV吸収・分光による水質指標をオンラインで監視。工程と測定液に合わせた機器選定を支援します。",
+        "moreLabel": "水質分析計をすべて見る",
+        "productSlugs": ["bt6308-ph", "bt6308-cond", "bt6308-do", "uvsense"]
+      }
+    ]
+  }
+}
