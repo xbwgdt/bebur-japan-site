@@ -896,6 +896,15 @@ p {
   object-fit: contain;
 }
 
+.application-card__media {
+  position: relative;
+}
+
+.application-card__media img {
+  position: absolute;
+  inset: 0;
+}
+
 .application-card__fallback,
 .product-card__fallback,
 .product-detail__fallback {
@@ -1624,6 +1633,7 @@ p {
 }
 
 .insight-card__media {
+  position: relative;
   aspect-ratio: 4 / 3;
   display: grid;
   overflow: hidden;
@@ -1633,6 +1643,8 @@ p {
 }
 
 .insight-card__media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
@@ -2450,6 +2462,15 @@ body:has(.source-home-hero) .source-header .wordmark__region {
   height: auto;
   display: block;
   object-fit: contain;
+}
+
+.article-image-expand {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  margin-inline-start: 0.5rem;
+  white-space: nowrap;
+  text-decoration: underline;
 }
 
 .source-card-grid__catalog {

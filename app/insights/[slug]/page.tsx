@@ -7,6 +7,7 @@ import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
 import { ProductCard } from "@/components/product-card";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
+import { ArticleImageCaption } from "@/components/source-faithful/article-image-caption";
 import { SourceHero } from "@/components/source-faithful/source-hero";
 import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
@@ -157,7 +158,7 @@ export default async function InsightDetailPage({
                     src={resolveSourceMediaPath(image.src)}
                     width={1120}
                   />
-                  <figcaption>{image.alt}</figcaption>
+                  <ArticleImageCaption kind="news" slug={article.slug} image={image} />
                 </figure>
               ))}
             />

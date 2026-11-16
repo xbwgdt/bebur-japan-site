@@ -227,10 +227,16 @@ export async function getProductBySlug(
   );
 }
 
+// Each static build must see newly published news images, even at the same Git SHA.
+// Keep force-cache within a build: no-store can be rejected during static export.
+const newsBuildSnapshot = Date.now().toString(36);
+
 export async function getNews(): Promise<SanityNews[]> {
   return (
     (await fetchConfigured<SanityNews[]>(
       `*[_type == "news" && publishState == "published"] | order(publishedAt desc) ${newsProjection}`,
+      { newsBuildSnapshot },
+      { cache: "force-cache" },
     )) ?? []
   );
 }
@@ -244,7 +250,8 @@ export async function getNewsBySlug(
       publishState == "published" &&
       slug.current == $slug
     ][0] ${newsProjection}`,
-    { slug },
+    { slug, newsBuildSnapshot },
+    { cache: "force-cache" },
   );
 }
 

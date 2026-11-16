@@ -359,6 +359,10 @@
       {
         "src": "/media/industry/plate-heat-exchanger-cleanliness.svg",
         "alt": "熱交換器の清浄度管理の構成例"
+      },
+      {
+        "src": "/media/article-completion/heat-exchanger-installation.jpg",
+        "alt": "液冷設備に取り付けられたBT8200の測定現場"
       }
     ],
     "sections": [
@@ -390,6 +394,10 @@
       {
         "src": "/applications/1762409053994071-693a8a41f468d9b7.png",
         "alt": "液冷マニホールドの清浄度管理"
+      },
+      {
+        "src": "/media/article-completion/liquid-cooling-installation.jpg",
+        "alt": "液冷設備に設置された粒子計数器と水質計測機器"
       }
     ],
     "sections": [
@@ -420,6 +428,14 @@
       {
         "src": "/applications/1763604848550066-a7496b6fbd2ef020.jpg",
         "alt": "BT8200によるコールドプレート液冷系の粒子測定"
+      },
+      {
+        "src": "/media/article-completion/cold-plate-system-ja.webp",
+        "alt": "コールドプレート液冷システムの一次・二次冷却回路と監視・管理系統"
+      },
+      {
+        "src": "/media/article-completion/light-obscuration-ja.webp",
+        "alt": "光遮蔽方式による液中粒子計数の測定原理"
       }
     ],
     "sections": [
@@ -456,6 +472,10 @@
       {
         "src": "/media/industry/liquid-cooling-industry.svg",
         "alt": "液冷システムの監視の構成例"
+      },
+      {
+        "src": "/media/article-completion/liquid-cooling-installation.jpg",
+        "alt": "液冷設備に設置された粒子計数器と水質計測機器"
       }
     ],
     "sections": [
@@ -483,6 +503,10 @@
       {
         "src": "/applications/1763618373156410-3270ca326e841012.jpg",
         "alt": "液冷プレートの粒子清浄度管理"
+      },
+      {
+        "src": "/media/article-completion/cold-plate-channels.jpg",
+        "alt": "微細流路を備えたコールドプレートの構造例"
       }
     ],
     "sections": [
@@ -775,8 +799,12 @@
     "sourceUrl": "https://www.bebur.net/en/list_59/159.html",
     "images": [
       {
+        "src": "/media/article-completion/landfill-instrument.png",
+        "alt": "埋立地に設置されたGT-3280-OUと現場作業の様子"
+      },
+      {
         "src": "/applications/1763112706269409-5a66a450f0031367.png",
-        "alt": "GT-3280-OU悪臭ガスオンライン監視システム"
+        "alt": "埋立地の生態修復プロジェクト施設の外観"
       }
     ],
     "sections": [
@@ -827,6 +855,10 @@
       {
         "src": "/applications/1763112098103305-bf0db766b42dc3f1.png",
         "alt": "飲料工程における水中オゾン分析"
+      },
+      {
+        "src": "/media/article-completion/beverage-ozone-installation.png",
+        "alt": "飲料製造設備における水中オゾン分析計の設置例"
       }
     ],
     "sections": [
@@ -919,6 +951,14 @@
       {
         "src": "/applications/1763621820121504-6cda4e7befbf4f91.jpg",
         "alt": "江蘇省発電所におけるSCM530の適用"
+      },
+      {
+        "src": "/media/article-completion/scm530-sensors.jpg",
+        "alt": "SCM530センサーと配管・計測機器の設置状況"
+      },
+      {
+        "src": "/media/article-completion/scm530-cabinet.jpg",
+        "alt": "発電所の凝集薬注監視に用いる制御盤内部"
       }
     ],
     "sections": [

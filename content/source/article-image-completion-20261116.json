@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-16",
+  "notes": "Manufacturer photographs remain unretouched. Three diagram/panel assets are localized into Japanese; photographed nameplates and instrument displays remain documentary originals. Existing images and non-image CMS fields are preserved.",
+  "assets": [
+    {"key":"cold-plate-system","sourceId":1,"sourceUrl":"https://www.bebur.net/static/upload/image/20251120/1763604669124430.png","path":"/media/article-completion/cold-plate-system-ja.webp","kind":"localized-graphic","alt":"コールドプレート液冷システムの一次・二次冷却回路と監視・管理系統"},
+    {"key":"light-obscuration","sourceId":2,"sourceUrl":"https://www.bebur.net/static/upload/image/20251120/1763604756158343.png","path":"/media/article-completion/light-obscuration-ja.webp","kind":"localized-graphic","alt":"光遮蔽方式による液中粒子計数の測定原理"},
+    {"key":"liquid-cooling-installation","sourceId":6,"sourceUrl":"https://www.bebur.net/static/upload/image/20251120/1763617784553945.jpg","additionalSourceUrls":["https://www.bebur.net/static/upload/image/20251106/1762408923153056.jpg"],"path":"/media/article-completion/liquid-cooling-installation.jpg","kind":"manufacturer-photo","alt":"液冷設備に設置された粒子計数器と水質計測機器"},
+    {"key":"landfill-instrument","sourceId":8,"sourceUrl":"https://www.bebur.net/static/upload/image/20251114/1763112797120676.png","path":"/media/article-completion/landfill-instrument.png","kind":"manufacturer-photo","alt":"埋立地に設置されたGT-3280-OUと現場作業の様子"},
+    {"key":"cold-plate-channels","sourceId":9,"sourceUrl":"https://www.bebur.net/static/upload/image/20251120/1763618243124650.jpg","path":"/media/article-completion/cold-plate-channels.jpg","kind":"manufacturer-photo","alt":"微細流路を備えたコールドプレートの構造例"},
+    {"key":"heat-exchanger-installation","sourceId":17,"sourceUrl":"https://www.bebur.net/static/upload/image/20251106/1762411548177380.jpg","path":"/media/article-completion/heat-exchanger-installation.jpg","kind":"manufacturer-photo","alt":"液冷設備に取り付けられたBT8200の測定現場"},
+    {"key":"scm530-sensors","sourceId":20,"sourceUrl":"https://www.bebur.net/static/upload/image/20251120/1763621883772048.jpg","path":"/media/article-completion/scm530-sensors.jpg","kind":"manufacturer-photo","alt":"SCM530センサーと配管・計測機器の設置状況"},
+    {"key":"scm530-cabinet","sourceId":21,"sourceUrl":"https://www.bebur.net/static/upload/image/20251120/1763621928632354.jpg","path":"/media/article-completion/scm530-cabinet.jpg","kind":"manufacturer-photo","alt":"発電所の凝集薬注監視に用いる制御盤内部"},
+    {"key":"beverage-ozone-installation","sourceId":23,"sourceUrl":"https://www.bebur.net/static/upload/image/20251114/1763112129180411.png","path":"/media/article-completion/beverage-ozone-installation.png","kind":"manufacturer-photo","alt":"飲料製造設備における水中オゾン分析計の設置例"},
+    {"key":"ozone-analyzers","sourceId":31,"sourceUrl":"https://www.bebur.net/static/upload/image/20260228/1772245133140640.jpg","path":"/media/article-completion/ozone-analyzers.jpg","kind":"manufacturer-photo","alt":"気相・液相のオゾン測定に用いるBebur分析機器の構成例"},
+    {"key":"ozone-process","sourceId":32,"sourceUrl":"https://www.bebur.net/static/upload/image/20260228/1772247186204388.png","path":"/media/article-completion/ozone-process.png","kind":"manufacturer-photo","alt":"オゾンを利用する工業設備の配管・機器構成例"},
+    {"key":"ozone-leak-detectors","sourceId":35,"sourceUrl":"https://www.bebur.net/static/upload/image/20260227/1772160774192587.jpg","path":"/media/article-completion/ozone-leak-detectors-ja.webp","kind":"localized-graphic","alt":"固定式オゾン漏えい検知器の製品紹介（筐体の外観例）"}
+  ],
+  "pages": [
+    {"type":"page","slug":"bt8200-cold-plate-liquid-cooling","sourceUrl":"https://www.bebur.net/en/list_54/168.html","additions":["cold-plate-system","light-obscuration"]},
+    {"type":"page","slug":"bt8200-liquid-cooling","sourceUrl":"https://www.bebur.net/en/list_54/169.html","additions":["liquid-cooling-installation"]},
+    {"type":"page","slug":"liquid-cooled-plate-cleanliness","sourceUrl":"https://www.bebur.net/en/list_54/170.html","additions":["cold-plate-channels"]},
+    {"type":"page","slug":"manifold-cleanliness","sourceUrl":"https://www.bebur.net/en/list_54/167.html","additions":["liquid-cooling-installation"]},
+    {"type":"page","slug":"plate-heat-exchanger-cleanliness","sourceUrl":"https://www.bebur.net/en/list_54/166.html","additions":["heat-exchanger-installation"]},
+    {"type":"page","slug":"scm530-jiangsu-power-plant","sourceUrl":"https://www.bebur.net/en/list_61/157.html","additions":["scm530-sensors","scm530-cabinet"]},
+    {"type":"page","slug":"water-ozone-analyzer-beverage","sourceUrl":"https://www.bebur.net/en/list_60/158.html","additions":["beverage-ozone-installation"]},
+    {"type":"page","slug":"gt-3280-ou-landfill","sourceUrl":"https://www.bebur.net/en/list_59/159.html","additions":["landfill-instrument"],"leadAsset":"landfill-instrument","retainedCaption":"埋立地の生態修復プロジェクト施設の外観"},
+    {"type":"news","slug":"ozone-detector-brands-2026","sourceUrl":"https://www.bebur.net/en/list_39/283.html","additions":["ozone-analyzers","ozone-process"]},
+    {"type":"news","slug":"ozone-monitoring-equipment","sourceUrl":"https://www.bebur.net/en/list_39/275.html","additions":["ozone-leak-detectors"]}
+  ],
+  "translations": {
+    "coldPlateSystem":{"labels":["一次冷却回路","二次冷却回路","コールドプレート","クイックコネクタ","マニホールド","冷却分配ユニット","熱交換器","屋外冷却設備","ポンプ","一次冷却配管","二次冷却配管","監視・管理システム"],"invariants":"Preserve all pipes, hot/cold flow directions, pump locations and monitoring links."},
+    "lightObscuration":{"labels":["光源","レンズ","試料セル","窓","光検出器","増幅器","液体の流れ","チャンネル","粒径","個数","粒子パルス波形の模式図"],"unit":"µm","channels":[[1,2,5],[2,5,4],[3,10,4],[4,15,4],[5,20,4],[6,25,4],[7,30,3],[8,35,0]]},
+    "ozoneLeak":{"labels":["オゾン漏えい検知器","工業用オゾン濃度監視装置","製品紹介","固定式検知器の外観例"],"principle":"電気化学式","rangesPpm":[5,50,100],"outputs":["4–20 mA","RS485"],"invariants":"Preserve original instrument appearance and photographed sensor markings; the manufacturer panel uses generic enclosure examples."}
+  }
+}
