@@ -11,7 +11,6 @@ import ProductDetailPage from "@/app/products/[category]/[slug]/page";
 import { ProductCard } from "@/components/product-card";
 import { ProductExplorer } from "@/components/product-explorer";
 import { getProduct, getProducts } from "@/lib/content";
-import { siteConfig } from "@/lib/constants";
 import { productCategoryLabels, productRoute } from "@/lib/routes";
 import { publicSiteSettings } from "@/lib/site-settings";
 
@@ -237,27 +236,27 @@ describe("product cards and detail content", () => {
 });
 
 describe("home product discovery", () => {
-  it("uses the captured source hero image and Japanese source hierarchy", async () => {
+  it("uses the reviewed six-slide carousel and Japanese source hierarchy", async () => {
     const { container } = render(await HomePage());
-    const sourceHero = screen.getByTestId("source-hero");
+    const sourceHero = screen.getByRole("region", { name: "Beburの製品とソリューション" });
     const image = sourceHero.querySelector("img");
 
     expect(
       screen.getByRole("heading", {
-        name: "水質とガスを、より確かに。",
+        name: publicSiteSettings.homeCarousel.slides[0].title,
         level: 1,
       }),
     ).toBeTruthy();
     expect(image?.getAttribute("alt")).toBe(
-      publicSiteSettings.homeHero.backgroundImage.alt,
+      publicSiteSettings.homeCarousel.slides[0].image.alt,
     );
     expect(
       within(sourceHero).getByRole("img", {
-        name: publicSiteSettings.homeHero.backgroundImage.alt,
+        name: publicSiteSettings.homeCarousel.slides[0].image.alt,
       }),
     ).toBeTruthy();
     expect(decodeURIComponent(image?.getAttribute("src") ?? "")).toContain(
-      "/source-media/1761791363673595-08e6a0255dfd817e.jpg",
+      "/media/home-carousel/slide-1.webp",
     );
     expectLocalizedRenderedImages(container);
     expect(
@@ -341,18 +340,14 @@ describe("home product discovery", () => {
       ).toBeTruthy();
     }
 
-    const hero = screen.getByTestId("source-hero");
+    const hero = screen.getByRole("region", { name: "Beburの製品とソリューション" });
     expect(
       within(hero)
         .getByRole("link", { name: "製品情報を見る" })
         .getAttribute("href"),
     ).toBe("/products");
-    expect(
-      within(hero)
-        .getByRole("link", { name: "お問い合わせ" })
-        .getAttribute("href"),
-    ).toBe("/contact");
-    expect(within(hero).getByText(siteConfig.distributorLabel)).toBeTruthy();
+    expect(screen.getByRole("link", { name: "電話で相談" }).getAttribute("href")).toBe("tel:080-5189-8663");
+    expect(publicSiteSettings.companyName).toBe("新樹産業株式会社");
   });
 
   it("does not globally clip document horizontal overflow", async () => {

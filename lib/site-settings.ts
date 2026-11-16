@@ -7,6 +7,7 @@ import {
   type SanitySiteSettings,
 } from "./sanity/queries";
 import { resolveLiquidCoolingDesign, type LiquidCoolingDesign } from "./liquid-cooling-design";
+import { localHomeCarousel, resolveHomeCarousel, type HomeCarouselSettings } from "./home-carousel";
 
 export type PublicNavigationLabels = {
   home: string;
@@ -42,6 +43,7 @@ export type PublicContactPageSettings = {
 };
 
 export type PublicSiteSettings = {
+  homeCarousel: HomeCarouselSettings;
   homeSolution: {
     eyebrow: string;
     title: string;
@@ -101,6 +103,7 @@ const contactPanelPresetValues = {
 } as const;
 
 export const localPublicSiteSettings: PublicSiteSettings = {
+  homeCarousel: localHomeCarousel,
   homeSolution: {
     eyebrow: "液冷・データセンター",
     title: "液冷システムの清浄度検査ソリューション",
@@ -404,6 +407,7 @@ export function resolvePublicSiteSettings(
 
   return {
     homeHero: resolveHomeHero(settings.homeHero),
+    homeCarousel: resolveHomeCarousel(settings.homeCarousel),
     homeSolution: {
       eyebrow: safeText(settings.homeSolution?.eyebrow, { max: 80 }) ?? localPublicSiteSettings.homeSolution.eyebrow,
       title: safeText(settings.homeSolution?.title, { max: 120 }) ?? localPublicSiteSettings.homeSolution.title,

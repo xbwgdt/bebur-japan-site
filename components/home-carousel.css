@@ -1,0 +1,64 @@
+.home-carousel {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  background: #092a4c;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+}
+.home-carousel__slides { display: grid; }
+.home-carousel__slide {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.home-carousel__slide[data-active="true"] { visibility: visible; pointer-events: auto; }
+.home-carousel__image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #e8f0f6; }
+.home-carousel__copy-wrap { min-width: 0; padding: 1.75rem 1.25rem 1.5rem; background: #092a4c; }
+.home-carousel__copy { max-width: 44rem; margin-inline: auto; }
+.home-carousel__eyebrow { margin: 0 0 .7rem; font-size: .875rem; font-weight: 700; letter-spacing: .12em; }
+.home-carousel__title { margin: 0; color: inherit; font-size: clamp(1.5rem, 6.8vw, 2rem); line-height: 1.55; overflow-wrap: anywhere; text-wrap: pretty; }
+.home-carousel__summary { margin: 1rem 0 1.5rem; font-size: 1rem; line-height: 1.9; overflow-wrap: anywhere; }
+.home-carousel__action { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; max-width: 100%; padding: .8rem 1.15rem; color: #092a4c; background: #fff; border: 1px solid #fff; font-size: .9375rem; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+.home-carousel__action:hover { text-decoration: underline; }
+.home-carousel__controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .25rem; padding: .5rem .75rem 1rem; background: #092a4c; }
+.home-carousel__controls button { display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; padding: .25rem; border: 1px solid transparent; border-radius: .25rem; color: #fff; background: transparent; font: inherit; cursor: pointer; }
+.home-carousel__controls button:hover { background: #244b70; }
+.home-carousel__controls .home-carousel__play { min-width: 5rem; margin-left: .5rem; padding-inline: .5rem; border-color: #9fb5ca; font-size: .8125rem; }
+.home-carousel__dots { display: flex; gap: 0; }
+.home-carousel__dots button { min-width: 2rem; }
+.home-carousel__dots span { width: .5rem; height: .5rem; border: 1px solid #fff; border-radius: 50%; }
+.home-carousel__dots [aria-current="true"] span { width: .7rem; height: .7rem; background: #fff; }
+.home-carousel a:focus-visible, .home-carousel button:focus-visible { outline: 3px solid #ffe598; outline-offset: 3px; }
+.home-carousel__motion-note { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.home-carousel__slide--font-serif { font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif; }
+.home-carousel__slide--font-mono { font-family: "BIZ UDGothic", "MS Gothic", monospace; }
+.home-carousel__slide--size-sm .home-carousel__title { font-size: clamp(1.375rem, 6vw, 1.75rem); }
+.home-carousel__slide--size-lg .home-carousel__title { font-size: clamp(1.625rem, 7vw, 2.125rem); }
+.home-carousel__slide--size-xl .home-carousel__title { font-size: clamp(1.75rem, 7.5vw, 2.25rem); }
+@media (min-width: 64rem) {
+  .home-carousel__slide { grid-template-rows: 1fr; position: relative; aspect-ratio: 16 / 9; }
+  .home-carousel__image { grid-area: 1 / 1; width: 100%; height: 100%; }
+  .home-carousel__copy-wrap { grid-area: 1 / 1; z-index: 1; align-self: start; padding: clamp(2rem, 4vw, 4.5rem) 5vw 0; background: transparent; }
+  .home-carousel__copy { margin-inline: 0 auto; padding: 1.25rem 1.5rem; color: #fff; background: rgb(9 42 76 / 94%); box-shadow: 0 .75rem 2rem rgb(9 42 76 / 10%); }
+  .home-carousel__slide--center .home-carousel__copy { max-width: 64rem; margin-inline: auto; text-align: center; }
+  .home-carousel__slide--right .home-carousel__copy { margin-inline: auto 0; text-align: right; }
+  .home-carousel__slide--light .home-carousel__copy { color: #092a4c; background: rgb(255 255 255 / 97%); }
+  .home-carousel__slide--paleBlue .home-carousel__copy { color: #092a4c; background: rgb(232 243 255 / 97%); }
+  .home-carousel__slide--light .home-carousel__action, .home-carousel__slide--paleBlue .home-carousel__action { color: #fff; background: #123d68; border-color: #123d68; }
+  .home-carousel__title { font-size: clamp(2rem, 3.1vw, 3.25rem); line-height: 1.45; }
+  .home-carousel__slide--size-sm .home-carousel__title { font-size: clamp(1.75rem, 2.6vw, 2.75rem); }
+  .home-carousel__slide--size-lg .home-carousel__title { font-size: clamp(2.25rem, 3.5vw, 3.75rem); }
+  .home-carousel__slide--size-xl .home-carousel__title { font-size: clamp(2.5rem, 3.8vw, 4rem); }
+  .home-carousel__summary { margin-block: .75rem 1rem; font-size: 1.0625rem; }
+  .home-carousel__eyebrow { margin-bottom: .5rem; }
+  .home-carousel__controls { padding: .5rem 1.5rem; }
+}
+@media (max-width: 24rem) {
+  .home-carousel__controls { gap: 0; padding-inline: .25rem; }
+  .home-carousel__controls button { min-width: 2.5rem; }
+  .home-carousel__dots button { min-width: 1.75rem; }
+  .home-carousel__controls .home-carousel__play { margin-left: .25rem; min-width: 4.5rem; }
+}

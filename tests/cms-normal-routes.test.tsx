@@ -88,7 +88,7 @@ describe("normal public CMS routes", () => {
   });
 
   it.each([
-    ["/", "home", () => HomePage(), "[data-testid=\"source-hero\"]"],
+    ["/", "home", () => HomePage(), ".home-carousel"],
     ["/products", "product-index", () => ProductsPage(), "[data-testid=\"source-hero\"]"],
     ["/applications", "application-index", () => ApplicationsPage(), ".application-industries"],
     ["/applications/cases", "application-case-index", () => ApplicationCasesPage(), ".application-grid"],
@@ -133,7 +133,7 @@ describe("normal public CMS routes", () => {
   });
 
   it.each([
-    ["/", "home", () => HomePage(), "[data-testid=\"source-hero\"]"],
+    ["/", "home", () => HomePage(), ".home-carousel"],
     ["/products", "product-index", () => ProductsPage(), "[data-testid=\"source-hero\"]"],
     ["/applications", "application-index", () => ApplicationsPage(), ".application-industries"],
     ["/applications/cases", "application-case-index", () => ApplicationCasesPage(), ".application-grid"],

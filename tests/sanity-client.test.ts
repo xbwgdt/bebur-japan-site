@@ -66,4 +66,13 @@ describe("Sanity static-build client", () => {
     );
     expect(fetchMock.mock.calls[0]?.[0]).toContain(pageProjection);
   });
+
+  it("fetches current site settings in a build-specific static-export-safe snapshot", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(null);
+    createClientMock.mockReturnValue({ fetch: fetchMock });
+    const { getSiteSettings } = await import("../lib/sanity/queries");
+    await getSiteSettings();
+    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("homeCarousel"),
+      { siteSettingsBuildSnapshot: expect.any(String) }, { cache: "force-cache" });
+  });
 });

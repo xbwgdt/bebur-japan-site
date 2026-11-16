@@ -45,20 +45,19 @@ const remoteSettings = resolvePublicSiteSettings({
 });
 
 describe("safe public site settings", () => {
-  it("renders the home hero image alt text and desktop nowrap preset", async () => {
+  it("renders the default carousel image without discarding legacy hero settings", async () => {
     const { container } = render(await HomePage());
-    const hero = screen.getByTestId("source-hero");
+    const hero = screen.getByRole("region", { name: "Beburの製品とソリューション" });
 
     expect(
       within(hero).getByAltText(
-        localPublicSiteSettings.homeHero.backgroundImage.alt,
+        localPublicSiteSettings.homeCarousel.slides[0].image.alt,
       ),
     ).not.toBeNull();
     expect(
-      container
-        .querySelector(".source-home-hero")
-        ?.classList.contains("source-home-hero--title-nowrap"),
-    ).toBe(true);
+      container.querySelector(".home-carousel"),
+    ).not.toBeNull();
+    expect(localPublicSiteSettings.homeHero.style.desktopTitleWrap).toBe("nowrap");
   });
 
   it("uses only approved home hero presentation presets", () => {

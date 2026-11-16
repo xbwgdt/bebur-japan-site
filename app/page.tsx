@@ -20,6 +20,7 @@ import {
 import { siteConfig } from "@/lib/constants";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
 import { publicSiteSettings, resolveHomeHeroStyle } from "@/lib/site-settings";
+import { HomeCarousel } from "@/components/home-carousel";
 import type { Application, Product, ProductCategory } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -106,7 +107,9 @@ export default async function HomePage(): Promise<React.ReactElement> {
 
   return (
     <SourceShell>
-      <div className={resolveHomeHeroStyle(homeHero.style)}>
+      {publicSiteSettings.homeCarousel.enabled && publicSiteSettings.homeCarousel.slides.length > 0 ? (
+        <HomeCarousel settings={publicSiteSettings.homeCarousel} />
+      ) : <div className={resolveHomeHeroStyle(homeHero.style)}>
         <SourceHero
           eyebrow={homeHero.eyebrow}
           image={homeHero.backgroundImage.src as import("@/components/source-faithful/source-media").ContentMediaPath}
@@ -125,7 +128,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
           }
           identity={siteConfig.distributorLabel}
         />
-      </div>
+      </div>}
 
       <SolutionPromotion animated />
       <section

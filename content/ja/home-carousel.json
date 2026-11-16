@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "autoPlay": true,
+  "intervalSeconds": 8,
+  "slides": [
+    { "_key": "brand-products", "eyebrow": "Bebur", "title": "欧州に生まれ、世界を支える。", "summary": "英国ロンドンを拠点に、水質・ガス・流量・液位の検知機器の研究開発に取り組んでいます。", "image": { "src": "/media/home-carousel/slide-1.webp", "alt": "水質・ガス・流量・液位測定を支えるBeburの製品群" }, "primaryAction": { "label": "製品情報を見る", "href": "/products" }, "style": { "color": "deepBlue", "fontFamily": "sans", "fontSize": "md", "alignment": "center" } },
+    { "_key": "liquid-cooling", "eyebrow": "液冷・データセンター", "title": "液冷システムの清浄度検査ソリューション", "summary": "製品表面の粒子汚染を検出し、さまざまな産業の品質管理を支援します。", "image": { "src": "/media/home-carousel/slide-2.webp", "alt": "データセンターの液冷設備を表すイメージ" }, "primaryAction": { "label": "液冷ソリューションを見る", "href": "/solutions/liquid-cooling-cleanliness-testing" }, "style": { "color": "deepBlue", "fontFamily": "sans", "fontSize": "md", "alignment": "left" } },
+    { "_key": "dosing", "eyebrow": "薬注制御システム", "title": "上水処理・水質監視ソリューション", "summary": "ロジックによる相互検証とPID制御。連携運転・単独運転に対応します。", "image": { "src": "/media/home-carousel/slide-3.webp", "alt": "凝集・沈殿・ろ過と水質監視の構成イメージ" }, "primaryAction": { "label": "薬注制御製品を見る", "href": "/products/dosing" }, "style": { "color": "deepBlue", "fontFamily": "sans", "fontSize": "md", "alignment": "left" } },
+    { "_key": "chemical", "eyebrow": "化学プロセス", "title": "水質・ガス監視ソリューション", "summary": "効率的な検知と迅速な応答。使いやすさ、柔軟性、幅広い適用範囲と高い適応性を備えます。", "image": { "src": "/media/home-carousel/slide-4.webp", "alt": "化学プロセスの水処理設備と配管のイメージ" }, "primaryAction": { "label": "化学業界の用途を見る", "href": "/applications/chemical-industry" }, "style": { "color": "deepBlue", "fontFamily": "sans", "fontSize": "md", "alignment": "left" } },
+    { "_key": "gas", "eyebrow": "Bebur", "title": "水質・ガス監視の専門ソリューション", "summary": "高感度・高速応答・信頼性の高い警報で、現場の監視を支えます。", "image": { "src": "/media/home-carousel/slide-5.webp", "alt": "工業プラントのガス監視を表すイメージ" }, "primaryAction": { "label": "ガス検知製品を見る", "href": "/products/gas-detection" }, "style": { "color": "deepBlue", "fontFamily": "sans", "fontSize": "md", "alignment": "right" } },
+    { "_key": "brand-world", "eyebrow": "Bebur", "title": "欧州発の計測技術を、世界へ。", "summary": "水質分析とガス検知のソリューションを、世界のお客様へ。", "image": { "src": "/media/home-carousel/slide-6.webp", "alt": "湖と山並みを背景にしたBeburのブランドイメージ" }, "primaryAction": { "label": "企業情報を見る", "href": "/about/overview" }, "style": { "color": "deepBlue", "fontFamily": "sans", "fontSize": "md", "alignment": "center" } }
+  ]
+}

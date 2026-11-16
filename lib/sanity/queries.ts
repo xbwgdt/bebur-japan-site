@@ -2,6 +2,7 @@ import type { QueryParams } from "@sanity/client";
 
 import { getSanityClient } from "./client";
 import type { PageBlock } from "../page-blocks";
+import type { SanityHomeCarousel } from "../home-carousel";
 
 export type SanityImage = {
   asset?: {
@@ -45,6 +46,7 @@ export type SanityNews = {
 };
 
 export type SanitySiteSettings = {
+  homeCarousel?: SanityHomeCarousel;
   homeSolution?: {
     eyebrow?: string;
     title?: string;
@@ -263,6 +265,10 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
 export const siteSettingsQuery = `*[
   _type == "siteSettings" && _id == "siteSettings"
 ][0] {
+  homeCarousel {
+    enabled, autoPlay, intervalSeconds,
+    slides[] { _key, eyebrow, title, summary, image { ..., asset->{_ref, url} }, primaryAction, style }
+  },
   homeSolution {
     eyebrow, title, summary,
     image { ..., asset->{_ref, url} },
@@ -310,6 +316,9 @@ export const siteSettingsQuery = `*[
   }
 }`;
 
+// Rebuilds of the same commit must read newly published carousel settings,
+// without the no-store fetch that static export rejects.
+const siteSettingsBuildSnapshot = Date.now().toString(36);
 export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
-  return fetchConfigured<SanitySiteSettings>(siteSettingsQuery);
+  return fetchConfigured<SanitySiteSettings>(siteSettingsQuery, { siteSettingsBuildSnapshot }, { cache: "force-cache" });
 }
