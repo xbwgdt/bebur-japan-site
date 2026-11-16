@@ -11,7 +11,7 @@
     "seoDescription": "液冷用pHセンサーBS-PHS276。測定範囲0～14 pH、精度±0.02、PT1000温度補償、RS485／4–20 mA出力。仕様、設置方式、電極の保管・洗浄方法をご案内します。",
     "sourceUrl": "https://www.bebur.net/en/bs-phs276-liquid-cooled-ph-sensor.html",
     "images": [
-      { "src": "/media/bs-phs276.jpg", "alt": "BS-PHS276 液冷用pHセンサー本体" },
+      { "src": "/media/localized-20261116/bs-phs276-ja.webp", "alt": "BS-PHS276 液冷用pHセンサー本体" },
       { "src": "/media/bs-phs276-dimensions.jpg", "alt": "BS-PHS276の外形寸法図（単位：mm）" }
     ],
     "sections": [
@@ -103,7 +103,7 @@
     "seoDescription": "BS-EC350は5レンジから選べる液冷用導電率センサー。型式別の測定範囲・温度範囲・電源・寸法と、共通仕様を掲載しています。",
     "sourceUrl": "https://www.bebur.net/en/bs-ec350-liquid-cooled-conductivity-sensor.html",
     "images": [
-      { "src": "/media/bs-ec350.jpg", "alt": "BS-EC350 液冷用導電率センサー本体" },
+      { "src": "/media/localized-20261116/bs-ec350-ja.webp", "alt": "BS-EC350 液冷用導電率センサー本体" },
       { "src": "/media/bs-ec350-dimensions.jpg", "alt": "BS-EC350 A・B型の外形寸法図（単位：mm）" }
     ],
     "sections": [
@@ -190,7 +190,7 @@
     "seoDescription": "BS-TURB113液冷用濁度センサー。測定範囲0～10／0～100 NTU、分解能0.001 NTU、応答時間30秒未満、RS485出力。仕様と選定方法をご案内します。",
     "sourceUrl": "https://www.bebur.net/en/bs-turb113-liquid-cooled-turbidity-sensor.html",
     "images": [
-      { "src": "/media/bs-turb113.jpg", "alt": "BS-TURB113 液冷用濁度センサー本体" },
+      { "src": "/media/localized-20261116/bs-turb113-ja.webp", "alt": "BS-TURB113 液冷用濁度センサー本体" },
       { "src": "/media/bs-turb113-dimensions.jpg", "alt": "BS-TURB113の外形寸法図（単位：mm）" }
     ],
     "sections": [

@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-16",
+  "scope": "Six approved localized image replacements. Preserve original photographic instrument markings, connections, technical values, Japan contacts and existing Sanity image fields.",
+  "assets": [
+    {"key":"conference","oldRef":"image-16a53547d24bc4637f744ebaffd51f0b710327d3-1080x1920-jpg","oldPaths":["/source-media/1762329776632484-8c75f929caf7b24d.jpg"],"path":"/media/localized-20261116/conference-ja.webp","alt":"2025年広東・貴州水道事業者交流会のBebur出展案内ポスター","slug":"guangdong-guizhou-water-supply-conference-2025"},
+    {"key":"cooling-panel","oldRef":"image-61c8a6d12879e74452f1b6608f15341d9c0283af-1902x2282-jpg","oldPaths":["/source-media/1762334545196031-80122c1caa571344.png"],"path":"/media/localized-20261116/cooling-panel-ja.webp","alt":"液冷技術会議で紹介するBeburの粒子清浄度・水質測定機器と導入例の製品展示パネル","slug":"global-data-center-liquid-cooling-conference-2025"},
+    {"key":"at-2000","oldRef":"image-225b289fdef38bc7a9a71f2bcf6750cf5bf49b68-1080x1080-png","oldPaths":["/products/1762503501197605-4fee661ef1580a1d.png","/source-media/1762503501197605-4fee661ef1580a1d.png"],"path":"/media/localized-20261116/at-2000-ja.webp","alt":"AT-2000 ガス警報検知システム","slug":"at-2000"},
+    {"key":"bs-phs276","oldRef":"image-0362a91935281fac809509d3f675d3007a67c9a5-750x750-jpg","oldPaths":["/media/bs-phs276.jpg"],"path":"/media/localized-20261116/bs-phs276-ja.webp","alt":"BS-PHS276 液冷用pHセンサー本体","slug":"bs-phs276"},
+    {"key":"bs-ec350","oldRef":"image-fe6549515e60f8a8385de667a9b7a7c28fc2dd84-750x750-jpg","oldPaths":["/media/bs-ec350.jpg"],"path":"/media/localized-20261116/bs-ec350-ja.webp","alt":"BS-EC350 液冷用導電率センサー本体","slug":"bs-ec350"},
+    {"key":"bs-turb113","oldRef":"image-577eb2f5b17fc478c07c7aefb4d0c094e1fd7fec-750x750-jpg","oldPaths":["/media/bs-turb113.jpg"],"path":"/media/localized-20261116/bs-turb113-ja.webp","alt":"BS-TURB113 液冷用濁度センサー本体","slug":"bs-turb113"}
+  ],
+  "invariants": {
+    "at2000": ["220V","4–20 mA"],
+    "conference": ["2025","A3","11.06","11.08","貴陽市観山湖区 上善ホテル"],
+    "coolingPanel": ["2008","2020","BT8200","BTP8300","BT-6308","ORP","pH"],
+    "japanContacts": ["新樹産業株式会社","080-5189-8663","info@newtree-i.com"]
+  },
+  "translations": {
+    "conference": ["広東・貴州両省 水道事業者","高品質な発展に向けた専門交流会","pH調整","凝集剤","凝集槽","沈殿槽","ろ過槽","ろ材","原水の濁度・有機物分析：フィードフォワード制御","沈殿後の濁度：データ参照分析","流動電流計：フィードバック制御","オンライン流動電流計システム","凝集薬注スマート制御システム","オンライン式液中パーティクルカウンタ","多項目水質分析計","水質コントローラー／センサー","主な取扱製品","薬注制御システム：流動電流計、凝集薬注スマート制御システム","オンライン水質分析計：残留塩素／オゾン／粒子／濁度／懸濁物質／溶存酸素／導電率／pH／ORP／汚泥濃度／フッ化物イオン／有機汚染物質分析計など","オンラインガス検知器：有毒・可燃性ガス検知器、高温可燃性ガス検知器、BT-525ガス検知システム、VOC・悪臭ガスオンライン監視システムなど","ブース","会期","会場"],
+    "coolingPanel": ["液冷分野の水質検査ソリューションを提供","液冷システムの「清浄度」を守る","リアルタイム監視で、トータルに保護","Beburは英国ロンドンに本社を置き、2008年に中国市場へ参入しました。2020年には中国法人の巴倍尔特仪表有限公司を設立しました。粒子清浄度検査装置、水質分析計、ガス検知器、流量計、液位計の研究開発・製造・サービスに一貫して取り組んでいます。成熟した設計、精緻な製造技術、現場に即した専門的なソリューションにより、お客様から評価と信頼をいただいています。","粒子清浄度検査装置","オンライン水質分析計","現場での導入例","BT8200 オンライン式液中パーティクルカウンタ","BTP8300 携帯型液中パーティクルカウンタ","BT-6308 コントローラー","ORPセンサー","pHセンサー","導電率センサー","濁度センサー"],
+    "at2000": ["電源線220V","4–20 mA信号線"]
+  }
+}

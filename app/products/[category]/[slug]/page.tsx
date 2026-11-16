@@ -162,6 +162,7 @@ export default async function ProductDetailPage({
 
   const image = product.images[0];
   const isControlDiagram = product.category === "dosing" && ["bt-9000c", "bt-9000l", "bt-9000s"].includes(product.slug) && image?.alt.includes("構成例");
+  const isLocalizedFullImage = ["at-2000", "bs-phs276", "bs-ec350", "bs-turb113"].includes(product.slug);
   const sections = additionalContentSections(product);
   const related = relatedProducts(product);
 
@@ -196,7 +197,7 @@ export default async function ProductDetailPage({
               </p>
             </div>
 
-            <div className={`product-detail__media${isControlDiagram ? " product-detail__media--diagram" : ""}`}>
+            <div className={`product-detail__media${isControlDiagram || isLocalizedFullImage ? " product-detail__media--diagram" : ""}`}>
               {image ? (
                 <Image
                   alt={image.alt}
@@ -215,6 +216,11 @@ export default async function ProductDetailPage({
                   <span>BEBUR</span>
                   <strong>{product.model}</strong>
                 </div>
+              )}
+              {image && isLocalizedFullImage && (
+                <a className="article-image-expand" href={resolveSourceMediaPath(image.src)} target="_blank" rel="noopener noreferrer" aria-label={`${image.alt}を拡大表示（新しいタブ）`}>
+                  拡大表示
+                </a>
               )}
             </div>
           </div>

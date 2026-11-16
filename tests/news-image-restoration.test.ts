@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import articles from "../content/ja/insights.json";
 import assetMap from "../content/source/asset-map.json";
+import localized from "../content/source/six-image-localization-20261116.json";
 
 const originals: Record<string, string[]> = {
   "yunnan-water-quality-exchange": ["20251106/1762407070603328.jpg", "20251106/1762407003113430.jpg"],
@@ -27,7 +28,12 @@ describe("approved original news image restoration", () => {
   for (const [slug, files] of Object.entries(originals)) {
     it(`retains the correct original images and Japanese descriptions for ${slug}`, () => {
       const article = articles.find(article => article.slug === slug)!;
-      const expected = files.map(file => (assetMap as Record<string, string>)[`https://www.bebur.net/static/upload/image/${file}`]);
+      const expected = files.map(file => {
+        const original = (assetMap as Record<string, string>)[`https://www.bebur.net/static/upload/image/${file}`];
+        // Only the explicitly approved Japanese counterpart supersedes its
+        // original; all other manufacturer-image expectations stay exact.
+        return localized.assets.find(asset => asset.slug === slug && asset.oldPaths.includes(original))?.path ?? original;
+      });
       expect(article.images.map(image => image.src)).toEqual(expected);
       for (const image of article.images) {
         expect(existsSync(path.join(process.cwd(), "public", image.src))).toBe(true);
