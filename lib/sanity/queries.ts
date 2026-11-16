@@ -3,6 +3,7 @@ import type { QueryParams } from "@sanity/client";
 import { getSanityClient } from "./client";
 import type { PageBlock } from "../page-blocks";
 import type { SanityHomeCarousel } from "../home-carousel";
+import { applicationProductPageSlugs } from "../page-enhancements";
 
 export type SanityImage = {
   asset?: {
@@ -129,7 +130,7 @@ export const pageProjection = `{
   liquidCoolingDesign { ..., diagram { ..., image { ..., alt, asset->{_ref, url} } } },
   companyOverviewStyle,
   categoryHero { ..., image { alt, asset->{url} } },
-  applicationProducts { ..., groups[] { ..., "productSlugs": products[]->slug.current } },
+  applicationProducts { ..., navigation { ..., items[] { ..., "slug": page->slug.current } }, groups[] { ..., "productSlugs": products[]->slug.current } },
   blocks[] {
     _type,
     ...,
@@ -252,7 +253,7 @@ export async function getNewsBySlug(
 const overviewBuildSnapshot = Date.now().toString(36);
 
 export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
-  const overview = ["overview", "culture", "history", "dosing", "chemical-industry"].includes(slug);
+  const overview = ["overview", "culture", "history", "dosing", ...applicationProductPageSlugs].includes(slug);
   return fetchConfigured<SanityPage>(
     `*[
       _type == "page" &&

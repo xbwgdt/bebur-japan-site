@@ -83,7 +83,8 @@ describe("normal public CMS routes", () => {
 
     render(await renderRoute());
 
-    expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
+    if (slug === "liquid-cooling-industry") expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(screen.getByRole("heading", { name: localTitle(), level: 1 })).toBeTruthy();
   });
 
@@ -108,7 +109,7 @@ describe("normal public CMS routes", () => {
 
     expect(container.querySelector(canonicalSelector)).toBeTruthy();
     expect(screen.queryByText(`${page.title} body`)).toBeNull();
-    if (slug === "dosing") expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    if (["dosing","liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
     else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
   });
 
@@ -128,7 +129,7 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    if (slug === "dosing") expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    if (["dosing","liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
     else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(screen.queryByText(`CMS ${slug} body`)).toBeNull();
     expect(container.textContent?.trim().length).toBeGreaterThan(0);
@@ -150,7 +151,7 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    if (slug === "dosing") expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    if (["dosing","liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
     else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(container.querySelector(fallbackSelector)).toBeTruthy();
   });

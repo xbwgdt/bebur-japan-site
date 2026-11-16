@@ -2172,6 +2172,8 @@ body:has(.source-home-hero) .source-header .wordmark__region {
 .source-hero.category-banner--light h1, .category-banner--light .source-hero__eyebrow, .category-banner--light .source-hero__summary { color: #092c50; }
 .category-banner--light .source-hero__rule { background: #2258a7; }
 .application-products__group { margin-top: 3rem; }
+.application-products__industries { margin-bottom: 4rem; }
+.application-products__industries .industry-anchor-grid { margin-top: 1.5rem; }
 .application-products__heading { margin-bottom: .75rem; color: var(--source-blue); font-size: clamp(1.35rem, 2.5vw, 1.8rem); }
 .application-products__summary { max-width: 65ch; margin-bottom: 1.5rem; line-height: 1.9; }
 .application-products__more { display: inline-flex; margin-top: 1.5rem; padding-block: .6rem; color: var(--source-blue); font-weight: 700; text-decoration: underline; text-underline-offset: .25em; }

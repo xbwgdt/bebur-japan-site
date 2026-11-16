@@ -7,7 +7,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { ContentSections } from "@/components/content-sections";
 import { ApplicationProducts } from "@/components/application-products";
-import { resolveApplicationProducts } from "@/lib/page-enhancements";
+import { applicationProductPageSlugs, resolveApplicationProducts } from "@/lib/page-enhancements";
 import { ProductCard } from "@/components/product-card";
 import { SourceCardGrid } from "@/components/source-faithful/source-card-grid";
 import { SourceHero } from "@/components/source-faithful/source-hero";
@@ -115,7 +115,7 @@ export default async function ApplicationDetailPage({
   const recommendedProducts = resolveRecommendedProducts(
     application.recommendedProductSlugs,
   );
-  const page = slug === "chemical-industry" ? await getPublishedPageForRoute(slug) : null;
+  const page = applicationProductPageSlugs.includes(slug) ? await getPublishedPageForRoute(slug) : null;
   const productSelection = resolveApplicationProducts(slug, page?.applicationProducts, getProducts());
 
   return (

@@ -1,0 +1,82 @@
+{
+  "electric-power-industry": {
+    "title": "発電設備の水処理・安全監視を支える製品",
+    "summary": "工程水の水質管理、凝集剤の薬注制御、ガス検知、粒子清浄度の監視まで。測定課題ごとに関連製品をご紹介します。",
+    "groups": [
+      {"category":"water-quality","title":"水処理工程の水質監視","summary":"濁度、浮遊物質、導電率、pH、溶存酸素、硬度などを監視し、工程水の状態を把握します。","moreLabel":"水質分析計をすべて見る","productSlugs":["bt6308-turb","bt6308-ss","bt6308-cond","bt6308-ph","bt6308-do","bt-7000","bc300"]},
+      {"category":"dosing","title":"凝集・薬注制御","summary":"ストリーミング電流の測定機器とオンラインシステムから、凝集剤の薬注制御に適した構成をお選びいただけます。","moreLabel":"薬注制御装置をすべて見る","productSlugs":["scm520","scm530","streaming-current-system"]},
+      {"category":"gas-detection","title":"可燃性・有毒ガスの安全監視","summary":"検知器と警報システムを組み合わせ、対象ガスと設置環境に合わせた監視構成をご提案します。","moreLabel":"ガス検知器をすべて見る","productSlugs":["as-525-toxic-online","as-300-combustible","at-2000","bt-525"]},
+      {"category":"cleanliness","title":"液中粒子・清浄度の監視","summary":"連続監視と現場でのサンプリング検査に対応する粒子計数器をご紹介します。","moreLabel":"清浄度測定装置をすべて見る","productSlugs":["bt8500","bt8200","btp8300"]}
+    ]
+  },
+  "environmental-protection": {
+    "title":"水環境・ガス・臭気の監視に対応する製品",
+    "summary":"水質、ガス、臭気、液位の監視機器を、測定対象に合わせて比較いただけます。",
+    "groups":[
+      {"category":"water-quality","title":"水質のオンライン監視","summary":"pH、ORP、濁度、浮遊物質、導電率、UV吸収・分光による水質指標などを監視します。","moreLabel":"水質分析計をすべて見る","productSlugs":["bt6308-turb","bt6308-ss","bt6308-cond","bt6308-ph","bt6308-orp","bt-7000","uvsense"]},
+      {"category":"gas-detection","title":"可燃性・有毒ガスと臭気の監視","summary":"可燃性・有毒ガスの検知と臭気成分の監視を、現場の課題に応じて構成します。","moreLabel":"ガス検知器をすべて見る","productSlugs":["as-525-combustible","as-300-toxic","at-2000","gt-3280-ou"]},
+      {"category":"flow-level","title":"液位の監視","summary":"貯水槽や水処理設備などの液位監視に向けた機器をご紹介します。","moreLabel":"流量計・液位計をすべて見る","productSlugs":["bul-200"]}
+    ]
+  },
+  "municipal-water-treatment":{
+    "title":"浄水処理から給水までを支える計測・薬注製品",
+    "summary":"水質の測定と薬注制御を工程ごとにつなぎ、原水処理から消毒、給水までの機器選定を支援します。",
+    "groups":[
+      {"category":"water-quality","title":"原水・工程水の水質監視","summary":"濁度、浮遊物質、pH、導電率、ORP、溶存酸素、硬度など、工程に応じた水質項目を監視します。","moreLabel":"水質分析計をすべて見る","productSlugs":["bt6308-turb","bt6308-ss","bt6308-cond","bt6308-ph","bt6308-orp","bt6308-do","bc300","bt6308-bsnh3","bt6308-f200","uvsense"]},
+      {"category":"dosing","title":"凝集剤・消毒剤の薬注制御","summary":"ストリーミング電流による凝集状態の監視から、凝集剤・消毒剤の薬注システムまでをご紹介します。","moreLabel":"薬注制御装置をすべて見る","productSlugs":["streaming-current-system","bt-9000l","bt-9000c"]},
+      {"category":"water-quality","title":"消毒・給水のオンライン監視","summary":"残留塩素、水中オゾン、二酸化塩素の測定機器と、多項目監視に対応する分析計・コントローラーをご紹介します。","moreLabel":"水質分析計をすべて見る","productSlugs":["bt6308-cl","bt6308-oz","bt6308-cd","bt-7000","bt-6308"]},
+      {"category":"flow-level","title":"流量・液位の管理","summary":"導電性液体の流量と、貯水・処理設備の液位を監視します。測定液と設置条件に合わせて機器を選定します。","moreLabel":"流量計・液位計をすべて見る","productSlugs":["msf8000","msf8100","bul-200"]},
+      {"category":"cleanliness","title":"水中粒子の連続監視","summary":"水中の粒径と個数の変化をオンラインで把握する粒子計数器をご紹介します。","moreLabel":"清浄度測定装置をすべて見る","productSlugs":["bt8500","bt8200"]}
+    ]
+  },
+  "liquid-cooling-industry":{
+    "title":"液冷システムの粒子・水質監視に対応する製品",
+    "summary":"粒子計数とpH・導電率・濁度の測定機器を、監視目的と冷却液の条件に合わせてお選びいただけます。",
+    "groups":[
+      {"category":"cleanliness","title":"液中粒子・清浄度の検査","summary":"オンラインでの連続監視と、現場でのサンプリング検査に対応する液中粒子計数器をご紹介します。","moreLabel":"清浄度測定装置をすべて見る","productSlugs":["bt8500","bt8200","btp8300"]},
+      {"category":"water-quality","title":"冷却液のpH・導電率・濁度監視","summary":"液冷向け専用センサーと、既存のオンライン分析計をご紹介します。冷却液の種類、測定範囲、取付条件に合わせて構成を選定します。","moreLabel":"水質分析計をすべて見る","productSlugs":["bs-phs276","bs-ec350","bs-turb113","bt6308-turb","bt6308-cond","bt6308-ph"]}
+    ]
+  },
+  "industry-solutions":{
+    "title":"主な計測ソリューションと代表製品",
+    "summary":"粒子、水質、薬注、ガス検知の各分野から代表製品をご紹介します。業界別ページでは、用途に応じた製品構成をご確認いただけます。",
+    "navigation":{
+      "title":"産業分野からソリューションを探す",
+      "summary":"お客様の設備・工程に近い分野から、測定課題と関連製品をご覧ください。",
+      "items":[
+        {"slug":"liquid-cooling-industry","title":"液冷・データセンター","summary":"冷却液の水質と粒子清浄度"},
+        {"slug":"municipal-water-treatment","title":"上下水道・水処理","summary":"原水処理から消毒・給水まで"},
+        {"slug":"chemical-industry","title":"化学","summary":"工程水質とガス漏えいの監視"},
+        {"slug":"medical-pharmaceutical","title":"医療・製薬","summary":"水質・粒子と消毒工程の管理"},
+        {"slug":"hydraulic-industry","title":"油圧","summary":"作動油などの粒子清浄度管理"},
+        {"slug":"environmental-protection","title":"環境保全","summary":"水質・ガス・臭気の監視"},
+        {"slug":"food-industry","title":"食品・飲料","summary":"製造用水と洗浄・消毒工程"},
+        {"slug":"electric-power-industry","title":"電力","summary":"工程水・薬注・ガス・粒子の監視"}
+      ]
+    },
+    "groups":[
+      {"category":"all","title":"Beburの代表的な計測・制御機器","summary":"製品画像と用途をご確認のうえ、詳細ページで測定方式や仕様をご覧いただけます。","moreLabel":"すべての製品を見る","productSlugs":["bt8200","bt-7000","scm530","as-300-combustible"]}
+    ]
+  },
+  "plate-heat-exchanger-cleanliness":{
+    "title":"プレート熱交換器の粒子清浄度を確認する製品",
+    "summary":"洗浄液や循環液中の粒子を計数し、洗浄・清浄度管理の判断材料となる測定データを取得します。",
+    "groups":[
+      {"category":"cleanliness","title":"連続監視・現場サンプリング検査","summary":"BT8200・BT8500はオンライン監視、BTP8300は携帯型での確認に。測定液と取付・採水条件に合わせて構成を選定します。","moreLabel":"清浄度測定装置をすべて見る","productSlugs":["bt8200","bt8500","btp8300"]}
+    ]
+  },
+  "manifold-cleanliness":{
+    "title":"マニホールドの粒子清浄度管理に対応する製品",
+    "summary":"洗浄・循環工程で液中粒子の粒径と個数を把握し、清浄度の確認に活用いただけます。",
+    "groups":[
+      {"category":"cleanliness","title":"洗浄工程の粒子計数と現場確認","summary":"オンライン式と携帯型を、連続監視・サンプリング検査の運用に合わせてお選びいただけます。粒子計数はpH・導電率などの水質測定とは区別して行います。","moreLabel":"清浄度測定装置をすべて見る","productSlugs":["bt8200","bt8500","btp8300"]}
+    ]
+  },
+  "online-disinfectant-analyzer-waterworks":{
+    "title":"消毒剤に合わせて選ぶオンライン分析計",
+    "summary":"残留塩素、水中オゾン、二酸化塩素を、それぞれの測定対象に対応する分析計で監視します。",
+    "groups":[
+      {"category":"water-quality","title":"残留塩素・水中オゾン・二酸化塩素の測定","summary":"消毒工程と測定対象に合わせてセンサー・分析計を選定し、濃度のオンライン監視に利用します。","moreLabel":"水質分析計をすべて見る","productSlugs":["bt6308-cl","bt6308-oz","bt6308-cd"]}
+    ]
+  }
+}
