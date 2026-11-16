@@ -5,6 +5,7 @@ import pagesData from "../content/ja/pages.json";
 import productsData from "../content/ja/products.json";
 import sensorData from "../content/ja/liquid-cooling-sensors.json";
 import solutionData from "../content/ja/liquid-cooling-solution.json";
+import { loadApplicationImages } from "./application-images";
 import { insightRoute, isProductCategory, productRoute } from "./routes";
 import { getSanityClient } from "./sanity/client";
 import {
@@ -53,7 +54,7 @@ type PortableTextBlock = {
 };
 
 const localProducts = [...productsData, ...sensorData] as Product[];
-const applications = applicationsData as Application[];
+const applications = await loadApplicationImages(applicationsData as Application[]);
 const localArticles = insightsData as Article[];
 const aboutPages = aboutData as AboutPage[];
 const staticPages = [...pagesData, {

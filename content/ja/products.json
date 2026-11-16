@@ -258,8 +258,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_47/247.html",
     "images": [
       {
-        "src": "/products/1762415950641929-447d86cda61a24c2.jpg",
-        "alt": "BT-9000L 凝集インテリジェント薬注制御システム"
+        "src": "/media/dosing/bt-9000l.svg",
+        "alt": "BT-9000L 凝集薬注制御の構成例"
       }
     ],
     "sections": [
@@ -447,8 +447,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_47/250.html",
     "images": [
       {
-        "src": "/products/1762492636729196-2dc0642b6939e136.jpg",
-        "alt": "BT-9000S ストリーミング電流計制御薬注システム"
+        "src": "/media/dosing/bt-9000s.svg",
+        "alt": "BT-9000S 薬注制御の構成例"
       }
     ],
     "sections": [
@@ -492,8 +492,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_47/251.html",
     "images": [
       {
-        "src": "/products/1762493381860322-7fd7cf44471fd4f6.jpg",
-        "alt": "BT-9000C 塩素消毒薬注制御システム"
+        "src": "/media/dosing/bt-9000c.svg",
+        "alt": "BT-9000C 塩素消毒薬注制御の構成例"
       }
     ],
     "sections": [

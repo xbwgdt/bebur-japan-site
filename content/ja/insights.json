@@ -45,10 +45,6 @@
     "publishedAt": "2025-11-03",
     "images": [
       {
-        "src": "/source-media/1762406599465283-16aed25d82b9aeab.png",
-        "alt": "製紙工程と工場設備のイメージ図"
-      },
-      {
         "src": "/source-media/1762406675188202-0733a9819c187a6e.jpg",
         "alt": "製紙ウェットエンドの電荷管理に用いるBeburのラボ用粒子電荷分析計"
       }
@@ -537,10 +533,6 @@
       {
         "src": "/source-media/1774589627282883-ee633cf31696b9cb.jpg",
         "alt": "残留塩素の連続監視に用いるBeburのBT6308-CLとBC350"
-      },
-      {
-        "src": "/source-media/1763108910519122-551811acf1e6398e.jpg",
-        "alt": "上水処理設備とオンライン水質監視のイメージ図"
       }
     ],
     "sections": [
@@ -578,7 +570,7 @@
     "images": [
       {
         "src": "/source-media/1774319324598474-0b0802e2c5781c5c.jpg",
-        "alt": "Bebur UVSenseのコントローラーと光学式水質測定センサー"
+        "alt": "UVSense：UV吸収方式の光学式水質センサー。TOCはUV吸収との相関に基づく推定であり、燃焼酸化法・湿式酸化法による直接測定とは異なります。"
       }
     ],
     "sections": [

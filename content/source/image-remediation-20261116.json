@@ -1,0 +1,212 @@
+{
+  "date": "2026-11-16",
+  "provenance": [
+    {
+      "route": "/applications/industry-solutions",
+      "sourceUrl": "https://www.bebur.net/en/list_52",
+      "previous": [
+        {
+          "src": "/products/1762417708784412-cd7f457acf02320f.jpg",
+          "alt": "業界別ソリューションのイメージ"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/electric-power-industry",
+      "sourceUrl": "https://www.bebur.net/en/list_52/171.html",
+      "previous": [
+        {
+          "src": "/products/1762417708784412-cd7f457acf02320f.jpg",
+          "alt": "電力業界向け計測ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/food-industry",
+      "sourceUrl": "https://www.bebur.net/en/list_52/172.html",
+      "previous": [
+        {
+          "src": "/products/1762483226236748-32f5150bba5e4c68.jpg",
+          "alt": "食品業界向け水質分析ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/environmental-protection",
+      "sourceUrl": "https://www.bebur.net/en/list_52/173.html",
+      "previous": [
+        {
+          "src": "/products/1763110422301491-8faa6d80c8281e94.jpg",
+          "alt": "環境保全業界向け監視ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/hydraulic-industry",
+      "sourceUrl": "https://www.bebur.net/en/list_52/174.html",
+      "previous": [
+        {
+          "src": "/products/1763110183129881-f3b360a3e2ced0f4.jpg",
+          "alt": "油圧業界向け清浄度検査ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/medical-pharmaceutical",
+      "sourceUrl": "https://www.bebur.net/en/list_52/175.html",
+      "previous": [
+        {
+          "src": "/products/1763109461646071-b10602246ea209df.jpg",
+          "alt": "医療・製薬業界向け水質・清浄度検査ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/chemical-industry",
+      "sourceUrl": "https://www.bebur.net/en/list_52/176.html",
+      "previous": [
+        {
+          "src": "/products/1763109294688001-407df8191386caa2.jpg",
+          "alt": "化学業界向けガス・水質検知ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/municipal-water-treatment",
+      "sourceUrl": "https://www.bebur.net/en/list_52/177.html",
+      "previous": [
+        {
+          "src": "/products/1763108910519122-551811acf1e6398e.jpg",
+          "alt": "上水処理向け水質検査ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/liquid-cooling-industry",
+      "sourceUrl": "https://www.bebur.net/en/list_52/178.html",
+      "previous": [
+        {
+          "src": "/products/1762482758800188-530b005b81738fb8.jpg",
+          "alt": "液冷業界向け水質・清浄度検査ソリューション"
+        }
+      ],
+      "method": "Japanese native measurement configuration, not an installation photograph"
+    },
+    {
+      "route": "/applications/plate-heat-exchanger-cleanliness",
+      "sourceUrl": "https://www.bebur.net/en/list_54/166.html",
+      "previous": [
+        {
+          "src": "/applications/1762411401368195-0c86b5f9357cc59e.png",
+          "alt": "プレート熱交換器の清浄度管理（製品写真）"
+        },
+        {
+          "src": "/media/industry/plate-heat-exchanger-cleanliness.svg",
+          "alt": "熱交換器の清浄度管理の構成例"
+        }
+      ],
+      "method": "Preserve authentic product photo; add explicitly labeled configuration"
+    },
+    {
+      "route": "/applications/bt8200-liquid-cooling",
+      "sourceUrl": "https://www.bebur.net/en/list_54/169.html",
+      "previous": [
+        {
+          "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
+          "alt": "BT8200 オンライン式液中パーティクルカウンタ（製品写真）"
+        },
+        {
+          "src": "/media/industry/liquid-cooling-industry.svg",
+          "alt": "液冷システムの監視の構成例"
+        }
+      ],
+      "method": "Preserve authentic product photo; add explicitly labeled configuration"
+    },
+    {
+      "route": "/applications/medical-pharmaceutical-cases",
+      "sourceUrl": "https://www.bebur.net/en/list_57",
+      "previous": [
+        {
+          "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
+          "alt": "医療・製薬分野の液体粒子測定（製品写真）"
+        },
+        {
+          "src": "/media/industry/medical-pharmaceutical.svg",
+          "alt": "医療・製薬の水質管理の構成例"
+        }
+      ],
+      "method": "Preserve authentic product photo; add explicitly labeled configuration"
+    },
+    {
+      "route": "/applications/liquid-particle-counter-pharmaceutical",
+      "sourceUrl": "https://www.bebur.net/en/list_57/161.html",
+      "previous": [
+        {
+          "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
+          "alt": "BT8200による製薬用液体の粒子測定（製品写真）"
+        },
+        {
+          "src": "/media/industry/medical-pharmaceutical.svg",
+          "alt": "医療・製薬の水質管理の構成例"
+        }
+      ],
+      "method": "Preserve authentic product photo; add explicitly labeled configuration"
+    },
+    {
+      "route": "/applications/scm530-power-plant-dosing",
+      "sourceUrl": "https://www.bebur.net/en/list_61/156.html",
+      "previous": [
+        {
+          "src": "/products/1762487086623794-63483ec6afc65677.jpg",
+          "alt": "SCM530流動電流検出器（製品写真）"
+        },
+        {
+          "src": "/media/industry/scm530-power-plant-dosing.svg",
+          "alt": "SCM530による薬注管理の構成例"
+        }
+      ],
+      "method": "Preserve authentic product photo; add explicitly labeled configuration"
+    },
+    {
+      "route": "/products/dosing/bt-9000l",
+      "sourceUrl": "https://www.bebur.net/en/list_47/247.html",
+      "previous": [
+        {
+          "src": "/products/1762415950641929-447d86cda61a24c2.jpg",
+          "alt": "BT-9000L 凝集インテリジェント薬注制御システム"
+        }
+      ],
+      "method": "Japanese native schematic based on original process labels; no new specifications"
+    },
+    {
+      "route": "/products/dosing/bt-9000s",
+      "sourceUrl": "https://www.bebur.net/en/list_47/250.html",
+      "previous": [
+        {
+          "src": "/products/1762492636729196-2dc0642b6939e136.jpg",
+          "alt": "BT-9000S ストリーミング電流計制御薬注システム"
+        }
+      ],
+      "method": "Japanese native schematic based on original process labels; no new specifications"
+    },
+    {
+      "route": "/products/dosing/bt-9000c",
+      "sourceUrl": "https://www.bebur.net/en/list_47/251.html",
+      "previous": [
+        {
+          "src": "/products/1762493381860322-7fd7cf44471fd4f6.jpg",
+          "alt": "BT-9000C 塩素消毒薬注制御システム"
+        }
+      ],
+      "method": "Japanese native schematic based on original process labels; no new specifications"
+    }
+  ]
+}

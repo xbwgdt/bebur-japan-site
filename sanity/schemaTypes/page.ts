@@ -18,6 +18,7 @@ export default defineType({
   fields: [
     liquidCoolingDesignField,
     companyOverviewStyleField,
+    defineField({ name: "contextImages", title: "行业／案例配图与图注", description: "应用行业及案例页面的配图。拖动可排序，第一张同时用于列表缩略图。图片说明以日文填写，会作为前台图注显示；发布后重新构建生效。不影响页面原有布局。", type: "array", group: "content", of: [defineArrayMember({ type: "image", options: { hotspot: true }, fields: [defineField({ name: "alt", title: "日文图片说明／图注", type: "string", validation: Rule=>Rule.required().max(300).custom(validateJapaneseText) })] })] }),
     defineField({ name: "title", title: "页面标题", description: "用于后台识别该页面，请填写日文。", type: "string", group: "content", validation: (Rule) => Rule.required().custom(validateJapaneseText).error("请填写日文页面标题。") }),
     defineField({ name: "slug", title: "URL 路径", description: "与现有网站路径一致，不要修改已发布页面的路径。", type: "slug", group: "content", options: { source: "title", maxLength: 96 }, validation: (Rule) => Rule.required().custom(validSlug).error("请填写有效的 URL 路径。") }),
     defineField({ name: "blocks", title: "页面模块", description: "按页面显示顺序添加和拖动模块。", type: "array", group: "content", of: pageBlocks.map((block) => defineArrayMember({ type: block.name })), validation: (Rule) => Rule.required().min(1).error("请至少添加一个页面模块。") }),

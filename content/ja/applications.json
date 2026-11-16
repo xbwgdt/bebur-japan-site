@@ -8,8 +8,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52",
     "images": [
       {
-        "src": "/products/1762417708784412-cd7f457acf02320f.jpg",
-        "alt": "業界別ソリューションのイメージ"
+        "src": "/media/industry/industry-solutions.svg",
+        "alt": "産業別ソリューションの構成例"
       }
     ],
     "sections": [
@@ -31,8 +31,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/171.html",
     "images": [
       {
-        "src": "/products/1762417708784412-cd7f457acf02320f.jpg",
-        "alt": "電力業界向け計測ソリューション"
+        "src": "/media/industry/electric-power-industry.svg",
+        "alt": "発電所の水処理監視の構成例"
       }
     ],
     "sections": [
@@ -78,8 +78,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/172.html",
     "images": [
       {
-        "src": "/products/1762483226236748-32f5150bba5e4c68.jpg",
-        "alt": "食品業界向け水質分析ソリューション"
+        "src": "/media/industry/food-industry.svg",
+        "alt": "食品・飲料の水質管理の構成例"
       }
     ],
     "sections": [
@@ -111,8 +111,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/173.html",
     "images": [
       {
-        "src": "/products/1763110422301491-8faa6d80c8281e94.jpg",
-        "alt": "環境保全業界向け監視ソリューション"
+        "src": "/media/industry/environmental-protection.svg",
+        "alt": "水質・悪臭ガスの監視の構成例"
       }
     ],
     "sections": [
@@ -147,8 +147,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/174.html",
     "images": [
       {
-        "src": "/products/1763110183129881-f3b360a3e2ced0f4.jpg",
-        "alt": "油圧業界向け清浄度検査ソリューション"
+        "src": "/media/industry/hydraulic-industry.svg",
+        "alt": "油圧分野の清浄度管理の構成例"
       }
     ],
     "sections": [
@@ -179,8 +179,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/175.html",
     "images": [
       {
-        "src": "/products/1763109461646071-b10602246ea209df.jpg",
-        "alt": "医療・製薬業界向け水質・清浄度検査ソリューション"
+        "src": "/media/industry/medical-pharmaceutical.svg",
+        "alt": "医療・製薬の水質管理の構成例"
       }
     ],
     "sections": [
@@ -214,8 +214,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/176.html",
     "images": [
       {
-        "src": "/products/1763109294688001-407df8191386caa2.jpg",
-        "alt": "化学業界向けガス・水質検知ソリューション"
+        "src": "/media/industry/chemical-industry.svg",
+        "alt": "化学プロセスの監視の構成例"
       }
     ],
     "sections": [
@@ -246,8 +246,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/177.html",
     "images": [
       {
-        "src": "/products/1763108910519122-551811acf1e6398e.jpg",
-        "alt": "上水処理向け水質検査ソリューション"
+        "src": "/media/industry/municipal-water-treatment.svg",
+        "alt": "上水処理の水質監視の構成例"
       }
     ],
     "sections": [
@@ -292,8 +292,8 @@
     "sourceUrl": "https://www.bebur.net/en/list_52/178.html",
     "images": [
       {
-        "src": "/products/1762482758800188-530b005b81738fb8.jpg",
-        "alt": "液冷業界向け水質・清浄度検査ソリューション"
+        "src": "/media/industry/liquid-cooling-industry.svg",
+        "alt": "液冷システムの監視の構成例"
       }
     ],
     "sections": [
@@ -354,7 +354,11 @@
     "images": [
       {
         "src": "/applications/1762411401368195-0c86b5f9357cc59e.png",
-        "alt": "プレート熱交換器の清浄度管理"
+        "alt": "熱交換器の参考画像"
+      },
+      {
+        "src": "/media/industry/plate-heat-exchanger-cleanliness.svg",
+        "alt": "熱交換器の清浄度管理の構成例"
       }
     ],
     "sections": [
@@ -447,7 +451,11 @@
     "images": [
       {
         "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
-        "alt": "BT8200 オンライン式液中パーティクルカウンタ"
+        "alt": "BT8200 オンライン式液中パーティクルカウンタ（製品写真）"
+      },
+      {
+        "src": "/media/industry/liquid-cooling-industry.svg",
+        "alt": "液冷システムの監視の構成例"
       }
     ],
     "sections": [
@@ -663,7 +671,11 @@
     "images": [
       {
         "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
-        "alt": "医療・製薬分野の液体粒子測定"
+        "alt": "医療・製薬分野の液体粒子測定（製品写真）"
+      },
+      {
+        "src": "/media/industry/medical-pharmaceutical.svg",
+        "alt": "医療・製薬の水質管理の構成例"
       }
     ],
     "sections": [
@@ -686,7 +698,11 @@
     "images": [
       {
         "src": "/products/1763021330535352-39b6e8a21d647a43.jpg",
-        "alt": "BT8200による製薬用液体の粒子測定"
+        "alt": "BT8200による製薬用液体の粒子測定（製品写真）"
+      },
+      {
+        "src": "/media/industry/medical-pharmaceutical.svg",
+        "alt": "医療・製薬の水質管理の構成例"
       }
     ],
     "sections": [
@@ -865,7 +881,11 @@
     "images": [
       {
         "src": "/products/1762487086623794-63483ec6afc65677.jpg",
-        "alt": "SCM530流動電流検出器"
+        "alt": "SCM530流動電流検出器（製品写真）"
+      },
+      {
+        "src": "/media/industry/scm530-power-plant-dosing.svg",
+        "alt": "SCM530による薬注管理の構成例"
       }
     ],
     "sections": [

@@ -20,6 +20,7 @@
 .home-carousel__copy { max-width: 44rem; margin-inline: auto; }
 .home-carousel__eyebrow { margin: 0 0 .7rem; font-size: .875rem; font-weight: 700; letter-spacing: .12em; }
 .home-carousel__title { margin: 0; color: inherit; font-size: clamp(1.5rem, 6.8vw, 2rem); line-height: 1.55; overflow-wrap: anywhere; text-wrap: pretty; }
+.home-carousel__title-unit { display: inline-block; white-space: nowrap; }
 .home-carousel__summary { margin: 1rem 0 1.5rem; font-size: 1rem; line-height: 1.9; overflow-wrap: anywhere; }
 .home-carousel__action { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; max-width: 100%; padding: .8rem 1.15rem; color: #092a4c; background: #fff; border: 1px solid #fff; font-size: .9375rem; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
 .home-carousel__action:hover { text-decoration: underline; }
@@ -27,12 +28,13 @@
 .home-carousel__controls button { display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; padding: .25rem; border: 1px solid transparent; border-radius: .25rem; color: #fff; background: transparent; font: inherit; cursor: pointer; }
 .home-carousel__controls button:hover { background: #244b70; }
 .home-carousel__controls .home-carousel__play { min-width: 5rem; margin-left: .5rem; padding-inline: .5rem; border-color: #9fb5ca; font-size: .8125rem; }
-.home-carousel__dots { display: flex; gap: 0; }
+.home-carousel__dots { display: flex; flex-wrap: wrap; justify-content: center; min-width: 0; max-width: 100%; gap: 0; }
 .home-carousel__dots button { min-width: 2rem; }
 .home-carousel__dots span { width: .5rem; height: .5rem; border: 1px solid #fff; border-radius: 50%; }
 .home-carousel__dots [aria-current="true"] span { width: .7rem; height: .7rem; background: #fff; }
 .home-carousel a:focus-visible, .home-carousel button:focus-visible { outline: 3px solid #ffe598; outline-offset: 3px; }
-.home-carousel__motion-note { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.home-carousel__controls button:disabled { cursor: not-allowed; opacity: .7; }
+.home-carousel__motion-note { margin: 0; padding: 0 1rem 1rem; text-align: center; font-size: .8125rem; line-height: 1.7; }
 .home-carousel__slide--font-serif { font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif; }
 .home-carousel__slide--font-mono { font-family: "BIZ UDGothic", "MS Gothic", monospace; }
 .home-carousel__slide--size-sm .home-carousel__title { font-size: clamp(1.375rem, 6vw, 1.75rem); }

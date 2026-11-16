@@ -6,7 +6,8 @@ import assetMap from "../content/source/asset-map.json";
 
 const originals: Record<string, string[]> = {
   "yunnan-water-quality-exchange": ["20251106/1762407070603328.jpg", "20251106/1762407003113430.jpg"],
-  "particle-charge-analyzer-papermaking": ["20251106/1762406599465283.png", "20251106/1762406675188202.jpg"],
+  // Approved re-audit: keep LabSense, omit the unrelated generic factory visual.
+  "particle-charge-analyzer-papermaking": ["20251106/1762406675188202.jpg"],
   "liquid-cooling-supply-chain-summit-2025": ["20251105/1762331908274932.jpg", "20251105/1762335015196653.png"],
   "global-data-center-liquid-cooling-conference-2025": ["20251105/1762334545196031.png"],
   "guangdong-guizhou-water-supply-conference-2025": ["20251105/1762329776632484.jpg"],
@@ -15,7 +16,8 @@ const originals: Record<string, string[]> = {
   "liquid-particle-counter-brands": ["20260311/1773201229211214.jpg"],
   "online-residual-chlorine-analyzer-brands": ["20260327/1774589627282883.jpg"],
   "online-residual-chlorine-analyzer-recommendations": ["20260327/1774589627282883.jpg"],
-  "residual-chlorine-detector-brands-2026-april": ["20260327/1774589627282883.jpg", "20251114/1763108910519122.jpg"],
+  // Approved re-audit: the correct BT6308-CL/BC350 image is sufficient.
+  "residual-chlorine-detector-brands-2026-april": ["20260327/1774589627282883.jpg"],
   "residual-chlorine-detector-brands-2026-march": ["20251114/1763099445589527.jpg"],
   "toc-analyzer-brands-2026": ["20260324/1774319324598474.jpg"],
   "toc-analyzer-brands-2026-march": ["20260323/1774251187149620.jpg", "20260323/1774251223120714.jpg"],

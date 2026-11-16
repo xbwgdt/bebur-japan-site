@@ -166,6 +166,7 @@ const pageBlock = (record, productsBySlug) => {
     title: record.title,
     slug: { _type: "slug", current: record.slug },
     blocks,
+    ...(record.kind === "application" ? { contextImages: (record.images ?? []).map((image,index)=>importedImage(image, `${identifier}context${index}`)) } : {}),
     seoTitle: seoTitle(record.title),
     seoDescription: seoDescription(record.description),
     publishState: "published",

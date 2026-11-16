@@ -161,6 +161,7 @@ export default async function ProductDetailPage({
   }
 
   const image = product.images[0];
+  const isControlDiagram = product.category === "dosing" && ["bt-9000c", "bt-9000l", "bt-9000s"].includes(product.slug) && image?.alt.includes("構成例");
   const sections = additionalContentSections(product);
   const related = relatedProducts(product);
 
@@ -195,7 +196,7 @@ export default async function ProductDetailPage({
               </p>
             </div>
 
-            <div className="product-detail__media">
+            <div className={`product-detail__media${isControlDiagram ? " product-detail__media--diagram" : ""}`}>
               {image ? (
                 <Image
                   alt={image.alt}

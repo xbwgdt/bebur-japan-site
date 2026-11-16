@@ -96,7 +96,8 @@ describe("accessible homepage carousel", () => {
   it("exports every image and destination with one h1 and inactive slides inert", () => {
     const html = renderToStaticMarkup(<HomeCarousel settings={localHomeCarousel} />);
     expect((html.match(/<h1[ >]/g) ?? [])).toHaveLength(1);
-    for (const slide of localHomeCarousel.slides) { expect(html).toContain(slide.title); expect(html).toContain(slide.primaryAction.href); }
+    const staticText = new DOMParser().parseFromString(html, "text/html").body.textContent;
+    for (const slide of localHomeCarousel.slides) { expect(staticText).toContain(slide.title); expect(html).toContain(slide.primaryAction.href); }
     const { container } = render(<HomeCarousel settings={localHomeCarousel} />);
     expect(container.querySelectorAll('[aria-roledescription="スライド"]')).toHaveLength(6);
     expect(container.querySelectorAll('[aria-roledescription="スライド"][aria-hidden="true"][inert]')).toHaveLength(5);
@@ -105,6 +106,16 @@ describe("accessible homepage carousel", () => {
     expect(images[0].getAttribute("loading")).toBe("eager");
     expect(images[0].getAttribute("fetchpriority")).toBe("high");
     expect(images[1].getAttribute("loading")).toBe("lazy");
+  });
+  it("keeps ソリューション as an unbroken title unit without changing any slide copy", () => {
+    const { container } = render(<HomeCarousel settings={localHomeCarousel} />);
+    const headings = container.querySelectorAll(".home-carousel__title");
+    localHomeCarousel.slides.forEach((slide, index) => {
+      expect(headings[index].textContent).toBe(slide.title);
+      if (slide.title.includes("ソリューション")) expect(headings[index].querySelector(".home-carousel__title-unit")?.textContent).toBe("ソリューション");
+    });
+    const css = readFileSync("components/home-carousel.css", "utf8");
+    expect(css.match(/\.home-carousel__title-unit\s*\{([^}]+)\}/)?.[1]).toMatch(/white-space:\s*nowrap/);
   });
   it("supports previous/next wrap and directly labeled current dots", () => {
     render(<HomeCarousel settings={localHomeCarousel} />);
@@ -145,10 +156,26 @@ describe("accessible homepage carousel", () => {
     reducedMotion = true;
     render(<HomeCarousel settings={localHomeCarousel} />); advance();
     expect(current().getAttribute("aria-label")).toBe("スライド1を表示");
-    fireEvent.click(screen.getByRole("button", { name: "自動再生を再開" })); advance();
+    const play = screen.getByRole("button", { name: "自動再生は無効" });
+    expect(play.hasAttribute("disabled")).toBe(true);
+    expect(play.getAttribute("aria-describedby")).toBeTruthy();
+    expect(screen.getByText("動きを減らす設定のため、自動再生は無効です。前後ボタンとスライド選択は利用できます。")).not.toBeNull();
+    fireEvent.click(play); advance();
     expect(current().getAttribute("aria-label")).toBe("スライド1を表示");
     fireEvent.click(screen.getByRole("button", { name: "次のスライド" }));
     expect(current().getAttribute("aria-label")).toBe("スライド2を表示");
+  });
+  it("keeps all twenty slide choices wrappable within a narrow control area", () => {
+    const slides = Array.from({ length: 20 }, (_, index) => ({ ...localHomeCarousel.slides[0], _key: `slide-${index}` }));
+    const { container } = render(<HomeCarousel settings={{ ...localHomeCarousel, slides }} />);
+    expect(container.querySelectorAll(".home-carousel__dots button")).toHaveLength(20);
+    fireEvent.click(screen.getByRole("button", { name: "スライド20を表示" }));
+    expect(screen.getByRole("button", { name: "スライド20を表示" }).getAttribute("aria-current")).toBe("true");
+    const css = readFileSync("components/home-carousel.css", "utf8");
+    const dots = css.match(/\.home-carousel__dots\s*\{([^}]+)\}/)?.[1] ?? "";
+    expect(dots).toMatch(/flex-wrap:\s*wrap/);
+    expect(dots).toMatch(/max-width:\s*100%/);
+    expect(dots).toMatch(/min-width:\s*0/);
   });
   it("reacts to motion and document visibility changes and removes timers on unmount", () => {
     const { unmount } = render(<HomeCarousel settings={localHomeCarousel} />);

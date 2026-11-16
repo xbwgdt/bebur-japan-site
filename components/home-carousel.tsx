@@ -60,7 +60,8 @@ export function HomeCarousel({ settings }: { settings: HomeCarouselSettings }): 
               loading={position === 0 ? "eager" : "lazy"} fetchPriority={position === 0 ? "high" : undefined} decoding="async" />
             <div className="home-carousel__copy-wrap"><div className="home-carousel__copy">
               <p className="home-carousel__eyebrow">{slide.eyebrow}</p>
-              <Heading className="home-carousel__title">{slide.title}</Heading>
+              <Heading className="home-carousel__title">{slide.title.split(/(ソリューション)/u).map((part, partIndex) => part === "ソリューション"
+                ? <span className="home-carousel__title-unit" key={partIndex}>{part}</span> : part)}</Heading>
               <p className="home-carousel__summary">{slide.summary}</p>
               <a className="home-carousel__action" href={slide.primaryAction.href} tabIndex={selected ? undefined : -1}>{slide.primaryAction.label}<span aria-hidden="true"> →</span></a>
             </div></div>
@@ -74,13 +75,16 @@ export function HomeCarousel({ settings }: { settings: HomeCarouselSettings }): 
             aria-current={position === active ? "true" : undefined} aria-controls={`${id}-slides`} onClick={() => setIndex(position)}><span aria-hidden="true" /></button>)}
         </div>
         <button type="button" aria-label="次のスライド" aria-controls={`${id}-slides`} onClick={() => setIndex((active + 1) % count)}>→</button>
-        <button className="home-carousel__play" type="button" aria-label={playing && !reducedMotion ? "自動再生を一時停止" : "自動再生を再開"}
+        <button className="home-carousel__play" type="button" disabled={reducedMotion}
+          aria-describedby={reducedMotion ? `${id}-motion-note` : undefined}
+          aria-label={reducedMotion ? "自動再生は無効" : playing ? "自動再生を一時停止" : "自動再生を再開"}
           onClick={() => {
-            if (playing && !reducedMotion) { setPlaying(false); setInteractionOverride(false); }
+            if (reducedMotion) return;
+            if (playing) { setPlaying(false); setInteractionOverride(false); }
             else { setPlaying(true); setInteractionOverride(true); }
-          }}>{playing && !reducedMotion ? "一時停止" : "再生"}</button>
+          }}>{reducedMotion ? "自動再生なし" : playing ? "一時停止" : "再生"}</button>
       </div>
-      {reducedMotion && <p className="home-carousel__motion-note">動きを減らす設定のため、自動再生は停止しています。</p>}
+      {reducedMotion && <p className="home-carousel__motion-note" id={`${id}-motion-note`}>動きを減らす設定のため、自動再生は無効です。前後ボタンとスライド選択は利用できます。</p>}
     </section>
   );
 }

@@ -157,6 +157,7 @@ export default async function InsightDetailPage({
                     src={resolveSourceMediaPath(image.src)}
                     width={1120}
                   />
+                  <figcaption>{image.alt}</figcaption>
                 </figure>
               ))}
             />

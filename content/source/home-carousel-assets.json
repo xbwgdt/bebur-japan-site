@@ -1,0 +1,62 @@
+[
+  {
+    "slide": 1,
+    "manufacturerSource": "https://www.bebur-tech.com/static/upload/image/20260924/1790213746287762.png",
+    "asset": "/media/home-carousel/slide-1.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 269762,
+    "sha256": "35c12ad12fe2329e365b571972fa4495173d704823ee9d52d44f4ae60d05d986",
+    "method": "Built-in image editing: remove embedded promotional text; Japanese promotional copy is rendered as editable HTML. Preserve manufacturer scene, product identities and scientific symbols."
+  },
+  {
+    "slide": 2,
+    "manufacturerSource": "https://www.bebur-tech.com/static/upload/image/20260923/1790165246464699.jpg",
+    "asset": "/media/home-carousel/slide-2.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 257504,
+    "sha256": "407a2d0496dd30adff3e4c1f5f4a10ecad417f608b9006646af71988b9cb30dc",
+    "method": "Built-in image editing: remove embedded promotional text; Japanese promotional copy is rendered as editable HTML. Preserve manufacturer scene, product identities and scientific symbols."
+  },
+  {
+    "slide": 3,
+    "manufacturerSource": "https://www.bebur-tech.com/static/upload/image/20260923/1790170524233405.png",
+    "asset": "/media/home-carousel/slide-3.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 302034,
+    "sha256": "c3e1dbcdc023f95c34ca7657af1bf707989944ef615a8e23fc3ff74e9bef45af",
+    "method": "Built-in image editing: remove embedded promotional text; Japanese promotional copy is rendered as editable HTML. Preserve manufacturer scene, product identities and scientific symbols."
+  },
+  {
+    "slide": 4,
+    "manufacturerSource": "https://www.bebur-tech.com/static/upload/image/20260923/1790169225495101.jpg",
+    "asset": "/media/home-carousel/slide-4.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 417032,
+    "sha256": "b158c8c45118c85e10a20d0c1e00d6618bcd2641614aaa77a19edb178b9412f5",
+    "method": "Built-in image editing: remove embedded promotional text; Japanese promotional copy is rendered as editable HTML. Preserve manufacturer scene, product identities and scientific symbols."
+  },
+  {
+    "slide": 5,
+    "manufacturerSource": "https://www.bebur-tech.com/static/upload/image/20260924/1790213283149916.png",
+    "asset": "/media/home-carousel/slide-5.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 298896,
+    "sha256": "9e5d4bc40f9b8eaca615f1942162f31f7bd3f1c991f8b9804eb7598c63d3b7dc",
+    "method": "Built-in image editing: remove embedded promotional text; Japanese promotional copy is rendered as editable HTML. Preserve manufacturer scene, product identities and scientific symbols."
+  },
+  {
+    "slide": 6,
+    "manufacturerSource": "https://www.bebur-tech.com/static/upload/image/20251126/1764119401873308.jpg",
+    "asset": "/media/home-carousel/slide-6.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 309332,
+    "sha256": "ab999b1554ae00e13dd9e6a4ee65e92f18cdb4f4b8358d76e06eb6902c992ee3",
+    "method": "Built-in image editing: remove embedded promotional text; Japanese promotional copy is rendered as editable HTML. Preserve manufacturer scene, product identities and scientific symbols."
+  }
+]
