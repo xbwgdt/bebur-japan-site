@@ -12,6 +12,9 @@ vi.mock("@/lib/sanity/queries", async original => ({
 afterEach(() => { cleanup(); getPageBySlug.mockReset(); });
 
 describe("approved dosing hero and chemical product links", () => {
+  it("falls back instead of throwing for a CMS image with an unsupported CDN port", () => {
+    expect(resolveCategoryHero("dosing", { image: { asset: { url: "https://cdn.sanity.io:444/images/gbzt89e5/production/x.jpg" } } })).toEqual(resolveCategoryHero("dosing"));
+  });
   it("shows the manufacturer banner without losing seven products or search", async () => {
     getPageBySlug.mockResolvedValue(null);
     const { container } = render(await ProductCategoryPage({params:Promise.resolve({category:"dosing"})}));
@@ -39,7 +42,7 @@ describe("approved dosing hero and chemical product links", () => {
   });
   it("rejects unsafe hero values without losing the reviewed fallback", () => {
     const fallback=resolveCategoryHero("dosing")!;
-    expect(resolveCategoryHero("cleanliness")).toBeUndefined();
+    expect(resolveCategoryHero("contact")).toBeUndefined();
     expect(resolveCategoryHero("dosing",{title:"<script>",fontSize:"999px",color:"red",image:{asset:{url:"https://evil.test/image.jpg"}}})).toEqual(fallback);
   });
   it("honors CMS group ordering and explicit removal, but skips unknown or mismatched products", async () => {

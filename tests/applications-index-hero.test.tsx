@@ -48,7 +48,7 @@ describe("applications index manufacturer hero", () => {
   });
 
   it("exposes existing hero controls on the applications index without exposing them on unrelated pages", () => {
-    const hidden = categoryHeroField.hidden as (context: { document: { slug: { current: string } } }) => boolean;
+    const hidden = categoryHeroField.hidden as unknown as (context: { document: { slug: { current: string } } }) => boolean;
     expect(hidden({ document: { slug: { current: "application-index" } } })).toBe(false);
     expect(hidden({ document: { slug: { current: "dosing" } } })).toBe(false);
     expect(hidden({ document: { slug: { current: "contact" } } })).toBe(true);

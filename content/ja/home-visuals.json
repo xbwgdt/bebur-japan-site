@@ -1,0 +1,20 @@
+{
+  "about": { "image": { "src": "/source-media/index-01-533820d3964dbe66.jpg", "alt": "青い空と水辺の橋を背景にしたBeburの企業紹介" }, "overlayColor": "#123B6B", "overlayOpacity": 0.12 },
+  "technology": { "image": { "src": "/source-media/index-02-bb058a1b71082301.jpg", "alt": "世界に広がる計測技術を表す地球の夜景" }, "overlayColor": "#082747", "overlayOpacity": 0.22 },
+  "applications": { "image": { "src": "/source-media/1761791363673595-08e6a0255dfd817e.jpg", "alt": "白い曲線状の建築と光が広がる産業用途紹介の背景" }, "overlayColor": "#F1F7FC", "overlayOpacity": 0.42 },
+  "contact": { "image": { "src": "/media/home-visuals/inquiry-background.jpg", "alt": "青い光の流れを表したお問い合わせの背景" }, "overlayColor": "#082747", "overlayOpacity": 0.34 },
+  "companyImage": { "src": "/source-media/index-16-016907b8f93a0b2b.jpg", "alt": "Beburの企業紹介に掲載された建物" },
+  "categoryImages": {
+    "cleanliness": { "src": "/source-media/1763018956524186-3197472f4aa85753.jpg", "alt": "BT8200・BT8500と携帯型BTP8300の液中パーティクルカウンタ" },
+    "dosing": { "src": "/media/dosing/bt-9000l.svg", "alt": "凝集工程の薬注量を調整する構成例" },
+    "waterQuality": { "src": "/source-media/1763026410253344-138736f405dd4894.jpg", "alt": "Beburの水質分析計と水質センサーの製品群" },
+    "gasDetection": { "src": "/source-media/1763014735879464-1373c4dd3be19469.jpg", "alt": "AS-300固定式可燃性ガス検知器" },
+    "flowLevel": { "src": "/source-media/1763106120371809-65a6ac5cb667db46.jpg", "alt": "MSF8100一体型電磁流量計" }
+  },
+  "strengthImages": {
+    "experience": { "src": "/media/home-visuals/experience.svg", "alt": "積み重ねてきた計測経験を表す時計" },
+    "technology": { "src": "/source-media/index-05-ca7d26ffa498b567.png", "alt": "電気化学・光学技術を表すBeburの技術アイコン" },
+    "products": { "src": "/source-media/index-06-120b0a5dfeba397e.png", "alt": "複数の製品分野を表すBeburの製品群アイコン" },
+    "global": { "src": "/source-media/index-04-332e29c4cb00f68d.png", "alt": "世界に広がる販売ネットワークを表す地球アイコン" }
+  }
+}

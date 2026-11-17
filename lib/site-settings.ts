@@ -8,6 +8,7 @@ import {
 } from "./sanity/queries";
 import { resolveLiquidCoolingDesign, type LiquidCoolingDesign } from "./liquid-cooling-design";
 import { localHomeCarousel, resolveHomeCarousel, type HomeCarouselSettings } from "./home-carousel";
+import { localHomeVisuals, resolveHomeVisuals, type HomeVisuals } from "./home-visuals";
 
 export type PublicNavigationLabels = {
   home: string;
@@ -43,6 +44,7 @@ export type PublicContactPageSettings = {
 };
 
 export type PublicSiteSettings = {
+  homeVisuals: HomeVisuals;
   homeCarousel: HomeCarouselSettings;
   homeSolution: {
     eyebrow: string;
@@ -103,6 +105,7 @@ const contactPanelPresetValues = {
 } as const;
 
 export const localPublicSiteSettings: PublicSiteSettings = {
+  homeVisuals: localHomeVisuals,
   homeCarousel: localHomeCarousel,
   homeSolution: {
     eyebrow: "液冷・データセンター",
@@ -407,6 +410,7 @@ export function resolvePublicSiteSettings(
 
   return {
     homeHero: resolveHomeHero(settings.homeHero),
+    homeVisuals: resolveHomeVisuals(settings.homeVisuals),
     homeCarousel: resolveHomeCarousel(settings.homeCarousel),
     homeSolution: {
       eyebrow: safeText(settings.homeSolution?.eyebrow, { max: 80 }) ?? localPublicSiteSettings.homeSolution.eyebrow,

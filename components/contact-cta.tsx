@@ -2,6 +2,7 @@ import { Mail, Phone } from "lucide-react";
 import type React from "react";
 
 import { buildMailto } from "@/lib/constants";
+import { homeBackdropStyle } from "@/lib/home-visuals";
 import {
   publicSiteSettings,
   type PublicSiteSettings,
@@ -22,6 +23,7 @@ export function ContactCta({
     <section
       className={`contact-cta${compact ? " contact-cta--compact" : ""}`}
       aria-labelledby={compact ? undefined : "contact-cta-title"}
+      style={homeBackdropStyle(settings.homeVisuals.contact)}
     >
       <div className="contact-cta__content">
         <p className="contact-cta__eyebrow">CONTACT</p>

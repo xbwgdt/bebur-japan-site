@@ -4,6 +4,11 @@ import Link from "next/link";
 import { ApplicationCard } from "@/components/application-card";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
+import { SourceShell } from "@/components/source-faithful/source-shell";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
+import { resolveCategoryHero } from "@/lib/page-enhancements";
 import { getApplications, getStaticPages } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
 
@@ -49,13 +54,24 @@ export const metadata: Metadata = {
 };
 
 export default async function ApplicationCasesPage(): Promise<React.ReactElement> {
+  const page = await getPublishedPageForRoute("application-case-index");
+  const hero = resolveCategoryHero("application-case-index", page?.categoryHero)!;
   const cases = getApplications().filter(({ slug }) =>
     caseSlugSet.has(slug),
   );
 
   return (
-    <>
-      <header className="page-hero">
+    <SourceShell>
+      <SourceHero
+        className={`category-banner category-banner--${hero.color} category-banner--${hero.fontFamily} category-banner--${hero.fontSize}`}
+        image={resolveSourceMediaPath(hero.image.src)} imageAlt={hero.image.alt}
+        eyebrow={hero.eyebrow} title={hero.title} summary={hero.summary}
+        actions={<>
+          <Link className="button button--secondary" href="/applications">産業別用途へ戻る</Link>
+          <Link className="button button--primary" href="/products">関連する製品情報を見る</Link>
+        </>}
+      />
+      <div className="source-breadcrumb-band">
         <div className="site-container">
           <Breadcrumbs
             items={[
@@ -63,19 +79,8 @@ export default async function ApplicationCasesPage(): Promise<React.ReactElement
               { label: "導入事例" },
             ]}
           />
-          <p className="page-hero__eyebrow">APPLICATION CASES</p>
-          <h1>導入事例</h1>
-          <p>{pageDescription}</p>
-          <div className="page-hero__actions">
-            <Link className="button button--secondary" href="/applications">
-              産業別用途へ戻る
-            </Link>
-            <Link className="button button--primary" href="/products">
-              関連する製品情報を見る
-            </Link>
-          </div>
         </div>
-      </header>
+      </div>
 
       <section className="section application-group application-group--overview">
         <div className="site-container">
@@ -95,6 +100,6 @@ export default async function ApplicationCasesPage(): Promise<React.ReactElement
           <ContactCta compact subject="Bebur 導入事例" />
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }

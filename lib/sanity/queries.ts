@@ -3,7 +3,7 @@ import type { QueryParams } from "@sanity/client";
 import { getSanityClient } from "./client";
 import type { PageBlock } from "../page-blocks";
 import type { SanityHomeCarousel } from "../home-carousel";
-import { applicationProductPageSlugs } from "../page-enhancements";
+import { applicationProductPageSlugs, categoryHeroPageSlugs } from "../page-enhancements";
 
 export type SanityImage = {
   asset?: {
@@ -47,6 +47,7 @@ export type SanityNews = {
 };
 
 export type SanitySiteSettings = {
+  homeVisuals?: unknown;
   homeCarousel?: SanityHomeCarousel;
   homeSolution?: {
     eyebrow?: string;
@@ -260,7 +261,7 @@ export async function getNewsBySlug(
 const overviewBuildSnapshot = Date.now().toString(36);
 
 export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
-  const overview = ["overview", "culture", "history", "dosing", "application-index", ...applicationProductPageSlugs].includes(slug);
+  const overview = ["overview", "culture", "history", ...categoryHeroPageSlugs, ...applicationProductPageSlugs].includes(slug);
   return fetchConfigured<SanityPage>(
     `*[
       _type == "page" &&
@@ -277,6 +278,20 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
 export const siteSettingsQuery = `*[
   _type == "siteSettings" && _id == "siteSettings"
 ][0] {
+  homeVisuals {
+    about { ..., image { alt, asset->{url} } },
+    technology { ..., image { alt, asset->{url} } },
+    applications { ..., image { alt, asset->{url} } },
+    contact { ..., image { alt, asset->{url} } },
+    companyImage { alt, asset->{url} },
+    categoryImages {
+      cleanliness { alt, asset->{url} }, dosing { alt, asset->{url} },
+      waterQuality { alt, asset->{url} }, gasDetection { alt, asset->{url} }, flowLevel { alt, asset->{url} }
+    },
+    strengthImages {
+      experience { alt, asset->{url} }, technology { alt, asset->{url} }, products { alt, asset->{url} }, global { alt, asset->{url} }
+    }
+  },
   homeCarousel {
     enabled, autoPlay, intervalSeconds,
     slides[] { _key, eyebrow, title, summary, image { ..., asset->{_ref, url} }, primaryAction, style }

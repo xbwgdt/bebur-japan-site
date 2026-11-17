@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField } from "sanity";
 import { validateJapaneseText } from "./validation";
 import applicationDefaults from "../../content/ja/application-product-selections.json";
+import { categoryHeroPageSlugs } from "../../lib/page-enhancements";
 
 const productPageSlugs=["chemical-industry",...Object.keys(applicationDefaults)];
 const industrySlugs=applicationDefaults["industry-solutions"].navigation.items.map(item=>item.slug);
@@ -9,8 +10,8 @@ const productCategories=[{title:"清浄度测量",value:"cleanliness"},{title:"�
 const japanese = (name: string, title: string, max = 300) => defineField({name,title,type:"string",validation:Rule=>Rule.required().max(max).custom(validateJapaneseText)});
 export const categoryHeroField = defineField({
   name:"categoryHero",title:"分类／用途总览：首屏大图",type:"object",group:"content",
-  hidden:({document})=>!["dosing","application-index"].includes((document?.slug as {current?:string}|undefined)?.current??""),
-  description:"单独管理药注分类页或产业别用途总览页的大图、日文文字、配色和字体；不会覆盖下方动画、产品列表、案例或联系方式。发布后重新构建生效。",
+  hidden:({document})=>!categoryHeroPageSlugs.some(slug=>slug === (document?.slug as {current?:string}|undefined)?.current),
+  description:"单独管理产品分类、产业别用途总览、导入事例与新闻技术列表页的大图、日文文字、配色和字体；不会覆盖下方动画、产品列表、案例或联系方式。发布后重新构建生效。",
   fields:[
     defineField({name:"eyebrow",title:"眉题",type:"string",validation:Rule=>Rule.required().max(60)}),
     japanese("title","日文标题",100),japanese("summary","日文说明"),

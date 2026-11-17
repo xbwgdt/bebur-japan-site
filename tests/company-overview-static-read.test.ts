@@ -6,8 +6,9 @@ const {fetchPage}=vi.hoisted(()=>({fetchPage:vi.fn(async(_query: string,_params:
 vi.mock('@/lib/sanity/client',()=>({getSanityClient:()=>({fetch:fetchPage})}));
 import {getPublishedPageForRoute} from '@/lib/cms-pages';
 import {getPageBySlug} from '@/lib/sanity/queries';
+import {categoryHeroPageSlugs} from '@/lib/page-enhancements';
 
-it.each(['overview','culture','history','dosing','application-index','chemical-industry','electric-power-industry','environmental-protection','municipal-water-treatment','liquid-cooling-industry','industry-solutions','plate-heat-exchanger-cleanliness','manifold-cleanliness','online-disinfectant-analyzer-waterworks'])('reads %s during a static export instead of silently taking the fallback',async(slug)=>{
+it.each(['overview','culture','history',...categoryHeroPageSlugs,'chemical-industry','electric-power-industry','environmental-protection','municipal-water-treatment','liquid-cooling-industry','industry-solutions','plate-heat-exchanger-cleanliness','manifold-cleanliness','online-disinfectant-analyzer-waterworks'])('reads %s during a static export instead of silently taking the fallback',async(slug)=>{
   const page=await getPublishedPageForRoute(slug);
   expect(page?._id).toBe('page--'+slug);
   const [,params,options]=fetchPage.mock.calls.at(-1)!;

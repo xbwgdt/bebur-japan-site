@@ -102,7 +102,7 @@ export default async function ProductCategoryPage({
   }
 
   const categoryProducts = getProducts(content.category);
-  const page = content.category === "dosing" ? await getPublishedPageForRoute("dosing") : null;
+  const page = await getPublishedPageForRoute(content.category);
   const hero = resolveCategoryHero(content.category, page?.categoryHero);
   const Shell = hero ? SourceShell : Fragment;
 

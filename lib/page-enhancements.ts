@@ -3,6 +3,7 @@ import applicationDefaults from "../content/ja/application-product-selections.js
 import { isProductCategory, productCategoryLabels } from "./routes";
 
 export type CategoryHero = typeof defaults.dosing;
+export const categoryHeroPageSlugs = ["dosing", "application-index", "cleanliness", "water-quality", "gas-detection", "flow-level", "application-case-index", "insight-index"] as const;
 export type ApplicationProductSelection = {
   title: string; summary: string;
   groups: Array<{category: string; title: string; summary: string; moreLabel: string; productSlugs: string[]}>;
@@ -21,14 +22,15 @@ function preset(value: unknown, allowed: string[], fallback: string): string {
 
 /** Dedicated fields only; legacy generic page blocks never replace a route's layout. */
 export function resolveCategoryHero(category: string, value?: unknown): CategoryHero | undefined {
-  if (category !== "dosing" && category !== "application-index") return;
-  const fallback = structuredClone(defaults[category]), input = object(value);
+  const slug = categoryHeroPageSlugs.find(slug => slug === category);
+  if (!slug) return;
+  const fallback = structuredClone(defaults[slug]), input = object(value);
   const image = object(input.image), asset = object(image.asset);
   let src = fallback.image.src;
   if (typeof asset.url === "string") {
     try {
       const url = new URL(asset.url);
-      if (url.protocol === "https:" && url.hostname === "cdn.sanity.io" && !url.username && !url.password && url.pathname.startsWith("/images/gbzt89e5/production/")) src = url.href;
+      if (url.protocol === "https:" && url.hostname === "cdn.sanity.io" && !url.port && !url.username && !url.password && url.pathname.startsWith("/images/gbzt89e5/production/")) src = url.href;
     } catch { /* Keep the reviewed local image. */ }
   }
   return {

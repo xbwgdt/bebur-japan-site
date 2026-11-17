@@ -21,6 +21,7 @@ import { siteConfig } from "@/lib/constants";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
 import { publicSiteSettings, resolveHomeHeroStyle } from "@/lib/site-settings";
 import { HomeCarousel } from "@/components/home-carousel";
+import { homeBackdropStyle, type HomeVisuals } from "@/lib/home-visuals";
 import type { Application, Product, ProductCategory } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -44,20 +45,28 @@ const categoryDescriptions: Record<ProductCategory, string> = {
   "flow-level": "電磁流量と超音波レベルを測定",
 };
 
+const categoryImageKeys: Record<ProductCategory, keyof HomeVisuals["categoryImages"]> = {
+  cleanliness: "cleanliness", dosing: "dosing", "water-quality": "waterQuality", "gas-detection": "gasDetection", "flow-level": "flowLevel",
+};
+
 const technologyFacts = [
   {
+    imageKey: "experience",
     value: "20年の経験",
     description: "計測技術と製品開発を積み重ねてきた経験",
   },
   {
+    imageKey: "technology",
     value: "電気化学・光学技術",
     description: "測定対象に応じた複数の検出原理",
   },
   {
+    imageKey: "products",
     value: "横断する製品群",
     description: "水質、ガス、清浄度、薬注制御を横断する製品群",
   },
   {
+    imageKey: "global",
     value: "50か国以上",
     description: "50か国以上に広がる販売ネットワーク",
   },
@@ -104,6 +113,7 @@ function formatJapaneseDate(date: string): string {
 
 export default async function HomePage(): Promise<React.ReactElement> {
   const homeHero = publicSiteSettings.homeHero;
+  const visuals = publicSiteSettings.homeVisuals;
 
   return (
     <SourceShell>
@@ -147,6 +157,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
             variant="categories"
             cards={categoryOrder.map((category, index) => {
               const count = getProducts(category).length;
+              const image = visuals.categoryImages[categoryImageKeys[category]];
 
               return (
                 <Link
@@ -154,6 +165,9 @@ export default async function HomePage(): Promise<React.ReactElement> {
                   href={`/products/${category}`}
                   key={category}
                 >
+                  <div className="category-card__media">
+                    <Image src={image.src} alt={image.alt} width={360} height={270} sizes="(min-width: 64rem) 20vw, (min-width: 40rem) 45vw, 90vw" />
+                  </div>
                   <span className="category-card__index">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -185,14 +199,15 @@ export default async function HomePage(): Promise<React.ReactElement> {
       <section
         className="section source-section source-home-about"
         aria-labelledby="home-about-title"
+        style={homeBackdropStyle(visuals.about)}
       >
         <div className="site-container source-home-about__layout">
           <div className="source-home-about__media">
             <Image
-              alt="Beburの水質分析・ガス検知技術"
+              alt={visuals.companyImage.alt}
               height={760}
               sizes="(min-width: 64rem) 48vw, 100vw"
-              src="/source-media/index-16-016907b8f93a0b2b.jpg"
+              src={visuals.companyImage.src}
               width={1120}
             />
           </div>
@@ -214,7 +229,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
         </div>
       </section>
 
-      <section className="section source-section technology-section">
+      <section className="section source-section technology-section" style={homeBackdropStyle(visuals.technology)}>
         <div className="site-container">
           <SectionHeading
             eyebrow="TECHNOLOGY"
@@ -224,6 +239,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
           <ul className="technology-grid">
             {technologyFacts.map((fact, index) => (
               <li key={fact.value}>
+                <Image className="technology-fact__image" src={visuals.strengthImages[fact.imageKey].src} alt={visuals.strengthImages[fact.imageKey].alt} width={64} height={64} />
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{fact.value}</strong>
                 <p>{fact.description}</p>
@@ -233,7 +249,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
         </div>
       </section>
 
-      <section className="section source-section">
+      <section className="section source-section source-home-applications" style={homeBackdropStyle(visuals.applications)}>
         <div className="site-container">
           <SectionHeading
             eyebrow="INDUSTRY APPLICATIONS"

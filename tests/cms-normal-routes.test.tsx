@@ -14,6 +14,7 @@ import ProductsPage from "@/app/products/page";
 import ProductCategoryPage from "@/app/products/[category]/page";
 import { getAboutPage, getApplication } from "@/lib/content";
 import { publicSiteSettings } from "@/lib/site-settings";
+import { categoryHeroPageSlugs } from "@/lib/page-enhancements";
 import type { SanityPage } from "@/lib/sanity/queries";
 
 const getPageBySlug = vi.hoisted(() => vi.fn());
@@ -109,7 +110,7 @@ describe("normal public CMS routes", () => {
 
     expect(container.querySelector(canonicalSelector)).toBeTruthy();
     expect(screen.queryByText(`${page.title} body`)).toBeNull();
-    if (["dosing","application-index","liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    if ([...categoryHeroPageSlugs,"liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
     else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
   });
 
@@ -129,7 +130,7 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    if (["dosing","application-index","liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    if ([...categoryHeroPageSlugs,"liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
     else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(screen.queryByText(`CMS ${slug} body`)).toBeNull();
     expect(container.textContent?.trim().length).toBeGreaterThan(0);
@@ -151,7 +152,7 @@ describe("normal public CMS routes", () => {
 
     const { container } = render(await renderRoute());
 
-    if (["dosing","application-index","liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
+    if ([...categoryHeroPageSlugs,"liquid-cooling-industry"].includes(slug)) expect(getPageBySlug).toHaveBeenCalledWith(slug);
     else expect(getPageBySlug).not.toHaveBeenCalledWith(slug);
     expect(container.querySelector(fallbackSelector)).toBeTruthy();
   });

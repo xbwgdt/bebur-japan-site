@@ -1,4 +1,46 @@
 {
+  "cleanliness": {
+    "eyebrow": "PRODUCT CATEGORY",
+    "title": "清浄度測定装置",
+    "summary": "液冷設備や品質管理工程に向け、液中粒子の個数・粒径と清浄度をオンラインまたは携帯型で監視します。",
+    "image": { "src": "/source-media/1762147356906250-b3ac3b47b4049a96.jpg", "alt": "水滴と波紋が広がる水面" },
+    "color": "deepBlue", "fontFamily": "sans", "fontSize": "md"
+  },
+  "water-quality": {
+    "eyebrow": "PRODUCT CATEGORY",
+    "title": "水質分析計",
+    "summary": "消毒、プロセス水、飲料水、排水、製薬用水に向けた各種水質項目をオンラインで分析します。",
+    "image": { "src": "/source-media/1762147356906250-b3ac3b47b4049a96.jpg", "alt": "水滴と波紋が広がる水面" },
+    "color": "deepBlue", "fontFamily": "sans", "fontSize": "md"
+  },
+  "gas-detection": {
+    "eyebrow": "PRODUCT CATEGORY",
+    "title": "ガス検知器",
+    "summary": "固定式・携帯式のガス検知器と警報システムで、可燃性・有毒・臭気ガスなどを監視します。",
+    "image": { "src": "/source-media/1762147356906250-b3ac3b47b4049a96.jpg", "alt": "水滴と波紋が広がる水面" },
+    "color": "deepBlue", "fontFamily": "sans", "fontSize": "md"
+  },
+  "flow-level": {
+    "eyebrow": "PRODUCT CATEGORY",
+    "title": "流量計・液位計",
+    "summary": "導電性液体の電磁流量測定と、超音波による液位・レベル測定に対応します。",
+    "image": { "src": "/source-media/1762147356906250-b3ac3b47b4049a96.jpg", "alt": "水滴と波紋が広がる水面" },
+    "color": "deepBlue", "fontFamily": "sans", "fontSize": "md"
+  },
+  "application-case-index": {
+    "eyebrow": "APPLICATION CASES",
+    "title": "導入事例",
+    "summary": "液冷、上水、化学、医薬、油圧、環境、食品・飲料、電力分野におけるBebur製品の導入事例を紹介します。",
+    "image": { "src": "/source-media/1762161234430121-ff7959b79637fe02.jpg", "alt": "水流が広がる産業別用途のイメージ" },
+    "color": "deepBlue", "fontFamily": "sans", "fontSize": "md"
+  },
+  "insight-index": {
+    "eyebrow": "INSIGHTS",
+    "title": "ニュース・技術情報",
+    "summary": "水質分析、ガス検知、液中粒子測定、薬注制御に関するBeburの技術記事と展示会情報を掲載します。",
+    "image": { "src": "/source-media/1762133644310526-d4cf5bd0feadf444.jpg", "alt": "湖と緑の山並みが広がる風景" },
+    "color": "deepBlue", "fontFamily": "sans", "fontSize": "md"
+  },
   "dosing": {
     "eyebrow": "PRODUCTS",
     "title": "薬注制御装置",

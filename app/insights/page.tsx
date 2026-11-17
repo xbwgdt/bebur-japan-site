@@ -4,6 +4,11 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
+import { SourceShell } from "@/components/source-faithful/source-shell";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
+import { resolveCategoryHero } from "@/lib/page-enhancements";
 import { getArticles, getStaticPages } from "@/lib/content";
 import { canonicalUrl } from "@/lib/routes";
 import type { Article } from "@/lib/types";
@@ -56,18 +61,22 @@ export function orderArticlesByDate(articles: Article[]): Article[] {
 }
 
 export default async function InsightsPage(): Promise<React.ReactElement> {
+  const page = await getPublishedPageForRoute("insight-index");
+  const hero = resolveCategoryHero("insight-index", page?.categoryHero)!;
   const articles = orderArticlesByDate(getArticles());
 
   return (
-    <>
-      <header className="page-hero">
+    <SourceShell>
+      <SourceHero
+        className={`category-banner category-banner--${hero.color} category-banner--${hero.fontFamily} category-banner--${hero.fontSize}`}
+        image={resolveSourceMediaPath(hero.image.src)} imageAlt={hero.image.alt}
+        eyebrow={hero.eyebrow} title={hero.title} summary={hero.summary}
+      />
+      <div className="source-breadcrumb-band">
         <div className="site-container">
           <Breadcrumbs items={[{ label: "ニュース・技術情報" }]} />
-          <p className="page-hero__eyebrow">INSIGHTS</p>
-          <h1>ニュース・技術情報</h1>
-          <p>{pageDescription}</p>
         </div>
-      </header>
+      </div>
 
       <section className="section insights-index">
         <div className="site-container insight-grid">
@@ -123,6 +132,6 @@ export default async function InsightsPage(): Promise<React.ReactElement> {
           <ContactCta compact subject="Bebur ニュース・技術情報" />
         </div>
       </section>
-    </>
+    </SourceShell>
   );
 }
