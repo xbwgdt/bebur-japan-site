@@ -8,6 +8,15 @@
     "fontFamily": "sans",
     "fontSize": "md"
   },
+  "application-index": {
+    "eyebrow": "APPLICATIONS",
+    "title": "産業別用途・導入事例",
+    "summary": "製品は、測定課題と現場条件に応じて選定します。対象物、測定範囲、設置環境、連続監視の要否から、適した計測構成をご確認ください。",
+    "image": { "src": "/source-media/1762161234430121-ff7959b79637fe02.jpg", "alt": "水流が広がる産業別用途のイメージ" },
+    "color": "deepBlue",
+    "fontFamily": "sans",
+    "fontSize": "md"
+  },
   "chemical-industry": {
     "title": "化学プロセスを支えるBebur製品",
     "summary": "ガスの漏えい監視からプロセス水・排水の水質管理まで。測定対象に合わせて、関連する製品をご覧いただけます。",

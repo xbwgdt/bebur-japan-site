@@ -21,8 +21,8 @@ function preset(value: unknown, allowed: string[], fallback: string): string {
 
 /** Dedicated fields only; legacy generic page blocks never replace a route's layout. */
 export function resolveCategoryHero(category: string, value?: unknown): CategoryHero | undefined {
-  if (category !== "dosing") return;
-  const fallback = structuredClone(defaults.dosing), input = object(value);
+  if (category !== "dosing" && category !== "application-index") return;
+  const fallback = structuredClone(defaults[category]), input = object(value);
   const image = object(input.image), asset = object(image.asset);
   let src = fallback.image.src;
   if (typeof asset.url === "string") {

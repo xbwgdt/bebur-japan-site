@@ -6,7 +6,12 @@ import { SolutionPromotion } from "@/components/solution-promotion";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactCta } from "@/components/contact-cta";
 import { SectionHeading } from "@/components/section-heading";
+import { SourceHero } from "@/components/source-faithful/source-hero";
+import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
+import { SourceShell } from "@/components/source-faithful/source-shell";
+import { getPublishedPageForRoute } from "@/lib/cms-pages";
 import { getApplications, getStaticPages } from "@/lib/content";
+import { resolveCategoryHero } from "@/lib/page-enhancements";
 import { canonicalUrl } from "@/lib/routes";
 import { applicationCaseSlugs } from "./cases/page";
 
@@ -70,6 +75,8 @@ const industries = [
 const caseSlugSet = new Set<string>(applicationCaseSlugs);
 
 export default async function ApplicationsPage(): Promise<React.ReactElement> {
+  const page = await getPublishedPageForRoute("application-index");
+  const hero = resolveCategoryHero("application-index", page?.categoryHero)!;
   const applications = getApplications();
   const overviewApplications = applications.filter(
     ({ slug }) => !caseSlugSet.has(slug),
@@ -80,16 +87,21 @@ export default async function ApplicationsPage(): Promise<React.ReactElement> {
 
   return (
     <>
-      <header className="page-hero">
-        <div className="site-container">
-          <Breadcrumbs items={[{ label: "産業別用途・導入事例" }]} />
-          <p className="page-hero__eyebrow">APPLICATIONS</p>
-          <h1>産業別用途・導入事例</h1>
-          <p>
-            製品は、測定課題と現場条件に応じて選定します。対象物、測定範囲、設置環境、連続監視の要否から、適した計測構成をご確認ください。
-          </p>
+      <SourceShell>
+        <SourceHero
+          className={`category-banner category-banner--${hero.color} category-banner--${hero.fontFamily} category-banner--${hero.fontSize}`}
+          image={resolveSourceMediaPath(hero.image.src)}
+          imageAlt={hero.image.alt}
+          eyebrow={hero.eyebrow}
+          title={hero.title}
+          summary={hero.summary}
+        />
+        <div className="source-breadcrumb-band">
+          <div className="site-container">
+            <Breadcrumbs items={[{ label: "産業別用途・導入事例" }]} />
+          </div>
         </div>
-      </header>
+      </SourceShell>
 
       <SolutionPromotion />
       <section className="section application-industries">

@@ -260,7 +260,7 @@ export async function getNewsBySlug(
 const overviewBuildSnapshot = Date.now().toString(36);
 
 export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
-  const overview = ["overview", "culture", "history", "dosing", ...applicationProductPageSlugs].includes(slug);
+  const overview = ["overview", "culture", "history", "dosing", "application-index", ...applicationProductPageSlugs].includes(slug);
   return fetchConfigured<SanityPage>(
     `*[
       _type == "page" &&
