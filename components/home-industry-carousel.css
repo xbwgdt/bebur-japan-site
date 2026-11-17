@@ -1,0 +1,20 @@
+.industry-carousel { width:100%; min-width:0; --industry-gap:1.25rem; }
+.industry-carousel__track { display:grid; grid-auto-flow:column; grid-auto-columns:86%; gap:var(--industry-gap); overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-padding-inline:1rem; scrollbar-width:thin; list-style:none; margin:0; padding:.25rem 1rem 1rem; }
+.industry-carousel__slide { min-width:0; scroll-snap-align:start; }
+.industry-carousel__card { position:relative; display:block; aspect-ratio:4/5; max-height:33rem; overflow:hidden; background:#0a294a; text-decoration:none; }
+.industry-carousel__card img { display:block; width:100%; height:100%; object-fit:cover; transition:transform 300ms ease; }
+.industry-carousel__card:hover img { transform:scale(1.025); }
+.industry-carousel .industry-carousel__caption { position:absolute; inset:auto 0 0; display:flex; align-items:flex-end; justify-content:center; min-height:7rem; margin:0; padding:2.5rem 1rem 1.3rem; background:linear-gradient(0deg,#092a50 0%,rgb(9 42 80 / 92%) 45%,rgb(9 42 80 / 0%) 100%); color:#fff; text-align:center; font-size:clamp(1.05rem,1.3vw,1.35rem); font-weight:700; line-height:1.6; overflow-wrap:anywhere; }
+.industry-carousel--sans .industry-carousel__caption { font-family:"Noto Sans JP","Yu Gothic",Meiryo,sans-serif; }
+.industry-carousel--serif .industry-carousel__caption { font-family:"Yu Mincho",serif; }
+.industry-carousel--sm .industry-carousel__caption { font-size:1rem; }
+.industry-carousel--lg .industry-carousel__caption { font-size:clamp(1.25rem,1.6vw,1.6rem); }
+.industry-carousel__controls { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:.75rem; margin:1.25rem 1rem 0; }
+.industry-carousel__controls button { min-width:2.75rem; min-height:2.75rem; border:1px solid #2057a0; padding:.5rem .9rem; background:#fff; color:#123b6b; font:inherit; font-weight:700; cursor:pointer; }
+.industry-carousel__controls button:hover { background:#2057a0; color:#fff; }
+.industry-carousel__controls button:disabled { opacity:.55; cursor:default; }
+.industry-carousel__controls p { margin:0; padding:.4rem .75rem; background:#fff; color:#123b6b; font-variant-numeric:tabular-nums; }
+.industry-carousel__card:focus-visible,.industry-carousel__controls button:focus-visible,.industry-carousel__track:focus-visible { outline:3px solid #087d9b; outline-offset:3px; }
+@media (min-width:48rem) { .industry-carousel__track { grid-auto-columns:calc((100% - var(--industry-gap))/2); } }
+@media (min-width:64rem) { .industry-carousel__track { grid-auto-columns:calc((100% - 3 * var(--industry-gap))/4); } }
+@media (prefers-reduced-motion:reduce) { .industry-carousel__card img { transition:none; } .industry-carousel__card:hover img { transform:none; } }

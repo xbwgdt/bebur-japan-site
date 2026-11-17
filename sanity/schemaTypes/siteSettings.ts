@@ -5,6 +5,7 @@ import { validateJapaneseProse, validateJapaneseText } from "./validation";
 import { liquidCoolingDiagramField } from "./liquid-cooling-design";
 import { homeCarouselField } from "./home-carousel";
 import { homeVisualsField } from "./home-visuals";
+import { homeIndustriesField } from "./home-industries";
 
 type ApprovedContactField = keyof typeof approvedContact;
 
@@ -129,6 +130,7 @@ export default defineType({
   fields: [
     homeCarouselField,
     homeVisualsField,
+    homeIndustriesField,
     defineField({
       name: "homeSolution", title: "首页液冷专题推荐", type: "object", group: "home",
       description: "显示在首页主视觉下方及应用领域页面。发布后由 Cloudflare 重新构建生效。",

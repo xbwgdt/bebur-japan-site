@@ -2,7 +2,6 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ApplicationCard } from "@/components/application-card";
 import { SolutionPromotion } from "@/components/solution-promotion";
 import { ContactCta } from "@/components/contact-cta";
 import { ProductCard } from "@/components/product-card";
@@ -12,7 +11,6 @@ import { SourceHero } from "@/components/source-faithful/source-hero";
 import { resolveSourceMediaPath } from "@/components/source-faithful/source-media";
 import { SourceShell } from "@/components/source-faithful/source-shell";
 import {
-  getApplication,
   getArticles,
   getProduct,
   getProducts,
@@ -21,8 +19,9 @@ import { siteConfig } from "@/lib/constants";
 import { canonicalUrl, productCategoryLabels } from "@/lib/routes";
 import { publicSiteSettings, resolveHomeHeroStyle } from "@/lib/site-settings";
 import { HomeCarousel } from "@/components/home-carousel";
+import { HomeIndustryCarousel } from "@/components/home-industry-carousel";
 import { homeBackdropStyle, type HomeVisuals } from "@/lib/home-visuals";
-import type { Application, Product, ProductCategory } from "@/lib/types";
+import type { Product, ProductCategory } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "水質分析・ガス検知の精密計測",
@@ -71,17 +70,6 @@ const technologyFacts = [
     description: "50か国以上に広がる販売ネットワーク",
   },
 ] as const;
-
-const featuredApplications = [
-  "liquid-cooling-industry",
-  "municipal-water-treatment",
-  "medical-pharmaceutical",
-  "electric-power-industry",
-]
-  .map(getApplication)
-  .filter(
-    (application): application is Application => application !== undefined,
-  );
 
 const representativeProducts = [
   getProduct("cleanliness", "bt8500"),
@@ -249,25 +237,16 @@ export default async function HomePage(): Promise<React.ReactElement> {
         </div>
       </section>
 
-      <section className="section source-section source-home-applications" style={homeBackdropStyle(visuals.applications)}>
+      {publicSiteSettings.homeIndustries.enabled && publicSiteSettings.homeIndustries.slides.length > 0 && <section className="section source-section source-home-applications" style={homeBackdropStyle(visuals.applications)}>
         <div className="site-container">
           <SectionHeading
             eyebrow="INDUSTRY APPLICATIONS"
-            title="多様な産業で、品質と安全を支える"
-            description="液冷、上水処理、医療・製薬、電力の各現場に向けた計測構成をご紹介します。"
-          />
-          <SourceCardGrid
-            ariaLabel="産業別用途"
-            variant="applications"
-            cards={featuredApplications.map((application) => (
-              <ApplicationCard
-                application={application}
-                key={application.slug}
-              />
-            ))}
+            title={publicSiteSettings.homeIndustries.title}
+            description={publicSiteSettings.homeIndustries.summary}
           />
         </div>
-      </section>
+        <HomeIndustryCarousel settings={publicSiteSettings.homeIndustries} />
+      </section>}
 
       <section
         className="section source-section source-home-news"

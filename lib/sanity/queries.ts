@@ -47,6 +47,7 @@ export type SanityNews = {
 };
 
 export type SanitySiteSettings = {
+  homeIndustries?: unknown;
   homeVisuals?: unknown;
   homeCarousel?: SanityHomeCarousel;
   homeSolution?: {
@@ -278,6 +279,10 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
 export const siteSettingsQuery = `*[
   _type == "siteSettings" && _id == "siteSettings"
 ][0] {
+  homeIndustries {
+    enabled, title, summary, autoPlay, intervalSeconds, fontFamily, fontSize,
+    slides[] { _key, title, href, image { alt, asset->{url} } }
+  },
   homeVisuals {
     about { ..., image { alt, asset->{url} } },
     technology { ..., image { alt, asset->{url} } },

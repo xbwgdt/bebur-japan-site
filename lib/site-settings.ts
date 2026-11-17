@@ -9,6 +9,7 @@ import {
 import { resolveLiquidCoolingDesign, type LiquidCoolingDesign } from "./liquid-cooling-design";
 import { localHomeCarousel, resolveHomeCarousel, type HomeCarouselSettings } from "./home-carousel";
 import { localHomeVisuals, resolveHomeVisuals, type HomeVisuals } from "./home-visuals";
+import { localHomeIndustries, resolveHomeIndustries, type HomeIndustrySettings } from "./home-industries";
 
 export type PublicNavigationLabels = {
   home: string;
@@ -44,6 +45,7 @@ export type PublicContactPageSettings = {
 };
 
 export type PublicSiteSettings = {
+  homeIndustries: HomeIndustrySettings;
   homeVisuals: HomeVisuals;
   homeCarousel: HomeCarouselSettings;
   homeSolution: {
@@ -105,6 +107,7 @@ const contactPanelPresetValues = {
 } as const;
 
 export const localPublicSiteSettings: PublicSiteSettings = {
+  homeIndustries: localHomeIndustries,
   homeVisuals: localHomeVisuals,
   homeCarousel: localHomeCarousel,
   homeSolution: {
@@ -411,6 +414,7 @@ export function resolvePublicSiteSettings(
   return {
     homeHero: resolveHomeHero(settings.homeHero),
     homeVisuals: resolveHomeVisuals(settings.homeVisuals),
+    homeIndustries: resolveHomeIndustries(settings.homeIndustries),
     homeCarousel: resolveHomeCarousel(settings.homeCarousel),
     homeSolution: {
       eyebrow: safeText(settings.homeSolution?.eyebrow, { max: 80 }) ?? localPublicSiteSettings.homeSolution.eyebrow,

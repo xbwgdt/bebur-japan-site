@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "title": "多様な産業で、品質と安全を支える",
+  "summary": "さまざまな産業の測定課題に応えるBeburのソリューションをご紹介します。",
+  "autoPlay": true,
+  "intervalSeconds": 6,
+  "fontFamily": "sans",
+  "fontSize": "md",
+  "slides": [
+    { "_key": "power", "title": "電力・エネルギー", "href": "/applications/electric-power-industry", "image": { "src": "/source-media/1762417708784412-cd7f457acf02320f.jpg", "alt": "電力インフラを表す送電鉄塔と青空" } },
+    { "_key": "water", "title": "上水処理", "href": "/applications/municipal-water-treatment", "image": { "src": "/source-media/1763108910519122-551811acf1e6398e.jpg", "alt": "上水処理設備の水槽とろ過装置" } },
+    { "_key": "cooling", "title": "液冷・データセンター", "href": "/applications/liquid-cooling-industry", "image": { "src": "/source-media/1762482758800188-530b005b81738fb8.jpg", "alt": "電子基板を冷却する液冷配管のイメージ" } },
+    { "_key": "chemical", "title": "化学・化工", "href": "/applications/chemical-industry", "image": { "src": "/source-media/1763109294688001-407df8191386caa2.jpg", "alt": "化学プラントの配管と貯蔵タンク" } },
+    { "_key": "medical", "title": "医療・製薬", "href": "/applications/medical-pharmaceutical", "image": { "src": "/source-media/1763109461646071-b10602246ea209df.jpg", "alt": "医療・製薬分野の試験室で分析を行う研究者" } },
+    { "_key": "hydraulic", "title": "油圧・機械", "href": "/applications/hydraulic-industry", "image": { "src": "/source-media/1763110183129881-f3b360a3e2ced0f4.jpg", "alt": "油圧機器のシリンダーと制御バルブ" } },
+    { "_key": "environment", "title": "環境保全", "href": "/applications/environmental-protection", "image": { "src": "/source-media/1763110422301491-8faa6d80c8281e94.jpg", "alt": "水処理設備と再生可能エネルギー設備" } },
+    { "_key": "food", "title": "食品・飲料", "href": "/applications/food-industry", "image": { "src": "/source-media/1762483226236748-32f5150bba5e4c68.jpg", "alt": "飲料分野を表すボトル製品" } }
+  ]
+}

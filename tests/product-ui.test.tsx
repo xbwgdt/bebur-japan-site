@@ -261,12 +261,12 @@ describe("home product discovery", () => {
     expectLocalizedRenderedImages(container);
     expect(
       container.querySelectorAll('[data-testid="source-card-grid"]'),
-    ).toHaveLength(3);
+    ).toHaveLength(2);
     expect(
       container.querySelector('[data-source-variant="categories"]'),
     ).not.toBeNull();
     expect(
-      container.querySelector('[data-source-variant="applications"]'),
+      container.querySelector('.source-home-applications .industry-carousel'),
     ).not.toBeNull();
     expect(
       container.querySelector('[data-source-variant="products"]'),
